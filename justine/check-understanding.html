@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brooklyn — Check Understanding | KCE Justine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D; --band:#0A2540; --gold:#C9A84C; --blue:#0047BA; --red:#DB2F30; --cream:#FAF7EF; --green:#2E7D32;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;background:var(--cream);font-family:'Cormorant Garamond', serif;color:var(--navy);}
+  .masthead{background:var(--navy);color:var(--cream);text-align:center;padding:26px 20px 18px;}
+  .masthead .kc{font-size:13px;letter-spacing:6px;color:var(--gold);text-transform:uppercase;font-weight:600;}
+  .masthead h1{font-size:32px;font-weight:700;letter-spacing:0.5px;margin-top:6px;}
+  .band{height:6px;width:100%;background:linear-gradient(90deg,var(--blue) 0 33%,var(--gold) 33% 66%,var(--red) 66% 100%);}
+
+  .section-tabs{display:flex;justify-content:center;gap:12px;padding:26px 20px 8px;flex-wrap:wrap;}
+  .tab-btn{
+    display:flex;align-items:center;gap:9px;
+    font-family:'Cormorant Garamond', serif;font-size:16px;font-weight:600;padding:10px 22px;
+    border:2px solid #d8dce4;background:#fff;color:#5c6a80;border-radius:999px;cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .tab-btn .dot{width:10px;height:10px;border-radius:50%;flex:none;}
+  .tab-btn .count{font-size:13px;color:#9aa5b8;font-weight:600;}
+  .tab-btn.active{color:#fff;box-shadow:0 6px 16px rgba(10,31,61,0.18);}
+  .tab-btn.active .count{color:rgba(255,255,255,0.75);}
+  .tab-btn[data-color="blue"].active{background:var(--blue);border-color:var(--blue);}
+  .tab-btn[data-color="gold"].active{background:var(--gold);border-color:var(--gold);}
+  .tab-btn[data-color="red"].active{background:var(--red);border-color:var(--red);}
+  .tab-btn[data-color="blue"] .dot{background:var(--blue);}
+  .tab-btn[data-color="gold"] .dot{background:var(--gold);}
+  .tab-btn[data-color="red"] .dot{background:var(--red);}
+  .tab-btn.active .dot{background:#fff;}
+
+  main{max-width:640px;margin:0 auto;padding:20px 24px 60px;}
+  .progress{text-align:center;font-size:14px;color:#5c6a80;margin-bottom:14px;}
+
+  .q-card{background:#fff;border-radius:18px;padding:30px 28px;box-shadow:0 14px 32px rgba(10,31,61,0.1);}
+  .q-text{font-size:22px;font-weight:700;color:var(--navy);margin-bottom:22px;line-height:1.4;}
+
+  .opt{
+    display:block;width:100%;text-align:left;font-family:'Cormorant Garamond', serif;font-size:17px;
+    padding:14px 18px;margin-bottom:10px;border:2px solid #d8dce4;border-radius:10px;background:#fff;
+    color:var(--navy);cursor:pointer;transition:all 0.15s ease;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt.selected.correct{border-color:var(--green);background:#EAF7EC;}
+  .opt.selected.incorrect{border-color:var(--red);background:#FCEAEA;}
+  .opt.reveal-correct{border-color:var(--green);background:#EAF7EC;}
+  .opt[disabled]{cursor:default;}
+
+  .feedback{margin-top:16px;padding:14px 18px;border-radius:10px;font-size:15px;line-height:1.5;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:#EAF7EC;border-left:4px solid var(--green);color:#1e5024;}
+  .feedback.incorrect{background:#FCEAEA;border-left:4px solid var(--red);color:#7a2020;}
+
+  .nav{display:flex;justify-content:center;gap:14px;margin-top:20px;}
+  .nav-btn{
+    font-family:'Cormorant Garamond', serif;font-size:18px;font-weight:700;padding:12px 28px;
+    border:none;border-radius:999px;background:var(--red);color:#fff;cursor:pointer;
+    box-shadow:0 8px 20px rgba(219,47,48,0.3);
+  }
+  .nav-btn[disabled]{background:#d8dce4;box-shadow:none;cursor:default;}
+
+  footer{text-align:center;padding:20px;color:#8a93a3;font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kc">KingCretot Experience</div>
+  <h1>Check Understanding — Brooklyn</h1>
+</div>
+<div class="band"></div>
+
+<div class="section-tabs" id="tabs"></div>
+
+<main>
+  <div class="progress" id="progress"></div>
+  <div class="q-card">
+    <div class="q-text" id="qText"></div>
+    <div id="opts"></div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+  <div class="nav">
+    <button class="nav-btn" id="nextBtn" disabled>Next Question</button>
+  </div>
+</main>
+
+<footer>KingCretot Experience &nbsp;·&nbsp; Justine 2026–2027</footer>
+
+<script>
+const sections = {
+  characters: {
+    label: "Characters",
+    color: "blue",
+    questions: [
+      {
+        q: "Who arranges for Eilis to move to America?",
+        opts: [
+          "Her mother, out of concern for her future",
+          "Rose, her sister, working with Father Flood",
+          "Eilis herself, after months of planning",
+          "A neighbor who had already emigrated"
+        ],
+        correct: 1,
+        fbCorrect: "Right — Rose sets it in motion, and Father Flood makes the practical arrangements.",
+        fbIncorrect: "Not quite. Rose is the one who arranges it, with Father Flood's help."
+      },
+      {
+        q: "Who helps Eilis get through the ship crossing?",
+        opts: ["Father Flood", "Mrs. Kehoe", "Georgina", "Rose"],
+        correct: 2,
+        fbCorrect: "Yes — Georgina is more experienced with the journey and helps her practically.",
+        fbIncorrect: "Not quite. It's Georgina, a fellow Irish passenger, who helps her through it."
+      },
+      {
+        q: "Where does Eilis live once she arrives in Brooklyn?",
+        opts: ["With a relative", "Alone in an apartment", "A boarding house run by Mrs. Kehoe", "Above the shop where she works"],
+        correct: 2,
+        fbCorrect: "Correct — Mrs. Kehoe's boarding house, alongside other young Irish women.",
+        fbIncorrect: "Not quite. She lives in a boarding house run by Mrs. Kehoe."
+      }
+    ]
+  },
+  plot: {
+    label: "Plot Beats",
+    color: "gold",
+    questions: [
+      {
+        q: "Why does Eilis leave Ireland, most accurately?",
+        opts: [
+          "She has always dreamed of America",
+          "There's little opportunity for her at home, and her sister arranges a better path",
+          "She is running from a broken relationship",
+          "Her family is forcing her out against her will"
+        ],
+        correct: 1,
+        fbCorrect: "Exactly — it's about opportunity, and it's arranged more than chosen.",
+        fbIncorrect: "Not quite. The real reason is limited opportunity at home, with Rose arranging the move."
+      },
+      {
+        q: "How does Eilis feel about leaving, overall?",
+        opts: [
+          "Completely excited, with no hesitation",
+          "Torn — not strongly wanting to go, but not resisting either",
+          "Devastated and angry",
+          "Indifferent, she barely thinks about it"
+        ],
+        correct: 1,
+        fbCorrect: "This is the key nuance — her ambivalence is central to the whole first part.",
+        fbIncorrect: "Not quite. Her feelings are genuinely mixed — not excited, not resisting either."
+      },
+      {
+        q: "What happens on the ship crossing?",
+        opts: ["It's smooth and uneventful", "It's physically and emotionally difficult", "She meets the man she'll marry", "She decides to turn back"],
+        correct: 1,
+        fbCorrect: "Right — the crossing is genuinely hard, both physically and emotionally.",
+        fbIncorrect: "Not quite. The crossing is difficult in both a physical and emotional sense."
+      }
+    ]
+  },
+  themes: {
+    label: "Themes",
+    color: "red",
+    questions: [
+      {
+        q: "Which best describes Eilis's homesickness in Brooklyn?",
+        opts: [
+          "Loud and dramatic — she talks about it constantly",
+          "Quiet and private — hard for her to explain to others",
+          "She doesn't feel homesick at all",
+          "It fades within days of arriving"
+        ],
+        correct: 1,
+        fbCorrect: "Yes — it's quiet and constant, which is part of why it's hard for others to see.",
+        fbIncorrect: "Not quite. Her homesickness is quiet and private, not dramatic."
+      },
+      {
+        q: "The decision for Eilis to emigrate is best described as...",
+        opts: ["Entirely her own choice", "Something arranged for her, that she goes along with", "Something forced on her against her will", "A random opportunity she stumbled into"],
+        correct: 1,
+        fbCorrect: "Correct — arranged, and accepted rather than chosen outright.",
+        fbIncorrect: "Not quite. It's arranged for her by Rose, and she goes along with it."
+      }
+    ]
+  }
+};
+
+let currentSection = 'characters';
+let currentQ = 0;
+let answered = false;
+
+const tabsEl = document.getElementById('tabs');
+const progressEl = document.getElementById('progress');
+const qTextEl = document.getElementById('qText');
+const optsEl = document.getElementById('opts');
+const feedbackEl = document.getElementById('feedback');
+const nextBtn = document.getElementById('nextBtn');
+
+function renderTabs(){
+  tabsEl.innerHTML = '';
+  Object.keys(sections).forEach(key => {
+    const sec = sections[key];
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (key === currentSection ? ' active' : '');
+    btn.dataset.color = sec.color;
+    btn.innerHTML = '<span class="dot"></span>' + sec.label + ' <span class="count">(' + sec.questions.length + ')</span>';
+    btn.onclick = () => { currentSection = key; currentQ = 0; renderTabs(); renderQuestion(); };
+    tabsEl.appendChild(btn);
+  });
+}
+
+function renderQuestion(){
+  const sec = sections[currentSection];
+  const q = sec.questions[currentQ];
+  progressEl.textContent = `${sec.label} — Question ${currentQ + 1} of ${sec.questions.length}`;
+  qTextEl.textContent = q.q;
+  optsEl.innerHTML = '';
+  answered = false;
+  feedbackEl.className = 'feedback';
+  feedbackEl.textContent = '';
+  nextBtn.disabled = true;
+
+  q.opts.forEach((optText, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = optText;
+    btn.onclick = () => selectOption(i, btn);
+    optsEl.appendChild(btn);
+  });
+}
+
+function selectOption(i, btn){
+  if(answered) return;
+  answered = true;
+  const sec = sections[currentSection];
+  const q = sec.questions[currentQ];
+  const allOpts = optsEl.querySelectorAll('.opt');
+  allOpts.forEach(o => o.disabled = true);
+
+  if(i === q.correct){
+    btn.classList.add('selected', 'correct');
+    feedbackEl.textContent = q.fbCorrect;
+    feedbackEl.className = 'feedback correct show';
+  } else {
+    btn.classList.add('selected', 'incorrect');
+    allOpts[q.correct].classList.add('reveal-correct');
+    feedbackEl.textContent = q.fbIncorrect;
+    feedbackEl.className = 'feedback incorrect show';
+  }
+  nextBtn.disabled = false;
+}
+
+nextBtn.onclick = () => {
+  const sec = sections[currentSection];
+  if(currentQ < sec.questions.length - 1){
+    currentQ++;
+  } else {
+    currentQ = 0;
+  }
+  renderQuestion();
+};
+
+renderTabs();
+renderQuestion();
+</script>
+
+</body>
+</html>

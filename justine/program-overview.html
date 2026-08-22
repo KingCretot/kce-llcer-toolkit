@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Justine's LLCER Year — How It Works | KingCretot Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1F3D;--navyband:#0A2540;--gold:#C9A84C;--blue:#0047BA;--red:#DB2F30;
+--cream:#FAF7EF;--ink:#232A38;--muted:#6E7686;--line:#DFD8C6;
+--display:'Cormorant Garamond',Georgia,serif;--ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;line-height:1.62}
+.wrap{max-width:880px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(10,31,61,.08)}
+.mast{background:var(--navyband);padding:16px 28px;display:flex;align-items:center;gap:13px}
+.kc{width:38px;height:38px;flex:none;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--display);font-weight:700;font-size:16px}
+.wm{color:var(--gold);font-family:var(--display);font-size:21px;font-weight:700;line-height:1}
+.motto{font-size:8.5px;letter-spacing:2.8px;margin-top:4px;font-weight:600}
+.motto .e{color:#fff}.motto .m{color:var(--gold)}.motto .x{color:var(--red)}
+.band{height:5px;display:flex}.band i{flex:1}
+.b1{background:var(--blue)}.b2{background:var(--gold)}.b3{background:var(--red)}
+
+.hero{padding:36px 34px 28px;text-align:center;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:10px;letter-spacing:3.4px;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1{font-family:var(--display);font-size:38px;font-weight:700;color:var(--navy);margin:8px 0 8px;line-height:1.1}
+.hero .sub{font-size:15px;color:var(--muted);font-style:italic}
+
+.welcome{background:var(--navy);color:#fff;padding:28px 34px;text-align:center}
+.welcome p{font-size:17px;line-height:1.7;margin:0 0 12px}
+.welcome p:last-child{margin:0}
+.welcome .fr{color:#A9B6CC;font-style:italic;font-size:15px}
+
+.body{padding:32px 34px 40px}
+h2{font-family:var(--display);font-size:26px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);padding-bottom:8px;margin:38px 0 16px}
+h2:first-child{margin-top:0}
+p{font-size:15.5px;margin:0 0 12px}
+.fr{color:var(--muted);font-style:italic;font-size:14px}
+b{color:var(--navy)}
+
+.exam-halves{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.half{flex:1;min-width:240px;border:2px solid var(--line);border-radius:10px;padding:20px}
+.half.oral{border-color:var(--gold);background:#FFFDF6}
+.half .tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.half.oral .tag{color:var(--gold)}
+.half h3{font-family:var(--display);font-size:20px;color:var(--navy);margin:6px 0 8px}
+.half p{font-size:14px;margin:0}
+
+.phase{border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden}
+.phase-h{background:var(--cream);padding:14px 18px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.phase-num{font-family:var(--display);font-size:15px;font-weight:700;color:var(--gold)}
+.phase-name{font-family:var(--display);font-size:20px;font-weight:700;color:var(--navy);flex:1}
+.phase-when{font-size:12.5px;color:var(--muted)}
+.phase-b{padding:16px 18px}
+.phase-b p{font-size:14.5px;margin:0 0 6px}
+.phase-b p:last-child{margin:0}
+
+.week-shape{background:var(--cream);border-left:3px solid var(--blue);padding:18px 20px;border-radius:0 8px 8px 0;margin:16px 0}
+.week-shape .lab{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:8px}
+.week-shape p{font-size:14.5px;margin:0 0 8px}
+.week-shape p:last-child{margin:0}
+
+.cal{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+.cal th{background:var(--navy);color:#fff;text-align:left;padding:8px 12px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.cal td{padding:8px 12px;border-bottom:1px solid var(--line)}
+.cal tr:last-child td{border-bottom:none}
+.cal .d{color:var(--muted);white-space:nowrap;font-size:13px}
+
+.reassure{background:#F3F7FD;border-left:3px solid var(--blue);padding:18px 20px;border-radius:0 8px 8px 0;margin:16px 0}
+.reassure p{font-size:14.5px;margin:0 0 8px}
+.reassure p:last-child{margin:0}
+
+.foot{background:var(--navyband);color:#8E99AC;font-size:9px;text-align:center;padding:14px;font-style:italic;font-family:var(--display)}
+@media(max-width:640px){.hero,.welcome,.body{padding-left:18px;padding-right:18px}h1{font-size:28px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="mast">
+ <div class="kc">KC</div>
+ <div>
+ <div class="wm">KingCretot Experience</div>
+ <div class="motto"><span class="e">EDUCATE.</span> <span class="m">EMPOWER.</span> <span class="x">EXCEL.</span></div>
+ </div>
+</div>
+<div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+
+<div class="hero">
+ <div class="eyebrow">Justine's LLCER Year</div>
+ <h1>How This Program Works</h1>
+ <div class="sub">September 2026 – May 2027 &middot; A guide for Justine and Sophie</div>
+</div>
+
+<div class="welcome">
+ <p>This is a plain-language guide to how Justine's English year is organized — what we're building toward, how the weeks are shaped, and what to expect along the way.</p>
+ <p class="fr">Ce document explique simplement comment se déroule l'année d'anglais de Justine — ce que nous construisons, comment les semaines sont organisées, et à quoi s'attendre.</p>
+</div>
+
+<div class="body">
+
+<h2>What We're Preparing For</h2>
+<p>Justine's LLCER Anglais exam happens in June 2027. It has two halves, and they're graded separately.</p>
+
+<div class="exam-halves">
+ <div class="half oral">
+ <div class="tag">Where we focus</div>
+ <h3>Speaking</h3>
+ <p>A 20-minute conversation with an examiner: Justine presents documents she's chosen, then answers unscripted questions. No notes allowed.</p>
+ </div>
+ <div class="half">
+ <div class="tag">Lighter touch</div>
+ <h3>Writing</h3>
+ <p>A 3.5-hour written exam, done at school under timed conditions. We support this — vocabulary, translation practice, organizing ideas — but we can't simulate a silent 3.5-hour writing exam over a video call, so this isn't where our weekly time goes.</p>
+ </div>
+</div>
+
+<p>Both count toward her final grade, but almost everything we do together each week is built around the speaking half — because that's what an hour of live conversation can actually train, week after week.</p>
+<p class="fr">Les deux comptent pour la note finale, mais presque tout ce que nous faisons ensemble chaque semaine est construit autour de l'oral — c'est ce qu'une heure de conversation en direct peut vraiment entraîner.</p>
+
+<h2>The Shape of the Year</h2>
+<p>We move through the year in five stretches. Each one builds on the last.</p>
+
+<div class="phase">
+ <div class="phase-h"><span class="phase-num">1</span><span class="phase-name">Getting Started</span><span class="phase-when">September</span></div>
+ <div class="phase-b">
+ <p>We start slow, on purpose. The first weeks are about understanding the exam, meeting the first book, and building comfort — not performance. Nothing here is timed or graded.</p>
+ </div>
+</div>
+
+<div class="phase">
+ <div class="phase-h"><span class="phase-num">2</span><span class="phase-name">Learning the Method</span><span class="phase-when">October – mid-November</span></div>
+ <div class="phase-b">
+ <p>We keep working with the same first book, one piece at a time, until Justine really understands it. Then we start comparing ideas out loud and building toward her first spoken presentation.</p>
+ </div>
+</div>
+
+<div class="phase">
+ <div class="phase-h"><span class="phase-num">3</span><span class="phase-name">New York &amp; the Second Book</span><span class="phase-when">December – January</span></div>
+ <div class="phase-b">
+ <p>Right after the New York trip, we talk about it — completely unscripted, since she can't have memorized a trip she just took. This is often the best speaking session of the year. Then a second book begins, and it moves faster because Justine already knows the method.</p>
+ </div>
+</div>
+
+<div class="phase">
+ <div class="phase-h"><span class="phase-num">4</span><span class="phase-name">The Third Work &amp; the Dossier</span><span class="phase-when">February – March</span></div>
+ <div class="phase-b">
+ <p>A film joins the two books. By mid-March, Justine chooses and locks in the final documents she'll actually bring to her exam — her personal "dossier" — and starts defending her choices out loud.</p>
+ </div>
+</div>
+
+<div class="phase">
+ <div class="phase-h"><span class="phase-num">5</span><span class="phase-name">Full Rehearsal</span><span class="phase-when">April – May</span></div>
+ <div class="phase-b">
+ <p>Full practice exams, start to finish, with different examiner styles — warm, bored, interrupting — so nothing in the real room on exam day feels unfamiliar.</p>
+ </div>
+</div>
+
+<h2>What a Typical Monday Looks Like</h2>
+<p>Every session is an hour, and every session ends with Justine speaking — never just reading or listening. The middle of the hour changes week to week depending on what she needs most: sometimes it's understanding a new text, sometimes it's organizing ideas out loud, sometimes it's full unscripted practice.</p>
+
+<div class="week-shape">
+ <div class="lab">One thing stays constant</div>
+ <p>Justine is allowed to use her notes at first, and we take them away slowly, one step at a time — full text, then a simple outline, then nothing at all. By exam day in June, she'll have done this so many times that speaking with nothing in front of her feels normal, not scary.</p>
+</div>
+<p class="fr">Une chose reste constante : Justine peut utiliser ses notes au début, et on les retire petit à petit — texte complet, puis un plan simple, puis plus rien du tout. Le jour de l'examen en juin, elle l'aura fait tant de fois que parler sans rien devant elle sera normal, pas effrayant.</p>
+
+<h2>The Calendar</h2>
+<table class="cal">
+ <tr><th>When</th><th>What</th></tr>
+ <tr><td class="d">Sep 7, 2026</td><td>First session of the year</td></tr>
+ <tr><td class="d">Nov 21–28</td><td>NYC class trip</td></tr>
+ <tr><td class="d">Nov 23 &amp; 30</td><td>No lesson — travel</td></tr>
+ <tr><td class="d">Late Dec</td><td>Holiday sessions — to confirm with Sophie</td></tr>
+ <tr><td class="d">Mid-March</td><td>Dossier locked and submitted to the lycée</td></tr>
+ <tr><td class="d">Mar 29</td><td>No lesson — Easter Monday</td></tr>
+ <tr><td class="d">May 17</td><td>No lesson — Pentecost Monday</td></tr>
+ <tr><td class="d">May 31, 2027</td><td>Final session of the year</td></tr>
+ <tr><td class="d">June 2027</td><td>The actual exam — exact dates to be confirmed once published</td></tr>
+</table>
+
+<h2>What We Want You to Know</h2>
+<div class="reassure">
+ <p><b>An accent is not a mistake.</b> Speaking English with a French accent is completely fine at the level Justine needs — we tell her this on day one, and we mean it.</p>
+ <p><b>There's no rush.</b> Every text is met slowly, one piece at a time, before we ask her to compare or analyze anything.</p>
+ <p><b>Mistakes during practice are the point.</b> The goal every week is that Justine says something out loud — not that she says it perfectly.</p>
+ <p><b>Justine has done this before.</b> By the time June arrives, she'll have delivered full unscripted presentations many times, in front of many different "examiner" moods. Nothing in that room should be a surprise.</p>
+</div>
+<p class="fr">Un accent n'est pas une erreur. Il n'y a pas de précipitation. Se tromper pendant les exercices, c'est normal — l'objectif chaque semaine est que Justine parle à voix haute, pas qu'elle soit parfaite. Justine aura déjà fait tout cela plusieurs fois avant juin.</p>
+
+</div>
+
+<div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+<div class="foot">KingCretot Experience &nbsp;&middot;&nbsp; Justine · LLCER Anglais 2026–2027 &nbsp;&middot;&nbsp; kingcretot.com</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pick Something — KCE LLCER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D;
+    --band:#0A2540;
+    --gold:#C9A84C;
+    --blue:#0047BA;
+    --red:#DB2F30;
+    --cream:#FAF7EF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  .masthead{
+    background:var(--navy);
+    color:var(--cream);
+    text-align:center;
+    padding:28px 20px 20px;
+  }
+  .masthead .kc{
+    font-size:14px;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .masthead h1{
+    font-size:44px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-top:6px;
+  }
+  .masthead .sub{
+    font-style:italic;
+    font-size:17px;
+    color:#cdd6e6;
+    margin-top:4px;
+  }
+  .band{
+    height:6px;
+    width:100%;
+    background:linear-gradient(90deg, var(--blue) 0 33%, var(--gold) 33% 66%, var(--red) 66% 100%);
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:36px 24px 60px;
+  }
+  .deck-select{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:34px;
+  }
+  .deck-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 20px;
+    border:2px solid var(--navy);
+    background:transparent;
+    color:var(--navy);
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .deck-btn:hover{
+    background:var(--navy);
+    color:var(--cream);
+  }
+  .deck-btn.active{
+    background:var(--navy);
+    color:var(--cream);
+  }
+  .deck-btn.active .dot{background:var(--gold);}
+  .deck-btn .dot{
+    display:inline-block;
+    width:8px;height:8px;
+    border-radius:50%;
+    margin-right:8px;
+    background:var(--blue);
+    vertical-align:middle;
+  }
+  .stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:28px;
+  }
+  .card-frame{
+    perspective:1400px;
+    width:100%;
+    max-width:560px;
+    height:300px;
+  }
+  .card{
+    position:relative;
+    width:100%;
+    height:100%;
+    transform-style:preserve-3d;
+    transition:transform 0.7s cubic-bezier(.2,.9,.25,1);
+  }
+  .card.flipped{transform:rotateY(180deg);}
+  .face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px;
+  }
+  .face.front{
+    background:var(--navy);
+    color:var(--gold);
+    box-shadow:0 18px 40px rgba(10,31,61,0.25);
+  }
+  .face.front .mark{
+    font-size:22px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--cream);
+    opacity:0.85;
+  }
+  .face.back{
+    background:var(--cream);
+    border:3px solid var(--navy);
+    transform:rotateY(180deg);
+    box-shadow:0 18px 40px rgba(10,31,61,0.18);
+    flex-direction:column;
+    gap:14px;
+  }
+  .face.back .eyebrow{
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--blue);
+  }
+  .face.back .topic{
+    font-size:30px;
+    font-weight:600;
+    line-height:1.3;
+    color:var(--navy);
+  }
+  .controls{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .draw-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:14px 36px;
+    border:none;
+    border-radius:999px;
+    background:var(--red);
+    color:var(--cream);
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(219,47,48,0.3);
+    transition:transform 0.15s ease;
+  }
+  .draw-btn:hover{transform:translateY(-2px);}
+  .draw-btn:active{transform:translateY(0);}
+  .draw-btn:disabled{
+    background:#b9bcc4;
+    box-shadow:none;
+    cursor:default;
+    transform:none;
+  }
+  .progress{
+    font-size:15px;
+    color:#5c6a80;
+    letter-spacing:0.5px;
+  }
+  footer{
+    text-align:center;
+    padding:26px 20px 34px;
+    color:#8a93a3;
+    font-size:14px;
+    letter-spacing:0.5px;
+  }
+  footer .name{color:var(--navy);font-weight:600;}
+  @media (max-width:480px){
+    .masthead h1{font-size:34px;}
+    .face.back .topic{font-size:24px;}
+    .card-frame{height:280px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kc">KingCretot Experience</div>
+  <h1>Pick Something</h1>
+  <div class="sub">Choose a deck. Draw a topic. Just talk.</div>
+</div>
+<div class="band"></div>
+
+<main>
+  <div class="deck-select" id="deckSelect"></div>
+
+  <div class="stage">
+    <div class="card-frame">
+      <div class="card" id="card">
+        <div class="face front">
+          <div class="mark">Pick Something</div>
+        </div>
+        <div class="face back">
+          <div class="eyebrow" id="deckLabel"></div>
+          <div class="topic" id="topicText"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="draw-btn" id="drawBtn">Draw a Topic</button>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+</main>
+
+<footer>
+  <span class="name">KingCretot Experience</span> &nbsp;·&nbsp; English Experience &nbsp;·&nbsp; LLCER Bac Prep Template
+</footer>
+
+<script>
+  const decks = {
+    foundation: {
+      label: "Foundation",
+      topics: [
+        "Something that surprised you this week",
+        "A song that's been stuck in your head lately",
+        "The last thing that made you really laugh",
+        "A place you'd go back to right now if you could",
+        "Something you're looking forward to",
+        "A small thing that made your day better recently"
+      ]
+    },
+    voyages: {
+      label: "Places & Borders",
+      topics: [
+        "A place that felt completely new to you the first time you saw it",
+        "Something you'd miss most if you moved away from home",
+        "A trip that didn't go the way you expected",
+        "A moment you felt like an outsider somewhere",
+        "Somewhere you've never been but really want to go",
+        "A story someone in your family tells about leaving or arriving somewhere",
+        "What \"home\" means to you, in your own words",
+        "A place that changed how you saw yourself",
+        "Something you'd bring with you if you had to leave quickly",
+        "A border, real or not, that you've had to cross in your life",
+        "Something familiar you'd miss most in an unfamiliar place",
+        "A trip you're looking forward to and how you imagine it will feel"
+      ]
+    },
+    expression: {
+      label: "Self & Identity",
+      topics: [
+        "Something people misunderstand about you",
+        "A moment you felt proud of yourself",
+        "Someone who has shaped who you are",
+        "A decision you made that felt like \"growing up\"",
+        "Something you've changed your mind about",
+        "A part of yourself you show only to people who know you well",
+        "Something you're better at than you used to be",
+        "A moment you had to stand up for something you believed",
+        "Someone your age you admire, and why",
+        "A habit or hobby that says something about who you are",
+        "Something you do differently than your parents did at your age",
+        "A time you surprised yourself"
+      ]
+    },
+    arts: {
+      label: "Arts & Ideas",
+      topics: [
+        "A film or show that stayed with you after it ended",
+        "A piece of art, music, or a show you don't fully understand but still love",
+        "Something in pop culture right now that people disagree about",
+        "A character from a show who reminds you of someone real",
+        "A song that says something you couldn't say yourself",
+        "Something you think is unfairly criticized",
+        "A story that changed how you think about something",
+        "An idea or trend you don't agree with",
+        "Something you think is \"art\" that other people might not",
+        "A piece of music or film from another era you actually love",
+        "A disagreement you've had with a friend about a show or book",
+        "If you could ask a director or writer one question, what would it be"
+      ]
+    }
+  };
+
+  let currentDeck = "foundation";
+  let pool = [];
+  let flipped = false;
+
+  const deckSelect = document.getElementById('deckSelect');
+  const card = document.getElementById('card');
+  const drawBtn = document.getElementById('drawBtn');
+  const deckLabel = document.getElementById('deckLabel');
+  const topicText = document.getElementById('topicText');
+  const progress = document.getElementById('progress');
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function renderDeckButtons(){
+    deckSelect.innerHTML = '';
+    Object.keys(decks).forEach(key=>{
+      const btn = document.createElement('button');
+      btn.className = 'deck-btn' + (key===currentDeck ? ' active' : '');
+      btn.innerHTML = '<span class="dot"></span>' + decks[key].label;
+      btn.onclick = () => selectDeck(key);
+      deckSelect.appendChild(btn);
+    });
+  }
+
+  function selectDeck(key){
+    currentDeck = key;
+    pool = shuffle(decks[key].topics);
+    flipped = false;
+    card.classList.remove('flipped');
+    drawBtn.disabled = false;
+    drawBtn.textContent = "Draw a Topic";
+    renderDeckButtons();
+    updateProgress();
+  }
+
+  function updateProgress(){
+    const total = decks[currentDeck].topics.length;
+    const used = total - pool.length;
+    progress.textContent = pool.length > 0
+      ? `${used} of ${total} drawn this round`
+      : `All ${total} topics drawn — reshuffling`;
+  }
+
+  drawBtn.onclick = () => {
+    if(pool.length === 0){
+      pool = shuffle(decks[currentDeck].topics);
+    }
+    const topic = pool.pop();
+    deckLabel.textContent = decks[currentDeck].label;
+    topicText.textContent = topic;
+
+    if(flipped){
+      card.classList.remove('flipped');
+      setTimeout(()=>{ card.classList.add('flipped'); }, 350);
+    } else {
+      card.classList.add('flipped');
+      flipped = true;
+    }
+    updateProgress();
+  };
+
+  selectDeck('foundation');
+</script>
+
+</body>
+</html>

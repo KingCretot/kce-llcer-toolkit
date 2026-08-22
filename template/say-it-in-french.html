@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Say It in French — KCE LLCER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D;
+    --band:#0A2540;
+    --gold:#C9A84C;
+    --blue:#0047BA;
+    --red:#DB2F30;
+    --cream:#FAF7EF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  .masthead{
+    background:var(--navy);
+    color:var(--cream);
+    text-align:center;
+    padding:28px 20px 20px;
+  }
+  .masthead .kc{
+    font-size:14px;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .masthead h1{
+    font-size:40px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-top:6px;
+  }
+  .masthead .sub{
+    font-style:italic;
+    font-size:17px;
+    color:#cdd6e6;
+    margin-top:4px;
+  }
+  .band{
+    height:6px;
+    width:100%;
+    background:linear-gradient(90deg, var(--blue) 0 33%, var(--gold) 33% 66%, var(--red) 66% 100%);
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:36px 24px 60px;
+  }
+  .deck-select{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:34px;
+  }
+  .deck-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 18px;
+    border:2px solid var(--navy);
+    background:transparent;
+    color:var(--navy);
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .deck-btn:hover{background:var(--navy);color:var(--cream);}
+  .deck-btn.active{background:var(--navy);color:var(--cream);}
+  .deck-btn.active .dot{background:var(--gold);}
+  .deck-btn .dot{
+    display:inline-block;
+    width:8px;height:8px;
+    border-radius:50%;
+    margin-right:8px;
+    background:var(--blue);
+    vertical-align:middle;
+  }
+  .stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+  }
+  .prompt-label{
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--blue);
+  }
+  .sentence-card{
+    background:var(--navy);
+    color:var(--cream);
+    border-radius:16px;
+    padding:40px 36px;
+    width:100%;
+    max-width:600px;
+    min-height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:26px;
+    font-weight:500;
+    line-height:1.45;
+    box-shadow:0 18px 40px rgba(10,31,61,0.25);
+  }
+  .controls{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .draw-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:14px 36px;
+    border:none;
+    border-radius:999px;
+    background:var(--red);
+    color:var(--cream);
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(219,47,48,0.3);
+    transition:transform 0.15s ease;
+  }
+  .draw-btn:hover{transform:translateY(-2px);}
+  .draw-btn:active{transform:translateY(0);}
+  .reveal-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 22px;
+    border:2px solid var(--blue);
+    border-radius:999px;
+    background:transparent;
+    color:var(--blue);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .reveal-btn:hover{background:var(--blue);color:var(--cream);}
+  .model-box{
+    max-width:600px;
+    text-align:center;
+    padding:18px 24px;
+    border-top:1px solid #d8dce4;
+    display:none;
+  }
+  .model-box.show{display:block;}
+  .model-box .eyebrow{
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .model-box .fr{
+    font-size:24px;
+    font-weight:600;
+    color:var(--navy);
+    font-style:italic;
+  }
+  .progress{
+    font-size:15px;
+    color:#5c6a80;
+    letter-spacing:0.5px;
+  }
+  footer{
+    text-align:center;
+    padding:26px 20px 34px;
+    color:#8a93a3;
+    font-size:14px;
+    letter-spacing:0.5px;
+  }
+  footer .name{color:var(--navy);font-weight:600;}
+  @media (max-width:480px){
+    .masthead h1{font-size:30px;}
+    .sentence-card{font-size:20px;padding:30px 24px;}
+    .model-box .fr{font-size:19px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kc">KingCretot Experience</div>
+  <h1>Say It in French</h1>
+  <div class="sub">Read it in English. Say it in French. Out loud, no writing.</div>
+</div>
+<div class="band"></div>
+
+<main>
+  <div class="deck-select" id="deckSelect"></div>
+
+  <div class="stage">
+    <div class="prompt-label">Translate this sentence</div>
+    <div class="sentence-card" id="sentenceCard"></div>
+
+    <div class="controls">
+      <button class="draw-btn" id="drawBtn">New Sentence</button>
+      <button class="reveal-btn" id="revealBtn">Reveal Model Translation</button>
+    </div>
+    <div class="model-box" id="modelBox">
+      <div class="eyebrow">Model translation</div>
+      <div class="fr" id="modelText"></div>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+</main>
+
+<footer>
+  <span class="name">KingCretot Experience</span> &nbsp;·&nbsp; English Experience &nbsp;·&nbsp; LLCER Translation Drill
+</footer>
+
+<script>
+  const decks = {
+    wordorder: {
+      label: "Word Order",
+      sentences: [
+        { en: "The old wooden house by the river", fr: "La vieille maison en bois près de la rivière" },
+        { en: "She often walks alone in the evening", fr: "Elle se promène souvent seule le soir" },
+        { en: "He finally understood what she meant", fr: "Il a enfin compris ce qu'elle voulait dire" },
+        { en: "It was a genuinely surprising decision", fr: "C'était une décision vraiment surprenante" },
+        { en: "They rarely speak about the past", fr: "Ils parlent rarement du passé" },
+        { en: "A small quiet town near the coast", fr: "Une petite ville tranquille près de la côte" }
+      ]
+    },
+    idioms: {
+      label: "Phrasal Verbs & Idioms",
+      sentences: [
+        { en: "She gave up after the third try", fr: "Elle a abandonné après la troisième tentative" },
+        { en: "He looks up to his older brother", fr: "Il admire son grand frère" },
+        { en: "They finally figured it out", fr: "Ils ont fini par comprendre" },
+        { en: "It's raining cats and dogs", fr: "Il pleut des cordes" },
+        { en: "I'm not going to sugarcoat it", fr: "Je ne vais pas enjoliver les choses" },
+        { en: "She's been through a lot this year", fr: "Elle a traversé beaucoup d'épreuves cette année" }
+      ]
+    },
+    passive: {
+      label: "Passive Voice",
+      sentences: [
+        { en: "The letter was written by her grandmother", fr: "La lettre a été écrite par sa grand-mère" },
+        { en: "The decision was made without her", fr: "La décision a été prise sans elle" },
+        { en: "The house has been sold", fr: "La maison a été vendue" },
+        { en: "New rules were introduced last year", fr: "De nouvelles règles ont été introduites l'année dernière" },
+        { en: "He was raised by his grandparents", fr: "Il a été élevé par ses grands-parents" },
+        { en: "The film was praised by critics", fr: "Le film a été salué par la critique" }
+      ]
+    },
+    reported: {
+      label: "Reported Speech",
+      sentences: [
+        { en: "She said she would call later", fr: "Elle a dit qu'elle appellerait plus tard" },
+        { en: "He told me he had already left", fr: "Il m'a dit qu'il était déjà parti" },
+        { en: "They asked if I had ever been there", fr: "Ils m'ont demandé si j'y étais déjà allé" },
+        { en: "She admitted she was afraid", fr: "Elle a avoué qu'elle avait peur" },
+        { en: "He explained why he had changed his mind", fr: "Il a expliqué pourquoi il avait changé d'avis" },
+        { en: "I wondered what she was thinking", fr: "Je me suis demandé à quoi elle pensait" }
+      ]
+    },
+    comparisons: {
+      label: "Comparisons & Nuance",
+      sentences: [
+        { en: "It's not as simple as it seems", fr: "Ce n'est pas aussi simple qu'il n'y paraît" },
+        { en: "The more she practiced, the more confident she became", fr: "Plus elle s'entraînait, plus elle prenait confiance" },
+        { en: "This version is far better than the original", fr: "Cette version est bien meilleure que l'originale" },
+        { en: "It's less about winning than about trying", fr: "Il s'agit moins de gagner que d'essayer" },
+        { en: "Nothing is ever as easy as it looks", fr: "Rien n'est jamais aussi facile qu'il n'y paraît" },
+        { en: "The situation is more complicated than we thought", fr: "La situation est plus compliquée qu'on ne le pensait" }
+      ]
+    }
+  };
+
+  let currentDeck = "wordorder";
+  let pool = [];
+  let currentSentence = null;
+
+  const deckSelect = document.getElementById('deckSelect');
+  const sentenceCard = document.getElementById('sentenceCard');
+  const drawBtn = document.getElementById('drawBtn');
+  const revealBtn = document.getElementById('revealBtn');
+  const modelBox = document.getElementById('modelBox');
+  const modelText = document.getElementById('modelText');
+  const progress = document.getElementById('progress');
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function renderDeckButtons(){
+    deckSelect.innerHTML = '';
+    Object.keys(decks).forEach(key=>{
+      const btn = document.createElement('button');
+      btn.className = 'deck-btn' + (key===currentDeck ? ' active' : '');
+      btn.innerHTML = '<span class="dot"></span>' + decks[key].label;
+      btn.onclick = () => selectDeck(key);
+      deckSelect.appendChild(btn);
+    });
+  }
+
+  function selectDeck(key){
+    currentDeck = key;
+    pool = shuffle(decks[key].sentences);
+    renderDeckButtons();
+    drawSentence();
+  }
+
+  function updateProgress(){
+    const total = decks[currentDeck].sentences.length;
+    const used = total - pool.length;
+    progress.textContent = `${used} of ${total} sentences this cycle`;
+  }
+
+  function drawSentence(){
+    if(pool.length === 0){
+      pool = shuffle(decks[currentDeck].sentences);
+    }
+    currentSentence = pool.pop();
+    sentenceCard.textContent = currentSentence.en;
+    modelBox.classList.remove('show');
+    modelText.textContent = '';
+    updateProgress();
+  }
+
+  drawBtn.onclick = drawSentence;
+
+  revealBtn.onclick = () => {
+    if(!currentSentence) return;
+    modelText.textContent = currentSentence.fr;
+    modelBox.classList.add('show');
+  };
+
+  selectDeck('wordorder');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Argue the Other Side — KCE LLCER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D;
+    --band:#0A2540;
+    --gold:#C9A84C;
+    --blue:#0047BA;
+    --red:#DB2F30;
+    --cream:#FAF7EF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  .masthead{
+    background:var(--navy);
+    color:var(--cream);
+    text-align:center;
+    padding:28px 20px 20px;
+  }
+  .masthead .kc{
+    font-size:14px;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .masthead h1{
+    font-size:38px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-top:6px;
+  }
+  .masthead .sub{
+    font-style:italic;
+    font-size:17px;
+    color:#cdd6e6;
+    margin-top:4px;
+  }
+  .band{
+    height:6px;
+    width:100%;
+    background:linear-gradient(90deg, var(--blue) 0 33%, var(--gold) 33% 66%, var(--red) 66% 100%);
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:36px 24px 60px;
+  }
+  .deck-select{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:34px;
+  }
+  .deck-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 20px;
+    border:2px solid var(--navy);
+    background:transparent;
+    color:var(--navy);
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .deck-btn:hover{background:var(--navy);color:var(--cream);}
+  .deck-btn.active{background:var(--navy);color:var(--cream);}
+  .deck-btn.active .dot{background:var(--gold);}
+  .deck-btn .dot{
+    display:inline-block;
+    width:8px;height:8px;
+    border-radius:50%;
+    margin-right:8px;
+    background:var(--blue);
+    vertical-align:middle;
+  }
+  .stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:26px;
+  }
+  .prompt-card{
+    background:var(--cream);
+    border:2px solid var(--navy);
+    border-radius:14px;
+    padding:26px 30px;
+    width:100%;
+    max-width:600px;
+    text-align:center;
+    font-size:22px;
+    font-weight:600;
+    line-height:1.4;
+    color:var(--navy);
+  }
+  .coin-area{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+  }
+  .coin{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background:var(--navy);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 14px 32px rgba(10,31,61,0.28);
+    transition:transform 0.6s cubic-bezier(.2,.9,.25,1);
+  }
+  .coin.spin{
+    animation:flip 0.6s ease;
+  }
+  @keyframes flip{
+    0%{transform:rotateY(0);}
+    50%{transform:rotateY(900deg) scale(1.1);}
+    100%{transform:rotateY(1080deg);}
+  }
+  .coin .side{
+    font-size:20px;
+    letter-spacing:2px;
+    font-weight:700;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  .side-label{
+    font-size:15px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:#5c6a80;
+    min-height:20px;
+  }
+  .side-label.assigned{color:var(--red);}
+  .controls{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .draw-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:14px 36px;
+    border:none;
+    border-radius:999px;
+    background:var(--red);
+    color:var(--cream);
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(219,47,48,0.3);
+    transition:transform 0.15s ease;
+  }
+  .draw-btn:hover{transform:translateY(-2px);}
+  .draw-btn:active{transform:translateY(0);}
+  .flip-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 22px;
+    border:2px solid var(--blue);
+    border-radius:999px;
+    background:transparent;
+    color:var(--blue);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .flip-btn:hover{background:var(--blue);color:var(--cream);}
+  .switch-note{
+    font-size:15px;
+    font-style:italic;
+    color:#5c6a80;
+    text-align:center;
+    max-width:480px;
+  }
+  .progress{
+    font-size:15px;
+    color:#5c6a80;
+    letter-spacing:0.5px;
+  }
+  footer{
+    text-align:center;
+    padding:26px 20px 34px;
+    color:#8a93a3;
+    font-size:14px;
+    letter-spacing:0.5px;
+  }
+  footer .name{color:var(--navy);font-weight:600;}
+  @media (max-width:480px){
+    .masthead h1{font-size:28px;}
+    .prompt-card{font-size:18px;padding:20px 22px;}
+    .coin{width:100px;height:100px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kc">KingCretot Experience</div>
+  <h1>Argue the Other Side</h1>
+  <div class="sub">Flip the coin. Whatever it says, that's your side.</div>
+</div>
+<div class="band"></div>
+
+<main>
+  <div class="deck-select" id="deckSelect"></div>
+
+  <div class="stage">
+    <div class="prompt-card" id="promptCard"></div>
+
+    <div class="coin-area">
+      <div class="coin" id="coin"><span class="side" id="coinFace">?</span></div>
+      <div class="side-label" id="sideLabel">Flip to get your side</div>
+      <button class="flip-btn" id="flipBtn">Flip the Coin</button>
+    </div>
+
+    <div class="controls">
+      <button class="draw-btn" id="drawBtn">New Topic</button>
+    </div>
+    <div class="switch-note">Once you've argued your side, flip again — you might have to argue the opposite next.</div>
+    <div class="progress" id="progress"></div>
+  </div>
+</main>
+
+<footer>
+  <span class="name">KingCretot Experience</span> &nbsp;·&nbsp; English Experience &nbsp;·&nbsp; LLCER Bac Prep Template
+</footer>
+
+<script>
+  const decks = {
+    foundation: {
+      label: "Foundation",
+      topics: [
+        "Is it better to plan everything or stay spontaneous?",
+        "Should you always tell a friend the full truth, even if it hurts?",
+        "Is it better to have a few close friends or many acquaintances?",
+        "Should teenagers have jobs while still in school?",
+        "Is silence sometimes better than saying something?",
+        "Should people always follow their first instinct?"
+      ]
+    },
+    voyages: {
+      label: "Places & Borders",
+      topics: [
+        "Is it better to stay close to family or move away to grow?",
+        "Should everyone experience living in another country at least once?",
+        "Is it easier to start over in a new place or fix things where you are?",
+        "Should schools require a trip abroad before graduation?",
+        "Is homesickness a sign of weakness or a sign of love?",
+        "Is it better to keep your accent or try to sound local?"
+      ]
+    },
+    expression: {
+      label: "Self & Identity",
+      topics: [
+        "Should you change yourself to fit in, or stay exactly as you are?",
+        "Is it better to be liked by everyone or respected by a few?",
+        "Should you always follow your family's expectations?",
+        "Is competition good or bad for personal growth?",
+        "Should people share their opinions online, even controversial ones?",
+        "Is it better to make mistakes publicly or avoid risk altogether?"
+      ]
+    },
+    arts: {
+      label: "Arts & Ideas",
+      topics: [
+        "Should violent scenes be removed from films for younger audiences?",
+        "Is a remake ever better than the original?",
+        "Should books ever be banned, even for good reasons?",
+        "Is streaming better than going to the movies?",
+        "Should artists separate their personal life from their work?",
+        "Is modern art as valuable as classical art?"
+      ]
+    }
+  };
+
+  let currentDeck = "foundation";
+  let pool = [];
+  let currentTopic = null;
+  let flipping = false;
+
+  const deckSelect = document.getElementById('deckSelect');
+  const promptCard = document.getElementById('promptCard');
+  const drawBtn = document.getElementById('drawBtn');
+  const flipBtn = document.getElementById('flipBtn');
+  const coin = document.getElementById('coin');
+  const coinFace = document.getElementById('coinFace');
+  const sideLabel = document.getElementById('sideLabel');
+  const progress = document.getElementById('progress');
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function renderDeckButtons(){
+    deckSelect.innerHTML = '';
+    Object.keys(decks).forEach(key=>{
+      const btn = document.createElement('button');
+      btn.className = 'deck-btn' + (key===currentDeck ? ' active' : '');
+      btn.innerHTML = '<span class="dot"></span>' + decks[key].label;
+      btn.onclick = () => selectDeck(key);
+      deckSelect.appendChild(btn);
+    });
+  }
+
+  function selectDeck(key){
+    currentDeck = key;
+    pool = shuffle(decks[key].topics);
+    renderDeckButtons();
+    drawTopic();
+  }
+
+  function updateProgress(){
+    const total = decks[currentDeck].topics.length;
+    const used = total - pool.length;
+    progress.textContent = `${used} of ${total} topics this cycle`;
+  }
+
+  function drawTopic(){
+    if(pool.length === 0){
+      pool = shuffle(decks[currentDeck].topics);
+    }
+    currentTopic = pool.pop();
+    promptCard.textContent = currentTopic;
+    coinFace.textContent = '?';
+    sideLabel.textContent = 'Flip to get your side';
+    sideLabel.classList.remove('assigned');
+    updateProgress();
+  }
+
+  drawBtn.onclick = drawTopic;
+
+  flipBtn.onclick = () => {
+    if(flipping) return;
+    flipping = true;
+    coin.classList.remove('spin');
+    void coin.offsetWidth;
+    coin.classList.add('spin');
+    setTimeout(()=>{
+      const forSide = Math.random() < 0.5;
+      coinFace.textContent = forSide ? 'FOR' : 'AGAINST';
+      sideLabel.textContent = forSide ? 'Argue FOR this' : 'Argue AGAINST this';
+      sideLabel.classList.add('assigned');
+      flipping = false;
+    }, 600);
+  };
+
+  selectDeck('foundation');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banned Words — KCE LLCER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D;
+    --band:#0A2540;
+    --gold:#C9A84C;
+    --blue:#0047BA;
+    --red:#DB2F30;
+    --cream:#FAF7EF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  .masthead{
+    background:var(--navy);
+    color:var(--cream);
+    text-align:center;
+    padding:28px 20px 20px;
+  }
+  .masthead .kc{
+    font-size:14px;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .masthead h1{
+    font-size:40px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-top:6px;
+  }
+  .masthead .sub{
+    font-style:italic;
+    font-size:17px;
+    color:#cdd6e6;
+    margin-top:4px;
+  }
+  .band{
+    height:6px;
+    width:100%;
+    background:linear-gradient(90deg, var(--blue) 0 33%, var(--gold) 33% 66%, var(--red) 66% 100%);
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:36px 24px 60px;
+  }
+  .deck-select{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:34px;
+  }
+  .deck-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 20px;
+    border:2px solid var(--navy);
+    background:transparent;
+    color:var(--navy);
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .deck-btn:hover{background:var(--navy);color:var(--cream);}
+  .deck-btn.active{background:var(--navy);color:var(--cream);}
+  .deck-btn.active .dot{background:var(--gold);}
+  .deck-btn .dot{
+    display:inline-block;
+    width:8px;height:8px;
+    border-radius:50%;
+    margin-right:8px;
+    background:var(--blue);
+    vertical-align:middle;
+  }
+  .stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+  }
+  .prompt-label{
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--blue);
+  }
+  .prompt-card{
+    background:var(--navy);
+    color:var(--cream);
+    border-radius:16px;
+    padding:32px 34px;
+    width:100%;
+    max-width:600px;
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:24px;
+    font-weight:500;
+    line-height:1.4;
+    box-shadow:0 18px 40px rgba(10,31,61,0.25);
+  }
+  .banned-label{
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--red);
+  }
+  .banned-words{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    max-width:560px;
+  }
+  .banned-chip{
+    background:var(--cream);
+    border:2px solid var(--red);
+    color:var(--red);
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:17px;
+    font-weight:600;
+    text-decoration:line-through;
+    text-decoration-thickness:2px;
+  }
+  .controls{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .draw-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:14px 36px;
+    border:none;
+    border-radius:999px;
+    background:var(--red);
+    color:var(--cream);
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(219,47,48,0.3);
+    transition:transform 0.15s ease;
+  }
+  .draw-btn:hover{transform:translateY(-2px);}
+  .draw-btn:active{transform:translateY(0);}
+  .progress{
+    font-size:15px;
+    color:#5c6a80;
+    letter-spacing:0.5px;
+  }
+  footer{
+    text-align:center;
+    padding:26px 20px 34px;
+    color:#8a93a3;
+    font-size:14px;
+    letter-spacing:0.5px;
+  }
+  footer .name{color:var(--navy);font-weight:600;}
+  @media (max-width:480px){
+    .masthead h1{font-size:28px;}
+    .prompt-card{font-size:19px;padding:24px 22px;}
+    .banned-chip{font-size:15px;padding:7px 14px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kc">KingCretot Experience</div>
+  <h1>Banned Words</h1>
+  <div class="sub">Say it without the easy words. Find the precise ones.</div>
+</div>
+<div class="band"></div>
+
+<main>
+  <div class="deck-select" id="deckSelect"></div>
+
+  <div class="stage">
+    <div class="prompt-label">Speak on this</div>
+    <div class="prompt-card" id="promptCard"></div>
+
+    <div class="banned-label">Banned words</div>
+    <div class="banned-words" id="bannedWords"></div>
+
+    <div class="controls">
+      <button class="draw-btn" id="drawBtn">New Round</button>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+</main>
+
+<footer>
+  <span class="name">KingCretot Experience</span> &nbsp;·&nbsp; English Experience &nbsp;·&nbsp; LLCER Bac Prep Template
+</footer>
+
+<script>
+  const decks = {
+    foundation: {
+      label: "Foundation",
+      rounds: [
+        { prompt: "Describe your morning routine.", banned: ["good", "nice", "thing", "stuff", "very"] },
+        { prompt: "Talk about your favorite meal.", banned: ["good", "delicious", "nice", "tasty", "love"] },
+        { prompt: "Describe your bedroom.", banned: ["nice", "big", "small", "thing", "stuff"] },
+        { prompt: "Talk about a friend of yours.", banned: ["nice", "good", "funny", "cool", "fun"] },
+        { prompt: "Describe your weekend.", banned: ["good", "fun", "nice", "relaxing", "tired"] },
+        { prompt: "Talk about your favorite season.", banned: ["nice", "good", "warm", "cold", "pretty"] }
+      ]
+    },
+    voyages: {
+      label: "Places & Borders",
+      rounds: [
+        { prompt: "Describe a place you've traveled to.", banned: ["nice", "beautiful", "pretty", "good", "amazing"] },
+        { prompt: "Talk about what home means to you.", banned: ["nice", "comfortable", "good", "safe", "warm"] },
+        { prompt: "Describe how it feels to arrive somewhere new.", banned: ["nervous", "excited", "scared", "weird", "strange"] },
+        { prompt: "Talk about a border you've crossed, real or emotional.", banned: ["hard", "difficult", "big", "scary", "different"] },
+        { prompt: "Describe someone who left their home country.", banned: ["brave", "hard", "sad", "difficult", "strong"] },
+        { prompt: "Talk about a trip you're looking forward to.", banned: ["excited", "fun", "nice", "good", "happy"] }
+      ]
+    },
+    expression: {
+      label: "Self & Identity",
+      rounds: [
+        { prompt: "Describe your personality.", banned: ["nice", "funny", "shy", "quiet", "good"] },
+        { prompt: "Talk about something you're proud of.", banned: ["proud", "good", "happy", "great", "nice"] },
+        { prompt: "Describe how you've changed over the years.", banned: ["different", "better", "more", "grown", "changed"] },
+        { prompt: "Talk about someone who inspires you.", banned: ["inspiring", "amazing", "good", "great", "nice"] },
+        { prompt: "Describe a difficult decision you made.", banned: ["hard", "difficult", "tough", "stressful", "scary"] },
+        { prompt: "Talk about a habit you have.", banned: ["good", "bad", "always", "often", "thing"] }
+      ]
+    },
+    arts: {
+      label: "Arts & Ideas",
+      rounds: [
+        { prompt: "Describe your favorite film.", banned: ["good", "great", "amazing", "nice", "love"] },
+        { prompt: "Talk about a book that affected you.", banned: ["good", "sad", "happy", "interesting", "nice"] },
+        { prompt: "Describe a piece of music you like.", banned: ["nice", "good", "beautiful", "calm", "relaxing"] },
+        { prompt: "Talk about a controversial topic in the news.", banned: ["bad", "good", "wrong", "right", "unfair"] },
+        { prompt: "Describe your favorite character from a show.", banned: ["nice", "funny", "cool", "good", "likable"] },
+        { prompt: "Talk about a piece of art you don't understand.", banned: ["weird", "strange", "confusing", "nice", "interesting"] }
+      ]
+    }
+  };
+
+  let currentDeck = "foundation";
+  let pool = [];
+
+  const deckSelect = document.getElementById('deckSelect');
+  const promptCard = document.getElementById('promptCard');
+  const bannedWords = document.getElementById('bannedWords');
+  const drawBtn = document.getElementById('drawBtn');
+  const progress = document.getElementById('progress');
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function renderDeckButtons(){
+    deckSelect.innerHTML = '';
+    Object.keys(decks).forEach(key=>{
+      const btn = document.createElement('button');
+      btn.className = 'deck-btn' + (key===currentDeck ? ' active' : '');
+      btn.innerHTML = '<span class="dot"></span>' + decks[key].label;
+      btn.onclick = () => selectDeck(key);
+      deckSelect.appendChild(btn);
+    });
+  }
+
+  function selectDeck(key){
+    currentDeck = key;
+    pool = shuffle(decks[key].rounds);
+    renderDeckButtons();
+    drawRound();
+  }
+
+  function updateProgress(){
+    const total = decks[currentDeck].rounds.length;
+    const used = total - pool.length;
+    progress.textContent = `${used} of ${total} rounds this cycle`;
+  }
+
+  function drawRound(){
+    if(pool.length === 0){
+      pool = shuffle(decks[currentDeck].rounds);
+    }
+    const round = pool.pop();
+    promptCard.textContent = round.prompt;
+    bannedWords.innerHTML = '';
+    round.banned.forEach(word=>{
+      const chip = document.createElement('span');
+      chip.className = 'banned-chip';
+      chip.textContent = word;
+      bannedWords.appendChild(chip);
+    });
+    updateProgress();
+  }
+
+  drawBtn.onclick = drawRound;
+
+  selectDeck('foundation');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Links These — KCE LLCER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D;
+    --band:#0A2540;
+    --gold:#C9A84C;
+    --blue:#0047BA;
+    --red:#DB2F30;
+    --cream:#FAF7EF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  .masthead{
+    background:var(--navy);
+    color:var(--cream);
+    text-align:center;
+    padding:28px 20px 20px;
+  }
+  .masthead .kc{
+    font-size:14px;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .masthead h1{
+    font-size:40px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-top:6px;
+  }
+  .masthead .sub{
+    font-style:italic;
+    font-size:17px;
+    color:#cdd6e6;
+    margin-top:4px;
+  }
+  .band{
+    height:6px;
+    width:100%;
+    background:linear-gradient(90deg, var(--blue) 0 33%, var(--gold) 33% 66%, var(--red) 66% 100%);
+  }
+  main{
+    max-width:820px;
+    margin:0 auto;
+    padding:36px 24px 60px;
+  }
+  .deck-select{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:34px;
+  }
+  .deck-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 20px;
+    border:2px solid var(--navy);
+    background:transparent;
+    color:var(--navy);
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .deck-btn:hover{background:var(--navy);color:var(--cream);}
+  .deck-btn.active{background:var(--navy);color:var(--cream);}
+  .deck-btn.active .dot{background:var(--gold);}
+  .deck-btn .dot{
+    display:inline-block;
+    width:8px;height:8px;
+    border-radius:50%;
+    margin-right:8px;
+    background:var(--blue);
+    vertical-align:middle;
+  }
+  .stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:26px;
+  }
+  .prompt-label{
+    font-size:15px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--blue);
+  }
+  .items-wrap{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+    width:100%;
+  }
+  .item-card{
+    background:var(--navy);
+    color:var(--cream);
+    border-radius:14px;
+    padding:28px 22px;
+    width:220px;
+    min-height:140px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:19px;
+    font-weight:500;
+    line-height:1.4;
+    box-shadow:0 14px 32px rgba(10,31,61,0.22);
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise 0.5s ease forwards;
+  }
+  .item-card:nth-child(1){animation-delay:0.05s;}
+  .item-card:nth-child(2){animation-delay:0.2s;}
+  .item-card:nth-child(3){animation-delay:0.35s;}
+  @keyframes rise{
+    to{opacity:1;transform:translateY(0);}
+  }
+  .question{
+    font-size:26px;
+    font-weight:600;
+    color:var(--navy);
+    text-align:center;
+    margin-top:4px;
+  }
+  .controls{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:6px;
+  }
+  .draw-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:14px 36px;
+    border:none;
+    border-radius:999px;
+    background:var(--red);
+    color:var(--cream);
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(219,47,48,0.3);
+    transition:transform 0.15s ease;
+  }
+  .draw-btn:hover{transform:translateY(-2px);}
+  .draw-btn:active{transform:translateY(0);}
+  .reveal-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 22px;
+    border:2px solid var(--blue);
+    border-radius:999px;
+    background:transparent;
+    color:var(--blue);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .reveal-btn:hover{background:var(--blue);color:var(--cream);}
+  .connection-box{
+    max-width:520px;
+    text-align:center;
+    font-size:17px;
+    font-style:italic;
+    color:#5c6a80;
+    padding:16px 20px;
+    border-top:1px solid #d8dce4;
+    display:none;
+  }
+  .connection-box.show{display:block;}
+  .progress{
+    font-size:15px;
+    color:#5c6a80;
+    letter-spacing:0.5px;
+  }
+  footer{
+    text-align:center;
+    padding:26px 20px 34px;
+    color:#8a93a3;
+    font-size:14px;
+    letter-spacing:0.5px;
+  }
+  footer .name{color:var(--navy);font-weight:600;}
+  @media (max-width:480px){
+    .masthead h1{font-size:30px;}
+    .item-card{width:100%;max-width:280px;}
+    .question{font-size:21px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kc">KingCretot Experience</div>
+  <h1>What Links These</h1>
+  <div class="sub">Three things. One connection. Say it out loud.</div>
+</div>
+<div class="band"></div>
+
+<main>
+  <div class="deck-select" id="deckSelect"></div>
+
+  <div class="stage">
+    <div class="prompt-label">Look at all three</div>
+    <div class="items-wrap" id="itemsWrap"></div>
+    <div class="question">What links these three things?</div>
+
+    <div class="controls">
+      <button class="draw-btn" id="drawBtn">New Round</button>
+      <button class="reveal-btn" id="revealBtn">Reveal a Connection</button>
+    </div>
+    <div class="connection-box" id="connectionBox"></div>
+    <div class="progress" id="progress"></div>
+  </div>
+</main>
+
+<footer>
+  <span class="name">KingCretot Experience</span> &nbsp;·&nbsp; English Experience &nbsp;·&nbsp; LLCER Bac Prep Template
+</footer>
+
+<script>
+  const decks = {
+    foundation: {
+      label: "Foundation",
+      rounds: [
+        { items: ["Rain", "An umbrella", "A canceled plan"], connection: "One thing causes the next — a simple chain of cause and effect." },
+        { items: ["A phone call", "Silence", "Waiting"], connection: "All three are about the tension before you get an answer." },
+        { items: ["A suitcase", "A goodbye", "An airport"], connection: "All three belong to the same moment: the start of a journey." },
+        { items: ["A photograph", "A memory", "A smell"], connection: "All three can bring the past back without warning." },
+        { items: ["A locked door", "A key", "Patience"], connection: "All three are about what it takes to get through to something." },
+        { items: ["A mirror", "A question", "A decision"], connection: "All three are about looking at yourself honestly before acting." }
+      ]
+    },
+    voyages: {
+      label: "Places & Borders",
+      rounds: [
+        { items: ["A ship ticket", "A letter home", "A new address"], connection: "All three mark the practical steps of leaving one life and starting another." },
+        { items: ["A quayside", "A wave goodbye", "A photograph"], connection: "All three freeze the exact moment of departure." },
+        { items: ["An accent", "A new city", "A first week"], connection: "All three are about standing out before you learn to belong." },
+        { items: ["A suitcase half-packed", "Two countries", "One decision"], connection: "All three show a person caught between an old life and a new one." },
+        { items: ["A letter that takes weeks to arrive", "Homesickness", "A new friend"], connection: "All three are about the slow process of building a new home." },
+        { items: ["An old family story", "A border", "A name that changed"], connection: "All three show how migration reshapes identity across generations." }
+      ]
+    },
+    expression: {
+      label: "Self & Identity",
+      rounds: [
+        { items: ["A nickname", "A mirror", "A stranger's opinion"], connection: "All three are about how identity is shaped by how others see us." },
+        { items: ["A decision made alone", "Pride", "Doubt"], connection: "All three sit inside the moment right after you choose for yourself." },
+        { items: ["A childhood photo", "A habit", "A family trait"], connection: "All three show how the past quietly shapes who we are now." },
+        { items: ["Silence in a group", "A private thought", "Courage"], connection: "All three are about the gap between what you think and what you say out loud." },
+        { items: ["A comparison to a sibling", "A compliment", "A competition"], connection: "All three are about defining yourself in relation to someone else." },
+        { items: ["An old diary", "Embarrassment", "Growth"], connection: "All three are about looking back at an earlier version of yourself." }
+      ]
+    },
+    arts: {
+      label: "Arts & Ideas",
+      rounds: [
+        { items: ["A soundtrack", "A silence", "A director's choice"], connection: "All three show how sound (or its absence) shapes meaning in film." },
+        { items: ["A controversial ending", "Online debate", "Two opinions"], connection: "All three are about how art creates disagreement, not just enjoyment." },
+        { items: ["A black-and-white photo", "A color film", "A memory"], connection: "All three are about how a medium changes how we experience the past." },
+        { items: ["A remake", "The original", "Nostalgia"], connection: "All three are about why audiences compare new work to what came before." },
+        { items: ["A banned book", "Curiosity", "A debate"], connection: "All three show how restricting art can increase interest in it." },
+        { items: ["A character's mistake", "A moral question", "An audience's judgment"], connection: "All three are about how stories ask us to judge right and wrong." }
+      ]
+    }
+  };
+
+  let currentDeck = "foundation";
+  let pool = [];
+  let currentRound = null;
+
+  const deckSelect = document.getElementById('deckSelect');
+  const itemsWrap = document.getElementById('itemsWrap');
+  const drawBtn = document.getElementById('drawBtn');
+  const revealBtn = document.getElementById('revealBtn');
+  const connectionBox = document.getElementById('connectionBox');
+  const progress = document.getElementById('progress');
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function renderDeckButtons(){
+    deckSelect.innerHTML = '';
+    Object.keys(decks).forEach(key=>{
+      const btn = document.createElement('button');
+      btn.className = 'deck-btn' + (key===currentDeck ? ' active' : '');
+      btn.innerHTML = '<span class="dot"></span>' + decks[key].label;
+      btn.onclick = () => selectDeck(key);
+      deckSelect.appendChild(btn);
+    });
+  }
+
+  function selectDeck(key){
+    currentDeck = key;
+    pool = shuffle(decks[key].rounds);
+    renderDeckButtons();
+    drawRound();
+  }
+
+  function updateProgress(){
+    const total = decks[currentDeck].rounds.length;
+    const used = total - pool.length;
+    progress.textContent = pool.length >= 0 && used <= total
+      ? `${used} of ${total} rounds played this cycle`
+      : '';
+  }
+
+  function drawRound(){
+    if(pool.length === 0){
+      pool = shuffle(decks[currentDeck].rounds);
+    }
+    currentRound = pool.pop();
+    itemsWrap.innerHTML = '';
+    currentRound.items.forEach(text=>{
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.textContent = text;
+      itemsWrap.appendChild(card);
+    });
+    connectionBox.classList.remove('show');
+    connectionBox.textContent = '';
+    updateProgress();
+  }
+
+  drawBtn.onclick = drawRound;
+
+  revealBtn.onclick = () => {
+    if(!currentRound) return;
+    connectionBox.textContent = currentRound.connection;
+    connectionBox.classList.add('show');
+  };
+
+  selectDeck('foundation');
+</script>
+
+</body>
+</html>

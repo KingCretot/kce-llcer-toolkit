@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Be the Examiner — KCE LLCER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D;
+    --band:#0A2540;
+    --gold:#C9A84C;
+    --blue:#0047BA;
+    --red:#DB2F30;
+    --cream:#FAF7EF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  .masthead{
+    background:var(--navy);
+    color:var(--cream);
+    text-align:center;
+    padding:28px 20px 20px;
+  }
+  .masthead .kc{
+    font-size:14px;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .masthead h1{
+    font-size:38px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-top:6px;
+  }
+  .masthead .sub{
+    font-style:italic;
+    font-size:17px;
+    color:#cdd6e6;
+    margin-top:4px;
+  }
+  .band{
+    height:6px;
+    width:100%;
+    background:linear-gradient(90deg, var(--blue) 0 33%, var(--gold) 33% 66%, var(--red) 66% 100%);
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:36px 24px 60px;
+  }
+  .deck-select{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:34px;
+  }
+  .deck-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 20px;
+    border:2px solid var(--navy);
+    background:transparent;
+    color:var(--navy);
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .deck-btn:hover{background:var(--navy);color:var(--cream);}
+  .deck-btn.active{background:var(--navy);color:var(--cream);}
+  .deck-btn.active .dot{background:var(--gold);}
+  .deck-btn .dot{
+    display:inline-block;
+    width:8px;height:8px;
+    border-radius:50%;
+    margin-right:8px;
+    background:var(--blue);
+    vertical-align:middle;
+  }
+  .stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+  }
+  .prompt-label{
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--blue);
+  }
+  .statement-card{
+    background:var(--navy);
+    color:var(--cream);
+    border-radius:16px;
+    padding:38px 34px;
+    width:100%;
+    max-width:600px;
+    min-height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:23px;
+    font-weight:500;
+    font-style:italic;
+    line-height:1.45;
+    box-shadow:0 18px 40px rgba(10,31,61,0.25);
+  }
+  .task-line{
+    font-size:20px;
+    font-weight:600;
+    color:var(--navy);
+    text-align:center;
+  }
+  .controls{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .draw-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:14px 36px;
+    border:none;
+    border-radius:999px;
+    background:var(--red);
+    color:var(--cream);
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(219,47,48,0.3);
+    transition:transform 0.15s ease;
+  }
+  .draw-btn:hover{transform:translateY(-2px);}
+  .draw-btn:active{transform:translateY(0);}
+  .reveal-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 22px;
+    border:2px solid var(--blue);
+    border-radius:999px;
+    background:transparent;
+    color:var(--blue);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .reveal-btn:hover{background:var(--blue);color:var(--cream);}
+  .sample-box{
+    max-width:560px;
+    text-align:left;
+    padding:18px 26px;
+    border-top:1px solid #d8dce4;
+    display:none;
+  }
+  .sample-box.show{display:block;}
+  .sample-box .eyebrow{
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--gold);
+    margin-bottom:10px;
+    text-align:center;
+  }
+  .sample-box ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .sample-box li{
+    font-size:17px;
+    font-style:italic;
+    color:#4a5568;
+    padding-left:18px;
+    position:relative;
+  }
+  .sample-box li::before{
+    content:"?";
+    position:absolute;
+    left:0;
+    color:var(--blue);
+    font-weight:700;
+    font-style:normal;
+  }
+  .progress{
+    font-size:15px;
+    color:#5c6a80;
+    letter-spacing:0.5px;
+  }
+  footer{
+    text-align:center;
+    padding:26px 20px 34px;
+    color:#8a93a3;
+    font-size:14px;
+    letter-spacing:0.5px;
+  }
+  footer .name{color:var(--navy);font-weight:600;}
+  @media (max-width:480px){
+    .masthead h1{font-size:26px;}
+    .statement-card{font-size:19px;padding:28px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kc">KingCretot Experience</div>
+  <h1>You Be the Examiner</h1>
+  <div class="sub">Don't answer. Ask.</div>
+</div>
+<div class="band"></div>
+
+<main>
+  <div class="deck-select" id="deckSelect"></div>
+
+  <div class="stage">
+    <div class="prompt-label">The witness says</div>
+    <div class="statement-card" id="statementCard"></div>
+    <div class="task-line">Ask three follow-up questions, like the examiner would.</div>
+
+    <div class="controls">
+      <button class="draw-btn" id="drawBtn">New Statement</button>
+      <button class="reveal-btn" id="revealBtn">Reveal Sample Questions</button>
+    </div>
+    <div class="sample-box" id="sampleBox">
+      <div class="eyebrow">Sample follow-ups</div>
+      <ul id="sampleList"></ul>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+</main>
+
+<footer>
+  <span class="name">KingCretot Experience</span> &nbsp;·&nbsp; English Experience &nbsp;·&nbsp; LLCER Bac Prep Template
+</footer>
+
+<script>
+  const decks = {
+    foundation: {
+      label: "Foundation",
+      rounds: [
+        { statement: "I moved to a new school last year and it was hard at first.", samples: ["What was the hardest part?", "How did it get easier over time?", "Is there anything you'd do differently?"] },
+        { statement: "I stopped talking to a close friend a few months ago.", samples: ["What happened between you two?", "Do you think you'll talk again?", "How did it change your other friendships?"] },
+        { statement: "I started a new hobby this summer.", samples: ["What made you want to try it?", "What's been the most surprising part?", "Do you plan to keep doing it?"] },
+        { statement: "I changed my mind about something important recently.", samples: ["What made you change your mind?", "How did people around you react?", "Do you think you'll change your mind again?"] },
+        { statement: "I had a disagreement with my family last week.", samples: ["What was it about?", "How did you resolve it, if you did?", "Does this happen often?"] },
+        { statement: "I tried something for the first time and it didn't go well.", samples: ["What went wrong?", "Would you try it again?", "What did you learn from it?"] }
+      ]
+    },
+    voyages: {
+      label: "Places & Borders",
+      rounds: [
+        { statement: "My grandmother left her country when she was very young.", samples: ["Why did she leave?", "Does she ever talk about it?", "How did it shape your family?"] },
+        { statement: "I spent a summer living somewhere completely different from home.", samples: ["What was the biggest adjustment?", "What did you miss most about home?", "What surprised you about the place?"] },
+        { statement: "I felt like a stranger the first time I visited a new city.", samples: ["What made you feel that way?", "How long did that feeling last?", "What helped you feel more comfortable?"] },
+        { statement: "My family speaks two languages at home.", samples: ["How did you learn both?", "Do you switch between them without noticing?", "Is there anything easier to say in one than the other?"] },
+        { statement: "I once got lost in a country where I didn't speak the language.", samples: ["How did you find your way?", "Were you scared?", "What did you learn from the experience?"] },
+        { statement: "I'm going on a trip soon that I'm both excited and nervous about.", samples: ["What's making you nervous?", "What are you most excited to see?", "How are you preparing for it?"] }
+      ]
+    },
+    expression: {
+      label: "Self & Identity",
+      rounds: [
+        { statement: "People often think I'm more confident than I actually am.", samples: ["Why do you think they see you that way?", "When do you feel the least confident?", "Does it bother you when people misjudge you?"] },
+        { statement: "I changed a big habit of mine this year.", samples: ["What made you want to change it?", "Was it hard to keep up?", "How has it affected you?"] },
+        { statement: "Someone in my family always compares me to my sibling.", samples: ["How does that make you feel?", "Do you think it's fair?", "How do you usually respond?"] },
+        { statement: "I made a decision once that surprised everyone who knows me.", samples: ["What was the decision?", "Why do you think it surprised people?", "Do you regret it?"] },
+        { statement: "I used to be very different from how I am now.", samples: ["What changed you?", "Do you miss who you used to be?", "What would your younger self think of you now?"] },
+        { statement: "I sometimes act differently depending on who I'm with.", samples: ["Can you give an example?", "Do you think that's a bad thing?", "Which version feels most like the real you?"] }
+      ]
+    },
+    arts: {
+      label: "Arts & Ideas",
+      rounds: [
+        { statement: "I watched a film that completely changed how I see something.", samples: ["What did it change your mind about?", "What was it about the film that had that effect?", "Would you recommend it to others?"] },
+        { statement: "I disagreed with a friend about a book we both read.", samples: ["What did you disagree about?", "Did either of you change your mind?", "Do you usually enjoy debating books with friends?"] },
+        { statement: "There's a show everyone loves that I just don't understand.", samples: ["What don't you like about it?", "Have you tried to see what others like about it?", "Do you feel pressure to like it anyway?"] },
+        { statement: "An artist I admire did something controversial recently.", samples: ["What did they do?", "Has it changed how you see their work?", "Do you separate the artist from their art?"] },
+        { statement: "I stopped watching a series I used to love.", samples: ["What made you stop?", "Do you think you'll go back to it?", "What did you love about it at first?"] },
+        { statement: "A song reminds me of a moment I'd rather forget.", samples: ["Do you still listen to it?", "What happens when you hear it unexpectedly?", "Would you rather forget the song too?"] }
+      ]
+    }
+  };
+
+  let currentDeck = "foundation";
+  let pool = [];
+  let currentRound = null;
+
+  const deckSelect = document.getElementById('deckSelect');
+  const statementCard = document.getElementById('statementCard');
+  const drawBtn = document.getElementById('drawBtn');
+  const revealBtn = document.getElementById('revealBtn');
+  const sampleBox = document.getElementById('sampleBox');
+  const sampleList = document.getElementById('sampleList');
+  const progress = document.getElementById('progress');
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function renderDeckButtons(){
+    deckSelect.innerHTML = '';
+    Object.keys(decks).forEach(key=>{
+      const btn = document.createElement('button');
+      btn.className = 'deck-btn' + (key===currentDeck ? ' active' : '');
+      btn.innerHTML = '<span class="dot"></span>' + decks[key].label;
+      btn.onclick = () => selectDeck(key);
+      deckSelect.appendChild(btn);
+    });
+  }
+
+  function selectDeck(key){
+    currentDeck = key;
+    pool = shuffle(decks[key].rounds);
+    renderDeckButtons();
+    drawRound();
+  }
+
+  function updateProgress(){
+    const total = decks[currentDeck].rounds.length;
+    const used = total - pool.length;
+    progress.textContent = `${used} of ${total} rounds this cycle`;
+  }
+
+  function drawRound(){
+    if(pool.length === 0){
+      pool = shuffle(decks[currentDeck].rounds);
+    }
+    currentRound = pool.pop();
+    statementCard.textContent = '"' + currentRound.statement + '"';
+    sampleBox.classList.remove('show');
+    sampleList.innerHTML = '';
+    updateProgress();
+  }
+
+  drawBtn.onclick = drawRound;
+
+  revealBtn.onclick = () => {
+    if(!currentRound) return;
+    sampleList.innerHTML = '';
+    currentRound.samples.forEach(q=>{
+      const li = document.createElement('li');
+      li.textContent = q;
+      sampleList.appendChild(li);
+    });
+    sampleBox.classList.add('show');
+  };
+
+  selectDeck('foundation');
+</script>
+
+</body>
+</html>

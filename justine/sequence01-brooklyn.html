@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Séquence 1 — Leaving, Arriving, Belonging | KingCretot Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1F3D;--navyband:#0A2540;--gold:#C9A84C;--blue:#0047BA;--red:#DB2F30;
+--green:#2E7D32;--cream:#FAF7EF;--ink:#232A38;--muted:#6E7686;--line:#DFD8C6;
+--display:'Cormorant Garamond',Georgia,serif;--ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(10,31,61,.08)}
+.mast{background:var(--navyband);padding:16px 28px;display:flex;align-items:center;gap:13px}
+.kc{width:38px;height:38px;flex:none;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--display);font-weight:700;font-size:16px}
+.wm{color:var(--gold);font-family:var(--display);font-size:21px;font-weight:700;line-height:1}
+.motto{font-size:8.5px;letter-spacing:2.8px;margin-top:4px;font-weight:600}
+.motto .e{color:#fff}.motto .m{color:var(--gold)}.motto .x{color:var(--red)}
+.band{height:5px;display:flex}.band i{flex:1}
+.b1{background:var(--blue)}.b2{background:var(--gold)}.b3{background:var(--red)}
+
+.hero{padding:30px 30px 24px;text-align:center;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:10px;letter-spacing:3.4px;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1{font-family:var(--display);font-size:42px;font-weight:700;color:var(--navy);margin:6px 0 6px;line-height:1.03}
+.meta{font-size:12.5px;color:var(--muted)}
+.meta b{color:var(--navy)}
+
+.goal{margin:0;background:var(--navy);color:#fff;padding:22px 30px;text-align:center}
+.goal .g1{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700}
+.goal .g2{font-family:var(--display);font-size:24px;font-weight:700;margin-top:6px;line-height:1.3}
+.goal .g3{font-family:var(--display);font-size:15px;font-style:italic;color:#A9B6CC;margin-top:8px}
+
+.body{padding:28px 30px 34px}
+h2{font-family:var(--display);font-size:24px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);padding-bottom:6px;margin:34px 0 12px}
+h2:first-child{margin-top:0}
+h3{font-family:var(--display);font-size:19px;font-weight:700;color:var(--navy);margin:20px 0 5px}
+p{font-size:14.5px;margin:0 0 11px}
+ul{font-size:14.5px;margin:6px 0 12px;padding-left:20px}
+li{margin-bottom:6px}
+b{color:var(--navy)}
+.fr{color:var(--muted);font-style:italic;font-size:13.5px}
+
+.doc{border:1px solid var(--line);border-radius:6px;margin:14px 0;overflow:hidden}
+.dh{background:var(--cream);border-bottom:1px solid var(--line);padding:11px 16px;display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
+.dl{font-family:var(--display);font-size:26px;font-weight:700;color:var(--gold);line-height:1}
+.dt{font-family:var(--display);font-size:19px;font-weight:700;color:var(--navy)}
+.dk{font-size:9.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-left:auto}
+.dc{padding:16px 18px;font-size:14.5px}
+.dc .txt{font-family:var(--display);font-size:16.5px;line-height:1.8}
+.dc .txt p{font-size:16.5px;margin:0 0 12px}
+.dc .txt p:last-child{margin:0}
+.where{background:#F3F7FD;border-left:3px solid var(--blue);padding:11px 14px;border-radius:0 4px 4px 0;font-size:14px;margin:0}
+.where b{color:var(--navy)}
+.entry{background:#FFFDF6;border-left:3px solid var(--gold);padding:11px 14px;border-radius:0 4px 4px 0;font-size:14px;margin:10px 0 0}
+.entry b{color:var(--navy)}
+
+.tbl{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:13px}
+th{background:var(--navy);color:#fff;text-align:left;padding:9px 10px;font-size:9.5px;letter-spacing:1.3px;text-transform:uppercase;font-weight:600}
+th:first-child{width:150px}
+td{border:1px solid #EDE7D8;padding:0;vertical-align:top}
+td.rowlbl{background:var(--cream);padding:9px 10px;font-weight:600;color:var(--navy);font-size:12.5px;vertical-align:middle}
+td textarea{width:100%;min-height:58px;border:0;padding:8px 9px;font-family:var(--ui);font-size:12.5px;color:var(--ink);resize:vertical;background:transparent;line-height:1.45}
+td textarea:focus{outline:none;background:#FFFDF6;box-shadow:inset 0 0 0 2px var(--gold)}
+
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}
+.btn{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:.9px;padding:10px 20px;border-radius:5px;border:2px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;text-transform:uppercase}
+.btn:hover{background:#123056}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn.gold:hover{background:#b8973f;border-color:#b8973f}
+.btn.g{background:#fff;color:var(--navy)}
+.btn.g:hover{background:var(--cream)}
+#out{width:100%;min-height:170px;margin-top:12px;border:1px solid var(--line);border-radius:5px;padding:11px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;background:var(--cream);display:none;resize:vertical}
+.said{font-size:12px;color:var(--green);font-weight:600;margin-top:8px;display:none}
+
+.pq{border:2px dashed var(--gold);border-radius:7px;background:#FFFDF6;padding:18px 20px;margin:14px 0}
+.pq .lab{font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);font-weight:700}
+.starters{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.st{border:1px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-family:var(--display);font-size:15px;color:var(--navy);cursor:pointer}
+.st:hover{background:var(--cream);border-color:var(--gold)}
+#pqbox{width:100%;min-height:72px;border:1px solid var(--line);border-radius:5px;padding:11px;font-family:var(--display);font-size:19px;color:var(--navy);resize:vertical;background:#fff}
+#pqbox:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.18)}
+.pqtest{font-size:13px;color:var(--muted);margin-top:9px}
+.pqtest b{color:var(--navy)}
+
+.stage{border:1px solid var(--line);border-radius:6px;margin:12px 0;overflow:hidden}
+.sh{background:var(--cream);padding:12px 16px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.sd{font-family:var(--display);font-size:14px;font-weight:700;color:var(--gold);white-space:nowrap}
+.sn{font-family:var(--display);font-size:19px;font-weight:700;color:var(--navy);flex:1}
+.stag{font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:3px;background:#E6EEF6;color:#1f4e79}
+.sb{padding:14px 17px}
+.sb ul{margin:0;font-size:14px}
+
+.ladder{background:var(--cream);border-left:3px solid var(--green);padding:14px 18px;margin:14px 0;border-radius:0 5px 5px 0;font-size:14.5px}
+.ladder ol{margin:8px 0 0;padding-left:20px}
+.ladder li{margin-bottom:7px}
+.foot{background:var(--navyband);color:#8E99AC;font-size:9px;text-align:center;padding:12px;font-style:italic;font-family:var(--display)}
+@media(max-width:640px){.hero,.goal,.body{padding-left:15px;padding-right:15px}h1{font-size:30px}.goal .g2{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="mast">
+ <div class="kc">KC</div>
+ <div>
+ <div class="wm">KingCretot Experience</div>
+ <div class="motto"><span class="e">EDUCATE.</span> <span class="m">EMPOWER.</span> <span class="x">EXCEL.</span></div>
+ </div>
+</div>
+<div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+
+<div class="hero">
+ <div class="eyebrow">Séquence 1</div>
+ <h1>Leaving, Arriving,<br>Belonging</h1>
+ <p class="meta"><b>Brooklyn</b> &middot; Colm Tóibín &nbsp;|&nbsp; Thématique: <i>Voyages, territoires, frontières</i> &nbsp;|&nbsp; September &ndash; December &middot; one document at a time</p>
+</div>
+
+<div class="goal">
+ <div class="g1">Where this ends</div>
+ <div class="g2">On November 9, you'll say this exposé once, out loud — badly is fine. On December 14, after New York, you'll say it again with nothing in front of you at all.</div>
+ <div class="g3">Le 9 novembre, tu diras cet exposé une fois, à voix haute — c'est normal si c'est imparfait. Le 14 décembre, après New York, tu le diras à nouveau sans rien devant toi.</div>
+</div>
+
+<div class="body">
+
+<h2>The dossier</h2>
+<p>Four documents. They are not four separate things &mdash; they are four voices on the same question, and part of your job is to work out what that question is. We meet them <b>one at a time</b>, over several weeks. There's no rush to compare them until you actually understand each one on its own.</p>
+<p class="fr">Quatre documents. Ce ne sont pas quatre choses séparées &mdash; ce sont quatre voix sur une même question, et ton travail c'est aussi de trouver laquelle. On les rencontre un par un, sur plusieurs semaines. Pas de précipitation à les comparer avant de vraiment comprendre chacun.</p>
+
+<div class="doc">
+ <div class="dh"><span class="dl">A</span><span class="dt">Brooklyn</span><span class="dk">Literary · 2009</span></div>
+ <div class="dc">
+ <p class="where"><b>Read from your own copy:</b> Part Two &mdash; the passage where the letters from home reach Eilis in Brooklyn, and what happens to her afterward. Roughly three pages. Read it twice: once for what happens, once for what she does <i>not</i> say.</p>
+ <p class="entry"><b>How we meet this one:</b> vocabulary first, then read together, then you retell it in your own words. No analysis yet — just make sure you really understand it.</p>
+ </div>
+</div>
+
+<div class="doc">
+ <div class="dh"><span class="dl">B</span><span class="dt">The decade that emptied</span><span class="dk">Historical · non-literary</span></div>
+ <div class="dc">
+ <div class="txt">
+ <p>Ireland in the 1950s lost people the way a slow leak loses water. Work was scarce, wages were low, and for a great many young people the choice was not between staying and leaving but between leaving for England and leaving for America.</p>
+ <p>Whole villages thinned. Families kept a bed made up for someone who would come back for two weeks each summer and then go again. The word people used was not emigration. It was "going away," as though it were temporary, and for some it was.</p>
+ <p>What the records show is departures. What they cannot show is the arrangement families made with themselves: that a daughter's leaving was a success, and that nobody would say otherwise out loud.</p>
+ </div>
+ <p class="entry"><b>How we meet this one:</b> before you read a word, you'll guess what "The decade that emptied" is about from the title alone. Then we read it and see how close you were.</p>
+ </div>
+</div>
+
+<div class="doc">
+ <div class="dh"><span class="dl">C</span><span class="dt">A departure photograph</span><span class="dk">Iconographic</span></div>
+ <div class="dc">
+ <p class="where"><b>Look at the image together.</b> A quayside farewell &mdash; Irish emigrants boarding, 1950s. Look at who faces the camera and who faces away, where the hands are, what people are wearing, and who is standing slightly apart from the group.</p>
+ <p style="margin-top:10px">An image is a document, not decoration. It argues something. Your job is to say what.</p>
+ <p class="fr">Une image est un document, pas une décoration. Elle affirme quelque chose. À toi de dire quoi.</p>
+ <p class="entry"><b>How we meet this one:</b> a cold read — you see the photo with zero context first, describe what you notice and guess what's happening, and only after that do we say what it actually is.</p>
+ </div>
+</div>
+
+<div class="doc">
+ <div class="dh"><span class="dl">D</span><span class="dt">The quiet migration</span><span class="dk">Press · contemporary</span></div>
+ <div class="dc">
+ <div class="txt">
+ <p>Every September the same quiet migration takes place. Across the country, thousands of eighteen-year-olds pack up their rooms and move to cities they have visited twice, at most.</p>
+ <p>Rural areas lose a large share of their young people within two years of the baccalauréat, and many never return except at Christmas.</p>
+ <p>What the numbers do not capture is the ambivalence. "People assume we couldn't wait to leave," says Marion, 19, who moved from a village near Limoges to Toulouse last year. "Some of us couldn't. But I still cry when I get off the train home. Both things are true."</p>
+ </div>
+ <p class="entry"><b>How we meet this one:</b> before reading, tell me about a time you felt torn between leaving somewhere and staying. Then we read Marion's quote and see what she has in common with you.</p>
+ </div>
+</div>
+
+<h2>The table</h2>
+<p>Fill this in together, out loud, once you've genuinely met all four documents — not before. This is the tool that stops a synthèse becoming four summaries in a row &mdash; and it is where the problem hiding in the dossier becomes visible.</p>
+
+<div class="tbl">
+<table>
+ <tr><th></th><th>A · Brooklyn</th><th>B · The decade</th><th>C · The photograph</th><th>D · Quiet migration</th></tr>
+ <tr><td class="rowlbl">What kind of document</td>
+ <td><textarea data-r="Type" data-c="A"></textarea></td><td><textarea data-r="Type" data-c="B"></textarea></td>
+ <td><textarea data-r="Type" data-c="C"></textarea></td><td><textarea data-r="Type" data-c="D"></textarea></td></tr>
+ <tr><td class="rowlbl">Main idea</td>
+ <td><textarea data-r="Main idea" data-c="A"></textarea></td><td><textarea data-r="Main idea" data-c="B"></textarea></td>
+ <td><textarea data-r="Main idea" data-c="C"></textarea></td><td><textarea data-r="Main idea" data-c="D"></textarea></td></tr>
+ <tr><td class="rowlbl">Point of view &amp; tone</td>
+ <td><textarea data-r="Point of view" data-c="A"></textarea></td><td><textarea data-r="Point of view" data-c="B"></textarea></td>
+ <td><textarea data-r="Point of view" data-c="C"></textarea></td><td><textarea data-r="Point of view" data-c="D"></textarea></td></tr>
+ <tr><td class="rowlbl">What is left unsaid</td>
+ <td><textarea data-r="Unsaid" data-c="A"></textarea></td><td><textarea data-r="Unsaid" data-c="B"></textarea></td>
+ <td><textarea data-r="Unsaid" data-c="C"></textarea></td><td><textarea data-r="Unsaid" data-c="D"></textarea></td></tr>
+ <tr><td class="rowlbl">Agrees with / argues with</td>
+ <td><textarea data-r="Links" data-c="A"></textarea></td><td><textarea data-r="Links" data-c="B"></textarea></td>
+ <td><textarea data-r="Links" data-c="C"></textarea></td><td><textarea data-r="Links" data-c="D"></textarea></td></tr>
+ <tr><td class="rowlbl">One detail worth keeping</td>
+ <td><textarea data-r="Detail" data-c="A"></textarea></td><td><textarea data-r="Detail" data-c="B"></textarea></td>
+ <td><textarea data-r="Detail" data-c="C"></textarea></td><td><textarea data-r="Detail" data-c="D"></textarea></td></tr>
+</table>
+</div>
+
+<h2>The question</h2>
+<p>A theme is not enough. <i>Emigration</i> is a theme, and it will get you nowhere. What you need is the <b>tension</b> &mdash; the thing these four documents disagree about, or circle without settling.</p>
+
+<div class="pq">
+ <div class="lab">Our problématique</div>
+ <div class="starters">
+ <button class="st" data-s="To what extent do the documents suggest that ">To what extent&hellip;</button>
+ <button class="st" data-s="How do the documents explore the tension between ">How do the documents explore the tension between&hellip;</button>
+ <button class="st" data-s="In what ways do the documents question ">In what ways do the documents question&hellip;</button>
+ <button class="st" data-s="How do the documents present leaving as ">How do the documents present leaving as&hellip;</button>
+ </div>
+ <textarea id="pqbox" placeholder="Write it here. Change it as often as you like — it will be wrong three times before it is right."></textarea>
+ <p class="pqtest"><b>Three tests.</b> Does it cover all four documents? Does it contain a tension, not just a topic? Could someone disagree with the answer? If any answer is no, it isn't ready.</p>
+</div>
+
+<div class="acts">
+ <button class="btn gold" id="build">Save our work</button>
+ <button class="btn g" id="copy">Copy</button>
+</div>
+<textarea id="out" readonly aria-label="Saved work"></textarea>
+<div class="said" id="said">Copied.</div>
+
+<h2>How the weeks unfold</h2>
+<p>This runs slower than one month. Comprehension comes before comparison, always — nothing here is timed to a deadline you don't yet have the tools for.</p>
+
+<div class="stage">
+ <div class="sh"><span class="sd">Sep 14 &ndash; Oct 19</span><span class="sn">Meet the Documents</span><span class="stag">One at a time</span></div>
+ <div class="sb"><ul>
+ <li>Document A, then B, then C, then D &mdash; each one gets its own week, its own way in, and a quick recall of everything before it.</li>
+ <li>No comparison, no table, no pressure to connect them yet. Just real understanding, one document at a time.</li>
+ </ul></div>
+</div>
+
+<div class="stage">
+ <div class="sh"><span class="sd">Oct 26</span><span class="sn">Build the Table</span><span class="stag">Speaking</span></div>
+ <div class="sb"><ul>
+ <li>Now that all four documents are genuinely understood, we build the tableau comparatif together, out loud, on the shared screen.</li>
+ <li>Which two documents would disagree most if they met? Defend your pairing.</li>
+ <li>Eilis and Marion are seventy years apart. What would each recognize in the other?</li>
+ </ul></div>
+</div>
+
+<div class="stage">
+ <div class="sh"><span class="sd">Nov 2</span><span class="sn">Find the Question</span><span class="stag">Speaking</span></div>
+ <div class="sb"><ul>
+ <li>Draft the problématique. It will be too vague at first — that's expected.</li>
+ <li>Rewrite it until it passes all three tests.</li>
+ <li>Build the shape of your exposé: two ideas, each using at least two documents. Never one part per document.</li>
+ </ul></div>
+</div>
+
+<div class="stage">
+ <div class="sh"><span class="sd">Nov 9</span><span class="sn">Say It Once</span><span class="stag">Recorded</span></div>
+ <div class="sb"><ul>
+ <li>The whole exposé, out loud, for the first time. Your written text is in front of you — that's allowed, and it's the point.</li>
+ <li>We record it. Not to judge it. So that in June you can hear what November sounded like.</li>
+ </ul></div>
+</div>
+
+<div class="stage">
+ <div class="sh"><span class="sd">Nov 16</span><span class="sn">New York Bridge</span><span class="stag">Last session before the trip</span></div>
+ <div class="sb"><ul>
+ <li>What to bring back for The Collection: photos, ticket stubs, journal entries, overheard conversations.</li>
+ <li>Compress the exposé toward a mind map before the break.</li>
+ </ul></div>
+</div>
+
+<div class="stage" style="border-color:var(--gold);background:#FFFDF6;">
+ <div class="sh" style="background:#FFF8E6;"><span class="sd" style="color:var(--red);">Nov 23 &amp; Nov 30</span><span class="sn">No Lesson — New York, then Brazil</span><span class="stag" style="background:#FBEAEA;color:var(--red);">Gap</span></div>
+ <div class="sb"><p style="margin:0;">Two full weeks with no session at all. Nothing is scheduled, nothing is owed — she's traveling.</p></div>
+</div>
+
+<div class="stage">
+ <div class="sh"><span class="sd">Dec 7</span><span class="sn">NYC Debrief</span><span class="stag">Unscripted</span></div>
+ <div class="sb"><ul>
+ <li>The best speaking session of the year — completely unscripted. She can't have memorized a trip she just took.</li>
+ </ul></div>
+</div>
+
+<div class="stage">
+ <div class="sh"><span class="sd">Dec 14</span><span class="sn">The Real Test</span><span class="stag">Recorded · No Notes</span></div>
+ <div class="sb"><ul>
+ <li>The same exposé, said again, with nothing in front of you at all. Just the documents.</li>
+ <li>This is where Séquence 1 closes &mdash; not rushed, earned.</li>
+ </ul></div>
+</div>
+
+<div class="ladder">
+ <b>Why the paper disappears in stages</b>
+ <p style="margin:8px 0 0">In June you will have no notes at all. Nothing. So we take the paper away in real steps, not just three months on a calendar:</p>
+ <ol>
+ <li><b>November</b> &mdash; write the exposé out in full, and read from it. First time saying it out loud is what matters, not how it sounds.</li>
+ <li><b>Nov 16</b> &mdash; the same exposé, but from a mind map. Words and arrows, no sentences.</li>
+ <li><b>December</b> &mdash; from nothing. Only the documents in front of you. This is what June actually asks of you.</li>
+ <li><b>Then we add a document</b> for Séquence 2, and start the ladder again &mdash; but faster, because the method is no longer new.</li>
+ </ol>
+ <p class="fr" style="margin-top:9px">En juin, tu n'auras aucune note. Donc on retire le papier par étapes réelles, pas juste trois mois sur un calendrier. Écrire d'abord, c'est permis &mdash; c'est même la méthode.</p>
+</div>
+
+</div>
+
+<div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+<div class="foot">KingCretot Experience &nbsp;&middot;&nbsp; Justine &middot; LLCER Anglais &middot; Séquence 1 &nbsp;&middot;&nbsp; kingcretot.com</div>
+</div>
+
+<script>
+document.querySelectorAll('.st').forEach(function(b){
+ b.onclick=function(){
+ var box=document.getElementById('pqbox');
+ box.value=b.dataset.s;
+ box.focus();
+ box.setSelectionRange(box.value.length,box.value.length);
+ };
+});
+
+function build(){
+ var L=[];
+ L.push('SÉQUENCE 1 — LEAVING, ARRIVING, BELONGING');
+ L.push('Brooklyn · Voyages, territoires, frontières');
+ L.push('');
+ var rows=[],seen={};
+ document.querySelectorAll('td textarea').forEach(function(t){
+ if(!seen[t.dataset.r]){ seen[t.dataset.r]=true; rows.push(t.dataset.r); }
+ });
+ L.push('THE TABLE');
+ rows.forEach(function(r){
+ var any=false, block=[' '+r.toUpperCase()];
+ ['A','B','C','D'].forEach(function(c){
+ var el=document.querySelector('td textarea[data-r="'+r+'"][data-c="'+c+'"]');
+ var v=el&&el.value.trim();
+ if(v){ any=true; block.push(' '+c+': '+v.replace(/\n/g,' ')); }
+ });
+ if(any) L.push(block.join('\n'));
+ });
+ if(L.length===4) L.push(' (empty)');
+ L.push('');
+ var pq=document.getElementById('pqbox').value.trim();
+ L.push('PROBLÉMATIQUE');
+ L.push(pq ? ' '+pq : ' (not yet)');
+ var o=document.getElementById('out');
+ o.value=L.join('\n'); o.style.display='block';
+ o.scrollIntoView({behavior:'smooth',block:'center'});
+}
+document.getElementById('build').onclick=build;
+document.getElementById('copy').onclick=function(){
+ var o=document.getElementById('out');
+ if(!o.value) build();
+ var s=document.getElementById('said');
+ if(navigator.clipboard){ navigator.clipboard.writeText(o.value)['catch'](function(){}); }
+ else { o.select(); try{document.execCommand('copy');}catch(e){} }
+ s.style.display='block'; setTimeout(function(){s.style.display='none';},1800);
+};
+</script>
+</body>
+</html>

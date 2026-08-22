@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Say It Five Ways — KCE LLCER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D;
+    --band:#0A2540;
+    --gold:#C9A84C;
+    --blue:#0047BA;
+    --red:#DB2F30;
+    --cream:#FAF7EF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  .masthead{
+    background:var(--navy);
+    color:var(--cream);
+    text-align:center;
+    padding:28px 20px 20px;
+  }
+  .masthead .kc{
+    font-size:14px;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .masthead h1{
+    font-size:38px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-top:6px;
+  }
+  .masthead .sub{
+    font-style:italic;
+    font-size:17px;
+    color:#cdd6e6;
+    margin-top:4px;
+  }
+  .band{
+    height:6px;
+    width:100%;
+    background:linear-gradient(90deg, var(--blue) 0 33%, var(--gold) 33% 66%, var(--red) 66% 100%);
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:36px 24px 60px;
+  }
+  .deck-select{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:34px;
+  }
+  .deck-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 20px;
+    border:2px solid var(--navy);
+    background:transparent;
+    color:var(--navy);
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .deck-btn:hover{background:var(--navy);color:var(--cream);}
+  .deck-btn.active{background:var(--navy);color:var(--cream);}
+  .deck-btn.active .dot{background:var(--gold);}
+  .deck-btn .dot{
+    display:inline-block;
+    width:8px;height:8px;
+    border-radius:50%;
+    margin-right:8px;
+    background:var(--blue);
+    vertical-align:middle;
+  }
+  .stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+  }
+  .prompt-label{
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--blue);
+  }
+  .sentence-card{
+    background:var(--navy);
+    color:var(--cream);
+    border-radius:16px;
+    padding:36px 32px;
+    width:100%;
+    max-width:600px;
+    min-height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:24px;
+    font-weight:500;
+    line-height:1.4;
+    box-shadow:0 18px 40px rgba(10,31,61,0.25);
+  }
+  .tally{
+    display:flex;
+    gap:10px;
+  }
+  .tally-dot{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    border:2px solid var(--navy);
+    background:transparent;
+    transition:all 0.2s ease;
+  }
+  .tally-dot.filled{
+    background:var(--gold);
+    border-color:var(--gold);
+  }
+  .tally-label{
+    font-size:15px;
+    color:#5c6a80;
+    letter-spacing:0.5px;
+  }
+  .controls{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .next-way-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:14px 36px;
+    border:none;
+    border-radius:999px;
+    background:var(--red);
+    color:var(--cream);
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(219,47,48,0.3);
+    transition:transform 0.15s ease;
+  }
+  .next-way-btn:hover{transform:translateY(-2px);}
+  .next-way-btn:active{transform:translateY(0);}
+  .next-way-btn:disabled{
+    background:#b9bcc4;
+    box-shadow:none;
+    cursor:default;
+    transform:none;
+  }
+  .draw-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 22px;
+    border:2px solid var(--navy);
+    border-radius:999px;
+    background:transparent;
+    color:var(--navy);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .draw-btn:hover{background:var(--navy);color:var(--cream);}
+  .reveal-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    padding:11px 22px;
+    border:2px solid var(--blue);
+    border-radius:999px;
+    background:transparent;
+    color:var(--blue);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .reveal-btn:hover{background:var(--blue);color:var(--cream);}
+  .sample-box{
+    max-width:560px;
+    text-align:left;
+    padding:18px 26px;
+    border-top:1px solid #d8dce4;
+    display:none;
+  }
+  .sample-box.show{display:block;}
+  .sample-box .eyebrow{
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--gold);
+    margin-bottom:10px;
+    text-align:center;
+  }
+  .sample-box ol{
+    padding-left:22px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .sample-box li{
+    font-size:17px;
+    font-style:italic;
+    color:#4a5568;
+  }
+  .progress{
+    font-size:15px;
+    color:#5c6a80;
+    letter-spacing:0.5px;
+  }
+  footer{
+    text-align:center;
+    padding:26px 20px 34px;
+    color:#8a93a3;
+    font-size:14px;
+    letter-spacing:0.5px;
+  }
+  footer .name{color:var(--navy);font-weight:600;}
+  @media (max-width:480px){
+    .masthead h1{font-size:26px;}
+    .sentence-card{font-size:19px;padding:26px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kc">KingCretot Experience</div>
+  <h1>Say It Five Ways</h1>
+  <div class="sub">One idea. Five different ways to say it. Never the same words twice.</div>
+</div>
+<div class="band"></div>
+
+<main>
+  <div class="deck-select" id="deckSelect"></div>
+
+  <div class="stage">
+    <div class="prompt-label">Start here</div>
+    <div class="sentence-card" id="sentenceCard"></div>
+
+    <div class="tally" id="tally"></div>
+    <div class="tally-label" id="tallyLabel">Way 0 of 5</div>
+
+    <div class="controls">
+      <button class="next-way-btn" id="nextWayBtn">Next Way</button>
+    </div>
+    <div class="controls">
+      <button class="draw-btn" id="drawBtn">New Sentence</button>
+      <button class="reveal-btn" id="revealBtn">Reveal Examples</button>
+    </div>
+    <div class="sample-box" id="sampleBox">
+      <div class="eyebrow">Five examples</div>
+      <ol id="sampleList"></ol>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+</main>
+
+<footer>
+  <span class="name">KingCretot Experience</span> &nbsp;·&nbsp; English Experience &nbsp;·&nbsp; LLCER Bac Prep Template
+</footer>
+
+<script>
+  const decks = {
+    foundation: {
+      label: "Foundation",
+      rounds: [
+        { base: "I was really tired after school.", samples: ["I felt exhausted by the end of the day.", "School completely wore me out.", "By the time I got home, I had no energy left.", "I could barely keep my eyes open after class.", "I was drained after a long day at school."] },
+        { base: "The movie was really good.", samples: ["The film was fantastic.", "I really enjoyed that movie.", "It was one of the best films I've seen in a while.", "The movie exceeded my expectations.", "I couldn't stop thinking about it afterward."] },
+        { base: "She was very happy about the news.", samples: ["She was thrilled to hear it.", "The news made her really happy.", "She couldn't stop smiling after she heard it.", "She was over the moon about it.", "It was great news for her."] },
+        { base: "It was a difficult decision.", samples: ["It wasn't an easy choice to make.", "The decision was really tough.", "I struggled to decide.", "It took a lot of thought to choose.", "It was a hard call to make."] },
+        { base: "He was nervous before the exam.", samples: ["He felt anxious before the test.", "The exam made him really nervous.", "He was on edge before it started.", "His nerves got the better of him beforehand.", "He couldn't relax before the exam."] },
+        { base: "The weather was really bad.", samples: ["It was a terrible day weather-wise.", "The weather was awful.", "It rained non-stop and was freezing.", "We had horrible weather that day.", "The conditions were rough."] }
+      ]
+    },
+    voyages: {
+      label: "Places & Borders",
+      rounds: [
+        { base: "Moving to a new country was hard.", samples: ["Adjusting to a new country wasn't easy.", "The move was really challenging.", "It took time to settle into life abroad.", "Starting over somewhere new was tough.", "The transition to a new country was difficult."] },
+        { base: "She missed her home a lot.", samples: ["She felt really homesick.", "Home was constantly on her mind.", "She longed for familiar places.", "Being away from home was hard on her.", "She couldn't stop thinking about home."] },
+        { base: "The city felt strange at first.", samples: ["Everything about the city felt unfamiliar at first.", "It took a while to feel comfortable there.", "The city seemed foreign in the beginning.", "At first, nothing about the place felt normal.", "It felt like a completely different world at first."] },
+        { base: "He didn't understand the language.", samples: ["He struggled to follow the language.", "The language was hard for him to grasp.", "He couldn't communicate easily at first.", "Understanding what people said was a challenge.", "The language barrier was tough for him."] },
+        { base: "They left everything behind.", samples: ["They gave up everything they had.", "Nothing was kept from their old life.", "They started fresh with almost nothing.", "Everything familiar was left in the past.", "They walked away from their whole life."] },
+        { base: "The trip changed how she saw the world.", samples: ["The journey shifted her whole perspective.", "She saw things differently after the trip.", "Her worldview changed because of that experience.", "The trip opened her eyes to new things.", "She came back with a new outlook."] }
+      ]
+    },
+    expression: {
+      label: "Self & Identity",
+      rounds: [
+        { base: "I felt proud of myself.", samples: ["I was proud of what I'd done.", "It gave me a real sense of pride.", "I felt good about myself afterward.", "That moment made me proud.", "I felt a real sense of accomplishment."] },
+        { base: "She's more confident now.", samples: ["Her confidence has really grown.", "She believes in herself more now.", "She's become a lot more self-assured.", "She carries herself differently now.", "Her self-confidence has improved a lot."] },
+        { base: "I was embarrassed about it.", samples: ["It was pretty embarrassing.", "I felt awkward about the whole thing.", "It was a bit humiliating at the time.", "I cringed thinking about it afterward.", "I felt uncomfortable about it."] },
+        { base: "He surprised everyone with his decision.", samples: ["His decision caught everyone off guard.", "No one expected him to choose that.", "It was a shock to everyone around him.", "His choice took people by surprise.", "Nobody saw that decision coming."] },
+        { base: "I don't like being compared to others.", samples: ["Comparisons really bother me.", "I hate being measured against other people.", "It's frustrating when people compare me to others.", "I'd rather not be judged next to someone else.", "Being compared to others makes me uncomfortable."] },
+        { base: "She grew a lot this year.", samples: ["She's changed a lot over the past year.", "This year really shaped who she is.", "She's matured a great deal recently.", "A lot has changed for her this year.", "She's grown so much in the last year."] }
+      ]
+    },
+    arts: {
+      label: "Arts & Ideas",
+      rounds: [
+        { base: "The film was really moving.", samples: ["The movie was incredibly touching.", "It was emotionally powerful.", "The film really got to me.", "I was deeply moved by it.", "It stirred up a lot of emotion."] },
+        { base: "People disagree a lot about that show.", samples: ["That show really divides opinion.", "There's a lot of debate about that series.", "People have very mixed feelings about it.", "Opinions on that show are all over the place.", "It's a pretty controversial show."] },
+        { base: "The book was hard to understand.", samples: ["The novel was tough to follow.", "I struggled to make sense of the book.", "It was a difficult read.", "The book was quite confusing at times.", "Understanding the book took real effort."] },
+        { base: "The artist took a big risk.", samples: ["That was a bold move for the artist.", "The artist really pushed boundaries.", "It was a daring choice creatively.", "The artist took a real gamble.", "That decision was a big risk artistically."] },
+        { base: "The music really affected me.", samples: ["The music had a strong impact on me.", "I was really moved by the music.", "It stuck with me long after I heard it.", "The music left a real impression on me.", "I couldn't stop thinking about that music."] },
+        { base: "The ending was unexpected.", samples: ["Nobody saw that ending coming.", "The ending really caught me off guard.", "It was a surprising way to finish the story.", "The twist at the end was unexpected.", "I didn't expect the story to end that way."] }
+      ]
+    }
+  };
+
+  let currentDeck = "foundation";
+  let pool = [];
+  let currentRound = null;
+  let wayCount = 0;
+
+  const deckSelect = document.getElementById('deckSelect');
+  const sentenceCard = document.getElementById('sentenceCard');
+  const tally = document.getElementById('tally');
+  const tallyLabel = document.getElementById('tallyLabel');
+  const nextWayBtn = document.getElementById('nextWayBtn');
+  const drawBtn = document.getElementById('drawBtn');
+  const revealBtn = document.getElementById('revealBtn');
+  const sampleBox = document.getElementById('sampleBox');
+  const sampleList = document.getElementById('sampleList');
+  const progress = document.getElementById('progress');
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function renderDeckButtons(){
+    deckSelect.innerHTML = '';
+    Object.keys(decks).forEach(key=>{
+      const btn = document.createElement('button');
+      btn.className = 'deck-btn' + (key===currentDeck ? ' active' : '');
+      btn.innerHTML = '<span class="dot"></span>' + decks[key].label;
+      btn.onclick = () => selectDeck(key);
+      deckSelect.appendChild(btn);
+    });
+  }
+
+  function renderTally(){
+    tally.innerHTML = '';
+    for(let i=0;i<5;i++){
+      const d = document.createElement('div');
+      d.className = 'tally-dot' + (i < wayCount ? ' filled' : '');
+      tally.appendChild(d);
+    }
+    tallyLabel.textContent = `Way ${wayCount} of 5`;
+    nextWayBtn.disabled = wayCount >= 5;
+    nextWayBtn.textContent = wayCount >= 5 ? 'All Five Done' : 'Next Way';
+  }
+
+  function selectDeck(key){
+    currentDeck = key;
+    pool = shuffle(decks[key].rounds);
+    renderDeckButtons();
+    drawRound();
+  }
+
+  function updateProgress(){
+    const total = decks[currentDeck].rounds.length;
+    const used = total - pool.length;
+    progress.textContent = `${used} of ${total} sentences this cycle`;
+  }
+
+  function drawRound(){
+    if(pool.length === 0){
+      pool = shuffle(decks[currentDeck].rounds);
+    }
+    currentRound = pool.pop();
+    sentenceCard.textContent = currentRound.base;
+    wayCount = 0;
+    renderTally();
+    sampleBox.classList.remove('show');
+    sampleList.innerHTML = '';
+    updateProgress();
+  }
+
+  drawBtn.onclick = drawRound;
+
+  nextWayBtn.onclick = () => {
+    if(wayCount < 5){
+      wayCount++;
+      renderTally();
+    }
+  };
+
+  revealBtn.onclick = () => {
+    if(!currentRound) return;
+    sampleList.innerHTML = '';
+    currentRound.samples.forEach(s=>{
+      const li = document.createElement('li');
+      li.textContent = s;
+      sampleList.appendChild(li);
+    });
+    sampleBox.classList.add('show');
+  };
+
+  selectDeck('foundation');
+</script>
+
+</body>
+</html>
