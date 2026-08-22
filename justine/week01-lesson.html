@@ -217,6 +217,8 @@
   slides.forEach((_, i) => {
     const d = document.createElement('div');
     d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.style.cursor = 'pointer';
+    d.onclick = () => { current = i; render(); };
     dotsContainer.appendChild(d);
   });
   const dots = document.querySelectorAll('.dot');
