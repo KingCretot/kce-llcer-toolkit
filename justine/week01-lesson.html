@@ -3,96 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 1 — Welcome | KCE Justine</title>
+<title>Week 1 — The Road | KCE Justine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#0A1F3D; --gold:#C9A84C; --blue:#0047BA; --red:#DB2F30;
-    --cream:#FFFCF5; --sky:#EAF3FF; --mint:#EAFBF3; --peach:#FFF3EA;
+    --cream:#FFFCF5; --sky:#EAF3FF; --mint:#EAFBF3; --peach:#FFF3EA; --green:#2E7D32;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{min-height:100%;background:linear-gradient(160deg,#FFFCF5 0%,#EAF3FF 100%);font-family:'Quicksand',sans-serif;color:var(--navy);}
-  .topbar{background:var(--navy);color:#fff;text-align:center;padding:18px 20px;}
-  .topbar .kc{font-size:13px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;font-weight:700;}
+  .topbar{background:var(--navy);color:#fff;text-align:center;padding:16px 20px;}
+  .topbar .kc{font-size:12px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;font-weight:700;}
   .rainbow{height:6px;width:100%;background:linear-gradient(90deg,var(--blue),var(--gold),var(--red));}
 
-  .dots{display:flex;justify-content:center;gap:8px;padding:24px 0 4px;flex-wrap:wrap;}
-  .dot{width:10px;height:10px;border-radius:50%;background:#dbe4f0;transition:all 0.3s ease;}
-  .dot.active{background:var(--gold);width:30px;border-radius:6px;}
-  .dot.done{background:var(--blue);}
+  main{max-width:760px;margin:0 auto;padding:24px 20px 60px;}
+  .lesson-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;text-align:center;margin-bottom:4px;}
+  .lesson-sub{text-align:center;color:#5c6a80;font-size:14px;margin-bottom:24px;}
 
-  main{max-width:720px;margin:0 auto;padding:20px 24px 60px;min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-  .slide{display:none;width:100%;flex-direction:column;align-items:center;gap:22px;text-align:center;}
-  .slide.active{display:flex;animation:fadeUp 0.4s ease;}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  /* THE ROAD */
+  .road-wrap{position:relative;width:100%;aspect-ratio:700/900;max-width:520px;margin:0 auto 30px;}
+  .road-svg{position:absolute;inset:0;width:100%;height:100%;}
+  .road-svg path{fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;stroke-dasharray:2 22;opacity:0.55;}
+  .stop{
+    position:absolute;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;
+    background:#fff;border:4px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;color:var(--navy);cursor:pointer;
+    box-shadow:0 8px 18px rgba(10,31,61,0.15);transition:all 0.2s ease;
+  }
+  .stop.done{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .stop.active{background:var(--gold);border-color:var(--gold);color:#fff;transform:translate(-50%,-50%) scale(1.18);box-shadow:0 12px 26px rgba(201,168,76,0.4);}
+  .stop-label{
+    position:absolute;transform:translate(-50%,0);width:120px;text-align:center;font-size:11.5px;
+    font-weight:700;color:#5c6a80;top:38px;pointer-events:none;
+  }
+  .stop.active + .stop-label, .stop-label.active-label{color:var(--navy);}
 
-  .badge{font-size:14px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--blue);background:var(--sky);padding:6px 18px;border-radius:999px;}
+  /* CONTENT PANEL */
+  .panel{background:#fff;border-radius:22px;padding:28px 26px;box-shadow:0 16px 36px rgba(10,31,61,0.1);}
+  .panel-badge{font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:10px;}
+  .panel-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:14px;}
+  .panel p{font-size:15px;line-height:1.55;color:#334;margin-bottom:10px;}
 
-  .hero-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--navy);line-height:1.2;}
-  .hero-sub{font-size:16px;color:#5c6a80;max-width:500px;line-height:1.55;}
-  .hero-stats{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:6px;}
-  .stat{background:#fff;border-radius:14px;padding:14px 20px;box-shadow:0 8px 20px rgba(10,31,61,0.08);min-width:110px;}
-  .stat .n{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--gold);}
-  .stat .l{font-size:12px;color:#5c6a80;text-transform:uppercase;letter-spacing:0.5px;}
+  .prompt-list{display:flex;flex-direction:column;gap:10px;margin:14px 0;}
+  .prompt-item{background:var(--sky);border-radius:12px;padding:12px 16px;font-size:15px;color:var(--navy);font-weight:600;}
 
-  .phase-track{display:flex;flex-direction:column;gap:10px;width:100%;max-width:560px;}
-  .phase-item{display:flex;align-items:center;gap:16px;background:#fff;border-radius:16px;padding:14px 20px;box-shadow:0 8px 20px rgba(10,31,61,0.06);text-align:left;}
-  .phase-num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;}
-  .phase-info .pname{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--navy);}
-  .phase-info .pwhen{font-size:12px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
-  .phase-info .pdesc{font-size:13px;color:#5c6a80;margin-top:2px;}
+  .reveal-btn{
+    font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:10px 20px;border:2px solid var(--blue);
+    border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;margin-top:10px;
+  }
+  .reveal-btn:hover{background:var(--blue);color:#fff;}
+  .reveal-box{background:var(--cream);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;margin-top:12px;font-size:14px;color:#4a5568;line-height:1.6;display:none;}
+  .reveal-box.show{display:block;}
+  .reveal-box b{color:var(--navy);}
+  .reveal-box ul{padding-left:18px;margin-top:6px;}
 
-  .card-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:100%;}
-  .info-card{background:#fff;border-radius:20px;padding:26px 24px;flex:1;min-width:220px;max-width:280px;box-shadow:0 12px 30px rgba(10,31,61,0.08);border:2px solid transparent;}
-  .info-card.sky{border-color:var(--blue);background:var(--sky);}
-  .info-card.gold{border-color:var(--gold);background:#FFFBEF;}
-  .info-card .icon{font-size:32px;margin-bottom:10px;}
-  .info-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--navy);margin-bottom:8px;}
-  .info-card p{font-size:14.5px;color:#4a5568;line-height:1.5;}
-
-  .week-shape{width:100%;max-width:560px;background:#fff;border-radius:20px;padding:24px 26px;box-shadow:0 10px 26px rgba(10,31,61,0.08);text-align:left;}
-  .week-shape .row{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #EEF1F6;}
-  .week-shape .row:last-child{border-bottom:none;}
-  .week-shape .tag{flex:none;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);background:#FFFBEF;padding:4px 10px;border-radius:6px;min-width:64px;text-align:center;}
-  .week-shape p{font-size:14px;color:var(--navy);line-height:1.4;}
-
-  .rule-stack{display:flex;flex-direction:column;gap:14px;width:100%;max-width:520px;}
-  .rule-item{display:flex;align-items:center;gap:16px;background:#fff;border-radius:16px;padding:18px 22px;box-shadow:0 8px 20px rgba(10,31,61,0.06);text-align:left;}
-  .rule-num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;}
-  .rule-item p{font-size:15px;color:var(--navy);line-height:1.4;}
-
-  .game-frame{width:100%;background:#fff;border-radius:24px;padding:28px 20px;box-shadow:0 16px 36px rgba(10,31,61,0.1);}
-  .game-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--navy);margin-bottom:18px;}
-  .card-3d-frame{perspective:1200px;width:100%;max-width:460px;height:230px;margin:0 auto 20px;}
+  .game-frame{margin-top:16px;}
+  .card-3d-frame{perspective:1200px;width:100%;max-width:400px;height:180px;margin:14px auto;}
   .card-3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(.2,.9,.25,1);}
   .card-3d.flipped{transform:rotateY(180deg);}
-  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;}
   .face.front{background:linear-gradient(135deg,var(--navy),#123a6b);color:var(--gold);}
-  .face.front .mark{font-size:18px;letter-spacing:4px;text-transform:uppercase;font-weight:700;color:#fff;opacity:0.85;}
+  .face.front .mark{font-size:15px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:#fff;opacity:0.85;}
   .face.back{background:var(--peach);border:3px solid var(--gold);transform:rotateY(180deg);}
-  .face.back .topic{font-size:22px;font-weight:700;color:var(--navy);line-height:1.3;}
-  .draw-btn{font-family:'Quicksand',sans-serif;font-size:17px;font-weight:700;padding:13px 32px;border:none;border-radius:999px;background:var(--red);color:#fff;cursor:pointer;box-shadow:0 8px 20px rgba(219,47,48,0.3);transition:transform 0.15s ease;}
-  .draw-btn:hover{transform:translateY(-2px);}
+  .face.back .topic{font-size:17px;font-weight:700;color:var(--navy);line-height:1.3;}
+  .draw-btn{font-family:'Quicksand',sans-serif;font-size:15px;font-weight:700;padding:10px 26px;border:none;border-radius:999px;background:var(--red);color:#fff;cursor:pointer;display:block;margin:0 auto;}
 
-  .voice-box{background:var(--mint);border-radius:20px;padding:24px 26px;max-width:500px;text-align:left;}
-  .voice-box .vt{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;}
-  .voice-box p{font-size:14.5px;color:#2d5a45;line-height:1.55;margin-bottom:8px;}
-  .voice-box p:last-child{margin-bottom:0;}
-  .voice-box b{color:var(--navy);}
+  .coin{width:100px;height:100px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;margin:16px auto;box-shadow:0 10px 22px rgba(10,31,61,0.25);transition:transform 0.6s ease;}
+  .coin.spin{animation:flip 0.6s ease;}
+  @keyframes flip{0%{transform:rotateY(0);}50%{transform:rotateY(900deg) scale(1.1);}100%{transform:rotateY(1080deg);}}
+  .coin span{font-size:16px;letter-spacing:1.5px;font-weight:700;color:var(--gold);text-transform:uppercase;}
+  .flip-btn{font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:9px 20px;border:2px solid var(--blue);border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;display:block;margin:0 auto;}
+  .side-label{text-align:center;font-size:13px;color:#5c6a80;margin-top:8px;font-weight:700;}
 
-  .closing-card{background:linear-gradient(135deg,var(--navy),#123a6b);color:#fff;border-radius:24px;padding:44px 36px;max-width:520px;}
-  .closing-card .ct{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;margin-bottom:10px;}
-  .closing-card p{font-size:15px;color:#cdd6e6;line-height:1.5;}
+  .tally{display:flex;gap:8px;justify-content:center;margin:14px 0 6px;}
+  .tally-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--navy);}
+  .tally-dot.on{background:var(--gold);border-color:var(--gold);}
+  .tally-btn{font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:9px 22px;border:none;border-radius:999px;background:var(--red);color:#fff;cursor:pointer;display:block;margin:8px auto;}
+  .hint-list{font-size:13.5px;color:#5c6a80;margin-top:10px;line-height:1.6;}
 
-  .nav{display:flex;gap:14px;margin-top:8px;justify-content:center;}
-  .nav-btn{font-family:'Quicksand',sans-serif;font-size:17px;font-weight:700;padding:13px 30px;border:none;border-radius:999px;background:var(--navy);color:#fff;cursor:pointer;box-shadow:0 8px 20px rgba(10,31,61,0.2);transition:transform 0.15s ease;}
-  .nav-btn:hover{transform:translateY(-2px);}
-  .nav-btn.g{background:transparent;color:var(--navy);border:2px solid var(--navy);box-shadow:none;}
-  .nav-btn[disabled]{display:none;}
+  .sent-input{width:100%;font-family:'Quicksand',sans-serif;font-size:15px;padding:12px 16px;border:2px solid #d8dce4;border-radius:12px;color:var(--navy);}
+  .sent-input:focus{outline:none;border-color:var(--gold);}
+  .range-card{background:linear-gradient(135deg,var(--navy),#123a6b);color:#fff;border-radius:18px;padding:24px 22px;margin-top:12px;text-align:center;}
+  .range-num{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:10px;}
+  .range-sentence{font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.4;}
+  .range-technique{font-size:14px;background:rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-weight:600;}
 
-  footer{text-align:center;padding:20px;color:#9aa5b8;font-size:13px;}
-  @media(max-width:520px){.hero-title{font-size:28px;}.card-row{flex-direction:column;align-items:center;}}
+  .nav-row{display:flex;justify-content:space-between;margin-top:22px;}
+  .nav-btn{font-family:'Quicksand',sans-serif;font-size:15px;font-weight:700;padding:11px 22px;border:2px solid var(--navy);border-radius:999px;background:transparent;color:var(--navy);cursor:pointer;}
+  .nav-btn:hover{background:var(--navy);color:#fff;}
+  .nav-btn[disabled]{opacity:0;pointer-events:none;}
+
+  footer{text-align:center;padding:20px;color:#9aa5b8;font-size:12.5px;}
 </style>
 </head>
 <body>
@@ -100,192 +102,239 @@
 <div class="topbar"><span class="kc">KingCretot Experience</span></div>
 <div class="rainbow"></div>
 
-<div class="dots" id="dots"></div>
-
 <main>
+  <div class="lesson-title">Week 1 — The Road</div>
+  <div class="lesson-sub">Six stops. Mostly her talking.</div>
 
-  <!-- SLIDE 0: WELCOME -->
-  <div class="slide active" data-slide="0">
-    <div class="badge">Week 1 of 35</div>
-    <div class="hero-title">Welcome, Justine!</div>
-    <div class="hero-sub">This is the start of your LLCER Anglais year — building toward your exam in June 2027.</div>
-    <div class="hero-stats">
-      <div class="stat"><div class="n">35</div><div class="l">Monday Sessions</div></div>
-      <div class="stat"><div class="n">3</div><div class="l">Set Works</div></div>
-      <div class="stat"><div class="n">1</div><div class="l">Exam Day</div></div>
-    </div>
+  <div class="road-wrap">
+    <svg class="road-svg" viewBox="0 0 700 900" preserveAspectRatio="none">
+      <path d="M150,70 C350,70 350,210 550,210 C350,210 350,350 150,350 C350,350 350,490 550,490 C350,490 350,630 150,630 C350,630 350,770 550,770" />
+    </svg>
+    <div class="stop" data-i="0" style="left:21.4%;top:7.8%;">1</div>
+    <div class="stop-label" style="left:21.4%;top:15%;">Open</div>
+    <div class="stop" data-i="1" style="left:78.6%;top:23.3%;">2</div>
+    <div class="stop-label" style="left:78.6%;top:30.5%;">Logistics</div>
+    <div class="stop" data-i="2" style="left:21.4%;top:38.9%;">3</div>
+    <div class="stop-label" style="left:21.4%;top:46%;">Retell Brooklyn</div>
+    <div class="stop" data-i="3" style="left:78.6%;top:54.4%;">4</div>
+    <div class="stop-label" style="left:78.6%;top:61.5%;">Follow-Up</div>
+    <div class="stop" data-i="4" style="left:21.4%;top:70%;">5</div>
+    <div class="stop-label" style="left:21.4%;top:77%;">Five Ways</div>
+    <div class="stop" data-i="5" style="left:78.6%;top:85.6%;">6</div>
+    <div class="stop-label" style="left:78.6%;top:92.7%;">Argue It</div>
   </div>
 
-  <!-- SLIDE 1: HOW THIS YEAR WORKS -->
-  <div class="slide" data-slide="1">
-    <div class="badge">How This Year Works</div>
-    <div class="phase-track">
-      <div class="phase-item"><div class="phase-num">1</div><div class="phase-info"><div class="pname">Getting Started</div><div class="pwhen">September</div><div class="pdesc">Slow and steady — no performance, just comfort.</div></div></div>
-      <div class="phase-item"><div class="phase-num">2</div><div class="phase-info"><div class="pname">Learning the Method</div><div class="pwhen">Oct – Mid-Nov</div><div class="pdesc">Your first book, one piece at a time.</div></div></div>
-      <div class="phase-item"><div class="phase-num">3</div><div class="phase-info"><div class="pname">New York & the Second Book</div><div class="pwhen">Dec – Jan</div><div class="pdesc">Your trip becomes real speaking material.</div></div></div>
-      <div class="phase-item"><div class="phase-num">4</div><div class="phase-info"><div class="pname">Third Work & the Dossier</div><div class="pwhen">Feb – Mar</div><div class="pdesc">You choose the documents for your real exam.</div></div></div>
-      <div class="phase-item"><div class="phase-num">5</div><div class="phase-info"><div class="pname">Full Rehearsal</div><div class="pwhen">Apr – May</div><div class="pdesc">Practice exams until nothing feels new.</div></div></div>
-    </div>
-  </div>
+  <div class="panel" id="panel"></div>
 
-  <!-- SLIDE 2: WHAT A MONDAY LOOKS LIKE -->
-  <div class="slide" data-slide="2">
-    <div class="badge">Every Monday</div>
-    <div class="week-shape">
-      <div class="row"><span class="tag">Open</span><p>We start easy — a quick chat, no prep, no pressure.</p></div>
-      <div class="row"><span class="tag">Middle</span><p>This changes week to week — sometimes a new text, sometimes organizing ideas out loud, sometimes full practice.</p></div>
-      <div class="row"><span class="tag">Close</span><p>Every session ends with you speaking. Always.</p></div>
-    </div>
+  <div class="nav-row">
+    <button class="nav-btn" id="backBtn">Back</button>
+    <button class="nav-btn" id="nextBtn">Next Stop</button>
   </div>
-
-  <!-- SLIDE 3: THE EXAM -->
-  <div class="slide" data-slide="3">
-    <div class="badge">The Exam, Simply</div>
-    <div class="card-row">
-      <div class="info-card sky">
-        <div class="icon">🗣️</div>
-        <h3>Speaking</h3>
-        <p>20 minutes with an examiner in June. You present documents you chose, then answer questions — no notes at all.</p>
-      </div>
-      <div class="info-card gold">
-        <div class="icon">✍️</div>
-        <h3>Writing</h3>
-        <p>A written paper at school. We help with this too — but most of our time together builds your speaking.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 4: WHAT TO EXPECT -->
-  <div class="slide" data-slide="4">
-    <div class="badge">What to Expect</div>
-    <div class="rule-stack">
-      <div class="rule-item"><div class="rule-num">1</div><p>Your accent is not a problem. Sounding French is completely fine — as long as you're understood.</p></div>
-      <div class="rule-item"><div class="rule-num">2</div><p>No rushing. We take everything one piece at a time.</p></div>
-      <div class="rule-item"><div class="rule-num">3</div><p>Mistakes during practice are the whole point. Talking matters more than talking perfectly.</p></div>
-      <div class="rule-item"><div class="rule-num">4</div><p>By June, you'll have done this so many times, nothing in that room will feel new.</p></div>
-    </div>
-  </div>
-
-  <!-- SLIDE 5: PICK SOMETHING GAME -->
-  <div class="slide" data-slide="5">
-    <div class="badge">Let's Talk</div>
-    <div class="game-frame">
-      <div class="game-title">Pick Something</div>
-      <div class="card-3d-frame">
-        <div class="card-3d" id="card3d">
-          <div class="face front"><span class="mark">Draw a Topic</span></div>
-          <div class="face back"><span class="topic" id="topicText">—</span></div>
-        </div>
-      </div>
-      <button class="draw-btn" id="drawBtn">Draw</button>
-    </div>
-  </div>
-
-  <!-- SLIDE 6: INFORMATION GATHERING -->
-  <div class="slide" data-slide="6">
-    <div class="badge">A Few Real Questions</div>
-    <div class="week-shape">
-      <div class="row"><span class="tag">Confirm</span><p>Is Brooklyn officially your class's first work — matching what you've already started reading on your own?</p></div>
-      <div class="row"><span class="tag">Ask</span><p>Do you have a syllabus or calendar from school yet?</p></div>
-      <div class="row"><span class="tag">Ask</span><p>Is LLCER one of your two Grand Oral spécialités?</p></div>
-      <div class="row"><span class="tag">Ask</span><p>Do you know the deadline for your dossier to be signed off by your teacher?</p></div>
-    </div>
-  </div>
-
-  <!-- SLIDE 7: BACK TO SCHOOL -->
-  <div class="slide" data-slide="7">
-    <div class="badge">Back to School</div>
-    <div class="prompt-card">How has your final year of high school started?<br>What's been good? What hasn't?<br>Do you like your classes so far?</div>
-  </div>
-
-  <!-- SLIDE 8: CLOSE - VERIFICATION -->
-  <div class="slide" data-slide="8">
-    <div class="badge">Before We Finish</div>
-    <div class="prompt-card">Tell me back, in your own words —<br>what does June actually ask of you,<br>and why isn't your accent something to worry about?</div>
-  </div>
-
-  <!-- SLIDE 9: CLOSING -->
-  <div class="slide" data-slide="9">
-    <div class="closing-card">
-      <div class="ct">Until Next Monday</div>
-      <p>Today was mostly about understanding the shape of the year — what June asks of you, how the weeks will work. That's normal for a first day, and it's exactly what today was for.</p>
-      <p style="margin-top:14px;">One thing to notice this week, nothing to do about it yet: moments where you could try saying something out loud in English — even just to yourself — and you reach for French instead. Starting next Monday, more and more of these sessions will be you talking, not me explaining.</p>
-    </div>
-  </div>
-
-  <div class="nav">
-    <button class="nav-btn g" id="backBtn" disabled>Back</button>
-    <button class="nav-btn" id="nextBtn">Let's Begin</button>
-  </div>
-
 </main>
 
-<footer>KingCretot Experience &nbsp;·&nbsp; Justine 2026–2027</footer>
+<footer>KingCretot Experience &middot; Justine 2026–2027</footer>
 
 <script>
-  const slides = document.querySelectorAll('.slide');
-  const dotsContainer = document.getElementById('dots');
-  const backBtn = document.getElementById('backBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  let current = 0;
+const stops = document.querySelectorAll('.stop');
+const panel = document.getElementById('panel');
+const backBtn = document.getElementById('backBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current = 0;
 
-  slides.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.style.cursor = 'pointer';
-    d.onclick = () => { current = i; render(); };
-    dotsContainer.appendChild(d);
+const content = [
+// STOP 0 — OPEN
+() => `
+  <div class="panel-badge">Stop 1 · 0–5 min</div>
+  <div class="panel-title">Open</div>
+  <p>No prep, nothing at stake. She's talking within the first minute.</p>
+  <div class="game-frame">
+    <div class="card-3d-frame">
+      <div class="card-3d" id="card3d">
+        <div class="face front"><span class="mark">Pick Something</span></div>
+        <div class="face back"><span class="topic" id="topicText">—</span></div>
+      </div>
+    </div>
+    <button class="draw-btn" id="drawBtn">Draw</button>
+  </div>
+`,
+// STOP 1 — LOGISTICS
+() => `
+  <div class="panel-badge">Stop 2 · 5–8 min</div>
+  <div class="panel-title">What We Already Know</div>
+  <p>You told me a few things before today — good, let's confirm them out loud.</p>
+  <div class="prompt-list">
+    <div class="prompt-item">Brooklyn first, then The Handmaid's Tale — that's the order.</div>
+    <div class="prompt-item">LLCER is one of your Grand Oral spécialités.</div>
+    <div class="prompt-item">Any updates on your class schedule since we last talked?</div>
+  </div>
+`,
+// STOP 2 — RETELL BROOKLYN
+() => `
+  <div class="panel-badge">Stop 3 · 8–26 min</div>
+  <div class="panel-title">Retell Brooklyn So Far</div>
+  <p>She's read this silently, alone. She's never said any of it out loud. Ask, then go quiet — let her build it herself.</p>
+  <div class="prompt-list">
+    <div class="prompt-item">Where does the story begin — what's Eilis's life like before anything changes?</div>
+    <div class="prompt-item">What happens that starts everything moving?</div>
+    <div class="prompt-item">How does she seem to feel about it — excited, reluctant, both?</div>
+    <div class="prompt-item">What happens on her way to America?</div>
+    <div class="prompt-item">What's it like when she actually arrives — is it what she expected?</div>
+  </div>
+  <button class="reveal-btn" id="revealRef">What Actually Happens (for you)</button>
+  <div class="reveal-box" id="refBox">
+    <b>Eilis Lacey</b> lives a limited life in a small Irish town, overshadowed by her more confident sister <b>Rose</b>. Rose and <b>Father Flood</b> (an Irish priest in Brooklyn) arrange for Eilis to emigrate — better opportunity than Ireland offers. Eilis is torn: she doesn't strongly want to go, but doesn't resist either — the decision is made as much for her as by her.
+    <br><br>The sea crossing is rough, physically and emotionally; <b>Georgina</b>, a more experienced fellow passenger, helps her through it. In Brooklyn, she lives in a boarding house run by <b>Mrs. Kehoe</b>, works a shop job, takes night classes. Severe homesickness sets in — quiet, constant, hard to explain to anyone around her.
+    <br><br><b>Full reference with all characters and themes:</b> <a href="brooklyn-reference.html" target="_blank">Open Part One Reference →</a>
+  </div>
+`,
+// STOP 3 — FOLLOW-UP
+() => `
+  <div class="panel-badge">Stop 4 · 26–43 min</div>
+  <div class="panel-title">Unscripted Follow-Up</div>
+  <p>Not memorized answers — real reactions. Pick from these as she talks, in any order.</p>
+  <button class="reveal-btn" id="revealQ">Show Follow-Up Questions</button>
+  <div class="reveal-box" id="qBox">
+    <ul>
+      <li>Why do you think her sister arranged this instead of asking Eilis what she wanted?</li>
+      <li>Do you think Eilis really wanted to go, or did she just not say no?</li>
+      <li>What do you think was going through her head during the crossing?</li>
+      <li>If you were Eilis, would you have gone?</li>
+      <li>What's the hardest part about leaving somewhere, in your opinion?</li>
+    </ul>
+  </div>
+`,
+// STOP 4 — RANGE PRACTICE
+() => `
+  <div class="panel-badge">Stop 5 · 43–50 min</div>
+  <div class="panel-title">Range Practice</div>
+  <p>A new sentence, a new technique, every round. Read it aloud, she says it her way — then click for a real example if she wants to check her version.</p>
+  <div class="range-card">
+    <div class="range-num" id="rangeNum">Round 1 of 5</div>
+    <div class="range-sentence" id="rangeSentence"></div>
+    <div class="range-technique" id="rangeTechnique"></div>
+  </div>
+  <button class="reveal-btn" id="revealRangeBtn">Reveal Example</button>
+  <div class="reveal-box" id="rangeExampleBox"></div>
+  <button class="draw-btn" id="nextRangeBtn" style="margin-top:14px;">Next Round</button>
+`,
+// STOP 5 — ARGUE IT
+() => `
+  <div class="panel-badge">Stop 6 · 50–60 min</div>
+  <div class="panel-title">Argue the Other Side</div>
+  <p style="font-weight:700;font-size:17px;color:var(--navy);">"Should Eilis have left Ireland?"</p>
+  <p>Flip the coin — whatever it lands on is her side. She can't have prepared an answer for a position she didn't choose.</p>
+  <div class="coin" id="coin"><span id="coinFace">?</span></div>
+  <div class="side-label" id="sideLabel">Flip to get her side</div>
+  <button class="flip-btn" id="flipBtn">Flip the Coin</button>
+`
+];
+
+function render(){
+  panel.innerHTML = content[current]();
+  stops.forEach((s,i) => {
+    s.classList.toggle('active', i === current);
+    s.classList.toggle('done', i < current);
+    s.textContent = i < current ? '✓' : (i+1);
   });
-  const dots = document.querySelectorAll('.dot');
+  backBtn.disabled = current === 0;
+  nextBtn.disabled = current === content.length - 1;
+  wireStop();
+}
 
-  function render(){
-    slides.forEach((s, i) => s.classList.toggle('active', i === current));
-    dots.forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-      d.classList.toggle('done', i < current);
-    });
-    backBtn.disabled = current === 0;
-    nextBtn.disabled = current === slides.length - 1;
-    if(current === 0) nextBtn.textContent = "Let's Begin";
-    else nextBtn.textContent = 'Next';
+function wireStop(){
+  if(current === 0){
+    const topics = ["Something that surprised you this week","A song that's been stuck in your head lately","The last thing that made you really laugh","A place you'd go back to right now if you could","Something you're looking forward to","A small thing that made your day better recently"];
+    let pool = [], flipped = false;
+    const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+    const card3d = document.getElementById('card3d');
+    const topicText = document.getElementById('topicText');
+    document.getElementById('drawBtn').onclick = () => {
+      if(pool.length===0) pool = shuffle(topics);
+      topicText.textContent = pool.pop();
+      if(flipped){ card3d.classList.remove('flipped'); setTimeout(()=>card3d.classList.add('flipped'),300); }
+      else { card3d.classList.add('flipped'); flipped = true; }
+    };
   }
-  nextBtn.onclick = () => { if(current < slides.length - 1){ current++; render(); } };
-  backBtn.onclick = () => { if(current > 0){ current--; render(); } };
+  if(current === 2){
+    document.getElementById('revealRef').onclick = () => document.getElementById('refBox').classList.toggle('show');
+  }
+  if(current === 3){
+    document.getElementById('revealQ').onclick = () => document.getElementById('qBox').classList.toggle('show');
+  }
+  if(current === 4){
+    const rounds = [
+      { sentence: "Eilis felt homesick after she arrived in Brooklyn.",
+        technique: "Use a different word for the feeling.",
+        example: "Eilis missed home terribly once she got to Brooklyn." },
+      { sentence: "Her sister arranged the trip to America.",
+        technique: "Add a comparison — \"more than...\" or \"like...\"",
+        example: "It was her sister, not Eilis, who set up the trip to America." },
+      { sentence: "The crossing was difficult for Eilis.",
+        technique: "Change the sentence order — start somewhere else.",
+        example: "For Eilis, the crossing was a real struggle." },
+      { sentence: "Eilis didn't want to leave her family.",
+        technique: "Say it more casually, like texting a friend.",
+        example: "Eilis really didn't want to say goodbye to her family." },
+      { sentence: "Eilis felt torn about the decision to leave.",
+        technique: "Say it more formally, like an exam answer.",
+        example: "Eilis experienced considerable ambivalence regarding her decision to emigrate." }
+    ];
+    let round = 0;
+    const rangeNum = document.getElementById('rangeNum');
+    const rangeSentence = document.getElementById('rangeSentence');
+    const rangeTechnique = document.getElementById('rangeTechnique');
+    const revealBtn = document.getElementById('revealRangeBtn');
+    const exampleBox = document.getElementById('rangeExampleBox');
+    const nextBtn2 = document.getElementById('nextRangeBtn');
+
+    const renderRound = () => {
+      const r = rounds[round];
+      rangeNum.textContent = `Round ${round+1} of 5`;
+      rangeSentence.textContent = r.sentence;
+      rangeTechnique.textContent = r.technique;
+      exampleBox.classList.remove('show');
+      exampleBox.textContent = '';
+      nextBtn2.textContent = round === rounds.length - 1 ? 'Restart Rounds' : 'Next Round';
+    };
+
+    revealBtn.onclick = () => {
+      exampleBox.textContent = `"${rounds[round].example}"`;
+      exampleBox.classList.add('show');
+    };
+    nextBtn2.onclick = () => {
+      round = round < rounds.length - 1 ? round + 1 : 0;
+      renderRound();
+    };
+    renderRound();
+  }
+  if(current === 5){
+    let flipping = false;
+    const coin = document.getElementById('coin');
+    const coinFace = document.getElementById('coinFace');
+    const sideLabel = document.getElementById('sideLabel');
+    document.getElementById('flipBtn').onclick = () => {
+      if(flipping) return;
+      flipping = true;
+      coin.classList.remove('spin'); void coin.offsetWidth; coin.classList.add('spin');
+      setTimeout(()=>{
+        const forSide = Math.random()<0.5;
+        coinFace.textContent = forSide ? 'FOR' : 'AGAINST';
+        sideLabel.textContent = forSide ? 'Argue FOR — she should have left' : 'Argue AGAINST — she should have stayed';
+        flipping = false;
+      },600);
+    };
+  }
+}
+
+stops.forEach(s => s.addEventListener('click', () => {
+  current = +s.dataset.i;
   render();
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
+}));
+nextBtn.onclick = () => { if(current < content.length-1){ current++; render(); } };
+backBtn.onclick = () => { if(current > 0){ current--; render(); } };
 
-  // --- Embedded Pick Something game (Foundation deck) ---
-  const topics = [
-    "Something that surprised you this week",
-    "A song that's been stuck in your head lately",
-    "The last thing that made you really laugh",
-    "A place you'd go back to right now if you could",
-    "Something you're looking forward to",
-    "A small thing that made your day better recently"
-  ];
-  let pool = [];
-  let flipped = false;
-  function shuffle(arr){
-    const a = [...arr];
-    for(let i=a.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(i+1));
-      [a[i],a[j]] = [a[j],a[i]];
-    }
-    return a;
-  }
-  const card3d = document.getElementById('card3d');
-  const topicText = document.getElementById('topicText');
-  document.getElementById('drawBtn').onclick = () => {
-    if(pool.length === 0) pool = shuffle(topics);
-    const topic = pool.pop();
-    topicText.textContent = topic;
-    if(flipped){
-      card3d.classList.remove('flipped');
-      setTimeout(()=>{ card3d.classList.add('flipped'); }, 350);
-    } else {
-      card3d.classList.add('flipped');
-      flipped = true;
-    }
-  };
+render();
 </script>
 
 </body>
