@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brooklyn — Your Notes | KingCretot Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1F3D;--navyband:#0A2540;--gold:#C9A84C;--blue:#0047BA;--red:#DB2F30;
+--cream:#FAF7EF;--ink:#232A38;--muted:#6E7686;--line:#DFD8C6;
+--display:'Cormorant Garamond',Georgia,serif;--ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--ui);line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(10,31,61,.08)}
+.mast{background:var(--navyband);padding:16px 26px;display:flex;align-items:center;gap:14px}
+.kc{width:38px;height:38px;flex:none;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--display);font-weight:700;font-size:16px}
+.wm{color:var(--gold);font-family:var(--display);font-size:21px;font-weight:700;line-height:1}
+.band{height:5px;display:flex}.band i{flex:1}
+.b1{background:var(--blue)}.b2{background:var(--gold)}.b3{background:var(--red)}
+.hd{padding:24px 26px 10px}
+h1{font-family:var(--display);font-size:30px;font-weight:700;color:var(--navy);margin:0 0 4px}
+.sub{font-size:13px;color:var(--muted)}
+.note{background:#F3F7FD;border:1px solid var(--blue);margin:16px 26px;padding:12px 18px;border-radius:8px;font-size:13px;color:#1a3a6b;line-height:1.5}
+.body{padding:6px 26px 30px}
+h2{font-family:var(--display);font-size:21px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);padding-bottom:6px;margin:26px 0 12px}
+h2:first-child{margin-top:0}
+p{font-size:14.5px;margin:0 0 10px}
+
+.char-grid{display:flex;flex-direction:column;gap:10px;}
+.char{border:1px solid var(--line);border-radius:8px;padding:12px 16px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;}
+.char .cname{font-family:var(--display);font-size:16px;font-weight:700;color:var(--navy);min-width:130px;flex:none;}
+.char .cdesc{font-size:14px;color:#4a5568;}
+
+.beats{display:flex;flex-direction:column;gap:8px;}
+.beat{display:flex;gap:12px;border-left:3px solid var(--blue);padding-left:12px;}
+.beat .bn{font-family:var(--display);font-weight:700;color:var(--blue);flex:none;width:22px;}
+.beat p{margin:0;font-size:14px;}
+
+.theme-card{background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:10px;}
+.theme-card .tname{font-family:var(--display);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.theme-card .tq{font-size:13.5px;color:#6b5518;font-style:italic;margin-top:6px;}
+
+.tension-box{background:#FDF6F6;border-left:3px solid var(--red);padding:14px 18px;border-radius:0 8px 8px 0;margin:10px 0;}
+.tension-box p{font-size:14px;margin:0 0 6px;}
+.tension-box p:last-child{margin:0;}
+
+.vocab-grid{display:flex;flex-direction:column;gap:8px;}
+.vocab{border:1px solid var(--line);border-radius:8px;padding:10px 16px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;}
+.vocab .vword{font-family:var(--display);font-size:15.5px;font-weight:700;color:var(--navy);min-width:130px;flex:none;}
+.vocab .vdef{font-size:13.5px;color:#4a5568;}
+
+.foot{background:var(--navyband);color:#8E99AC;font-size:9px;text-align:center;padding:14px;font-style:italic;font-family:var(--display)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="mast">
+ <div class="kc">KC</div>
+ <div class="wm">KingCretot Experience</div>
+</div>
+<div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+
+<div class="hd">
+ <h1>Brooklyn — Your Notes</h1>
+ <p class="sub">The beginning, up to right before Eilis leaves for America</p>
+</div>
+
+<div class="note">These notes stop exactly where your reading stops — nothing here happens after this point in the book. Use it to check your understanding, not to skip ahead.</div>
+
+<div class="body">
+
+<h2>Characters</h2>
+<div class="char-grid">
+  <div class="char"><span class="cname">Eilis Lacey</span><span class="cdesc">The main character. Young, quiet, and pays close attention to things without saying much about it. She doesn't have a lot of opportunities where she lives.</span></div>
+  <div class="char"><span class="cname">Rose Lacey</span><span class="cdesc">Eilis's older sister. Confident, has a good job, more comfortable talking to people than Eilis is. She's the one who sets the plan to America in motion.</span></div>
+  <div class="char"><span class="cname">Mrs. Lacey</span><span class="cdesc">Their mother — a widow. She depends on her daughters, and the idea of Eilis leaving is hard for her, even if she doesn't say so directly.</span></div>
+  <div class="char"><span class="cname">Father Flood</span><span class="cdesc">An Irish priest working in Brooklyn. He helps arrange the job and the place for Eilis to live in America, through Rose.</span></div>
+</div>
+
+<h2>The Story So Far</h2>
+<div class="beats">
+  <div class="beat"><span class="bn">1</span><p>Eilis lives a small, limited life in her Irish town. There isn't much work for her there, and she's often in Rose's shadow.</p></div>
+  <div class="beat"><span class="bn">2</span><p>Rose and Father Flood arrange for Eilis to go to America — a real job and a real opportunity, things she can't easily get at home.</p></div>
+  <div class="beat"><span class="bn">3</span><p>Eilis doesn't fight the plan, but she doesn't really choose it either. She goes along with it — that's where your reading stops.</p></div>
+</div>
+
+<h2>Themes to Think About</h2>
+<div class="theme-card">
+  <div class="tname">Choosing vs. Being Chosen For</div>
+  <p>Nobody forces Eilis to go. But nobody really asks her either. She just... doesn't say no.</p>
+  <div class="tq">Is going along with something the same as choosing it?</div>
+</div>
+<div class="theme-card">
+  <div class="tname">Duty to Family</div>
+  <p>Rose is doing this because she loves Eilis and wants better for her. Eilis, in turn, doesn't want to disappoint Rose or her mother by refusing.</p>
+  <div class="tq">Can loving someone be a reason you stop listening to what you actually want?</div>
+</div>
+<div class="theme-card">
+  <div class="tname">Feeling Sad Before Anything Has Even Happened</div>
+  <p>Eilis hasn't left yet — but there's already a heaviness in how she's living these last days at home.</p>
+  <div class="tq">Can you grieve something before you've even lost it?</div>
+</div>
+
+<h2>The Conflict Right Now</h2>
+<div class="tension-box">
+  <p><b>This isn't resolved yet — and that's the point.</b> Eilis is caught between two things: the safe, familiar, limited life she knows, and an opportunity she didn't fully ask for. She hasn't found peace with the decision. She's just... not resisting it.</p>
+  <p>Your reading ends before she leaves, so this tension is still completely open. Don't feel like you're missing something — nobody knows how she really feels about it yet, including Eilis.</p>
+</div>
+
+<h2>Vocabulary</h2>
+<div class="vocab-grid">
+  <div class="vocab"><span class="vword">ambivalent</span><span class="vdef">feeling two opposite things about something at the same time — like wanting to stay and wanting to go</span></div>
+  <div class="vocab"><span class="vword">reluctant</span><span class="vdef">not really wanting to do something, but doing it anyway</span></div>
+  <div class="vocab"><span class="vword">to arrange</span><span class="vdef">to plan or organize something in advance, usually for someone else</span></div>
+  <div class="vocab"><span class="vword">to emigrate</span><span class="vdef">to leave your own country to go live in another one</span></div>
+  <div class="vocab"><span class="vword">opportunity</span><span class="vdef">a chance to do something that could improve your life</span></div>
+  <div class="vocab"><span class="vword">duty</span><span class="vdef">something you feel you have to do because of who you are to someone — a daughter, a sister</span></div>
+  <div class="vocab"><span class="vword">to overshadow</span><span class="vdef">when someone else's presence makes you seem less noticeable or less important</span></div>
+  <div class="vocab"><span class="vword">resigned</span><span class="vdef">accepting something you don't love, without fighting it — a quiet kind of giving in</span></div>
+</div>
+
+</div>
+
+<div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+<div class="foot">KingCretot Experience &nbsp;&middot;&nbsp; Justine · LLCER Anglais</div>
+</div>
+</body>
+</html>
