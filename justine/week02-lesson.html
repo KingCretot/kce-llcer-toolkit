@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2 — The Road | KCE Justine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D; --gold:#C9A84C; --blue:#0047BA; --red:#DB2F30;
+    --cream:#FFFCF5; --sky:#EAF3FF; --mint:#EAFBF3; --peach:#FFF3EA; --green:#2E7D32;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{min-height:100%;background:linear-gradient(160deg,#FFFCF5 0%,#EAF3FF 100%);font-family:'Quicksand',sans-serif;color:var(--navy);}
+  .topbar{background:var(--navy);color:#fff;text-align:center;padding:16px 20px;}
+  .topbar .kc{font-size:12px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;font-weight:700;}
+  .rainbow{height:6px;width:100%;background:linear-gradient(90deg,var(--blue),var(--gold),var(--red));}
+
+  main{max-width:760px;margin:0 auto;padding:24px 20px 60px;}
+  .lesson-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;text-align:center;margin-bottom:4px;}
+  .lesson-sub{text-align:center;color:#5c6a80;font-size:14px;margin-bottom:16px;}
+
+  .notes-link-wrap{text-align:center;margin-bottom:24px;}
+  .notes-link{display:inline-block;font-family:'Quicksand',sans-serif;font-size:13.5px;font-weight:700;color:var(--blue);
+    background:var(--sky);border:2px solid var(--blue);border-radius:999px;padding:9px 20px;text-decoration:none;}
+  .notes-link:hover{background:var(--blue);color:#fff;}
+
+  /* THE ROAD */
+  .road-wrap{position:relative;width:100%;aspect-ratio:700/900;max-width:520px;margin:0 auto 30px;}
+  .road-svg{position:absolute;inset:0;width:100%;height:100%;}
+  .road-svg path{fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;stroke-dasharray:2 22;opacity:0.55;}
+  .stop{
+    position:absolute;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;
+    background:#fff;border:4px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;color:var(--navy);cursor:pointer;
+    box-shadow:0 8px 18px rgba(10,31,61,0.15);transition:all 0.2s ease;
+  }
+  .stop.done{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .stop.active{background:var(--gold);border-color:var(--gold);color:#fff;transform:translate(-50%,-50%) scale(1.18);box-shadow:0 12px 26px rgba(201,168,76,0.4);}
+  .stop-label{
+    position:absolute;transform:translate(-50%,0);width:120px;text-align:center;font-size:11.5px;
+    font-weight:700;color:#5c6a80;top:38px;pointer-events:none;
+  }
+  .stop.active + .stop-label, .stop-label.active-label{color:var(--navy);}
+
+  /* CONTENT PANEL */
+  .panel{background:#fff;border-radius:22px;padding:28px 26px;box-shadow:0 16px 36px rgba(10,31,61,0.1);}
+  .panel-badge{font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:10px;}
+  .panel-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:14px;}
+  .panel p{font-size:15px;line-height:1.55;color:#334;margin-bottom:10px;}
+
+  .prompt-list{display:flex;flex-direction:column;gap:10px;margin:14px 0;}
+  .prompt-item{background:var(--sky);border-radius:12px;padding:12px 16px;font-size:15px;color:var(--navy);font-weight:600;}
+
+  .reveal-btn{
+    font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:10px 20px;border:2px solid var(--blue);
+    border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;margin-top:10px;
+  }
+  .reveal-btn:hover{background:var(--blue);color:#fff;}
+  .reveal-box{background:var(--cream);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;margin-top:12px;font-size:14px;color:#4a5568;line-height:1.6;display:none;}
+  .reveal-box.show{display:block;}
+  .reveal-box b{color:var(--navy);}
+  .reveal-box ul{padding-left:18px;margin-top:6px;}
+
+  .game-frame{margin-top:16px;}
+  .card-3d-frame{perspective:1200px;width:100%;max-width:400px;height:180px;margin:14px auto;}
+  .card-3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(.2,.9,.25,1);}
+  .card-3d.flipped{transform:rotateY(180deg);}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;}
+  .face.front{background:linear-gradient(135deg,var(--navy),#123a6b);color:var(--gold);}
+  .face.front .mark{font-size:15px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:#fff;opacity:0.85;}
+  .face.back{background:var(--peach);border:3px solid var(--gold);transform:rotateY(180deg);}
+  .face.back .topic{font-size:17px;font-weight:700;color:var(--navy);line-height:1.3;}
+  .draw-btn{font-family:'Quicksand',sans-serif;font-size:15px;font-weight:700;padding:10px 26px;border:none;border-radius:999px;background:var(--red);color:#fff;cursor:pointer;display:block;margin:0 auto;}
+
+  .coin{width:100px;height:100px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;margin:16px auto;box-shadow:0 10px 22px rgba(10,31,61,0.25);transition:transform 0.6s ease;}
+  .coin.spin{animation:flip 0.6s ease;}
+  @keyframes flip{0%{transform:rotateY(0);}50%{transform:rotateY(900deg) scale(1.1);}100%{transform:rotateY(1080deg);}}
+  .coin span{font-size:16px;letter-spacing:1.5px;font-weight:700;color:var(--gold);text-transform:uppercase;}
+  .flip-btn{font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:9px 20px;border:2px solid var(--blue);border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;display:block;margin:0 auto;}
+  .side-label{text-align:center;font-size:13px;color:#5c6a80;margin-top:8px;font-weight:700;}
+
+  .sent-input{width:100%;font-family:'Quicksand',sans-serif;font-size:15px;padding:12px 16px;border:2px solid #d8dce4;border-radius:12px;color:var(--navy);}
+  .sent-input:focus{outline:none;border-color:var(--gold);}
+  .range-card{background:linear-gradient(135deg,var(--navy),#123a6b);color:#fff;border-radius:18px;padding:24px 22px;margin-top:12px;text-align:center;}
+  .range-num{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:10px;}
+  .range-sentence{font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.4;}
+  .range-technique{font-size:14px;background:rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-weight:600;}
+
+  .nav-row{display:flex;justify-content:space-between;margin-top:22px;}
+  .nav-btn{font-family:'Quicksand',sans-serif;font-size:15px;font-weight:700;padding:11px 22px;border:2px solid var(--navy);border-radius:999px;background:transparent;color:var(--navy);cursor:pointer;}
+  .nav-btn:hover{background:var(--navy);color:#fff;}
+  .nav-btn[disabled]{opacity:0;pointer-events:none;}
+
+  footer{text-align:center;padding:20px;color:#9aa5b8;font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><span class="kc">KingCretot Experience</span></div>
+<div class="rainbow"></div>
+
+<main>
+  <div class="lesson-title">Week 2 — The Road</div>
+  <div class="lesson-sub">Six stops. Mostly you talking.</div>
+
+  <div class="notes-link-wrap">
+    <a class="notes-link" href="brooklyn-notes.html" target="_blank">Notes: Brooklyn So Far</a>
+  </div>
+
+  <div class="road-wrap">
+    <svg class="road-svg" viewBox="0 0 700 900" preserveAspectRatio="none">
+      <path d="M150,70 C350,70 350,210 550,210 C350,210 350,350 150,350 C350,350 350,490 550,490 C350,490 350,630 150,630 C350,630 350,770 550,770" />
+    </svg>
+    <div class="stop" data-i="0" style="left:21.4%;top:7.8%;">1</div>
+    <div class="stop-label" style="left:21.4%;top:15%;">Open</div>
+    <div class="stop" data-i="1" style="left:78.6%;top:23.3%;">2</div>
+    <div class="stop-label" style="left:78.6%;top:30.5%;">The Why</div>
+    <div class="stop" data-i="2" style="left:21.4%;top:38.9%;">3</div>
+    <div class="stop-label" style="left:21.4%;top:46%;">Her Choice</div>
+    <div class="stop" data-i="3" style="left:78.6%;top:54.4%;">4</div>
+    <div class="stop-label" style="left:78.6%;top:61.5%;">Follow-Up</div>
+    <div class="stop" data-i="4" style="left:21.4%;top:70%;">5</div>
+    <div class="stop-label" style="left:21.4%;top:77%;">Five Ways</div>
+    <div class="stop" data-i="5" style="left:78.6%;top:85.6%;">6</div>
+    <div class="stop-label" style="left:78.6%;top:92.7%;">Argue It</div>
+  </div>
+
+  <div class="panel" id="panel"></div>
+
+  <div class="nav-row">
+    <button class="nav-btn" id="backBtn">Back</button>
+    <button class="nav-btn" id="nextBtn">Next Stop</button>
+  </div>
+</main>
+
+<footer>KingCretot Experience &middot; Justine 2026–2027</footer>
+
+<script>
+const stops = document.querySelectorAll('.stop');
+const panel = document.getElementById('panel');
+const backBtn = document.getElementById('backBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current = 0;
+
+const content = [
+// STOP 0 — OPEN
+() => `
+  <div class="panel-badge">Stop 1 · 0–5 min</div>
+  <div class="panel-title">Open</div>
+  <p>No prep, nothing at stake — you're talking within the first minute.</p>
+  <div class="game-frame">
+    <div class="card-3d-frame">
+      <div class="card-3d" id="card3d">
+        <div class="face front"><span class="mark">Pick One</span></div>
+        <div class="face back"><span class="topic" id="topicText"></span></div>
+      </div>
+    </div>
+    <button class="draw-btn" id="drawBtn">Draw a Topic</button>
+  </div>
+`,
+// STOP 1 — THE WHY
+() => `
+  <div class="panel-badge">Stop 2 · 5–10 min</div>
+  <div class="panel-title">From What, to Why</div>
+  <p>You told the story yesterday. Today isn't about the plot again — it's about what's underneath it.</p>
+  <div class="prompt-list">
+    <div class="prompt-item">Yesterday you told me the story. In one sentence — no plot, just feeling — how do you think Eilis actually feels right now?</div>
+    <div class="prompt-item">Is it one feeling, or does it seem like more than one at the same time?</div>
+    <div class="prompt-item">Is there an English word for that feeling, or does it need a few words to explain?</div>
+  </div>
+`,
+// STOP 2 — HER CHOICE
+() => `
+  <div class="panel-badge">Stop 3 · 10–30 min</div>
+  <div class="panel-title">Her Choice</div>
+  <p>Nobody's making Eilis go. Nobody's really asking her either. Sit in that gray area with her — this is where the real conversation is.</p>
+  <div class="prompt-list">
+    <div class="prompt-item">Why do you think Eilis doesn't say no, even if part of her doesn't want to go?</div>
+    <div class="prompt-item">Is going along with something the same as choosing it — or is that different?</div>
+    <div class="prompt-item">What do you think Eilis owes her mother? What does she owe herself?</div>
+    <div class="prompt-item">If the plan is mostly Rose's idea, is it still Eilis's decision once she doesn't refuse it?</div>
+  </div>
+  <button class="reveal-btn" id="revealRef">Something to Think About</button>
+  <div class="reveal-box" id="refBox">
+    This part of the book is really a question about choice: how much of what happens to us do we actually decide, and how much do we just <i>allow</i> to happen? Eilis isn't being forced — but she isn't really choosing either. That gray space, between choosing something and just not stopping it, is where a lot of real decisions in life actually live. It's worth sitting in that discomfort with her rather than rushing to call it one thing or the other.
+  </div>
+`,
+// STOP 3 — FOLLOW-UP
+() => `
+  <div class="panel-badge">Stop 4 · 30–45 min</div>
+  <div class="panel-title">Unscripted Follow-Up</div>
+  <p>Not memorized answers — real reactions. These come up naturally as the conversation goes, in any order.</p>
+  <button class="reveal-btn" id="revealQ">Show Follow-Up Questions</button>
+  <div class="reveal-box" id="qBox">
+    <ul>
+      <li>Have you ever gone along with a big decision without really deciding it yourself?</li>
+      <li>Do you think it's possible to want two opposite things at the same time — to want to stay and want to go?</li>
+      <li>What do you think "home" means to Eilis right now, before she's even left it?</li>
+      <li>Is it selfish for Eilis to want to stay? Or is it selfish for everyone else to expect her to want to leave?</li>
+      <li>Can you feel sad about losing something before you've actually lost it?</li>
+    </ul>
+  </div>
+`,
+// STOP 4 — RANGE PRACTICE
+() => `
+  <div class="panel-badge">Stop 5 · 45–52 min</div>
+  <div class="panel-title">Range Practice</div>
+  <p>A new sentence, a new technique, every round. Listen to it, then say it your way — click for a real example if you want to check your version.</p>
+  <div class="range-card">
+    <div class="range-num" id="rangeNum">Round 1 of 5</div>
+    <div class="range-sentence" id="rangeSentence"></div>
+    <div class="range-technique" id="rangeTechnique"></div>
+  </div>
+  <button class="reveal-btn" id="revealRangeBtn">Reveal Example</button>
+  <div class="reveal-box" id="rangeExampleBox"></div>
+  <button class="draw-btn" id="nextRangeBtn" style="margin-top:14px;">Next Round</button>
+`,
+// STOP 5 — ARGUE IT
+() => `
+  <div class="panel-badge">Stop 6 · 52–60 min</div>
+  <div class="panel-title">Argue the Other Side</div>
+  <p style="font-weight:700;font-size:17px;color:var(--navy);">"Should Eilis speak up and say what she actually wants?"</p>
+  <p>Flip the coin — whatever it lands on is your side. You can't have prepared an answer for a position you didn't choose.</p>
+  <div class="coin" id="coin"><span id="coinFace">?</span></div>
+  <div class="side-label" id="sideLabel">Flip to get your side</div>
+  <button class="flip-btn" id="flipBtn">Flip the Coin</button>
+  <p style="margin-top:22px;text-align:center;color:#5c6a80;font-size:13.5px;">That's the Road for today.</p>
+  <div style="text-align:center;margin-top:8px;">
+    <a class="notes-link" href="brooklyn-notes.html" target="_blank">Notes: Brooklyn So Far</a>
+  </div>
+`
+];
+
+function render(){
+  panel.innerHTML = content[current]();
+  stops.forEach((s,i) => {
+    s.classList.toggle('active', i === current);
+    s.classList.toggle('done', i < current);
+    s.textContent = i < current ? '✓' : (i+1);
+  });
+  backBtn.disabled = current === 0;
+  nextBtn.disabled = current === content.length - 1;
+  wireStop();
+}
+
+function wireStop(){
+  if(current === 0){
+    const topics = ["A decision someone else made for you once","A time you said yes when you meant maybe","Something you're looking forward to and dreading at the same time","A place that feels different every time you go back","The last thing you changed your mind about","Something you've never said out loud to anyone"];
+    let pool = [], flipped = false;
+    const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+    const card3d = document.getElementById('card3d');
+    const topicText = document.getElementById('topicText');
+    document.getElementById('drawBtn').onclick = () => {
+      if(pool.length===0) pool = shuffle(topics);
+      topicText.textContent = pool.pop();
+      if(flipped){ card3d.classList.remove('flipped'); setTimeout(()=>card3d.classList.add('flipped'),300); }
+      else { card3d.classList.add('flipped'); flipped = true; }
+    };
+  }
+  if(current === 2){
+    document.getElementById('revealRef').onclick = () => document.getElementById('refBox').classList.toggle('show');
+  }
+  if(current === 3){
+    document.getElementById('revealQ').onclick = () => document.getElementById('qBox').classList.toggle('show');
+  }
+  if(current === 4){
+    const rounds = [
+      { sentence: "Eilis doesn't say no to the plan, even though part of her isn't sure.",
+        technique: "Use a different word for the feeling.",
+        example: "Eilis goes along with the plan, though something in her hesitates." },
+      { sentence: "Rose has more say in Eilis's future than Eilis does.",
+        technique: "Add a comparison — \"more than...\" or \"like...\"",
+        example: "Rose seems to have more control over Eilis's life than Eilis has herself." },
+      { sentence: "It's hard to tell what Eilis actually wants.",
+        technique: "Change the sentence order — start somewhere else.",
+        example: "What Eilis actually wants is hard to tell, even for her." },
+      { sentence: "Eilis feels torn between staying and going.",
+        technique: "Say it more casually, like texting a friend.",
+        example: "Eilis is kind of stuck between wanting to stay and wanting to go." },
+      { sentence: "The decision to emigrate is made more for Eilis than by her.",
+        technique: "Say it more formally, like an exam answer.",
+        example: "The decision to emigrate was made on Eilis's behalf rather than through her own initiative." }
+    ];
+    let round = 0;
+    const rangeNum = document.getElementById('rangeNum');
+    const rangeSentence = document.getElementById('rangeSentence');
+    const rangeTechnique = document.getElementById('rangeTechnique');
+    const revealBtn = document.getElementById('revealRangeBtn');
+    const exampleBox = document.getElementById('rangeExampleBox');
+    const nextBtn2 = document.getElementById('nextRangeBtn');
+
+    const renderRound = () => {
+      const r = rounds[round];
+      rangeNum.textContent = `Round ${round+1} of 5`;
+      rangeSentence.textContent = r.sentence;
+      rangeTechnique.textContent = r.technique;
+      exampleBox.classList.remove('show');
+      exampleBox.textContent = '';
+      nextBtn2.textContent = round === rounds.length - 1 ? 'Restart Rounds' : 'Next Round';
+    };
+
+    revealBtn.onclick = () => {
+      exampleBox.textContent = `"${rounds[round].example}"`;
+      exampleBox.classList.add('show');
+    };
+    nextBtn2.onclick = () => {
+      round = round < rounds.length - 1 ? round + 1 : 0;
+      renderRound();
+    };
+    renderRound();
+  }
+  if(current === 5){
+    let flipping = false;
+    const coin = document.getElementById('coin');
+    const coinFace = document.getElementById('coinFace');
+    const sideLabel = document.getElementById('sideLabel');
+    document.getElementById('flipBtn').onclick = () => {
+      if(flipping) return;
+      flipping = true;
+      coin.classList.remove('spin'); void coin.offsetWidth; coin.classList.add('spin');
+      setTimeout(()=>{
+        const forSide = Math.random()<0.5;
+        coinFace.textContent = forSide ? 'FOR' : 'AGAINST';
+        sideLabel.textContent = forSide ? 'Argue FOR — she should say what she wants' : 'Argue AGAINST — staying quiet is the right call';
+        flipping = false;
+      },600);
+    };
+  }
+}
+
+stops.forEach(s => s.addEventListener('click', () => {
+  current = +s.dataset.i;
+  render();
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
+}));
+nextBtn.onclick = () => { if(current < content.length-1){ current++; render(); } };
+backBtn.onclick = () => { if(current > 0){ current--; render(); } };
+
+render();
+</script>
+
+</body>
+</html>
