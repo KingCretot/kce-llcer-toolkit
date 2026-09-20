@@ -30,6 +30,7 @@
   .road-wrap{position:relative;width:100%;aspect-ratio:700/900;max-width:520px;margin:0 auto 30px;}
   .road-svg{position:absolute;inset:0;width:100%;height:100%;}
   .road-svg path{fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;stroke-dasharray:2 22;opacity:0.55;}
+  .road-progress{fill:none;stroke:var(--navy);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 0.6s ease;}
   .stop{
     position:absolute;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;
     background:#fff;border:4px solid var(--navy);display:flex;align-items:center;justify-content:center;
@@ -52,6 +53,11 @@
 
   .prompt-list{display:flex;flex-direction:column;gap:10px;margin:14px 0;}
   .prompt-item{background:var(--sky);border-radius:12px;padding:12px 16px;font-size:15px;color:var(--navy);font-weight:600;}
+
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+  .chip{font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:8px 16px;border:2px solid var(--gold);
+    border-radius:999px;background:#fff;color:var(--navy);cursor:pointer;transition:all 0.15s ease;}
+  .chip.selected{background:var(--gold);color:#fff;}
 
   .reveal-btn{
     font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:10px 20px;border:2px solid var(--blue);
@@ -112,6 +118,7 @@
   <div class="road-wrap">
     <svg class="road-svg" viewBox="0 0 700 900" preserveAspectRatio="none">
       <path d="M150,70 C350,70 350,210 550,210 C350,210 350,350 150,350 C350,350 350,490 550,490 C350,490 350,630 150,630 C350,630 350,770 550,770" />
+      <path id="roadProgress" class="road-progress" d="M150,70 C350,70 350,210 550,210 C350,210 350,350 150,350 C350,350 350,490 550,490 C350,490 350,630 150,630 C350,630 350,770 550,770" />
     </svg>
     <div class="stop" data-i="0" style="left:21.4%;top:7.8%;">1</div>
     <div class="stop-label" style="left:21.4%;top:15%;">Open</div>
@@ -147,7 +154,7 @@ let current = 0;
 const content = [
 // STOP 0 — OPEN
 () => `
-  <div class="panel-badge">Stop 1 · 0–5 min</div>
+  <div class="panel-badge">Stop 1</div>
   <div class="panel-title">Open</div>
   <p>No prep, nothing at stake — you're talking within the first minute.</p>
   <div class="game-frame">
@@ -162,18 +169,25 @@ const content = [
 `,
 // STOP 1 — THE WHY
 () => `
-  <div class="panel-badge">Stop 2 · 5–10 min</div>
+  <div class="panel-badge">Stop 2</div>
   <div class="panel-title">From What, to Why</div>
   <p>You told the story yesterday. Today isn't about the plot again — it's about what's underneath it.</p>
-  <div class="prompt-list">
-    <div class="prompt-item">Yesterday you told me the story. In one sentence — no plot, just feeling — how do you think Eilis actually feels right now?</div>
-    <div class="prompt-item">Is it one feeling, or does it seem like more than one at the same time?</div>
-    <div class="prompt-item">Is there an English word for that feeling, or does it need a few words to explain?</div>
+  <p>Tap every word that fits how Eilis seems to feel right now. Then talk — why those words, and not the others?</p>
+  <div class="chip-row" id="feelChips">
+    <div class="chip">ambivalent</div>
+    <div class="chip">reluctant</div>
+    <div class="chip">resigned</div>
+    <div class="chip">hopeful</div>
+    <div class="chip">guilty</div>
+    <div class="chip">relieved</div>
+    <div class="chip">torn</div>
+    <div class="chip">numb</div>
   </div>
+  <div class="reveal-box show" id="chipReasonBox">Tap a word above to see how it fits the text — and why.</div>
 `,
 // STOP 2 — HER CHOICE
 () => `
-  <div class="panel-badge">Stop 3 · 10–30 min</div>
+  <div class="panel-badge">Stop 3</div>
   <div class="panel-title">Her Choice</div>
   <p>Nobody's making Eilis go. Nobody's really asking her either. Sit in that gray area with her — this is where the real conversation is.</p>
   <div class="prompt-list">
@@ -189,23 +203,19 @@ const content = [
 `,
 // STOP 3 — FOLLOW-UP
 () => `
-  <div class="panel-badge">Stop 4 · 30–45 min</div>
+  <div class="panel-badge">Stop 4</div>
   <div class="panel-title">Unscripted Follow-Up</div>
-  <p>Not memorized answers — real reactions. These come up naturally as the conversation goes, in any order.</p>
-  <button class="reveal-btn" id="revealQ">Show Follow-Up Questions</button>
-  <div class="reveal-box" id="qBox">
-    <ul>
-      <li>Have you ever gone along with a big decision without really deciding it yourself?</li>
-      <li>Do you think it's possible to want two opposite things at the same time — to want to stay and want to go?</li>
-      <li>What do you think "home" means to Eilis right now, before she's even left it?</li>
-      <li>Is it selfish for Eilis to want to stay? Or is it selfish for everyone else to expect her to want to leave?</li>
-      <li>Can you feel sad about losing something before you've actually lost it?</li>
-    </ul>
+  <p>Not a memorized answer — a real reaction. Draw a question, answer it, then draw the next one when you're ready.</p>
+  <div class="range-card" id="followCard">
+    <div class="range-num" id="followNum">Question 1 of 5</div>
+    <div class="range-sentence" id="followQEn" style="font-size:16px;"></div>
+    <div class="range-technique" id="followQFr" style="margin-top:10px;font-style:italic;"></div>
   </div>
+  <button class="draw-btn" id="followBtn" style="margin-top:14px;">Draw a Question</button>
 `,
 // STOP 4 — RANGE PRACTICE
 () => `
-  <div class="panel-badge">Stop 5 · 45–52 min</div>
+  <div class="panel-badge">Stop 5</div>
   <div class="panel-title">Range Practice</div>
   <p>A new sentence, a new technique, every round. Listen to it, then say it your way — click for a real example if you want to check your version.</p>
   <div class="range-card">
@@ -219,14 +229,25 @@ const content = [
 `,
 // STOP 5 — ARGUE IT
 () => `
-  <div class="panel-badge">Stop 6 · 52–60 min</div>
+  <div class="panel-badge">Stop 6</div>
   <div class="panel-title">Argue the Other Side</div>
   <p style="font-weight:700;font-size:17px;color:var(--navy);">"Should Eilis speak up and say what she actually wants?"</p>
   <p>Flip the coin — whatever it lands on is your side. You can't have prepared an answer for a position you didn't choose.</p>
   <div class="coin" id="coin"><span id="coinFace">?</span></div>
   <div class="side-label" id="sideLabel">Flip to get your side</div>
   <button class="flip-btn" id="flipBtn">Flip the Coin</button>
-  <p style="margin-top:22px;text-align:center;color:#5c6a80;font-size:13.5px;">That's the Road for today.</p>
+  <button class="reveal-btn" id="revealShape">Before You Argue</button>
+  <div class="reveal-box" id="shapeBox">
+    Glance at this once, then put it away — don't read from it while you talk.
+    <ul>
+      <li>Say your position in one sentence.</li>
+      <li>Give your first reason.</li>
+      <li>Give a second reason, or a real example.</li>
+      <li>Wrap up — say your position again, in different words.</li>
+    </ul>
+  </div>
+  <p style="margin-top:16px;font-weight:600;">Now argue it — don't stop until you've said everything you can.</p>
+  <p style="margin-top:22px;text-align:center;color:#5c6a80;font-size:13.5px;">That's the Road for today. Before you go — say one phrase out loud you want to keep from this session.</p>
   <div style="text-align:center;margin-top:8px;">
     <a class="notes-link" href="https://kingcretot.github.io/kce-llcer-toolkit/justine/brooklyn-notes.html" target="_blank">Notes: Brooklyn So Far</a>
   </div>
@@ -242,6 +263,11 @@ function render(){
   });
   backBtn.disabled = current === 0;
   nextBtn.disabled = current === content.length - 1;
+  const rp = document.getElementById('roadProgress');
+  const len = rp.getTotalLength();
+  const frac = current / (stops.length - 1);
+  rp.style.strokeDasharray = len;
+  rp.style.strokeDashoffset = len * (1 - frac);
   wireStop();
 }
 
@@ -259,11 +285,59 @@ function wireStop(){
       else { card3d.classList.add('flipped'); flipped = true; }
     };
   }
+  if(current === 1){
+    const reasons = {
+      ambivalent: "She doesn't strongly want to go, and she doesn't strongly want to stay either. Wanting two opposite things at once is exactly what this word means — nothing in the text shows her fully choosing one side.",
+      reluctant: "She goes along with the plan without much resistance, but going along isn't the same as wanting it. This fits if you think there's real hesitation underneath her silence, even though she never says no out loud.",
+      resigned: "She doesn't fight Rose's plan — she just accepts it. This fits if her lack of resistance feels more like quietly giving in than actually agreeing.",
+      hopeful: "America is described as a real opportunity — a job, a future she can't get at home. This fits if part of her is genuinely looking forward to what's ahead, even underneath the sadness.",
+      guilty: "Leaving means leaving her mother, who depends on her and Rose. This fits if Eilis feels responsible for what her leaving will do to the people she's leaving behind.",
+      relieved: "Her life in the town is limited, and she's often overshadowed by Rose. This fits if some part of her is glad to have a way out, even if she can't admit that to herself yet.",
+      torn: "She's caught between duty to her family and a chance at something bigger for herself. This fits if both pulls feel equally real to her, not just one hidden under the other.",
+      numb: "Big decisions that get made around you, more than by you, can feel unreal until they're actually happening. This fits if she hasn't really let herself feel any of this yet."
+    };
+    const box = document.getElementById('chipReasonBox');
+    const updateBox = () => {
+      const selected = [...document.querySelectorAll('#feelChips .chip.selected')].map(c => c.textContent);
+      box.innerHTML = selected.length === 0
+        ? 'Tap a word above to see how it fits the text — and why.'
+        : selected.map(w => `<b>${w}</b> — ${reasons[w]}`).join('<br><br>');
+    };
+    document.querySelectorAll('#feelChips .chip').forEach(chip => {
+      chip.onclick = () => { chip.classList.toggle('selected'); updateBox(); };
+    });
+  }
   if(current === 2){
     document.getElementById('revealRef').onclick = () => document.getElementById('refBox').classList.toggle('show');
   }
   if(current === 3){
-    document.getElementById('revealQ').onclick = () => document.getElementById('qBox').classList.toggle('show');
+    const questions = [
+      { en: "Have you ever gone along with a big decision without really deciding it yourself?",
+        fr: "As-tu déjà accepté une grande décision sans vraiment la prendre toi-même ?" },
+      { en: "Do you think it's possible to want two opposite things at the same time — to want to stay and want to go?",
+        fr: "Penses-tu qu'il est possible de vouloir deux choses opposées en même temps — vouloir rester et vouloir partir ?" },
+      { en: "What do you think \"home\" means to Eilis right now, before she's even left it?",
+        fr: "D'après toi, que représente le mot « chez soi » pour Eilis en ce moment, avant même qu'elle ne parte ?" },
+      { en: "Is it selfish for Eilis to want to stay? Or is it selfish for everyone else to expect her to want to leave?",
+        fr: "Est-ce égoïste de la part d'Eilis de vouloir rester ? Ou est-ce égoïste que les autres s'attendent à ce qu'elle veuille partir ?" },
+      { en: "Can you feel sad about losing something before you've actually lost it?",
+        fr: "Peut-on être triste de perdre quelque chose avant même de l'avoir vraiment perdu ?" }
+    ];
+    let pool = [], drawn = 0;
+    const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+    const followNum = document.getElementById('followNum');
+    const followQEn = document.getElementById('followQEn');
+    const followQFr = document.getElementById('followQFr');
+    const followBtn = document.getElementById('followBtn');
+    followBtn.onclick = () => {
+      if(pool.length===0){ pool = shuffle(questions); drawn = 0; }
+      drawn++;
+      followNum.textContent = `Question ${drawn > questions.length ? questions.length : drawn} of ${questions.length}`;
+      const q = pool.pop();
+      followQEn.textContent = q.en;
+      followQFr.textContent = q.fr;
+      followBtn.textContent = 'Draw Another';
+    };
   }
   if(current === 4){
     const rounds = [
@@ -312,6 +386,7 @@ function wireStop(){
     renderRound();
   }
   if(current === 5){
+    document.getElementById('revealShape').onclick = () => document.getElementById('shapeBox').classList.toggle('show');
     let flipping = false;
     const coin = document.getElementById('coin');
     const coinFace = document.getElementById('coinFace');
