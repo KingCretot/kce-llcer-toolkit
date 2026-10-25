@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debate Lab 1 · Student Protests in France | KCE LLCER Anglais Master Class</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D; --gold:#C9A84C; --blue:#0047BA; --red:#DB2F30;
+    --cream:#FFFCF5; --sky:#EAF3FF; --mint:#EAFBF3; --peach:#FFF3EA; --green:#2E7D32;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{min-height:100%;background:linear-gradient(160deg,#FFFCF5 0%,#EAF3FF 100%);font-family:'Quicksand',sans-serif;color:var(--navy);}
+  .topbar{background:var(--navy);color:#fff;text-align:center;padding:16px 20px;}
+  .topbar .kc{font-size:12px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;font-weight:700;}
+  .rainbow{height:6px;width:100%;background:linear-gradient(90deg,var(--blue),var(--gold),var(--red));}
+
+  main{max-width:760px;margin:0 auto;padding:24px 20px 60px;}
+  .lesson-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;text-align:center;margin-bottom:4px;}
+  .lesson-sub{text-align:center;color:#5c6a80;font-size:14px;margin-bottom:16px;}
+
+  .notes-link-wrap{text-align:center;margin-bottom:24px;}
+  .notes-link{display:inline-block;font-family:'Quicksand',sans-serif;font-size:13.5px;font-weight:700;color:var(--blue);
+    background:var(--sky);border:2px solid var(--blue);border-radius:999px;padding:9px 20px;text-decoration:none;}
+  .notes-link:hover{background:var(--blue);color:#fff;}
+
+  /* THE ROAD */
+  .road-wrap{position:relative;width:100%;aspect-ratio:700/900;max-width:520px;margin:0 auto 30px;}
+  .road-svg{position:absolute;inset:0;width:100%;height:100%;}
+  .road-svg path{fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;stroke-dasharray:2 22;opacity:0.55;}
+  .road-progress{fill:none;stroke:var(--navy);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 0.6s ease;}
+  .stop{
+    position:absolute;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;
+    background:#fff;border:4px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;color:var(--navy);cursor:pointer;
+    box-shadow:0 8px 18px rgba(10,31,61,0.15);transition:all 0.2s ease;
+  }
+  .stop.done{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .stop.active{background:var(--gold);border-color:var(--gold);color:#fff;transform:translate(-50%,-50%) scale(1.18);box-shadow:0 12px 26px rgba(201,168,76,0.4);}
+  .stop-label{
+    position:absolute;transform:translate(-50%,0);width:120px;text-align:center;font-size:11.5px;
+    font-weight:700;color:#5c6a80;top:38px;pointer-events:none;
+  }
+  .stop.active + .stop-label, .stop-label.active-label{color:var(--navy);}
+
+  /* CONTENT PANEL */
+  .panel{background:#fff;border-radius:22px;padding:28px 26px;box-shadow:0 16px 36px rgba(10,31,61,0.1);}
+  .panel-badge{font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:10px;}
+  .panel-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:14px;}
+  .panel p{font-size:15px;line-height:1.55;color:#334;margin-bottom:10px;}
+
+  .prompt-list{display:flex;flex-direction:column;gap:10px;margin:14px 0;}
+  .prompt-item{background:var(--sky);border-radius:12px;padding:12px 16px;font-size:15px;color:var(--navy);font-weight:600;}
+
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+  .chip{font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:8px 16px;border:2px solid var(--gold);
+    border-radius:999px;background:#fff;color:var(--navy);cursor:pointer;transition:all 0.15s ease;}
+  .chip.selected{background:var(--gold);color:#fff;}
+
+  .reveal-btn{
+    font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:10px 20px;border:2px solid var(--blue);
+    border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;margin-top:10px;
+  }
+  .reveal-btn:hover{background:var(--blue);color:#fff;}
+  .reveal-box{background:var(--cream);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;margin-top:12px;font-size:14px;color:#4a5568;line-height:1.6;display:none;}
+  .reveal-box.show{display:block;}
+  .reveal-box b{color:var(--navy);}
+  .reveal-box ul{padding-left:18px;margin-top:6px;}
+  .recap-banner{max-width:540px;margin:0 auto 20px;background:var(--cream);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 20px;font-size:13.5px;color:#4a5568;line-height:1.6;text-align:left;}
+  .recap-banner b{color:var(--navy);}
+
+  .game-frame{margin-top:16px;}
+  .card-3d-frame{perspective:1200px;width:100%;max-width:400px;height:180px;margin:14px auto;}
+  .card-3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(.2,.9,.25,1);}
+  .card-3d.flipped{transform:rotateY(180deg);}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;}
+  .face.front{background:linear-gradient(135deg,var(--navy),#123a6b);color:var(--gold);}
+  .face.front .mark{font-size:15px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:#fff;opacity:0.85;}
+  .face.back{background:var(--peach);border:3px solid var(--gold);transform:rotateY(180deg);}
+  .face.back .topic{font-size:17px;font-weight:700;color:var(--navy);line-height:1.3;}
+  .draw-btn{font-family:'Quicksand',sans-serif;font-size:15px;font-weight:700;padding:10px 26px;border:none;border-radius:999px;background:var(--red);color:#fff;cursor:pointer;display:block;margin:0 auto;}
+
+  .coin{width:100px;height:100px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;margin:16px auto;box-shadow:0 10px 22px rgba(10,31,61,0.25);transition:transform 0.6s ease;}
+  .coin.spin{animation:flip 0.6s ease;}
+  @keyframes flip{0%{transform:rotateY(0);}50%{transform:rotateY(900deg) scale(1.1);}100%{transform:rotateY(1080deg);}}
+  .coin span{font-size:16px;letter-spacing:1.5px;font-weight:700;color:var(--gold);text-transform:uppercase;}
+  .flip-btn{font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:9px 20px;border:2px solid var(--blue);border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;display:block;margin:0 auto;}
+  .side-label{text-align:center;font-size:13px;color:#5c6a80;margin-top:8px;font-weight:700;}
+
+  .sent-input{width:100%;font-family:'Quicksand',sans-serif;font-size:15px;padding:12px 16px;border:2px solid #d8dce4;border-radius:12px;color:var(--navy);}
+  .sent-input:focus{outline:none;border-color:var(--gold);}
+  .range-card{background:linear-gradient(135deg,var(--navy),#123a6b);color:#fff;border-radius:18px;padding:24px 22px;margin-top:12px;text-align:center;}
+  .range-num{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:10px;}
+  .range-sentence{font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.4;}
+  .range-technique{font-size:14px;background:rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-weight:600;}
+
+  .nav-row{display:flex;justify-content:space-between;margin-top:22px;}
+  .nav-btn{font-family:'Quicksand',sans-serif;font-size:15px;font-weight:700;padding:11px 22px;border:2px solid var(--navy);border-radius:999px;background:transparent;color:var(--navy);cursor:pointer;}
+  .nav-btn:hover{background:var(--navy);color:#fff;}
+  .nav-btn[disabled]{opacity:0;pointer-events:none;}
+
+  footer{text-align:center;padding:20px;color:#9aa5b8;font-size:12.5px;}
+  .card-list{display:flex;flex-direction:column;gap:8px;margin:12px 0;}
+  .bank{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px;}
+  .bank td{padding:7px 8px;border-bottom:1px solid #eee3c8;vertical-align:top;}
+  .bank td:first-child{font-style:italic;color:#5c6a80;width:42%;}
+  .motion{font-weight:700;font-size:17px;color:var(--navy);background:var(--peach);border:2px solid var(--gold);border-radius:14px;padding:14px 16px;margin:12px 0;text-align:center;min-height:52px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><span class="kc">KingCretot Experience</span></div>
+<div class="rainbow"></div>
+
+<main>
+  <div class="lesson-title">Debate Lab 1 · Student Protests in France</div>
+  <div class="lesson-sub">Six stops. No book today — a real debate, argued the French way, in English.</div>
+
+  <div class="recap-banner"><b>Last time:</b> <i>Brooklyn</i> ended with Eilis making a decision — or having it made for her. <b>Today:</b> a question much closer to home. Since late September, students across France have been blocking lycées and marching. Today you take it apart from every angle and defend a position out loud, in English, like a philosopher.</div>
+
+  <div class="road-wrap">
+    <svg class="road-svg" viewBox="0 0 700 900" preserveAspectRatio="none">
+      <path d="M150,70 C350,70 350,210 550,210 C350,210 350,350 150,350 C350,350 350,490 550,490 C350,490 350,630 150,630 C350,630 350,770 550,770" />
+      <path id="roadProgress" class="road-progress" d="M150,70 C350,70 350,210 550,210 C350,210 350,350 150,350 C350,350 350,490 550,490 C350,490 350,630 150,630 C350,630 350,770 550,770" />
+    </svg>
+    <div class="stop" data-i="0" style="left:21.4%;top:7.8%;">1</div>
+    <div class="stop-label" style="left:21.4%;top:15%;">Open</div>
+    <div class="stop" data-i="1" style="left:78.6%;top:23.3%;">2</div>
+    <div class="stop-label" style="left:78.6%;top:30.5%;">What's Happening</div>
+    <div class="stop" data-i="2" style="left:21.4%;top:38.9%;">3</div>
+    <div class="stop-label" style="left:21.4%;top:46%;">Every Angle</div>
+    <div class="stop" data-i="3" style="left:78.6%;top:54.4%;">4</div>
+    <div class="stop-label" style="left:78.6%;top:61.5%;">The Thinkers</div>
+    <div class="stop" data-i="4" style="left:21.4%;top:70%;">5</div>
+    <div class="stop-label" style="left:21.4%;top:77%;">The Method</div>
+    <div class="stop" data-i="5" style="left:78.6%;top:85.6%;">6</div>
+    <div class="stop-label" style="left:78.6%;top:92.7%;">Argue It</div>
+  </div>
+
+  <div class="panel" id="panel"></div>
+
+  <div class="nav-row">
+    <button class="nav-btn" id="backBtn">Back</button>
+    <button class="nav-btn" id="nextBtn">Next Stop</button>
+  </div>
+</main>
+
+<footer>KingCretot Experience &middot; LLCER Anglais Master Class · Justine</footer>
+
+<script>
+const stops = document.querySelectorAll('.stop');
+const panel = document.getElementById('panel');
+const backBtn = document.getElementById('backBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current = 0;
+const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+const OPEN = ["One thing about your school you would change tomorrow — and why", "A rule you think is unfair", "Should sixteen-year-olds be allowed to vote?", "What does \"being heard\" look like to you?", "Someone you respect even though you disagree with them", "Is it ever right to break a rule? Give one example"];
+const ANGLES = [{"name": "The students", "facts": ["They describe teachers who are absent and never replaced, classes of about 35, broken or leaking buildings, and classrooms that reached 35–40 °C during the heatwaves.", "Many say Parcoursup, the university application platform, makes them anxious and that they do not trust how it decides.", "A common line in interviews: \"We don't feel listened to.\" Some say they will start again when classes resume on November 2."], "ask": "Is \"we are not being heard\" a reason, or a feeling? Can it be both?"}, {"name": "The teachers", "facts": ["Teachers' unions called strikes and joined marches. One union leader called the school system \"in crisis.\"", "Many teachers support the students' complaints, because the shortages affect their work too.", "Some teachers also worry about lost teaching time, damaged schools and the safety of their students."], "ask": "Can you support a cause and still disagree with how it is being fought?"}, {"name": "Principals and school staff", "facts": ["Principals have to keep students safe, keep the school running, and avoid violence at the gates — all at once.", "They can ask for a blockade to be lifted and can call the police if people or property are in danger.", "Some principals and staff were injured during blockades, and some schools were set on fire or damaged."], "ask": "Whose side is a principal on — or is that the wrong question?"}, {"name": "The government", "facts": ["Prime Minister Sébastien Lecornu condemned the violence and defended the police. He promised five areas of work, including covering classes when teachers are absent, improving buildings and making Parcoursup clearer.", "Education Minister Édouard Geffray announced more than 3,000 replacement teachers, extra hiring, a reform giving lycée students more seats in decision-making bodies, a half-day for student debate in every lycée, and an online consultation for all lycée students.", "The government says it is listening; many students say the measures do not touch the real problem."], "ask": "Is a consultation a way of listening, or a way of waiting for the protest to end?"}, {"name": "The police and the Interior Ministry", "facts": ["More than 6,000 people were arrested, most of them under 18, and hundreds of police officers were injured.", "Interior Minister Laurent Nuñez said the police response was proportionate in almost all cases.", "The police watchdog opened investigations into some officers' conduct after teenagers were seriously injured."], "ask": "When a protest turns violent, who is responsible for what happens next?"}, {"name": "Human rights groups", "facts": ["Amnesty International called the use of force against minors disproportionate, and Human Rights Watch reported serious injuries to children.", "The UN Human Rights Office called for de-escalation.", "They also defend the right to protest peacefully — which is not the same as defending every action taken during a protest."], "ask": "Does a 15-year-old protester deserve more protection than an adult protester? Why?"}, {"name": "Political parties", "facts": ["La France Insoumise (on the left) supports the movement and says it is spontaneous.", "The government and parties on the right say the far left is using the students' anger for its own political goals. A spokesperson for the Rassemblement National said students have the right to protest, but not the right to block, burn or break.", "The movement is happening a few months before the 2027 presidential election."], "ask": "If politicians support a movement, does it stop belonging to the people who started it?"}, {"name": "The student who just wants to go to class", "facts": ["Some students are preparing for the Bac and Parcoursup and need every hour of teaching.", "A blockade can stop them from entering their own school — the same school whose problems the protest is about.", "Some agree with the complaints but disagree with blocking."], "ask": "Can you protest for a better school by closing your school?"}];
+const THINKERS = [{"name": "Thomas Hobbes", "work": "Leviathan, 1651", "idea": "Without a power strong enough to keep order, Hobbes says, life becomes a war of all against all — \"solitary, poor, nasty, brutish, and short.\" People accept rules and authority because order protects everyone.", "use": "Use him to argue for order: a school, a city or a country needs rules that hold even when people are angry."}, {"name": "Jean-Jacques Rousseau", "work": "The Social Contract, 1762", "idea": "For Rousseau, authority is only legitimate when it comes from the people themselves — laws should express the general will, not the will of a few.", "use": "Use him to ask: if students can't vote and aren't asked, are the decisions about their schools really legitimate?"}, {"name": "Henry David Thoreau", "work": "Civil Disobedience, 1849", "idea": "Thoreau refused to pay a tax that supported things he believed were wrong, and spent a night in jail. He argued that your conscience comes before obeying the law.", "use": "Use him to argue that breaking a rule can be the right thing to do."}, {"name": "John Stuart Mill", "work": "On Liberty, 1859", "idea": "Mill's harm principle: the only good reason to limit someone's freedom is to prevent harm to other people.", "use": "Use him on both sides: the protesters' freedom to protest — and the other students' freedom to go to class."}, {"name": "Max Weber", "work": "Politics as a Vocation, 1919", "idea": "Weber defined the state as the body that successfully claims the monopoly of the legitimate use of physical force in its territory.", "use": "Use him to ask: when the police use force, when is it legitimate — and who decides?"}, {"name": "Albert Camus", "work": "The Rebel (L'Homme révolté), 1951", "idea": "Camus wrote \"I rebel — therefore we exist\": revolt starts when one person says \"no\" on behalf of something shared. But he also argued that a revolt which forgets its limits and harms others betrays itself.", "use": "Use him to argue that revolt is human — and that it has limits."}, {"name": "Martin Luther King Jr.", "work": "Letter from Birmingham Jail, 1963", "idea": "King argued that nonviolent direct action creates a tension that forces a community to negotiate. He also said that someone who breaks an unjust law must do it openly and accept the penalty.", "use": "Use him to separate disruption from violence — and to ask whether the method matters as much as the cause."}, {"name": "Hannah Arendt", "work": "On Violence, 1970", "idea": "Arendt argued that power and violence are opposites: power comes from people acting together, while violence appears when power is being lost. Violence can destroy power, but it cannot create it.", "use": "Use her to argue that violence weakens a movement — or that a government relying on force has already lost something."}];
+const MOVES = [{"move": "Define", "sentence": "\"Blocking a school is a legitimate way to protest.\"", "technique": "Before you answer, define one key word — here, \"legitimate.\"", "example": "Before answering, we need to ask what \"legitimate\" means: legal, fair, or simply effective? Those are three different questions."}, {"move": "Find the real question", "sentence": "\"Students should be allowed to protest.\"", "technique": "Turn it into the real problem, starting with \"The real question is not whether... but...\"", "example": "The real question is not whether students should be allowed to protest, but whether some ways of protesting cancel out the message."}, {"move": "Concede", "sentence": "\"The violence hurt the movement.\"", "technique": "Start by admitting something to the other side: \"Admittedly...\" or \"Granted...\"", "example": "Admittedly, the burned schools and injured staff gave the government an easy reason not to listen."}, {"move": "Turn", "sentence": "Use the sentence you just conceded.", "technique": "Now turn it around with \"And yet...\" or \"However...\"", "example": "And yet, before the blockades, the shortages and the broken buildings had been there for years — and very few adults were talking about them."}, {"move": "Bring in a thinker", "sentence": "\"The police were right to use force.\"", "technique": "Support or attack it with a thinker: \"As Weber / Mill / Arendt argued...\"", "example": "As Weber argued, the state claims the right to use force — but only legitimate force. So the question is whether injuring a 15-year-old is still legitimate."}, {"move": "Synthesize", "sentence": "\"Is the protest right or wrong?\"", "technique": "Go beyond yes or no: \"Ultimately, it depends less on... than on...\"", "example": "Ultimately, it depends less on whether the students are right than on whether anyone is willing to answer them without force."}];
+const FOLLOW = [{"en": "Is a protest that nobody notices still a protest?", "fr": "Une manifestation que personne ne remarque est-elle encore une manifestation ?"}, {"en": "Who should decide what happens inside a school: the state, the teachers, or the students?", "fr": "Qui devrait décider de ce qui se passe dans un lycée : l'État, les professeurs ou les élèves ?"}, {"en": "If you agree with a cause, are you responsible for everything done in its name?", "fr": "Si tu soutiens une cause, es-tu responsable de tout ce qui est fait en son nom ?"}, {"en": "What would \"being heard\" actually look like for these students?", "fr": "À quoi ressemblerait concrètement « être écouté » pour ces élèves ?"}, {"en": "Is it possible to be completely neutral about this?", "fr": "Est-il possible d'être complètement neutre sur ce sujet ?"}];
+const MOTIONS = [{"m": "Blocking your own school is a legitimate way to be heard.", "for": "it is legitimate", "against": "it is not legitimate"}, {"m": "Violence is never justified, even for a just cause.", "for": "never justified", "against": "sometimes justified"}, {"m": "At sixteen, you are old enough to have a real political voice.", "for": "old enough", "against": "not old enough"}, {"m": "The government was right to close schools to keep order.", "for": "right to close them", "against": "wrong to close them"}, {"m": "When teenagers have to protest, the adults have already failed.", "for": "the adults have failed", "against": "the adults have not failed"}, {"m": "Calling a movement \"manipulated\" is a way of refusing to listen to it.", "for": "it's a refusal to listen", "against": "it's a fair warning"}];
+
+const content = [
+// STOP 0 — OPEN
+() => `
+  <div class="panel-badge">Stop 1</div>
+  <div class="panel-title">Open</div>
+  <p>No prep — draw a topic and talk for one full minute. Don't stop to look for the perfect word; go around it.</p>
+  <div class="game-frame">
+    <div class="card-3d-frame">
+      <div class="card-3d" id="card3d">
+        <div class="face front"><span class="mark">Pick One</span></div>
+        <div class="face back"><span class="topic" id="topicText"></span></div>
+      </div>
+    </div>
+    <button class="draw-btn" id="drawBtn">Draw a Topic</button>
+  </div>
+`,
+// STOP 1 — WHAT'S HAPPENING
+() => `
+  <div class="panel-badge">Stop 2</div>
+  <div class="panel-title">What's Happening</div>
+  <p>First, the facts — in English. Answer these out loud from what you already know, then open the check.</p>
+  <div class="prompt-list">
+    <div class="prompt-item">When and where did the movement start, and how did it spread?</div>
+    <div class="prompt-item">What are students actually complaining about? Name at least three things.</div>
+    <div class="prompt-item">What has the government offered so far?</div>
+    <div class="prompt-item">Where does it stand now, during the fall break?</div>
+  </div>
+  <button class="reveal-btn" id="revealFacts">Check the Facts</button>
+  <div class="reveal-box" id="factsBox">
+    <ul>
+      <li><b>The start.</b> The movement began in late September 2026 at a lycée in Créteil, near Paris, and spread to hundreds of lycées across France. University students joined on October 1.</li>
+      <li><b>The complaints.</b> Teachers who are absent and not replaced, overcrowded classes, run-down buildings, classrooms that reached 35–40 °C in the heatwaves, missing nurses and staff, and stress about Parcoursup. The ministry's own figures show nearly 10% of teaching hours in public secondary schools went untaught in 2024–2025.</li>
+      <li><b>The methods.</b> Blockades ("blocus") at school gates, walkouts, marches on national days of action, and general assemblies. Some protests turned violent: fires, damaged schools, and injured staff and police.</li>
+      <li><b>The response.</b> Some schools were closed and moved to remote classes, gatherings outside some schools were banned, and more than 6,000 people were arrested, most of them under 18. Some teenagers were seriously injured.</li>
+      <li><b>The offer.</b> More than 3,000 replacement teachers, extra hiring, more seats for students in decision-making bodies, a half-day for student debate in every lycée, an online consultation, and first decisions promised before the end of October.</li>
+      <li><b>Now.</b> On October 17, wider protests about the cost of living joined in. Schools are on break until November 2, and many students say they will start again then.</li>
+    </ul>
+  </div>
+  <button class="reveal-btn" id="revealNumbers">Whose Numbers?</button>
+  <div class="reveal-box" id="numbersBox">
+    On October 6, the unions said 450,000 people took part. The government said 250,000. Same day, same streets. <b>Say out loud:</b> why would two sides count so differently — and which number would you quote in an argument, and how?
+  </div>
+`,
+// STOP 2 — EVERY ANGLE
+() => `
+  <div class="panel-badge">Stop 3</div>
+  <div class="panel-title">Every Angle</div>
+  <p>A good debater can explain every side better than its own supporters can. Tap a group, explain their view out loud in your own words, then answer the question underneath. Do at least four — including one you disagree with.</p>
+  <div class="chip-row" id="angleRow"></div>
+  <div class="reveal-box" id="angleBox"></div>
+`,
+// STOP 3 — THE THINKERS
+() => `
+  <div class="panel-badge">Stop 4</div>
+  <div class="panel-title">The Thinkers</div>
+  <p>In France, a debate isn't finished until someone brings in a philosopher. Tap a thinker, explain the idea in one sentence of your own, then say which side of today's debate it helps. Then try the questions.</p>
+  <div class="chip-row" id="thinkRow"></div>
+  <div class="reveal-box" id="thinkBox"></div>
+  <div class="range-card" id="followCard" style="margin-top:18px;">
+    <div class="range-num" id="followNum">Big Question</div>
+    <div class="range-sentence" id="followQEn" style="font-size:16px;">Draw a question when you're ready.</div>
+    <div class="range-technique" id="followQFr" style="margin-top:10px;font-style:italic;">Answer in English — the French is only there if you need it.</div>
+  </div>
+  <button class="draw-btn" id="followBtn" style="margin-top:14px;">Draw a Question</button>
+`,
+// STOP 4 — THE METHOD
+() => `
+  <div class="panel-badge">Stop 5</div>
+  <div class="panel-title">The Method</div>
+  <p>You already know how to build a <i>dissertation</i>. This is the same method, spoken in English: <b>define, find the real question, concede, turn, bring in a thinker, synthesize.</b> One move per round. Say it your way first, then check the example.</p>
+  <div class="range-card">
+    <div class="range-num" id="rangeNum">Move 1 of 6</div>
+    <div class="range-sentence" id="rangeSentence"></div>
+    <div class="range-technique" id="rangeTechnique"></div>
+  </div>
+  <button class="reveal-btn" id="revealRangeBtn">Reveal Example</button>
+  <div class="reveal-box" id="rangeExampleBox"></div>
+  <button class="draw-btn" id="nextRangeBtn" style="margin-top:14px;">Next Move</button>
+  <button class="reveal-btn" id="revealBank" style="margin-top:18px;">Your Connectors in English</button>
+  <div class="reveal-box" id="bankBox"><table class="bank"><tr><td>D'abord / Tout d'abord</td><td>First of all / To begin with</td></tr><tr><td>Certes...</td><td>Admittedly... / Granted...</td></tr><tr><td>Mais / Cependant / Pourtant</td><td>But / However / And yet</td></tr><tr><td>Or...</td><td>Yet... / Now, the thing is...</td></tr><tr><td>En effet</td><td>Indeed / In fact</td></tr><tr><td>D'ailleurs</td><td>Besides / What's more</td></tr><tr><td>Néanmoins</td><td>Nevertheless</td></tr><tr><td>Autrement dit</td><td>In other words</td></tr><tr><td>Il faut distinguer...</td><td>We need to distinguish between...</td></tr><tr><td>Il convient de se demander si...</td><td>It's worth asking whether...</td></tr><tr><td>Dans une certaine mesure</td><td>To a certain extent</td></tr><tr><td>En définitive / En fin de compte</td><td>Ultimately / In the end</td></tr></table></div>
+  <button class="reveal-btn" id="revealFalse">False Friends to Avoid</button>
+  <div class="reveal-box" id="falseBox"><table class="bank"><tr><td>actuellement</td><td>currently — not "actually" (which means "en fait")</td></tr><tr><td>éventuellement</td><td>possibly — not "eventually" (which means "finalement")</td></tr><tr><td>une manifestation</td><td>a protest / a demonstration — not "a manifestation"</td></tr><tr><td>assister à</td><td>to attend — not "to assist" (which means "aider")</td></tr><tr><td>une polémique</td><td>a controversy — "a polemic" is rare in English</td></tr><tr><td>engagé(e)</td><td>politically committed / active — not "engaged" (which means "fiancé(e)" or "busy")</td></tr><tr><td>contester</td><td>to challenge / to dispute — not "to contest" in most cases</td></tr><tr><td>un blocus</td><td>a blockade</td></tr><tr><td>un proviseur</td><td>a principal</td></tr><tr><td>une garde à vue</td><td>police custody</td></tr><tr><td>la grève</td><td>the strike</td></tr><tr><td>les forces de l'ordre</td><td>the police / law enforcement</td></tr></table></div>
+`,
+// STOP 5 — ARGUE IT
+() => `
+  <div class="panel-badge">Stop 6</div>
+  <div class="panel-title">Argue It</div>
+  <p>Draw a motion, then flip the coin. Whatever it lands on is your side — even if you believe the opposite. Speak for two full minutes using all six moves.</p>
+  <div class="motion" id="motionText">Draw a motion to begin.</div>
+  <button class="draw-btn" id="motionBtn">Draw a Motion</button>
+  <div class="coin" id="coin"><span id="coinFace">?</span></div>
+  <div class="side-label" id="sideLabel">Draw a motion, then flip to get your side</div>
+  <button class="flip-btn" id="flipBtn">Flip the Coin</button>
+  <button class="reveal-btn" id="revealShape">Before You Argue</button>
+  <div class="reveal-box" id="shapeBox">
+    Glance at this once, then put it away — don't read from it while you talk.
+    <ul>
+      <li><b>Define</b> the key word in the motion.</li>
+      <li><b>Find the real question</b> underneath it.</li>
+      <li><b>Concede</b> the strongest point on the other side.</li>
+      <li><b>Turn</b> it — and give your first reason, with a fact from today.</li>
+      <li><b>Bring in a thinker</b> for your second reason.</li>
+      <li><b>Synthesize</b> — finish with a sentence that goes beyond yes or no.</li>
+    </ul>
+  </div>
+  <p style="margin-top:16px;font-weight:600;">Then switch: flip again, or argue the opposite side of the same motion. The best test of your position is how well you can attack it.</p>
+  <p style="margin-top:22px;text-align:center;color:#5c6a80;font-size:13.5px;">That's the Road for today. Before you go, say one connector or phrase out loud that you want to keep using in English.</p>
+`
+];
+
+function render(){
+  panel.innerHTML = content[current]();
+  stops.forEach((s,i) => {
+    s.classList.toggle('active', i === current);
+    s.classList.toggle('done', i < current);
+    s.textContent = i < current ? '✓' : (i+1);
+  });
+  backBtn.disabled = current === 0;
+  nextBtn.disabled = current === content.length - 1;
+  const rp = document.getElementById('roadProgress');
+  const len = rp.getTotalLength();
+  rp.style.strokeDasharray = len;
+  rp.style.strokeDashoffset = len * (1 - current / (stops.length - 1));
+  wireStop();
+}
+const toggle = (btn, box) => { document.getElementById(btn).onclick = () => document.getElementById(box).classList.toggle('show'); };
+function chips(rowId, boxId, items, label, body){
+  const row = document.getElementById(rowId), box = document.getElementById(boxId);
+  items.forEach(it => {
+    const b = document.createElement('button'); b.className = 'chip'; b.textContent = it[label];
+    b.onclick = () => { row.querySelectorAll('.chip').forEach(c => c.classList.remove('selected')); b.classList.add('selected'); box.innerHTML = body(it); box.classList.add('show'); };
+    row.appendChild(b);
+  });
+}
+function wireStop(){
+  if(current === 0){
+    let pool = [], flipped = false;
+    const card3d = document.getElementById('card3d'), topicText = document.getElementById('topicText');
+    document.getElementById('drawBtn').onclick = () => {
+      if(pool.length===0) pool = shuffle(OPEN);
+      topicText.textContent = pool.pop();
+      if(flipped){ card3d.classList.remove('flipped'); setTimeout(()=>card3d.classList.add('flipped'),300); }
+      else { card3d.classList.add('flipped'); flipped = true; }
+    };
+  }
+  if(current === 1){ toggle('revealFacts','factsBox'); toggle('revealNumbers','numbersBox'); }
+  if(current === 2){
+    chips('angleRow','angleBox',ANGLES,'name', a => '<b>What they say:</b><ul>' + a.facts.map(f => '<li>' + f + '</li>').join('') + '</ul><p style="margin-top:10px;"><b>Think about:</b> ' + a.ask + '</p>');
+  }
+  if(current === 3){
+    chips('thinkRow','thinkBox',THINKERS,'name', t => '<b>' + t.name + '</b> · <i>' + t.work + '</i><p style="margin-top:8px;">' + t.idea + '</p><p><b>Use it:</b> ' + t.use + '</p>');
+    let pool = [], drawn = 0;
+    const btn = document.getElementById('followBtn');
+    btn.onclick = () => {
+      if(pool.length===0){ pool = shuffle(FOLLOW); drawn = 0; }
+      drawn++; const q = pool.pop();
+      document.getElementById('followNum').textContent = 'Big Question ' + drawn + ' of ' + FOLLOW.length;
+      document.getElementById('followQEn').textContent = q.en;
+      document.getElementById('followQFr').textContent = q.fr;
+      btn.textContent = 'Draw Another';
+    };
+  }
+  if(current === 4){
+    let round = 0;
+    const box = document.getElementById('rangeExampleBox'), nb = document.getElementById('nextRangeBtn');
+    const show = () => {
+      const r = MOVES[round];
+      document.getElementById('rangeNum').textContent = 'Move ' + (round+1) + ' of ' + MOVES.length + ' · ' + r.move;
+      document.getElementById('rangeSentence').textContent = r.sentence;
+      document.getElementById('rangeTechnique').textContent = r.technique;
+      box.classList.remove('show'); box.textContent = '';
+      nb.textContent = round === MOVES.length - 1 ? 'Start Again' : 'Next Move';
+    };
+    document.getElementById('revealRangeBtn').onclick = () => { box.textContent = '"' + MOVES[round].example + '"'; box.classList.add('show'); };
+    nb.onclick = () => { round = round < MOVES.length - 1 ? round + 1 : 0; show(); };
+    show();
+    toggle('revealBank','bankBox'); toggle('revealFalse','falseBox');
+  }
+  if(current === 5){
+    toggle('revealShape','shapeBox');
+    let pool = [], motion = null, flipping = false;
+    document.getElementById('motionBtn').onclick = () => {
+      if(pool.length===0) pool = shuffle(MOTIONS);
+      motion = pool.pop();
+      document.getElementById('motionText').textContent = '"' + motion.m + '"';
+      document.getElementById('coinFace').textContent = '?';
+      document.getElementById('sideLabel').textContent = 'Now flip to get your side';
+    };
+    const coin = document.getElementById('coin');
+    document.getElementById('flipBtn').onclick = () => {
+      if(flipping) return;
+      if(!motion){ document.getElementById('sideLabel').textContent = 'Draw a motion first'; return; }
+      flipping = true;
+      coin.classList.remove('spin'); void coin.offsetWidth; coin.classList.add('spin');
+      setTimeout(()=>{
+        const forSide = Math.random()<0.5;
+        document.getElementById('coinFace').textContent = forSide ? 'FOR' : 'AGAINST';
+        document.getElementById('sideLabel').textContent = forSide ? 'Argue FOR — ' + motion.for : 'Argue AGAINST — ' + motion.against;
+        flipping = false;
+      },600);
+    };
+  }
+}
+stops.forEach(s => s.addEventListener('click', () => { current = +s.dataset.i; render(); panel.scrollIntoView({behavior:'smooth', block:'center'}); }));
+nextBtn.onclick = () => { if(current < content.length-1){ current++; render(); } };
+backBtn.onclick = () => { if(current > 0){ current--; render(); } };
+render();
+</script>
+<div id="kce-legal" style="display:block;clear:both;box-sizing:border-box;width:100%;margin:0;padding:10px 16px;background:#0A1F3D;color:#C9A84C;font:12px/1.4 Arial,sans-serif;text-align:center">&copy; 2026 KingCretot Experience. All rights reserved. Licensed for KCE students only. Do not copy, share or distribute.</div><script>(function(){var e=document.getElementById("kce-legal");if(!e)return;function place(){var r=document.documentElement,b=document.body,t=null,best=0,a=b?b.getElementsByTagName("*"):[];for(var i=0;i<a.length;i++){var x=a[i];if(x===e||e.contains(x))continue;if(x.scrollHeight>x.clientHeight+20&&x.clientHeight>innerHeight*0.5&&x.clientWidth>innerWidth*0.5){var o=getComputedStyle(x).overflowY;if((o==="auto"||o==="scroll")&&x.clientHeight*x.clientWidth>best){best=x.clientHeight*x.clientWidth;t=x}}}if(!t&&b){var bs=getComputedStyle(b),hs=getComputedStyle(r);if(/(hidden|clip)/.test(hs.overflowY)||(/(auto|scroll)/.test(bs.overflowY)&&b.scrollHeight>b.clientHeight+1))t=b;else t=r}if(t&&e.parentNode!==t)t.appendChild(e);var h=0;for(var j=0;j<a.length;j++){var s=getComputedStyle(a[j]);if(s.position==="fixed"&&s.display!=="none"&&s.visibility!=="hidden"&&!e.contains(a[j])){var q=a[j].getBoundingClientRect();if(q.height>0&&q.height<200&&q.bottom>=innerHeight-2&&q.width>innerWidth*0.5)h=Math.max(h,q.height)}}e.style.marginBottom=h?h+"px":"0"}if(document.readyState==="complete")setTimeout(place,50);else addEventListener("load",function(){setTimeout(place,50)})})();</script>
+</body>
+</html>
