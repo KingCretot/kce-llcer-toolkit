@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Debate Lab 1 · Student Protests in France | KCE LLCER Anglais Master Class</title>
+<title>Debate 1 · Student Protests in France | KCE LLCER Anglais Master Class</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -107,6 +107,27 @@
   .bank{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px;}
   .bank td{padding:7px 8px;border-bottom:1px solid #eee3c8;vertical-align:top;}
   .bank td:first-child{font-style:italic;color:#5c6a80;width:42%;}
+  .panel{max-width:760px;margin:0 auto;}
+  .panel.wide{max-width:1120px;}
+  .nav-row{max-width:760px;margin-left:auto;margin-right:auto;}
+  main{max-width:1160px;}
+  .lesson-sub,.lesson-title{max-width:760px;margin-left:auto;margin-right:auto;}
+  .s2-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px;align-items:start;margin-top:14px;}
+  .qa{background:var(--sky);border-radius:14px;padding:14px 16px;margin-bottom:12px;}
+  .qa-q{font-size:15.5px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+  .qa .reveal-btn{margin-top:6px;margin-right:6px;padding:7px 14px;font-size:13px;}
+  .qa .reveal-box{background:#fff;}
+  .numbers-panel{position:sticky;top:16px;background:var(--navy);color:#fff;border-radius:18px;padding:20px 20px 18px;}
+  .numbers-panel p{color:#dfe6f1;font-size:14.5px;}
+  .numbers-panel p b{color:#fff;}
+  .np-badge{font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:12px;}
+  .np-figs{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+  .np-row{background:rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;font-size:14px;}
+  .np-row span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .numbers-panel .reveal-btn{border-color:var(--gold);color:var(--gold);margin-right:6px;padding:7px 14px;font-size:13px;}
+  .numbers-panel .reveal-btn:hover{background:var(--gold);color:var(--navy);}
+  .numbers-panel .reveal-box{color:#4a5568;}
+  @media(max-width:900px){.s2-grid{grid-template-columns:1fr;}.numbers-panel{position:static;}}
   .motion{font-weight:700;font-size:17px;color:var(--navy);background:var(--peach);border:2px solid var(--gold);border-radius:14px;padding:14px 16px;margin:12px 0;text-align:center;min-height:52px;}
 </style>
 </head>
@@ -116,7 +137,7 @@
 <div class="rainbow"></div>
 
 <main>
-  <div class="lesson-title">Debate Lab 1 · Student Protests in France</div>
+  <div class="lesson-title">Debate 1 · Student Protests in France</div>
   <div class="lesson-sub">Six stops. No book today — a real debate, argued the French way, in English.</div>
 
   <div class="recap-banner"><b>Last time:</b> <i>Brooklyn</i> ended with Eilis making a decision — or having it made for her. <b>Today:</b> a question much closer to home. Since late September, students across France have been blocking lycées and marching. Today you take it apart from every angle and defend a position out loud, in English, like a philosopher.</div>
@@ -158,6 +179,7 @@ const nextBtn = document.getElementById('nextBtn');
 let current = 0;
 const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
 const OPEN = ["One thing about your school you would change tomorrow — and why", "A rule you think is unfair", "Should sixteen-year-olds be allowed to vote?", "What does \"being heard\" look like to you?", "Someone you respect even though you disagree with them", "Is it ever right to break a rule? Give one example"];
+const QS = [{"q": "When and where did the movement start, and how did it spread?", "hints": ["Think of a town just outside Paris.", "Did it start with high school students or university students?", "Use: <i>It started in... and then spread to...</i>"], "facts": "The movement began in late September 2026 at a lycée in Créteil, near Paris, and spread to hundreds of lycées across France. University students joined on October 1.", "model": "It started in late September at a lycée in Créteil, just outside Paris. Within a couple of weeks it had spread to hundreds of high schools across France, and university students joined in at the beginning of October."}, {"q": "What are students actually complaining about? Name at least three things.", "hints": ["Think about who is missing at school.", "Think about the buildings — and the summer heat.", "Think about what makes Terminale stressful.", "Use: <i>First... Second... And finally...</i>"], "facts": "Teachers who are absent and not replaced, overcrowded classes, run-down buildings, classrooms that reached 35–40 °C in the heatwaves, missing nurses and staff, and stress about Parcoursup. The ministry's own figures show nearly 10% of teaching hours in public secondary schools went untaught in 2024–2025.", "model": "First, there aren't enough teachers: when a teacher is absent, often nobody replaces them. Second, a lot of buildings are in bad shape, and classrooms got unbearably hot during the heatwaves. And finally, many students say Parcoursup makes them anxious and they don't trust how it decides."}, {"q": "How have students protested — and how have the authorities responded?", "hints": ["What is a <i>blocus</i> in English?", "Were all the protests peaceful?", "How many people were arrested, and how old were most of them?", "Use: <i>On one side... On the other side...</i>"], "facts": "Students used blockades at school gates, walkouts, marches on national days of action, and general assemblies. Some protests turned violent: fires, damaged schools, and injured staff and police. Some schools were closed and moved to remote classes, gatherings outside some schools were banned, and more than 6,000 people were arrested, most of them under 18. Some teenagers were seriously injured.", "model": "On one side, students have used blockades at the school gates, walkouts and marches, and some protests turned violent. On the other side, the authorities closed some schools, banned gatherings, and arrested more than 6,000 people, most of them under 18 — and some teenagers were seriously hurt."}, {"q": "What has the government offered so far?", "hints": ["Think about people: who are they sending into schools?", "Think about students' voice.", "Is it a decision already made, or a promise?", "Use: <i>The government has offered... but...</i>"], "facts": "More than 3,000 replacement teachers, extra hiring, more seats for students in decision-making bodies, a half-day for student debate in every lycée, an online consultation, and first decisions promised before the end of October.", "model": "The government has offered more than 3,000 replacement teachers, some extra hiring, and more of a say for students — more seats on decision-making bodies and a half-day for debate in every lycée. But a lot of it is still a promise: the first real decisions are supposed to come before the end of October."}, {"q": "Where does it stand now, during the fall break?", "hints": ["What happens to a school protest when there's no school?", "What happened on October 17?", "Use: <i>For now... but...</i>"], "facts": "On October 17, wider protests about the cost of living joined in. Schools are on break until November 2, and many students say they will start again then.", "model": "For now, it's on pause because of the break, but it isn't over. On October 17 the protests got bigger and mixed with protests about the cost of living, and a lot of students say they'll start again when classes go back on November 2."}];
 const ANGLES = [{"name": "The students", "facts": ["They describe teachers who are absent and never replaced, classes of about 35, broken or leaking buildings, and classrooms that reached 35–40 °C during the heatwaves.", "Many say Parcoursup, the university application platform, makes them anxious and that they do not trust how it decides.", "A common line in interviews: \"We don't feel listened to.\" Some say they will start again when classes resume on November 2."], "ask": "Is \"we are not being heard\" a reason, or a feeling? Can it be both?"}, {"name": "The teachers", "facts": ["Teachers' unions called strikes and joined marches. One union leader called the school system \"in crisis.\"", "Many teachers support the students' complaints, because the shortages affect their work too.", "Some teachers also worry about lost teaching time, damaged schools and the safety of their students."], "ask": "Can you support a cause and still disagree with how it is being fought?"}, {"name": "Principals and school staff", "facts": ["Principals have to keep students safe, keep the school running, and avoid violence at the gates — all at once.", "They can ask for a blockade to be lifted and can call the police if people or property are in danger.", "Some principals and staff were injured during blockades, and some schools were set on fire or damaged."], "ask": "Whose side is a principal on — or is that the wrong question?"}, {"name": "The government", "facts": ["Prime Minister Sébastien Lecornu condemned the violence and defended the police. He promised five areas of work, including covering classes when teachers are absent, improving buildings and making Parcoursup clearer.", "Education Minister Édouard Geffray announced more than 3,000 replacement teachers, extra hiring, a reform giving lycée students more seats in decision-making bodies, a half-day for student debate in every lycée, and an online consultation for all lycée students.", "The government says it is listening; many students say the measures do not touch the real problem."], "ask": "Is a consultation a way of listening, or a way of waiting for the protest to end?"}, {"name": "The police and the Interior Ministry", "facts": ["More than 6,000 people were arrested, most of them under 18, and hundreds of police officers were injured.", "Interior Minister Laurent Nuñez said the police response was proportionate in almost all cases.", "The police watchdog opened investigations into some officers' conduct after teenagers were seriously injured."], "ask": "When a protest turns violent, who is responsible for what happens next?"}, {"name": "Human rights groups", "facts": ["Amnesty International called the use of force against minors disproportionate, and Human Rights Watch reported serious injuries to children.", "The UN Human Rights Office called for de-escalation.", "They also defend the right to protest peacefully — which is not the same as defending every action taken during a protest."], "ask": "Does a 15-year-old protester deserve more protection than an adult protester? Why?"}, {"name": "Political parties", "facts": ["La France Insoumise (on the left) supports the movement and says it is spontaneous.", "The government and parties on the right say the far left is using the students' anger for its own political goals. A spokesperson for the Rassemblement National said students have the right to protest, but not the right to block, burn or break.", "The movement is happening a few months before the 2027 presidential election."], "ask": "If politicians support a movement, does it stop belonging to the people who started it?"}, {"name": "The student who just wants to go to class", "facts": ["Some students are preparing for the Bac and Parcoursup and need every hour of teaching.", "A blockade can stop them from entering their own school — the same school whose problems the protest is about.", "Some agree with the complaints but disagree with blocking."], "ask": "Can you protest for a better school by closing your school?"}];
 const THINKERS = [{"name": "Thomas Hobbes", "work": "Leviathan, 1651", "idea": "Without a power strong enough to keep order, Hobbes says, life becomes a war of all against all — \"solitary, poor, nasty, brutish, and short.\" People accept rules and authority because order protects everyone.", "use": "Use him to argue for order: a school, a city or a country needs rules that hold even when people are angry."}, {"name": "Jean-Jacques Rousseau", "work": "The Social Contract, 1762", "idea": "For Rousseau, authority is only legitimate when it comes from the people themselves — laws should express the general will, not the will of a few.", "use": "Use him to ask: if students can't vote and aren't asked, are the decisions about their schools really legitimate?"}, {"name": "Henry David Thoreau", "work": "Civil Disobedience, 1849", "idea": "Thoreau refused to pay a tax that supported things he believed were wrong, and spent a night in jail. He argued that your conscience comes before obeying the law.", "use": "Use him to argue that breaking a rule can be the right thing to do."}, {"name": "John Stuart Mill", "work": "On Liberty, 1859", "idea": "Mill's harm principle: the only good reason to limit someone's freedom is to prevent harm to other people.", "use": "Use him on both sides: the protesters' freedom to protest — and the other students' freedom to go to class."}, {"name": "Max Weber", "work": "Politics as a Vocation, 1919", "idea": "Weber defined the state as the body that successfully claims the monopoly of the legitimate use of physical force in its territory.", "use": "Use him to ask: when the police use force, when is it legitimate — and who decides?"}, {"name": "Albert Camus", "work": "The Rebel (L'Homme révolté), 1951", "idea": "Camus wrote \"I rebel — therefore we exist\": revolt starts when one person says \"no\" on behalf of something shared. But he also argued that a revolt which forgets its limits and harms others betrays itself.", "use": "Use him to argue that revolt is human — and that it has limits."}, {"name": "Martin Luther King Jr.", "work": "Letter from Birmingham Jail, 1963", "idea": "King argued that nonviolent direct action creates a tension that forces a community to negotiate. He also said that someone who breaks an unjust law must do it openly and accept the penalty.", "use": "Use him to separate disruption from violence — and to ask whether the method matters as much as the cause."}, {"name": "Hannah Arendt", "work": "On Violence, 1970", "idea": "Arendt argued that power and violence are opposites: power comes from people acting together, while violence appears when power is being lost. Violence can destroy power, but it cannot create it.", "use": "Use her to argue that violence weakens a movement — or that a government relying on force has already lost something."}];
 const MOVES = [{"move": "Define", "sentence": "\"Blocking a school is a legitimate way to protest.\"", "technique": "Before you answer, define one key word — here, \"legitimate.\"", "example": "Before answering, we need to ask what \"legitimate\" means: legal, fair, or simply effective? Those are three different questions."}, {"move": "Find the real question", "sentence": "\"Students should be allowed to protest.\"", "technique": "Turn it into the real problem, starting with \"The real question is not whether... but...\"", "example": "The real question is not whether students should be allowed to protest, but whether some ways of protesting cancel out the message."}, {"move": "Concede", "sentence": "\"The violence hurt the movement.\"", "technique": "Start by admitting something to the other side: \"Admittedly...\" or \"Granted...\"", "example": "Admittedly, the burned schools and injured staff gave the government an easy reason not to listen."}, {"move": "Turn", "sentence": "Use the sentence you just conceded.", "technique": "Now turn it around with \"And yet...\" or \"However...\"", "example": "And yet, before the blockades, the shortages and the broken buildings had been there for years — and very few adults were talking about them."}, {"move": "Bring in a thinker", "sentence": "\"The police were right to use force.\"", "technique": "Support or attack it with a thinker: \"As Weber / Mill / Arendt argued...\"", "example": "As Weber argued, the state claims the right to use force — but only legitimate force. So the question is whether injuring a 15-year-old is still legitimate."}, {"move": "Synthesize", "sentence": "\"Is the protest right or wrong?\"", "technique": "Go beyond yes or no: \"Ultimately, it depends less on... than on...\"", "example": "Ultimately, it depends less on whether the students are right than on whether anyone is willing to answer them without force."}];
@@ -184,27 +206,26 @@ const content = [
 () => `
   <div class="panel-badge">Stop 2</div>
   <div class="panel-title">What's Happening</div>
-  <p>First, the facts — in English. Answer these out loud from what you already know, then open the check.</p>
-  <div class="prompt-list">
-    <div class="prompt-item">When and where did the movement start, and how did it spread?</div>
-    <div class="prompt-item">What are students actually complaining about? Name at least three things.</div>
-    <div class="prompt-item">What has the government offered so far?</div>
-    <div class="prompt-item">Where does it stand now, during the fall break?</div>
-  </div>
-  <button class="reveal-btn" id="revealFacts">Check the Facts</button>
-  <div class="reveal-box" id="factsBox">
-    <ul>
-      <li><b>The start.</b> The movement began in late September 2026 at a lycée in Créteil, near Paris, and spread to hundreds of lycées across France. University students joined on October 1.</li>
-      <li><b>The complaints.</b> Teachers who are absent and not replaced, overcrowded classes, run-down buildings, classrooms that reached 35–40 °C in the heatwaves, missing nurses and staff, and stress about Parcoursup. The ministry's own figures show nearly 10% of teaching hours in public secondary schools went untaught in 2024–2025.</li>
-      <li><b>The methods.</b> Blockades ("blocus") at school gates, walkouts, marches on national days of action, and general assemblies. Some protests turned violent: fires, damaged schools, and injured staff and police.</li>
-      <li><b>The response.</b> Some schools were closed and moved to remote classes, gatherings outside some schools were banned, and more than 6,000 people were arrested, most of them under 18. Some teenagers were seriously injured.</li>
-      <li><b>The offer.</b> More than 3,000 replacement teachers, extra hiring, more seats for students in decision-making bodies, a half-day for student debate in every lycée, an online consultation, and first decisions promised before the end of October.</li>
-      <li><b>Now.</b> On October 17, wider protests about the cost of living joined in. Schools are on break until November 2, and many students say they will start again then.</li>
-    </ul>
-  </div>
-  <button class="reveal-btn" id="revealNumbers">Whose Numbers?</button>
-  <div class="reveal-box" id="numbersBox">
-    On October 6, the unions said 450,000 people took part. The government said 250,000. Same day, same streets. <b>Say out loud:</b> why would two sides count so differently — and which number would you quote in an argument, and how?
+  <p>First, the facts — in English. Answer each question out loud before you open anything. Stuck? Open the guiding prompts. Then check the facts and compare your answer with a strong one.</p>
+  <div class="s2-grid">
+    <div class="qa-list" id="qaList"></div>
+    <aside class="numbers-panel">
+      <div class="np-badge">Whose Numbers?</div>
+      <div class="np-figs">
+        <div class="np-row"><span>October 6</span><b>Unions: 450,000</b><b>Government: 250,000</b></div>
+        <div class="np-row"><span>October 13</span><b>Youth unions: 480,000</b><b>Ministry: 161,500</b></div>
+      </div>
+      <p>Same days, same streets. <b>Say out loud:</b> why do the two sides count so differently — and which number would you quote in an argument, and how?</p>
+      <button class="reveal-btn" data-t="npHints">Guiding Prompts</button>
+      <div class="reveal-box" id="npHints"><ul>
+        <li>Who gains from a big number? Who gains from a small one?</li>
+        <li>How would you even count a crowd that is moving?</li>
+        <li>Can you quote both numbers and still make your point?</li>
+        <li>Useful phrases: <i>According to the unions...</i> · <i>The government puts the figure at...</i> · <i>Either way...</i></li>
+      </ul></div>
+      <button class="reveal-btn" data-t="npModel">A Strong Answer</button>
+      <div class="reveal-box" id="npModel">"The two sides count differently because the number is part of the argument: the unions want to show the movement is huge, and the government wants to show it's under control. Counting a moving crowd is also genuinely hard. So in a debate I wouldn't pick one. I'd say: <i>According to the unions, 450,000 people marched on October 6; the government puts it at 250,000. Either way, that's hundreds of thousands of people.</i> That way, nobody can attack my source."</div>
+    </aside>
   </div>
 `,
 // STOP 2 — EVERY ANGLE
@@ -276,6 +297,7 @@ const content = [
 
 function render(){
   panel.innerHTML = content[current]();
+  panel.classList.toggle('wide', current === 1);
   stops.forEach((s,i) => {
     s.classList.toggle('active', i === current);
     s.classList.toggle('done', i < current);
@@ -309,7 +331,14 @@ function wireStop(){
       else { card3d.classList.add('flipped'); flipped = true; }
     };
   }
-  if(current === 1){ toggle('revealFacts','factsBox'); toggle('revealNumbers','numbersBox'); }
+  if(current === 1){
+    const list = document.getElementById('qaList');
+    list.innerHTML = QS.map((x,i) => '<div class="qa"><div class="qa-q">' + (i+1) + '. ' + x.q + '</div>'
+      + '<button class="reveal-btn" data-t="h' + i + '">Guiding Prompts</button><button class="reveal-btn" data-t="c' + i + '">Check the Facts</button>'
+      + '<div class="reveal-box" id="h' + i + '"><ul>' + x.hints.map(h => '<li>' + h + '</li>').join('') + '</ul></div>'
+      + '<div class="reveal-box" id="c' + i + '"><b>The facts:</b> ' + x.facts + '<p style="margin-top:10px;"><b>A strong answer sounds like:</b> "' + x.model + '"</p></div></div>').join('');
+    panel.querySelectorAll('[data-t]').forEach(b => b.onclick = () => document.getElementById(b.dataset.t).classList.toggle('show'));
+  }
   if(current === 2){
     chips('angleRow','angleBox',ANGLES,'name', a => '<b>What they say:</b><ul>' + a.facts.map(f => '<li>' + f + '</li>').join('') + '</ul><p style="margin-top:10px;"><b>Think about:</b> ' + a.ask + '</p>');
   }
