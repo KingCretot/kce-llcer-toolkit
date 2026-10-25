@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brooklyn · Road 7 | KCE LLCER Anglais Master Class</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3D; --gold:#C9A84C; --blue:#0047BA; --red:#DB2F30;
+    --cream:#FFFCF5; --sky:#EAF3FF; --mint:#EAFBF3; --peach:#FFF3EA; --green:#2E7D32;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{min-height:100%;background:linear-gradient(160deg,#FFFCF5 0%,#EAF3FF 100%);font-family:'Quicksand',sans-serif;color:var(--navy);}
+  .topbar{background:var(--navy);color:#fff;text-align:center;padding:16px 20px;}
+  .topbar .kc{font-size:12px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;font-weight:700;}
+  .rainbow{height:6px;width:100%;background:linear-gradient(90deg,var(--blue),var(--gold),var(--red));}
+
+  main{max-width:760px;margin:0 auto;padding:24px 20px 60px;}
+  .lesson-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;text-align:center;margin-bottom:4px;}
+  .lesson-sub{text-align:center;color:#5c6a80;font-size:14px;margin-bottom:16px;}
+
+  .notes-link-wrap{text-align:center;margin-bottom:24px;}
+  .notes-link{display:inline-block;font-family:'Quicksand',sans-serif;font-size:13.5px;font-weight:700;color:var(--blue);
+    background:var(--sky);border:2px solid var(--blue);border-radius:999px;padding:9px 20px;text-decoration:none;}
+  .notes-link:hover{background:var(--blue);color:#fff;}
+
+  /* THE ROAD */
+  .road-wrap{position:relative;width:100%;aspect-ratio:700/900;max-width:520px;margin:0 auto 30px;}
+  .road-svg{position:absolute;inset:0;width:100%;height:100%;}
+  .road-svg path{fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;stroke-dasharray:2 22;opacity:0.55;}
+  .road-progress{fill:none;stroke:var(--navy);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 0.6s ease;}
+  .stop{
+    position:absolute;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;
+    background:#fff;border:4px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;color:var(--navy);cursor:pointer;
+    box-shadow:0 8px 18px rgba(10,31,61,0.15);transition:all 0.2s ease;
+  }
+  .stop.done{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .stop.active{background:var(--gold);border-color:var(--gold);color:#fff;transform:translate(-50%,-50%) scale(1.18);box-shadow:0 12px 26px rgba(201,168,76,0.4);}
+  .stop-label{
+    position:absolute;transform:translate(-50%,0);width:120px;text-align:center;font-size:11.5px;
+    font-weight:700;color:#5c6a80;top:38px;pointer-events:none;
+  }
+  .stop.active + .stop-label, .stop-label.active-label{color:var(--navy);}
+
+  /* CONTENT PANEL */
+  .panel{background:#fff;border-radius:22px;padding:28px 26px;box-shadow:0 16px 36px rgba(10,31,61,0.1);}
+  .panel-badge{font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:10px;}
+  .panel-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:14px;}
+  .panel p{font-size:15px;line-height:1.55;color:#334;margin-bottom:10px;}
+
+  .prompt-list{display:flex;flex-direction:column;gap:10px;margin:14px 0;}
+  .prompt-item{background:var(--sky);border-radius:12px;padding:12px 16px;font-size:15px;color:var(--navy);font-weight:600;}
+
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+  .chip{font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:8px 16px;border:2px solid var(--gold);
+    border-radius:999px;background:#fff;color:var(--navy);cursor:pointer;transition:all 0.15s ease;}
+  .chip.selected{background:var(--gold);color:#fff;}
+
+  .reveal-btn{
+    font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:10px 20px;border:2px solid var(--blue);
+    border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;margin-top:10px;
+  }
+  .reveal-btn:hover{background:var(--blue);color:#fff;}
+  .reveal-box{background:var(--cream);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;margin-top:12px;font-size:14px;color:#4a5568;line-height:1.6;display:none;}
+  .reveal-box.show{display:block;}
+  .reveal-box b{color:var(--navy);}
+  .reveal-box ul{padding-left:18px;margin-top:6px;}
+  .recap-banner{max-width:540px;margin:0 auto 20px;background:var(--cream);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 20px;font-size:13.5px;color:#4a5568;line-height:1.6;text-align:left;}
+  .recap-banner b{color:var(--navy);}
+
+  .game-frame{margin-top:16px;}
+  .card-3d-frame{perspective:1200px;width:100%;max-width:400px;height:180px;margin:14px auto;}
+  .card-3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(.2,.9,.25,1);}
+  .card-3d.flipped{transform:rotateY(180deg);}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;}
+  .face.front{background:linear-gradient(135deg,var(--navy),#123a6b);color:var(--gold);}
+  .face.front .mark{font-size:15px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:#fff;opacity:0.85;}
+  .face.back{background:var(--peach);border:3px solid var(--gold);transform:rotateY(180deg);}
+  .face.back .topic{font-size:17px;font-weight:700;color:var(--navy);line-height:1.3;}
+  .draw-btn{font-family:'Quicksand',sans-serif;font-size:15px;font-weight:700;padding:10px 26px;border:none;border-radius:999px;background:var(--red);color:#fff;cursor:pointer;display:block;margin:0 auto;}
+
+  .coin{width:100px;height:100px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;margin:16px auto;box-shadow:0 10px 22px rgba(10,31,61,0.25);transition:transform 0.6s ease;}
+  .coin.spin{animation:flip 0.6s ease;}
+  @keyframes flip{0%{transform:rotateY(0);}50%{transform:rotateY(900deg) scale(1.1);}100%{transform:rotateY(1080deg);}}
+  .coin span{font-size:16px;letter-spacing:1.5px;font-weight:700;color:var(--gold);text-transform:uppercase;}
+  .flip-btn{font-family:'Quicksand',sans-serif;font-size:14px;font-weight:700;padding:9px 20px;border:2px solid var(--blue);border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;display:block;margin:0 auto;}
+  .side-label{text-align:center;font-size:13px;color:#5c6a80;margin-top:8px;font-weight:700;}
+
+  .sent-input{width:100%;font-family:'Quicksand',sans-serif;font-size:15px;padding:12px 16px;border:2px solid #d8dce4;border-radius:12px;color:var(--navy);}
+  .sent-input:focus{outline:none;border-color:var(--gold);}
+  .range-card{background:linear-gradient(135deg,var(--navy),#123a6b);color:#fff;border-radius:18px;padding:24px 22px;margin-top:12px;text-align:center;}
+  .range-num{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:10px;}
+  .range-sentence{font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.4;}
+  .range-technique{font-size:14px;background:rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-weight:600;}
+
+  .nav-row{display:flex;justify-content:space-between;margin-top:22px;}
+  .nav-btn{font-family:'Quicksand',sans-serif;font-size:15px;font-weight:700;padding:11px 22px;border:2px solid var(--navy);border-radius:999px;background:transparent;color:var(--navy);cursor:pointer;}
+  .nav-btn:hover{background:var(--navy);color:#fff;}
+  .nav-btn[disabled]{opacity:0;pointer-events:none;}
+
+  footer{text-align:center;padding:20px;color:#9aa5b8;font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><span class="kc">KingCretot Experience</span></div>
+<div class="rainbow"></div>
+
+<main>
+  <div class="lesson-title">Brooklyn · Road 7</div>
+  <div class="lesson-sub">Six stops. The end of Brooklyn — and getting ready for your evaluation.</div>
+
+  <div class="recap-banner"><b>Last week:</b> Eilis finally has someone she can talk to — but she still chooses what to leave out when she tells other people about him. <b>This week:</b> everything she has been leaving out comes due, and the book finally makes her decide. By the end of today you should be able to tell the whole story of <i>Brooklyn</i> out loud.</div>
+
+  <div class="notes-link-wrap">
+    <a class="notes-link" href="brooklyn-notes.html" target="_blank">Notes: Brooklyn So Far</a>
+  </div>
+
+  <div class="road-wrap">
+    <svg class="road-svg" viewBox="0 0 700 900" preserveAspectRatio="none">
+      <path d="M150,70 C350,70 350,210 550,210 C350,210 350,350 150,350 C350,350 350,490 550,490 C350,490 350,630 150,630 C350,630 350,770 550,770" />
+      <path id="roadProgress" class="road-progress" d="M150,70 C350,70 350,210 550,210 C350,210 350,350 150,350 C350,350 350,490 550,490 C350,490 350,630 150,630 C350,630 350,770 550,770" />
+    </svg>
+    <div class="stop" data-i="0" style="left:21.4%;top:7.8%;">1</div>
+    <div class="stop-label" style="left:21.4%;top:15%;">Open</div>
+    <div class="stop" data-i="1" style="left:78.6%;top:23.3%;">2</div>
+    <div class="stop-label" style="left:78.6%;top:30.5%;">Since the Beach</div>
+    <div class="stop" data-i="2" style="left:21.4%;top:38.9%;">3</div>
+    <div class="stop-label" style="left:21.4%;top:46%;">The Whole Book</div>
+    <div class="stop" data-i="3" style="left:78.6%;top:54.4%;">4</div>
+    <div class="stop-label" style="left:78.6%;top:61.5%;">Follow-Up</div>
+    <div class="stop" data-i="4" style="left:21.4%;top:70%;">5</div>
+    <div class="stop-label" style="left:21.4%;top:77%;">Range Practice</div>
+    <div class="stop" data-i="5" style="left:78.6%;top:85.6%;">6</div>
+    <div class="stop-label" style="left:78.6%;top:92.7%;">Argue It</div>
+  </div>
+
+  <div class="panel" id="panel"></div>
+
+  <div class="nav-row">
+    <button class="nav-btn" id="backBtn">Back</button>
+    <button class="nav-btn" id="nextBtn">Next Stop</button>
+  </div>
+</main>
+
+<footer>KingCretot Experience &middot; LLCER Anglais Master Class</footer>
+
+<script>
+const stops = document.querySelectorAll('.stop');
+const panel = document.getElementById('panel');
+const backBtn = document.getElementById('backBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current = 0;
+
+const content = [
+// STOP 0 — OPEN
+() => `
+  <div class="panel-badge">Stop 1</div>
+  <div class="panel-title">Open</div>
+  <p>No prep, nothing at stake — you're talking within the first minute.</p>
+  <div class="game-frame">
+    <div class="card-3d-frame">
+      <div class="card-3d" id="card3d">
+        <div class="face front"><span class="mark">Pick One</span></div>
+        <div class="face back"><span class="topic" id="topicText"></span></div>
+      </div>
+    </div>
+    <button class="draw-btn" id="drawBtn">Draw a Topic</button>
+  </div>
+`,
+// STOP 1 — SINCE THE BEACH
+() => `
+  <div class="panel-badge">Stop 2</div>
+  <div class="panel-title">Since the Beach</div>
+  <p>This is the last stretch of the book: everything after Coney Island. Heads up — the check below gives away the ending, so finish your reading first. Then say it out loud, in order, in your own words — before you open the check. Then tell it again in two minutes, start to finish.</p>
+  <div class="prompt-list">
+    <div class="prompt-item">What sad news reaches Eilis in Brooklyn — and who brings it to her?</div>
+    <div class="prompt-item">What does Tony ask her before she leaves for Ireland — and how do they do it?</div>
+    <div class="prompt-item">What does Eilis keep to herself once she is home in Enniscorthy?</div>
+    <div class="prompt-item">Who is Jim Farrell, and what changes between him and Eilis?</div>
+    <div class="prompt-item">What forces Eilis to decide — and what does she do?</div>
+  </div>
+  <button class="reveal-btn" id="revealOffer">Check Your Timeline</button>
+  <div class="reveal-box" id="offerBox">
+    A model version — choose the eight or nine that matter most and tell them as a story, not a list:
+    <ul>
+      <li><b>Coney Island.</b> Eilis and Tony spend the day at the beach, staying in the shallow water because Tony isn't a strong swimmer. That summer he also takes her to a Dodgers game with his brothers.</li>
+      <li><b>Tony's plan.</b> Around Christmas, Tony explains that his brothers are building houses on Long Island and that one could be for the two of them. It is almost a proposal. Eilis doesn't answer directly, and she writes to Rose for advice.</li>
+      <li><b>Rose dies.</b> Father Flood comes to Bartocci's and tells Eilis that Rose died in the night. Her mother calls that evening and explains that Rose had a heart condition she had kept hidden from the family.</li>
+      <li><b>Jack's letter.</b> One of her brothers writes that she should go home to help their mother. Eilis is overwhelmed, and that night she and Tony become close. Mrs. Kehoe and Father Flood seem to guess what has happened.</li>
+      <li><b>The secret wedding.</b> Eilis asks Father Flood to help her get a month away to visit her mother. Before she leaves, Tony asks her to marry him. They have a simple courthouse ceremony, and they tell no one. A public wedding is supposed to come later.</li>
+      <li><b>Home.</b> Eilis finds Rose's room just as it was. She writes thank-you notes with her mother, visits Rose's grave, and tells nobody about Tony or the marriage.</li>
+      <li><b>Nancy's wedding.</b> Her friend Nancy is marrying George Sheridan, and Eilis's mother has already said Eilis will be there. Eilis stays longer than planned.</li>
+      <li><b>Jim Farrell.</b> At a beach outing, Jim is attentive and shy, and Eilis enjoys his company. They swim, go dancing, and kiss. Meanwhile she is offered work at the office where Rose used to work. The town admires her, and her mother approves of Jim.</li>
+      <li><b>The question.</b> After the wedding, Jim asks if they can get engaged before she goes back to America. Eilis doesn't answer. She stops writing to Tony.</li>
+      <li><b>Miss Kelly.</b> Miss Kelly calls Eilis to her shop and lets her know she has heard about Eilis's marriage from Mrs. Kehoe. The secret is out.</li>
+      <li><b>The decision.</b> Eilis buys her passage back, writes to Father Flood, Mrs. Kehoe, and Miss Fortini, and finally tells her mother that she is married to Tony.</li>
+      <li><b>The last morning.</b> She leaves a note at Jim's door promising to explain, and takes the train. The book ends as she imagines Jim hearing from her mother that she has gone back to Brooklyn.</li>
+    </ul>
+  </div>
+`,
+// STOP 2 — THE WHOLE BOOK
+() => `
+  <div class="panel-badge">Stop 3</div>
+  <div class="panel-title">The Whole Book</div>
+  <p>For your evaluation you won't just need the last chapters — you'll need all of <i>Brooklyn</i> in your head at once. Tap each card, say what you could say about it out loud, then decide which two or three are your strongest.</p>
+  <div class="chip-row" id="sceneRow"></div>
+  <div class="reveal-box" id="sceneBox"></div>
+  <button class="reveal-btn" id="revealShape2">Your Five-Minute Whole-Book Talk</button>
+  <div class="reveal-box" id="shapeBox2">
+    Glance at this shape, then put it away. It works for a spoken evaluation, and it also works as the plan for a written answer:
+    <ul>
+      <li><b>Introduce the book (30 seconds).</b> Title, author, and setting: Tóibín's novel follows a young Irish woman who emigrates to Brooklyn in the 1950s.</li>
+      <li><b>Tell the story in three moves (90 seconds).</b> Eilis at home in Enniscorthy; Eilis building a life in Brooklyn; Eilis back in Enniscorthy and what makes her leave again.</li>
+      <li><b>Name one big idea (60 seconds).</b> Choice, home and belonging, secrecy, or family duty — and prove it with one specific moment from the book.</li>
+      <li><b>Zoom in on one passage (60 seconds).</b> Say where it sits, what happens, and what it shows about that idea.</li>
+      <li><b>Say how Tóibín tells it (30 seconds).</b> One thing about his style or the ending that you noticed.</li>
+      <li><b>Finish with you (30 seconds).</b> What the book means to you, in one honest sentence.</li>
+    </ul>
+  </div>
+`,
+// STOP 3 — FOLLOW-UP
+() => `
+  <div class="panel-badge">Stop 4</div>
+  <div class="panel-title">Unscripted Follow-Up</div>
+  <p>These are the kinds of questions you could be asked after you speak. Not a memorized answer — a real reaction. Draw a question, answer it, then draw the next one when you're ready.</p>
+  <div class="range-card" id="followCard">
+    <div class="range-num" id="followNum">Question 1 of 5</div>
+    <div class="range-sentence" id="followQEn" style="font-size:16px;"></div>
+    <div class="range-technique" id="followQFr" style="margin-top:10px;font-style:italic;"></div>
+  </div>
+  <button class="draw-btn" id="followBtn" style="margin-top:14px;">Draw a Question</button>
+`,
+// STOP 4 — RANGE PRACTICE
+() => `
+  <div class="panel-badge">Stop 5</div>
+  <div class="panel-title">Range Practice</div>
+  <p>A new sentence, a new technique, every round. Listen to it, then say it your way — click for a real example if you want to check your version.</p>
+  <div class="range-card">
+    <div class="range-num" id="rangeNum">Round 1 of 5</div>
+    <div class="range-sentence" id="rangeSentence"></div>
+    <div class="range-technique" id="rangeTechnique"></div>
+  </div>
+  <button class="reveal-btn" id="revealRangeBtn">Reveal Example</button>
+  <div class="reveal-box" id="rangeExampleBox"></div>
+  <button class="draw-btn" id="nextRangeBtn" style="margin-top:14px;">Next Round</button>
+`,
+// STOP 5 — ARGUE IT
+() => `
+  <div class="panel-badge">Stop 6</div>
+  <div class="panel-title">Argue the Other Side</div>
+  <p>This question has been under the whole book. In the first weeks, Rose, her mother, and Father Flood were choosing for Eilis. By the end, she has made a decision — but who really made it?</p>
+  <p style="font-weight:700;font-size:17px;color:var(--navy);">"At the end of the book, does Eilis choose her own life — or do other people and events choose it for her?"</p>
+  <p>Flip the coin — whatever it lands on is your side. You can't have prepared an answer for a position you didn't choose.</p>
+  <div class="coin" id="coin"><span id="coinFace">?</span></div>
+  <div class="side-label" id="sideLabel">Flip to get your side</div>
+  <button class="flip-btn" id="flipBtn">Flip the Coin</button>
+  <button class="reveal-btn" id="revealShape">Before You Argue</button>
+  <div class="reveal-box" id="shapeBox">
+    Glance at this once, then put it away — don't read from it while you talk.
+    <ul>
+      <li>Say your position in one sentence.</li>
+      <li>Give your first reason, with a moment from the book.</li>
+      <li>Give a second reason, from a different part of the book.</li>
+      <li>Wrap up — say your position again, in different words.</li>
+    </ul>
+  </div>
+  <p style="margin-top:16px;font-weight:600;">Now argue it — don't stop until you've said everything you can.</p>
+  <p style="margin-top:22px;text-align:center;color:#5c6a80;font-size:13.5px;">That's the Road for today — and the last one for <i>Brooklyn</i>. Before you go, say one phrase out loud that you want to keep from this lesson.</p>
+  <div class="reveal-box show" style="margin-top:14px;">
+    <b>Before your evaluation:</b>
+    <ul>
+      <li>Finish the book if you haven't already.</li>
+      <li>Tell the whole story out loud twice, in three minutes or less, using no notes.</li>
+      <li>Pick one passage from each part of the book that you could talk about for two minutes.</li>
+      <li>Practice one big idea with one example from the beginning, the middle, and the end.</li>
+    </ul>
+  </div>
+  <div style="text-align:center;margin-top:12px;">
+    <a class="notes-link" href="brooklyn-notes.html" target="_blank">Notes: Brooklyn So Far</a>
+  </div>
+`
+];
+
+function render(){
+  panel.innerHTML = content[current]();
+  stops.forEach((s,i) => {
+    s.classList.toggle('active', i === current);
+    s.classList.toggle('done', i < current);
+    s.textContent = i < current ? '✓' : (i+1);
+  });
+  backBtn.disabled = current === 0;
+  nextBtn.disabled = current === content.length - 1;
+  const rp = document.getElementById('roadProgress');
+  const len = rp.getTotalLength();
+  const frac = current / (stops.length - 1);
+  rp.style.strokeDasharray = len;
+  rp.style.strokeDashoffset = len * (1 - frac);
+  wireStop();
+}
+
+function wireStop(){
+  if(current === 0){
+    const topics = [
+      "A time you kept something from someone close to you — and what happened when they found out",
+      "A place that once felt like home but feels different now",
+      "A time you had to choose between two things you really wanted",
+      "Being far away from someone you love when something important happened to them",
+      "Coming back to a place after being away and noticing what had changed",
+      "A secret that turned out to be harder to keep than you expected"
+    ];
+    let pool = [], flipped = false;
+    const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+    const card3d = document.getElementById('card3d');
+    const topicText = document.getElementById('topicText');
+    document.getElementById('drawBtn').onclick = () => {
+      if(pool.length===0) pool = shuffle(topics);
+      topicText.textContent = pool.pop();
+      if(flipped){ card3d.classList.remove('flipped'); setTimeout(()=>card3d.classList.add('flipped'),300); }
+      else { card3d.classList.add('flipped'); flipped = true; }
+    };
+  }
+  if(current === 1){
+    document.getElementById('revealOffer').onclick = () => document.getElementById('offerBox').classList.toggle('show');
+  }
+  if(current === 2){
+    const scenes = [
+      { name: "Eilis: start to finish",
+        facts: [
+          "<b>Beginning:</b> quiet, often in Rose's shadow, with few choices at home. She goes to America because other people arranged it.",
+          "<b>Middle:</b> in Brooklyn she builds a life of her own: a job, evening classes, exams passed, and Tony.",
+          "<b>End:</b> back in Enniscorthy she is admired by the town, offered work, and courted by Jim. She leaves again, but only once her secret has been exposed."
+        ],
+        ask: "Has Eilis changed over the book, or has only her situation changed?" },
+      { name: "Two places",
+        facts: [
+          "<b>Enniscorthy:</b> small and close. Everybody knows everybody, and her mother and the town expect certain things of her. In the last part, people notice her return and talk about her.",
+          "<b>Brooklyn:</b> crowded and mixed — Irish boarders, Italian-American Tony and his family, and the first Black customers at Bartocci's. It is also where she studies, works, and is known as herself.",
+          "The beach appears in both places: Coney Island with Tony, and the beach outings with Jim."
+        ],
+        ask: "Why might Tóibín set a similar scene in both places?" },
+      { name: "Secrets and letters",
+        facts: [
+          "Eilis's letters home leave out how hard Brooklyn is.",
+          "She tells Rose about Tony but leaves out that he is a plumber, and she says nothing to her mother.",
+          "She marries Tony in secret and tells no one in Ireland until Miss Kelly forces the truth.",
+          "At the end she leaves Jim a note instead of explaining face to face."
+        ],
+        ask: "Who is affected by Eilis's silence — and who is protected by it?" },
+      { name: "Choice or drift?",
+        facts: [
+          "At the beginning, Rose and Father Flood make the plan and Eilis goes along with it.",
+          "In Brooklyn, Tony asks and Eilis says yes to marriage. In Ireland, Jim asks about an engagement and she does not answer.",
+          "In the end, Miss Kelly's comment makes the decision urgent, and Eilis acts quickly."
+        ],
+        ask: "Is a decision still yours if someone else's move is what pushes you to make it?" },
+      { name: "How Tóibín tells it",
+        facts: [
+          "The story stays close to Eilis. We see what she sees and what she does, often more than we hear what she feels.",
+          "The language is plain and restrained. Big events, like Rose's death, are told quietly.",
+          "Small, ordinary details carry meaning: letters, thank-you notes, a hat and sunglasses, a note left at a door."
+        ],
+        ask: "What would change if Eilis told her own story in the first person?" },
+      { name: "The ending",
+        facts: [
+          "The book ends as Eilis leaves Enniscorthy. We do not see her arrive back in Brooklyn or meet Tony.",
+          "On the train she imagines Jim hearing that she has gone back to Brooklyn, and she smiles as she realizes those words will mean more to her as time passes.",
+          "The book is framed by two departures: Rose helps Eilis pack in the opening, and Eilis leaves Jim a note at the end. You can compare how each one is handled."
+        ],
+        ask: "Is this a happy ending, a sad one, or both — and why end before the reunion?" }
+    ];
+    const row = document.getElementById('sceneRow');
+    const box = document.getElementById('sceneBox');
+    scenes.forEach(s => {
+      const b = document.createElement('button');
+      b.className = 'chip';
+      b.textContent = s.name;
+      b.onclick = () => {
+        row.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+        b.classList.add('selected');
+        box.innerHTML = '<b>What you can say:</b><ul>' + s.facts.map(f => '<li>' + f + '</li>').join('') + '</ul><p style="margin-top:10px;"><b>Think about:</b> ' + s.ask + '</p>';
+        box.classList.add('show');
+      };
+      row.appendChild(b);
+    });
+    document.getElementById('revealShape2').onclick = () => document.getElementById('shapeBox2').classList.toggle('show');
+  }
+  if(current === 3){
+    const questions = [
+      { en: "How is Eilis different at the end of the book from the beginning — and how is she still the same?",
+        fr: "En quoi Eilis est-elle différente à la fin du livre par rapport au début — et en quoi est-elle restée la même ?" },
+      { en: "Why do you think Eilis doesn't tell her mother about Tony until the very end?",
+        fr: "Pourquoi penses-tu qu'Eilis ne parle de Tony à sa mère qu'à la toute fin ?" },
+      { en: "Is Jim a real alternative for Eilis, or is he mostly what the town wants for her?",
+        fr: "Jim est-il une vraie alternative pour Eilis, ou est-il surtout ce que la ville veut pour elle ?" },
+      { en: "Why do you think Tóibín ends the novel before Eilis arrives back in Brooklyn?",
+        fr: "Pourquoi penses-tu que Tóibín termine le roman avant qu'Eilis ne soit de retour à Brooklyn ?" },
+      { en: "Rose is gone for the last part of the book. Why does she still matter so much?",
+        fr: "Rose n'est plus là dans la dernière partie du livre. Pourquoi compte-t-elle encore autant ?" }
+    ];
+    let pool = [], drawn = 0;
+    const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+    const followNum = document.getElementById('followNum');
+    const followQEn = document.getElementById('followQEn');
+    const followQFr = document.getElementById('followQFr');
+    const followBtn = document.getElementById('followBtn');
+    followBtn.onclick = () => {
+      if(pool.length===0){ pool = shuffle(questions); drawn = 0; }
+      drawn++;
+      followNum.textContent = `Question ${drawn > questions.length ? questions.length : drawn} of ${questions.length}`;
+      const q = pool.pop();
+      followQEn.textContent = q.en;
+      followQFr.textContent = q.fr;
+      followBtn.textContent = 'Draw Another';
+    };
+  }
+  if(current === 4){
+    const rounds = [
+      { sentence: "Eilis learns that Rose has died.",
+        technique: "Use a different verb for \"learns\".",
+        example: "Eilis finds out that Rose has died in the night." },
+      { sentence: "Tony asks Eilis to marry him, and then she leaves for Ireland.",
+        technique: "Start with \"Before...\"",
+        example: "Before Eilis leaves for Ireland, Tony asks her to marry him." },
+      { sentence: "Tony is open about his feelings. Eilis keeps hers to herself.",
+        technique: "Join the two sentences with \"Whereas...\" or \"While...\"",
+        example: "Whereas Tony is open about his feelings, Eilis keeps hers to herself." },
+      { sentence: "Miss Kelly tells Eilis that she knows about the marriage.",
+        technique: "Say it more casually, like texting a friend.",
+        example: "Miss Kelly lets Eilis know she's heard about the wedding — so the secret's out." },
+      { sentence: "Eilis leaves a note at Jim's door and takes the train.",
+        technique: "Use \"Instead of...\" to show what she doesn't do.",
+        example: "Instead of explaining to Jim face to face, Eilis leaves a note at his door and takes the train." }
+    ];
+    let round = 0;
+    const rangeNum = document.getElementById('rangeNum');
+    const rangeSentence = document.getElementById('rangeSentence');
+    const rangeTechnique = document.getElementById('rangeTechnique');
+    const revealBtn = document.getElementById('revealRangeBtn');
+    const exampleBox = document.getElementById('rangeExampleBox');
+    const nextBtn2 = document.getElementById('nextRangeBtn');
+
+    const renderRound = () => {
+      const r = rounds[round];
+      rangeNum.textContent = `Round ${round+1} of 5`;
+      rangeSentence.textContent = r.sentence;
+      rangeTechnique.textContent = r.technique;
+      exampleBox.classList.remove('show');
+      exampleBox.textContent = '';
+      nextBtn2.textContent = round === rounds.length - 1 ? 'Restart Rounds' : 'Next Round';
+    };
+
+    revealBtn.onclick = () => {
+      exampleBox.textContent = `"${rounds[round].example}"`;
+      exampleBox.classList.add('show');
+    };
+    nextBtn2.onclick = () => {
+      round = round < rounds.length - 1 ? round + 1 : 0;
+      renderRound();
+    };
+    renderRound();
+  }
+  if(current === 5){
+    document.getElementById('revealShape').onclick = () => document.getElementById('shapeBox').classList.toggle('show');
+    let flipping = false;
+    const coin = document.getElementById('coin');
+    const coinFace = document.getElementById('coinFace');
+    const sideLabel = document.getElementById('sideLabel');
+    document.getElementById('flipBtn').onclick = () => {
+      if(flipping) return;
+      flipping = true;
+      coin.classList.remove('spin'); void coin.offsetWidth; coin.classList.add('spin');
+      setTimeout(()=>{
+        const forSide = Math.random()<0.5;
+        coinFace.textContent = forSide ? 'FOR' : 'AGAINST';
+        sideLabel.textContent = forSide ? 'Argue FOR — she chooses her own life' : 'Argue AGAINST — other people and events choose for her';
+        flipping = false;
+      },600);
+    };
+  }
+}
+
+stops.forEach(s => s.addEventListener('click', () => {
+  current = +s.dataset.i;
+  render();
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
+}));
+nextBtn.onclick = () => { if(current < content.length-1){ current++; render(); } };
+backBtn.onclick = () => { if(current > 0){ current--; render(); } };
+
+render();
+</script>
+
+<div id="kce-legal" style="display:block;clear:both;box-sizing:border-box;width:100%;margin:0;padding:10px 16px;background:#0A1F3D;color:#C9A84C;font:12px/1.4 Arial,sans-serif;text-align:center">&copy; 2026 KingCretot Experience. All rights reserved. Licensed for KCE students only. Do not copy, share or distribute.</div><script>(function(){var e=document.getElementById("kce-legal");if(!e)return;function place(){var r=document.documentElement,b=document.body,t=null,best=0,a=b?b.getElementsByTagName("*"):[];for(var i=0;i<a.length;i++){var x=a[i];if(x===e||e.contains(x))continue;if(x.scrollHeight>x.clientHeight+20&&x.clientHeight>innerHeight*0.5&&x.clientWidth>innerWidth*0.5){var o=getComputedStyle(x).overflowY;if((o==="auto"||o==="scroll")&&x.clientHeight*x.clientWidth>best){best=x.clientHeight*x.clientWidth;t=x}}}if(!t&&b){var bs=getComputedStyle(b),hs=getComputedStyle(r);if(/(hidden|clip)/.test(hs.overflowY)||(/(auto|scroll)/.test(bs.overflowY)&&b.scrollHeight>b.clientHeight+1))t=b;else t=r}if(t&&e.parentNode!==t)t.appendChild(e);var h=0;for(var j=0;j<a.length;j++){var s=getComputedStyle(a[j]);if(s.position==="fixed"&&s.display!=="none"&&s.visibility!=="hidden"&&!e.contains(a[j])){var q=a[j].getBoundingClientRect();if(q.height>0&&q.height<200&&q.bottom>=innerHeight-2&&q.width>innerWidth*0.5)h=Math.max(h,q.height)}}e.style.marginBottom=h?h+"px":"0"}if(document.readyState==="complete")setTimeout(place,50);else addEventListener("load",function(){setTimeout(place,50)})})();</script>
+</body>
+</html>
