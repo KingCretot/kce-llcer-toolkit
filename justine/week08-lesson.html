@@ -102,10 +102,6 @@
   .nav-btn:hover{background:var(--navy);color:#fff;}
   .nav-btn[disabled]{opacity:0;pointer-events:none;}
 
-  .note-card{background:var(--cream);border:2px solid var(--gold);border-radius:14px;padding:16px 18px;margin:12px 0;}
-  .note-label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin:8px 0 4px;}
-  .note-hint{font-size:14px;color:#4a5568;margin:0 0 6px;}
-
   footer{text-align:center;padding:20px;color:#9aa5b8;font-size:12.5px;}
 </style>
 </head>
@@ -118,11 +114,10 @@
   <div class="lesson-title">Week 8 — The Road</div>
   <div class="lesson-sub">Six stops. Your portfolio document — and learning to talk about it without reading.</div>
 
-  <div class="recap-banner"><b>Last week:</b> you told the whole story of <i>Brooklyn</i> and argued about who really decides Eilis's life. <b>This week:</b> a different kind of task. You choose a document that says something about who you are, and you learn to talk about it from notes, without reading. By the end of today you should know the three parts of your recording and have said each one out loud.</div>
+  <div class="recap-banner"><b>Last week:</b> you told the whole story of <i>Brooklyn</i> and argued about who really decides Eilis's life. <b>This week:</b> a different kind of task. You choose a document that says something about who you are, and you learn to talk about it without reading. By the end of today you should have a position of your own on what the Rockwell painting means, and have said it out loud.</div>
 
   <div class="notes-link-wrap">
     <a class="notes-link" href="https://kingcretot.github.io/kce-llcer-toolkit/justine/triple-self-portrait-notes.html" target="_blank">Notes: Triple Self-Portrait</a>
-    <a class="notes-link" href="https://kingcretot.github.io/kce-llcer-toolkit/justine/week08-note-card.html" target="_blank">After the lesson: My Note Card</a>
   </div>
 
   <div class="road-wrap">
@@ -135,7 +130,7 @@
     <div class="stop" data-i="1" style="left:78.6%;top:23.3%;">2</div>
     <div class="stop-label" style="left:78.6%;top:30.5%;">Look First</div>
     <div class="stop" data-i="2" style="left:21.4%;top:38.9%;">3</div>
-    <div class="stop-label" style="left:21.4%;top:46%;">The Theme</div>
+    <div class="stop-label" style="left:21.4%;top:46%;">What It Means</div>
     <div class="stop" data-i="3" style="left:78.6%;top:54.4%;">4</div>
     <div class="stop-label" style="left:78.6%;top:61.5%;">Follow-Up</div>
     <div class="stop" data-i="4" style="left:21.4%;top:70%;">5</div>
@@ -200,22 +195,34 @@ const content = [
       <li><b>The extras.</b> Around the top of the canvas are pinned self-portraits by famous artists of the past. Look for names such as Dürer, Rembrandt, Picasso, and Van Gogh.</li>
     </ul>
   </div>
+  <button class="reveal-btn" id="revealAgain">Look Again</button>
+  <div class="reveal-box" id="againBox">
+    Now that you know the facts, look a second time and answer out loud:
+    <ul>
+      <li>Where is the painter looking? Where are <i>we</i>, the viewers, standing?</li>
+      <li>Which of the three faces can we see best? Which can we not see at all?</li>
+      <li>Put the reflection and the face on the canvas side by side. What is the same? What is different?</li>
+      <li>Why would a painter pin famous self-portraits next to his own?</li>
+    </ul>
+  </div>
 `,
 // STOP 2 — THE THEME
 () => `
   <div class="panel-badge">Stop 3</div>
-  <div class="panel-title">The Theme</div>
-  <p>Your school theme is <i>expression et construction de soi</i>: how people express who they are, and how they build an image of themselves. Click each card, say what you could say about it, then decide which two are the strongest for this painting.</p>
+  <div class="panel-title">What It Means</div>
+  <p>Your school theme is <i>expression et construction de soi</i>: how people express who they are, and how they build an image of themselves. Click each card and say what you think about it. Then form your own position.</p>
   <div class="chip-row" id="themeRow"></div>
   <div class="reveal-box" id="themeBox"></div>
-  <p style="margin-top:22px;"><b>Your three parts.</b> This is the shape of your recording. For each part, say out loud the three to five keywords you would put on a note card. Keywords only, never full sentences.</p>
-  <div class="note-card">
-    <div class="note-label">1. Introduce the document</div>
-    <div class="note-hint">Who made it? What is it? When? Where have I seen it?</div>
-    <div class="note-label">2. What it represents &mdash; and the link to the theme</div>
-    <div class="note-hint">What does it show? Which idea about expressing or building yourself? Which detail proves it?</div>
-    <div class="note-label">3. Why I chose it</div>
-    <div class="note-hint">What does it mean to me? What do I notice that other people might not?</div>
+  <p style="margin-top:22px;"><b>Now find your position.</b> Finish this sentence out loud, in your own words: <i>"Rockwell's painting suggests that expressing who you are and building an image of yourself are&hellip;"</i> Then prove it with one detail you can point to.</p>
+  <button class="reveal-btn" id="revealReadings">Three Ways People Read It</button>
+  <div class="reveal-box" id="readingsBox">
+    These are starting points, not answers. Yours can be one of them, a mix, or something else:
+    <ul>
+      <li><b>They are the same thing.</b> Showing yourself always means choosing how to show yourself. Every self-portrait is both.</li>
+      <li><b>They pull against each other.</b> The more carefully you build an image, the more it can hide the person underneath.</li>
+      <li><b>You can never see yourself completely.</b> You need mirrors, canvases, and other people, and each one gives you only a version.</li>
+    </ul>
+    <p style="margin-top:10px;"><b>Test your position:</b> Which detail in the painting supports it? What would someone who disagrees point to?</p>
   </div>
   <button class="reveal-btn" id="revealStarters">Sentence Starters</button>
   <div class="reveal-box" id="startersBox">
@@ -279,15 +286,14 @@ const content = [
   <div class="reveal-box show" style="margin-top:14px;">
     <b>Before you record:</b>
     <ul>
-      <li>Write your keywords for the three parts on the note card page, or on paper.</li>
-      <li>Say the whole thing out loud twice without reading. It's fine if the words change each time.</li>
+      <li>Say your position in two sentences, then support it with one detail from the painting.</li>
+      <li>Plan your recording in three parts: introduce the document, what it represents and how it links to the theme, and why you chose it. Say it out loud twice without reading. It's fine if the words change each time.</li>
       <li>Make sure your reason for choosing the document is your own.</li>
       <li>Upload the document to the digital wall along with your recording.</li>
     </ul>
   </div>
   <div style="text-align:center;margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
     <a class="notes-link" href="https://kingcretot.github.io/kce-llcer-toolkit/justine/triple-self-portrait-notes.html" target="_blank">Notes: Triple Self-Portrait</a>
-    <a class="notes-link" href="https://kingcretot.github.io/kce-llcer-toolkit/justine/week08-note-card.html" target="_blank">After the lesson: My Note Card</a>
   </div>
 `
 ];
@@ -332,6 +338,7 @@ function wireStop(){
   }
   if(current === 1){
     document.getElementById('revealLook').onclick = () => document.getElementById('lookBox').classList.toggle('show');
+    document.getElementById('revealAgain').onclick = () => document.getElementById('againBox').classList.toggle('show');
   }
   if(current === 2){
     const ideas = [
@@ -392,6 +399,7 @@ function wireStop(){
       };
       row.appendChild(b);
     });
+    document.getElementById('revealReadings').onclick = () => document.getElementById('readingsBox').classList.toggle('show');
     document.getElementById('revealStarters').onclick = () => document.getElementById('startersBox').classList.toggle('show');
   }
   if(current === 3){
