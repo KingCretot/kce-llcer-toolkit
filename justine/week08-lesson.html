@@ -136,7 +136,7 @@
     <div class="stop" data-i="4" style="left:21.4%;top:70%;">5</div>
     <div class="stop-label" style="left:21.4%;top:77%;">Range Practice</div>
     <div class="stop" data-i="5" style="left:78.6%;top:85.6%;">6</div>
-    <div class="stop-label" style="left:78.6%;top:92.7%;">Argue It</div>
+    <div class="stop-label" style="left:78.6%;top:92.7%;">Argue &amp; Run It</div>
   </div>
 
   <div class="panel" id="panel"></div>
@@ -177,10 +177,10 @@ const content = [
   <div class="panel-badge">Stop 2</div>
   <div class="panel-title">Look First</div>
   <p>Today's document is Norman Rockwell's <i>Triple Self-Portrait</i>. Before you check anything, look at it for a full minute. Then describe it out loud, as if you were talking to a friend who can't see it. Go in order, and say what you see before you say what you think it means.</p>
-  <figure style="margin:6px 0 16px;text-align:center;"><img src="triple-self-portrait.jpg" alt="Norman Rockwell, Triple Self-Portrait, 1960: a painter seen from behind, a mirror reflection of his face, and a portrait on the canvas" style="max-width:100%;max-height:75vh;width:auto;height:auto;border-radius:8px;box-shadow:0 8px 20px rgba(10,31,61,0.2);"><figcaption style="font-size:12px;color:#5c6a80;margin-top:6px;">Norman Rockwell, <i>Triple Self-Portrait</i>, 1960. Image: Norman Rockwell Museum.</figcaption></figure>
+  <figure style="margin:6px 0 16px;text-align:center;"><img src="triple-self-portrait.jpg" alt="Norman Rockwell, Triple Self-Portrait, 1960: a painter seen from behind, a mirror reflection of his face, and a portrait on the canvas" style="max-width:100%;max-height:75vh;width:auto;height:auto;border-radius:8px;box-shadow:0 8px 20px rgba(10,31,61,0.2);"><figcaption style="font-size:12px;color:#5c6a80;margin-top:6px;">Norman Rockwell, <i>Triple Self-Portrait</i> (painted 1959, published 1960). Image: Norman Rockwell Museum.</figcaption></figure>
   <div class="prompt-list">
     <div class="prompt-item">Who is in the picture, and what is he doing?</div>
-    <div class="prompt-item">How many versions of this man can you find? Where is each one?</div>
+    <div class="prompt-item">How many versions of this man can you find (at least three)? Where is each one?</div>
     <div class="prompt-item">What is in the foreground? What is in the background?</div>
     <div class="prompt-item">What is pinned up around the canvas?</div>
     <div class="prompt-item">What is the mood — serious, funny, calm, something else? What makes you say that?</div>
@@ -190,10 +190,10 @@ const content = [
     Compare this with your description. If you missed something, add it and say it again:
     <ul>
       <li><b>The artist.</b> Norman Rockwell was an American painter and illustrator. He was best known for the covers he painted for <i>The Saturday Evening Post</i>, a popular magazine.</li>
-      <li><b>The document.</b> <i>Triple Self-Portrait</i> is an oil painting that appeared on the cover of the <i>Post</i> in February 1960.</li>
+      <li><b>The document.</b> <i>Triple Self-Portrait</i> is an oil painting. Rockwell painted it in 1959, and it appeared on the cover of the <i>Post</i> in February 1960.</li>
       <li><b>The scene.</b> We see the painter from behind. He is sitting in front of a canvas and looking into a mirror.</li>
       <li><b>The three versions.</b> There is Rockwell seen from behind, Rockwell's reflection in the mirror, and the portrait he is painting on the canvas.</li>
-      <li><b>The extras.</b> Around the top of the canvas are pinned self-portraits by famous artists of the past. Look for names such as Dürer, Rembrandt, Picasso, and Van Gogh.</li>
+      <li><b>The extras.</b> At the upper right of the canvas are pinned small reproductions of self-portraits by famous artists of the past. Look for names such as Dürer, Rembrandt, Picasso, and Van Gogh.</li>
     </ul>
   </div>
   <button class="reveal-btn" id="revealAgain">Look Again</button>
@@ -203,8 +203,19 @@ const content = [
       <li>Where is the painter looking? Where are <i>we</i>, the viewers, standing?</li>
       <li>Which of the three faces can we see best? Which can we not see at all?</li>
       <li>Put the reflection and the face on the canvas side by side. What is the same? What is different?</li>
-      <li>Which of the three faces wears glasses? Which one doesn't? Why might that matter?</li>
+      <li>Which versions of him wear glasses, and which one doesn't? Can you see his eyes in the mirror? Why might that matter?</li>
       <li>Why would a painter pin famous self-portraits next to his own?</li>
+    </ul>
+  </div>
+  <button class="reveal-btn" id="revealWords1">Words for What You See</button>
+  <div class="reveal-box" id="words1Box">
+    Try to use some of these when you describe the picture:
+    <ul>
+      <li><b>Things in the picture:</b> a stool, a palette, a paintbrush, a pipe, glasses, a mirror with a gold frame, an easel, a canvas, a helmet, an eagle, a bucket, a sketch</li>
+      <li><b>Where:</b> in the foreground, in the background, at the top, at the upper right, on the left, behind him, in front of him</li>
+      <li><b>Describing the man:</b> gray hair, wrinkles, thinner, younger-looking, serious, amused, focused</li>
+      <li><b>What he is doing:</b> to paint, to study, to look at himself, to hold a brush, to sit with his back to us</li>
+      <li><b>The big idea:</b> a painting within a painting; an artist painting a self-portrait; a self-portrait of a man painting a self-portrait</li>
     </ul>
   </div>
 `,
@@ -226,6 +237,26 @@ const content = [
     </ul>
     <p style="margin-top:10px;"><b>Test your position:</b> Which detail in the painting supports it? What would someone who disagrees point to?</p>
   </div>
+  <button class="reveal-btn" id="revealWords2">Words for the Idea</button>
+  <div class="reveal-box" id="words2Box">
+    <ul>
+      <li><b>Identity and image:</b> identity, self-image, appearance, persona, to come across as, to put on a front, authentic</li>
+      <li><b>Honest or not:</b> honest, truthful, flattering, idealized, to stretch the truth, to hide, to reveal</li>
+      <li><b>Tone:</b> playful, witty, self-mocking, modest, tongue-in-cheek, ambiguous</li>
+      <li><b>Making a point:</b> to convey, to represent, to suggest, to raise the question of, to make the viewer wonder</li>
+      <li><b>Expression and construction:</b> to express yourself, to build an image, to shape how others see you</li>
+    </ul>
+  </div>
+  <button class="reveal-btn" id="revealPart2">How to Build Part 2</button>
+  <div class="reveal-box" id="part2Box">
+    Four moves, in this order, in your own words:
+    <ul>
+      <li><b>Describe:</b> what the painting shows, in one or two sentences.</li>
+      <li><b>Interpret:</b> what you think it means.</li>
+      <li><b>Link:</b> how that connects to expressing and building yourself.</li>
+      <li><b>Prove:</b> one detail you can point to.</li>
+    </ul>
+  </div>
   <button class="reveal-btn" id="revealStarters">Sentence Starters</button>
   <div class="reveal-box" id="startersBox">
     Use these to get going — then use your own words:
@@ -233,7 +264,7 @@ const content = [
       <li><b>Introduce:</b> "The document I chose is… It was made by… in…"</li>
       <li><b>Represent:</b> "What it shows is… In the foreground… In the background… It seems to…"</li>
       <li><b>Link:</b> "This connects to the theme because… One detail that shows this is…"</li>
-      <li><b>Why:</b> "I chose it because… What I find interesting is… For me, it…"</li>
+      <li><b>Why:</b> "I chose it because… What I find interesting is… For me, it…" To find your reason, ask yourself: What was the first thing I noticed? When have I shown one version of myself and kept another back? Which of the three Rockwells is closest to me?</li>
     </ul>
   </div>
 `,
@@ -266,7 +297,7 @@ const content = [
 // STOP 5 — ARGUE IT
 () => `
   <div class="panel-badge">Stop 6</div>
-  <div class="panel-title">Argue the Other Side</div>
+  <div class="panel-title">Argue &amp; Run It</div>
   <p>Every self-portrait raises the same question: is the artist showing us the truth, or the version he prefers? Rockwell makes the question part of the picture.</p>
   <p style="font-weight:700;font-size:17px;color:var(--navy);">"Does Rockwell show us who he really is — or who he wants us to see?"</p>
   <p>Flip the coin — whatever it lands on is your side. You can't have prepared an answer for a position you didn't choose.</p>
@@ -284,12 +315,21 @@ const content = [
     </ul>
   </div>
   <p style="margin-top:16px;font-weight:600;">Now argue it — don't stop until you've said everything you can.</p>
+  <p style="margin-top:22px;font-weight:700;color:var(--navy);">Now run it for real.</p>
+  <p>Take a moment and say out loud three keywords for each part. Then give your talk from start to finish, the way you will record it. Don't read, and don't stop to fix mistakes.</p>
+  <div class="reveal-box show" style="margin-top:6px;">
+    <ul>
+      <li><b>Part 1 &mdash; Introduce the document:</b> who made it, what it is, when.</li>
+      <li><b>Part 2 &mdash; What it represents and the link to the theme:</b> describe, interpret, link, prove with one detail.</li>
+      <li><b>Part 3 &mdash; Why I chose it:</b> your own reason.</li>
+    </ul>
+  </div>
   <p style="margin-top:22px;text-align:center;color:#5c6a80;font-size:13.5px;">That's the Road for today. Before you go, say one phrase out loud that you want to keep from this lesson.</p>
   <div class="reveal-box show" style="margin-top:14px;">
     <b>Before you record:</b>
     <ul>
       <li>Say your position in two sentences, then support it with one detail from the painting.</li>
-      <li>Plan your recording in three parts: introduce the document, what it represents and how it links to the theme, and why you chose it. Say it out loud twice without reading. It's fine if the words change each time.</li>
+      <li>Say the three parts out loud again on your own, twice, without reading. It's fine if the words change each time.</li>
       <li>Make sure your reason for choosing the document is your own.</li>
       <li>Upload the document to the digital wall along with your recording.</li>
     </ul>
@@ -340,6 +380,7 @@ function wireStop(){
   }
   if(current === 1){
     document.getElementById('revealLook').onclick = () => document.getElementById('lookBox').classList.toggle('show');
+    document.getElementById('revealWords1').onclick = () => document.getElementById('words1Box').classList.toggle('show');
     document.getElementById('revealAgain').onclick = () => document.getElementById('againBox').classList.toggle('show');
   }
   if(current === 2){
@@ -355,12 +396,13 @@ function wireStop(){
         facts: [
           "A mirror is how most people check what they look like.",
           "In the painting, the mirror is also a tool: he looks at it to paint himself.",
+          "But the mirror does not give him a clear view: in the reflection, his glasses are blank white discs and his eyes are hidden.",
           "Looking at yourself closely means you are also judging yourself."
         ],
         ask: "What do you see when you look in a mirror — and what do you want other people to see?" },
       { name: "The canvas",
         facts: [
-          "The portrait on the canvas is the one that will be shown to other people.",
+          "The portrait on the canvas is the version he is choosing to build, and it may be the one other people will see.",
           "Compare it with the reflection in the mirror. Look closely: what did the painter keep, and what did he change?",
           "A portrait is a choice. The artist decides what stays in and what stays out."
         ],
@@ -396,11 +438,14 @@ function wireStop(){
       b.onclick = () => {
         row.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
         b.classList.add('selected');
-        box.innerHTML = '<b>What you can say:</b><ul>' + s.facts.map(f => '<li>' + f + '</li>').join('') + '</ul><p style="margin-top:10px;"><b>Think about:</b> ' + s.ask + '</p>';
+        box.innerHTML = '<p><b>Say what you think:</b> ' + s.ask + '</p><button class="reveal-btn" id="moreBtn">A detail that might help</button><ul id="moreList" style="display:none;padding-left:18px;margin-top:8px;">' + s.facts.map(f => '<li>' + f + '</li>').join('') + '</ul>';
         box.classList.add('show');
+        document.getElementById('moreBtn').onclick = () => { const l = document.getElementById('moreList'); l.style.display = l.style.display === 'none' ? 'block' : 'none'; };
       };
       row.appendChild(b);
     });
+    document.getElementById('revealWords2').onclick = () => document.getElementById('words2Box').classList.toggle('show');
+    document.getElementById('revealPart2').onclick = () => document.getElementById('part2Box').classList.toggle('show');
     document.getElementById('revealReadings').onclick = () => document.getElementById('readingsBox').classList.toggle('show');
     document.getElementById('revealStarters').onclick = () => document.getElementById('startersBox').classList.toggle('show');
   }
@@ -424,7 +469,7 @@ function wireStop(){
     const followQFr = document.getElementById('followQFr');
     const followBtn = document.getElementById('followBtn');
     followBtn.onclick = () => {
-      if(pool.length===0){ pool = shuffle(questions); drawn = 0; }
+      if(pool.length===0){ pool = shuffle(questions.slice(1)); pool.push(questions[0]); drawn = 0; }
       drawn++;
       followNum.textContent = `Question ${drawn > questions.length ? questions.length : drawn} of ${questions.length}`;
       const q = pool.pop();
@@ -440,16 +485,16 @@ function wireStop(){
         example: "The painter studies his reflection in the mirror." },
       { sentence: "Rockwell sits in front of the canvas. He looks into the mirror.",
         technique: "Join the two sentences with \"While...\"",
-        example: "While he sits in front of the canvas, Rockwell looks into the mirror." },
+        example: "While he is sitting in front of the canvas, Rockwell is looking into the mirror." },
       { sentence: "The portrait on the canvas is different from the reflection in the mirror.",
         technique: "Add \"seems to\" or \"as if\" to give your impression.",
-        example: "The portrait on the canvas seems to show a kinder version of him than the mirror does." },
+        example: "The portrait on the canvas seems to show a more flattering version of him than the mirror does." },
       { sentence: "This painting makes you wonder what a self-portrait really tells us.",
         technique: "Say it more casually, like talking to a friend.",
         example: "Basically, it makes you wonder if a self-portrait is ever totally honest." },
-      { sentence: "Rockwell shows his back and a reflection. He doesn't show his face straight on.",
+      { sentence: "Rockwell paints his back and a reflection. He never shows his real face straight on.",
         technique: "Use \"Instead of...\" to show what he doesn't do.",
-        example: "Instead of showing his face straight on, Rockwell shows his back and a reflection." }
+        example: "Instead of showing his real face straight on, Rockwell paints his back, a reflection, and a portrait." }
     ];
     let round = 0;
     const rangeNum = document.getElementById('rangeNum');
