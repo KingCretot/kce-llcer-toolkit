@@ -102,6 +102,10 @@
   .nav-btn:hover{background:var(--navy);color:#fff;}
   .nav-btn[disabled]{opacity:0;pointer-events:none;}
 
+  .qa-btn{font-family:'Quicksand',sans-serif;font-size:13px;font-weight:700;padding:6px 16px;border:2px solid var(--blue);border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;align-self:flex-start;margin-top:-4px;}
+  .qa-btn:hover{background:var(--blue);color:#fff;}
+  .prompt-list .reveal-box{margin-top:0;}
+
   footer{text-align:center;padding:20px;color:#9aa5b8;font-size:12.5px;}
 </style>
 </head>
@@ -180,32 +184,38 @@ const content = [
   <figure style="margin:6px 0 16px;text-align:center;"><img src="triple-self-portrait.jpg" alt="Norman Rockwell, Triple Self-Portrait, 1960: a painter seen from behind, a mirror reflection of his face, and a portrait on the canvas" style="max-width:100%;max-height:75vh;width:auto;height:auto;border-radius:8px;box-shadow:0 8px 20px rgba(10,31,61,0.2);"><figcaption style="font-size:12px;color:#5c6a80;margin-top:6px;">Norman Rockwell, <i>Triple Self-Portrait</i> (painted 1959, published 1960). Image: Norman Rockwell Museum.</figcaption></figure>
   <div class="prompt-list">
     <div class="prompt-item">Who is in the picture, and what is he doing?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box"><b>Norman Rockwell</b>, an American painter and illustrator best known for the covers he painted for <i>The Saturday Evening Post</i>. We see him from behind, sitting on a stool in front of a canvas. He is looking into a mirror and painting his own portrait.</div>
     <div class="prompt-item">How many versions of this man can you find (at least three)? Where is each one?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box"><ul><li>The painter seen from behind, in the foreground.</li><li>His reflection in the mirror, on the left.</li><li>The portrait he is painting on the canvas, in the center.</li></ul>That is why the title is <i>Triple Self-Portrait</i>. It is an oil painting. Rockwell painted it in 1959, and it appeared on the cover of the <i>Post</i> in February 1960.</div>
     <div class="prompt-item">What is in the foreground? What is in the background?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box"><b>Foreground:</b> the painter on his stool, with a small red stool or table on the left (with a book and glasses on it) and a bucket on the right. <b>Background:</b> the easel with the canvas, the gold mirror, and a plain white space behind everything.</div>
     <div class="prompt-item">What is pinned up around the canvas?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box">At the upper right of the canvas are small reproductions of self-portraits by famous artists: Dürer, Rembrandt, Picasso, and Van Gogh. At the left of the canvas, a small sheet of face sketches is pinned up too.</div>
     <div class="prompt-item">What is the mood — serious, funny, calm, something else? What makes you say that?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box">There is no single right answer. Many people find it both serious and playful: the artist is studying himself carefully, but there is humor too, such as the pipe in all three versions, the helmet on top of the easel, and his decision to put himself next to the great masters. Say what <i>you</i> feel, and point to a detail that makes you say it.</div>
   </div>
-  <button class="reveal-btn" id="revealLook">Check What You Saw</button>
-  <div class="reveal-box" id="lookBox">
-    Compare this with your description. If you missed something, add it and say it again:
-    <ul>
-      <li><b>The artist.</b> Norman Rockwell was an American painter and illustrator. He was best known for the covers he painted for <i>The Saturday Evening Post</i>, a popular magazine.</li>
-      <li><b>The document.</b> <i>Triple Self-Portrait</i> is an oil painting. Rockwell painted it in 1959, and it appeared on the cover of the <i>Post</i> in February 1960.</li>
-      <li><b>The scene.</b> We see the painter from behind. He is sitting in front of a canvas and looking into a mirror.</li>
-      <li><b>The three versions.</b> There is Rockwell seen from behind, Rockwell's reflection in the mirror, and the portrait he is painting on the canvas.</li>
-      <li><b>The extras.</b> At the upper right of the canvas are pinned small reproductions of self-portraits by famous artists of the past. Look for names such as Dürer, Rembrandt, Picasso, and Van Gogh.</li>
-    </ul>
-  </div>
-  <button class="reveal-btn" id="revealAgain">Look Again</button>
-  <div class="reveal-box" id="againBox">
-    Now that you know the facts, look a second time and answer out loud:
-    <ul>
-      <li>Where is the painter looking? Where are <i>we</i>, the viewers, standing?</li>
-      <li>Which of the three faces can we see best? Which can we not see at all?</li>
-      <li>Put the reflection and the face on the canvas side by side. What is the same? What is different?</li>
-      <li>Which versions of him wear glasses, and which one doesn't? Can you see his eyes in the mirror? Why might that matter?</li>
-      <li>Why would a painter pin famous self-portraits next to his own?</li>
-    </ul>
+  <p style="margin-top:20px;"><b>Look again.</b> Now that you know the facts, look a second time and answer out loud:</p>
+  <div class="prompt-list">
+    <div class="prompt-item">Where is the painter looking? Where are <i>we</i>, the viewers, standing?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box">He is looking at the mirror, not at us. We are standing behind him, almost looking over his shoulder.</div>
+    <div class="prompt-item">Which of the three faces can we see best? Which can we not see at all?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box">The face on the canvas is the clearest. The face in the mirror is only partly clear (see the eyes below). The painter's real face, the one looking at the mirror, we can never see directly.</div>
+    <div class="prompt-item">Put the reflection and the face on the canvas side by side. What is the same? What is different?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box"><b>The same:</b> the pipe and the gray hair. <b>Different:</b> the glasses, the eyes, the expression, and how flattering each face is. Sources describe the canvas version as the more flattering one. Say what <i>you</i> notice first.</div>
+    <div class="prompt-item">Which versions of him wear glasses, and which one doesn't? Can you see his eyes in the mirror? Why might that matter?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box">The painter from behind and the reflection both wear glasses. In the mirror, the lenses are blank white discs, so his eyes are hidden. The face on the canvas has no glasses, and its eyes are clear. It can matter because the version he is building is clearer than the one he sees in the mirror. We can see ourselves only imperfectly.</div>
+    <div class="prompt-item">Why would a painter pin famous self-portraits next to his own?</div>
+    <button class="qa-btn">Show answer</button>
+    <div class="reveal-box">There are several good answers: respect for the masters, ambition (to join their tradition), humor (a magazine illustrator among the greats), or learning from them. Pick one and explain why.</div>
   </div>
   <button class="reveal-btn" id="revealWords1">Words for What You See</button>
   <div class="reveal-box" id="words1Box">
@@ -379,9 +389,8 @@ function wireStop(){
     };
   }
   if(current === 1){
-    document.getElementById('revealLook').onclick = () => document.getElementById('lookBox').classList.toggle('show');
+    document.querySelectorAll('.qa-btn').forEach(btn => { btn.onclick = () => { const box = btn.nextElementSibling; box.classList.toggle('show'); btn.textContent = box.classList.contains('show') ? 'Hide answer' : 'Show answer'; }; });
     document.getElementById('revealWords1').onclick = () => document.getElementById('words1Box').classList.toggle('show');
-    document.getElementById('revealAgain').onclick = () => document.getElementById('againBox').classList.toggle('show');
   }
   if(current === 2){
     const ideas = [
