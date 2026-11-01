@@ -102,6 +102,8 @@
   .nav-btn:hover{background:var(--navy);color:#fff;}
   .nav-btn[disabled]{opacity:0;pointer-events:none;}
 
+  .step-h{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--navy);margin:26px 0 8px;padding-top:14px;border-top:2px solid var(--gold);}
+  .step-n{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--navy);color:var(--gold);font-size:15px;margin-right:8px;}
   .qa-btn{font-family:'Quicksand',sans-serif;font-size:13px;font-weight:700;padding:6px 16px;border:2px solid var(--blue);border-radius:999px;background:transparent;color:var(--blue);cursor:pointer;align-self:flex-start;margin-top:-4px;}
   .qa-btn:hover{background:var(--blue);color:#fff;}
   .prompt-list .reveal-box{margin-top:0;}
@@ -186,7 +188,7 @@ const content = [
     <div class="prompt-item">Who is in the picture, and what is he doing?</div>
     <button class="qa-btn">Show answer</button>
     <div class="reveal-box"><b>Norman Rockwell</b>, an American painter and illustrator best known for the covers he painted for <i>The Saturday Evening Post</i>. We see him from behind, sitting on a stool in front of a canvas. He is looking into a mirror and painting his own portrait.</div>
-    <div class="prompt-item">How many versions of this man can you find (at least three)? Where is each one?</div>
+    <div class="prompt-item">How many versions of this man can you find? Where is each one?</div>
     <button class="qa-btn">Show answer</button>
     <div class="reveal-box"><ul><li>The painter seen from behind, in the foreground.</li><li>His reflection in the mirror, on the left.</li><li>The portrait he is painting on the canvas, in the center.</li></ul>That is why the title is <i>Triple Self-Portrait</i>. It is an oil painting. Rockwell painted it in 1959, and it appeared on the cover of the <i>Post</i> in February 1960.</div>
     <div class="prompt-item">What is in the foreground? What is in the background?</div>
@@ -233,11 +235,16 @@ const content = [
 () => `
   <div class="panel-badge">Stop 3</div>
   <div class="panel-title">What It Means</div>
-  <p>Your school theme is <i>expression et construction de soi</i>: how people express who they are, and how they build an image of themselves. Click each card and say what you think about it. Then form your own position.</p>
+  <p>Your school theme is <i>expression et construction de soi</i>: how people express who they are, and how they build an image of themselves. In this stop you will go from the painting to your own idea about it, in three steps.</p>
+
+  <div class="step-h"><span class="step-n">1</span> Explore the ideas</div>
+  <p>Click a card. Answer its question out loud. Then, if you want, open the detail. Try two or three cards, whichever interest you most.</p>
   <div class="chip-row" id="themeRow"></div>
   <div class="reveal-box" id="themeBox"></div>
-  <p style="margin-top:22px;"><b>Now find your position.</b> Finish this sentence out loud, in your own words: <i>"Rockwell's painting suggests that expressing who you are and building an image of yourself are&hellip;"</i> Then prove it with one detail you can point to.</p>
-  <button class="reveal-btn" id="revealReadings">Three Ways People Read It</button>
+
+  <div class="step-h"><span class="step-n">2</span> Say your position</div>
+  <p>Finish this sentence out loud, in your own words: <i>"Rockwell's painting suggests that expressing who you are and building an image of yourself are&hellip;"</i></p>
+  <button class="reveal-btn" id="revealReadings">After you answer: Three Ways People Read It</button>
   <div class="reveal-box" id="readingsBox">
     These are starting points, not answers. Yours can be one of them, a mix, or something else:
     <ul>
@@ -245,8 +252,22 @@ const content = [
       <li><b>They pull against each other.</b> The more carefully you build an image, the more it can hide the person underneath.</li>
       <li><b>You can never see yourself completely.</b> You need mirrors, canvases, and other people, and each one gives you only a version.</li>
     </ul>
-    <p style="margin-top:10px;"><b>Test your position:</b> Which detail in the painting supports it? What would someone who disagrees point to?</p>
   </div>
+
+  <div class="step-h"><span class="step-n">3</span> Back it up</div>
+  <p>Now prove your position with one detail you can point to in the painting. What would someone who disagrees point to?</p>
+  <button class="reveal-btn" id="revealPart2">The Four Moves for Part 2 of Your Talk</button>
+  <div class="reveal-box" id="part2Box">
+    In your recording, the middle part follows four moves, in your own words:
+    <ul>
+      <li><b>Describe:</b> what the painting shows, in one or two sentences.</li>
+      <li><b>Interpret:</b> what you think it means.</li>
+      <li><b>Link:</b> how that connects to expressing and building yourself.</li>
+      <li><b>Prove:</b> one detail you can point to.</li>
+    </ul>
+  </div>
+
+  <div class="step-h" style="font-size:16px;">Need help finding words?</div>
   <button class="reveal-btn" id="revealWords2">Words for the Idea</button>
   <div class="reveal-box" id="words2Box">
     <ul>
@@ -257,19 +278,9 @@ const content = [
       <li><b>Expression and construction:</b> to express yourself, to build an image, to shape how others see you</li>
     </ul>
   </div>
-  <button class="reveal-btn" id="revealPart2">How to Build Part 2</button>
-  <div class="reveal-box" id="part2Box">
-    Four moves, in this order, in your own words:
-    <ul>
-      <li><b>Describe:</b> what the painting shows, in one or two sentences.</li>
-      <li><b>Interpret:</b> what you think it means.</li>
-      <li><b>Link:</b> how that connects to expressing and building yourself.</li>
-      <li><b>Prove:</b> one detail you can point to.</li>
-    </ul>
-  </div>
   <button class="reveal-btn" id="revealStarters">Sentence Starters</button>
   <div class="reveal-box" id="startersBox">
-    Use these to get going — then use your own words:
+    Use these to get going, then use your own words:
     <ul>
       <li><b>Introduce:</b> "The document I chose is… It was made by… in…"</li>
       <li><b>Represent:</b> "What it shows is… In the foreground… In the background… It seems to…"</li>
@@ -308,6 +319,8 @@ const content = [
 () => `
   <div class="panel-badge">Stop 6</div>
   <div class="panel-title">Argue &amp; Run It</div>
+
+  <div class="step-h"><span class="step-n">A</span> Argue it</div>
   <p>Every self-portrait raises the same question: is the artist showing us the truth, or the version he prefers? Rockwell makes the question part of the picture.</p>
   <p style="font-weight:700;font-size:17px;color:var(--navy);">"Does Rockwell show us who he really is — or who he wants us to see?"</p>
   <p>Flip the coin — whatever it lands on is your side. You can't have prepared an answer for a position you didn't choose.</p>
@@ -325,25 +338,38 @@ const content = [
     </ul>
   </div>
   <p style="margin-top:16px;font-weight:600;">Now argue it — don't stop until you've said everything you can.</p>
-  <p style="margin-top:22px;font-weight:700;color:var(--navy);">Now run it for real.</p>
-  <p>Take a moment and say out loud three keywords for each part. Then give your talk from start to finish, the way you will record it. Don't read, and don't stop to fix mistakes.</p>
+
+  <div class="step-h"><span class="step-n">B</span> Run it: the real thing</div>
+  <p>This is your assignment, said out loud. Give your talk in three parts, from start to finish, as if you were recording it. Don't read, and don't stop to fix mistakes. If you lose your place, pause, take a breath, and keep going.</p>
   <div class="reveal-box show" style="margin-top:6px;">
     <ul>
       <li><b>Part 1 &mdash; Introduce the document:</b> who made it, what it is, when.</li>
-      <li><b>Part 2 &mdash; What it represents and the link to the theme:</b> describe, interpret, link, prove with one detail.</li>
+      <li><b>Part 2 &mdash; What it represents and the link to the theme:</b> describe, interpret, link, and prove with one detail.</li>
       <li><b>Part 3 &mdash; Why I chose it:</b> your own reason.</li>
     </ul>
   </div>
-  <p style="margin-top:22px;text-align:center;color:#5c6a80;font-size:13.5px;">That's the Road for today. Before you go, say one phrase out loud that you want to keep from this lesson.</p>
-  <div class="reveal-box show" style="margin-top:14px;">
-    <b>Before you record:</b>
+  <p>First, say out loud three keywords for each part. Then begin.</p>
+  <button class="reveal-btn" id="revealModel">Want to hear what it sounds like first? A model on a different painting</button>
+  <div class="reveal-box" id="modelBox">
+    This is an example about another American painting, so you can hear the shape. It is not a script. Your document, your ideas, and your reason must be your own.
     <ul>
-      <li>Say your position in two sentences, then support it with one detail from the painting.</li>
-      <li>Say the three parts out loud again on your own, twice, without reading. It's fine if the words change each time.</li>
-      <li>Make sure your reason for choosing the document is your own.</li>
-      <li>Upload the document to the digital wall along with your recording.</li>
+      <li><b>Part 1.</b> "The document I chose is <i>Nighthawks</i>, a painting by the American artist Edward Hopper. He painted it in 1942, and it shows a diner at night in a big city."</li>
+      <li><b>Part 2.</b> "In the foreground there's the bright diner, and in the background, a dark, empty street. There are a few customers and a man behind the counter, and they hardly seem to look at each other. To me, it suggests that people can be close together and still keep themselves hidden. That connects to the theme because each person shows only a quiet, public side of himself or herself. One detail that proves it is that nobody is really talking."</li>
+      <li><b>Part 3.</b> "I chose it because I keep noticing new things in it. It also reminds me of times when I was in a crowded place and felt like I was showing only a small part of myself."</li>
     </ul>
+    <p style="margin-top:8px;">Notice: it describes first, then interprets, uses "seems to" and "to me", proves the point with one detail, and gives a personal reason in plain words.</p>
   </div>
+
+  <div class="step-h">After the lesson: your recording</div>
+  <div class="reveal-box show" style="margin-top:6px;">
+    <ol style="padding-left:20px;margin-top:4px;">
+      <li><b>Practice.</b> Say your position in two sentences. Then say the three parts out loud, twice, without reading. It's fine if the words change each time.</li>
+      <li><b>Record.</b> Use the recording tool your class uses for the digital wall. If you're not sure how, ask your teacher. One calm take is enough.</li>
+      <li><b>Listen back once.</b> Is it clear? Do you sound like yourself, not like someone reading?</li>
+      <li><b>Upload.</b> Put the painting and your recording on the digital wall.</li>
+    </ol>
+  </div>
+  <p style="margin-top:18px;text-align:center;color:#5c6a80;font-size:13.5px;">That's the Road for today. Before you go, say one phrase out loud that you want to keep from this lesson.</p>
   <div style="text-align:center;margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
     <a class="notes-link" href="https://kingcretot.github.io/kce-llcer-toolkit/justine/triple-self-portrait-notes.html" target="_blank">Notes: Triple Self-Portrait</a>
   </div>
@@ -535,6 +561,7 @@ function wireStop(){
   }
   if(current === 5){
     document.getElementById('revealShape').onclick = () => document.getElementById('shapeBox').classList.toggle('show');
+    document.getElementById('revealModel').onclick = () => document.getElementById('modelBox').classList.toggle('show');
     let flipping = false;
     const coin = document.getElementById('coin');
     const coinFace = document.getElementById('coinFace');
