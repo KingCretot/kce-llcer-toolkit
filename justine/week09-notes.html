@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 9 — Study Notes | KingCretot Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1F3D;--navyband:#0A2540;--gold:#C9A84C;--blue:#0047BA;--red:#DB2F30;
+--cream:#FAF7EF;--ink:#232A38;--muted:#6E7686;--line:#DFD8C6;
+--display:'Cormorant Garamond',Georgia,serif;--ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--ui);line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(10,31,61,.08)}
+.mast{background:var(--navyband);padding:16px 26px;display:flex;align-items:center;gap:14px}
+.kc{width:38px;height:38px;flex:none;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--display);font-weight:700;font-size:16px}
+.wm{color:var(--gold);font-family:var(--display);font-size:21px;font-weight:700;line-height:1}
+.band{height:5px;display:flex}.band i{flex:1}
+.b1{background:var(--blue)}.b2{background:var(--gold)}.b3{background:var(--red)}
+.hd{padding:24px 26px 10px}
+h1{font-family:var(--display);font-size:32px;font-weight:700;color:var(--navy);margin:0 0 4px}
+.sub{font-size:13px;color:var(--muted)}
+.note{background:#F3F7FD;border:1px solid var(--blue);margin:16px 26px;padding:12px 18px;border-radius:8px;font-size:13px;color:#1a3a6b;line-height:1.5}
+.body{padding:6px 26px 30px}
+h2{font-family:var(--display);font-size:22px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);padding-bottom:6px;margin:30px 0 12px}
+h3{font-family:var(--display);font-size:17px;font-weight:700;color:var(--navy);margin:18px 0 6px}
+p{font-size:14.5px;margin:0 0 10px}
+ul,ol{font-size:14.5px;margin:0 0 10px;padding-left:22px}
+li{margin-bottom:5px}
+
+/* Part banners */
+.part{border-radius:10px;padding:20px 24px;margin:34px 0 8px;color:#fff}
+.part .pn{font-size:11.5px;letter-spacing:3px;text-transform:uppercase;font-weight:700;opacity:.85}
+.part h2{border:0;margin:4px 0 4px;padding:0;color:#fff;font-size:28px}
+.part p{margin:0;font-size:14px;color:#e8edf6}
+.part.one{background:var(--navy);border-bottom:5px solid var(--gold)}
+.part.two{background:#7a1f20;border-bottom:5px solid var(--gold)}
+.part.two p{color:#f6e4e4}
+
+/* Contents */
+.toc{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0 4px}
+.toc div{flex:1;min-width:250px;border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--cream)}
+.toc b{font-family:var(--display);font-size:16px;color:var(--navy);display:block;margin-bottom:6px}
+.toc a{display:block;font-size:13.5px;color:var(--blue);text-decoration:none;margin-bottom:3px}
+.toc a:hover{text-decoration:underline}
+
+.card{background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:10px}
+.card .t{font-family:var(--display);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.card p{font-size:14px}
+.card .tq{font-size:13.5px;color:#6b5518;font-style:italic;margin-top:6px}
+.row{border:1px solid var(--line);border-radius:8px;padding:10px 16px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
+.row .k{font-family:var(--display);font-size:15.5px;font-weight:700;color:var(--navy);min-width:140px;flex:none}
+.row .v{font-size:13.8px;color:#4a5568;flex:1;min-width:220px}
+.beat{display:flex;gap:12px;border-left:3px solid var(--blue);padding-left:12px;margin-bottom:8px}
+.beat .bn{font-family:var(--display);font-weight:700;color:var(--blue);flex:none;min-width:22px}
+.beat p{margin:0;font-size:14px}
+.move{border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:12px}
+.move .mh{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+.move .mn{width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;flex:none}
+.move .mt{font-family:var(--display);font-size:18px;font-weight:700;color:var(--navy)}
+.move .cite{font-size:13px;color:#6b5518;background:#FFF8E8;border-left:3px solid var(--gold);padding:8px 12px;border-radius:0 6px 6px 0;margin-top:8px}
+.tension{background:#FDF6F6;border-left:3px solid var(--red);padding:14px 18px;border-radius:0 8px 8px 0;margin:10px 0}
+.tension p{font-size:14px;margin:0 0 6px}.tension p:last-child{margin:0}
+.frame{background:#EEF4FF;border:1px dashed var(--blue);border-radius:8px;padding:10px 14px;margin:8px 0;font-size:14px;color:#1a3a6b}
+.frame b{color:var(--navy)}
+.qgroup{margin-bottom:16px}
+.qgroup h3{margin-top:10px}
+.q{border:1px solid var(--line);border-radius:8px;padding:9px 14px;margin-bottom:7px;font-size:14px}
+.q .lk{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:600}
+td.h{background:var(--cream);font-weight:700;color:var(--navy);width:24%}
+.doc{border:1px solid var(--line);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.doc .dh{background:var(--cream);padding:10px 16px;border-bottom:1px solid var(--line)}
+.doc .dh .dt{font-family:var(--display);font-size:18px;font-weight:700;color:var(--navy)}
+.doc .dh .dm{font-size:12.5px;color:var(--muted)}
+.doc .db{padding:10px 16px}
+.doc .db p{font-size:14px;margin:0 0 7px}
+.doc .db b.l{color:var(--blue)}
+.cover{border:2px solid var(--navy);border-radius:6px;margin:10px 0 14px;font-size:13.5px}
+.cover .cr{display:flex;border-bottom:1px solid var(--line)}
+.cover .cr:last-child{border-bottom:0}
+.cover .cl{width:34%;padding:8px 12px;background:var(--cream);font-weight:700;color:var(--navy);border-right:1px solid var(--line)}
+.cover .cv{flex:1;padding:8px 12px;color:#6E7686;font-style:italic}
+.chk{list-style:none;padding-left:0}
+.chk li{padding-left:28px;position:relative}
+.chk li:before{content:"";position:absolute;left:0;top:4px;width:16px;height:16px;border:2px solid var(--navy);border-radius:3px}
+.foot{background:var(--navyband);color:#8E99AC;font-size:9px;text-align:center;padding:14px;font-style:italic;font-family:var(--display)}
+@media (max-width:560px){.row .k{min-width:100%}.cover .cr{flex-direction:column}.cover .cl{width:100%;border-right:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="mast"><div class="kc">KC</div><div class="wm">KingCretot Experience</div></div>
+<div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+
+<div class="hd">
+ <h1>Week 9 — Your Study Notes</h1>
+ <p class="sub">Part 1: the Brooklyn exam on paper &middot; Part 2: your dossier on <i>expression et construction de soi</i></p>
+</div>
+
+<div class="note">Use these notes before and after the lesson. Part 1 gets you ready for the one-hour paper on <i>Brooklyn</i>. Part 2 gets you ready for the dossier cover page and the presentation in class. They give you facts, words, and ways to build an answer. They do not choose your documents or write your central question. Those are yours.</div>
+
+<div class="body">
+
+<div class="toc">
+ <div><b>Part 1 · Brooklyn exam</b>
+  <a href="#a1">1. How the paper works</a>
+  <a href="#a2">2. The book in six movements</a>
+  <a href="#a3">3. Characters</a>
+  <a href="#a4">4. Themes, with moments to use</a>
+  <a href="#a5">5. How Tóibín tells the story</a>
+  <a href="#a6">6. Building an answer</a>
+  <a href="#a7">7. Practice questions</a>
+  <a href="#a8">8. Your plan until Tuesday</a>
+  <a href="#a9">9. Words and common mistakes</a>
+ </div>
+ <div><b>Part 2 · Your dossier</b>
+  <a href="#b1">1. What the school asks for</a>
+  <a href="#b2">2. Your documents, one by one</a>
+  <a href="#b3">3. The problématique</a>
+  <a href="#b4">4. Three ways to connect documents</a>
+  <a href="#b5">5. Presenting on Thursday</a>
+  <a href="#b6">6. Your personal document</a>
+  <a href="#b7">7. Words for the theme</a>
+  <a href="#b8">8. Your plan until Thursday</a>
+ </div>
+</div>
+
+<!-- ============ PART 1 ============ -->
+<div class="part one"><div class="pn">Part 1</div><h2>Brooklyn — the written exam</h2><p>One hour &middot; the whole book &middot; questions answered on paper</p></div>
+
+<h2 id="a1">1. How the paper works</h2>
+<p>What you know: the exam lasts one hour, covers the entire book, and you answer questions on paper. You do not know exactly what the questions will look like, so prepare for every kind: short factual answers, character questions, theme questions, and one longer answer. If your teacher has shown you a past paper, use it while you practice.</p>
+
+<h3>Your plan for the hour</h3>
+<ol>
+ <li><b>Read the whole paper first.</b> Do this before you write anything. Mark the questions you can answer fastest.</li>
+ <li><b>Divide your time.</b> Look at how many questions there are and how many points each one is worth. Give more time to the questions worth more. Write the finishing time for each question in the margin.</li>
+ <li><b>Underline the command word.</b> It tells you what job the question wants (see below).</li>
+ <li><b>Plan in three lines.</b> For a longer answer, write your main idea and two or three moments from the book before you start the sentences.</li>
+ <li><b>Keep five minutes at the end.</b> Read your answers again. Check names, spelling, and that every paragraph answers the question that was asked.</li>
+</ol>
+
+<h3>The command words</h3>
+<table>
+ <tr><th>If the question says…</th><th>…it wants you to</th></tr>
+ <tr><td class="h">Describe</td><td>say what happens or what something is like, using details from the book</td></tr>
+ <tr><td class="h">Explain / Why</td><td>give reasons: what happens, and why it happens or why it matters</td></tr>
+ <tr><td class="h">How does the author show…</td><td>look at the author's choices (what is said, what is left out, how it is told) and say what effect they have</td></tr>
+ <tr><td class="h">Analyze</td><td>take something apart: look at its pieces and say how each one works</td></tr>
+ <tr><td class="h">Compare</td><td>say what two things have in common and where they differ</td></tr>
+ <tr><td class="h">To what extent / How far</td><td>give an answer that is not all or nothing: "partly", "mostly", "only until…", with reasons on both sides</td></tr>
+ <tr><td class="h">Discuss</td><td>look at more than one view, then say where you end up</td></tr>
+ <tr><td class="h">Illustrate / Give an example</td><td>name a precise moment from the book that shows your point</td></tr>
+ <tr><td class="h">Do you agree?</td><td>take a position and defend it, and show you have thought about the other side</td></tr>
+</table>
+
+<h3>What a good answer is made of</h3>
+<p>A strong answer is accurate (the facts are right), precise (it names moments and people, not just "the book"), and explained (it says why the moment matters for the question). Naming a moment without explaining it earns little. Explaining without a moment sounds like opinion.</p>
+
+<h2 id="a2">2. The book in six movements</h2>
+<p><i>Brooklyn</i> is by the Irish writer Colm Tóibín (published 2009) and is set in the early 1950s. It is a <b>Bildungsroman</b>, a novel about a young person growing up and finding out who she is. Learn the book as six movements. If you can say each one in two sentences, you can find your way to any question.</p>
+
+<div class="move"><div class="mh"><span class="mn">1</span><span class="mt">Enniscorthy: a small life and a plan made for her</span></div>
+ <p>Eilis lives a limited life in her Irish town, often in the shadow of her sister Rose. There is little work for her. Rose and Father Flood arrange a job and a place to live in Brooklyn. Eilis does not fight the plan, but she does not really choose it either. Her brothers pay for her passage, and the night before she leaves, Rose helps her pack and she realizes Rose is giving up her own future.</p>
+ <div class="cite"><b>Moments to cite:</b> Father Flood presents the offer as simple and generous · Eilis goes along without choosing · the last night with Rose · Rose says nothing about what it costs her.</div></div>
+
+<div class="move"><div class="mh"><span class="mn">2</span><span class="mt">The crossing and the arrival</span></div>
+ <p>The voyage is rough, and Eilis is seasick for most of it. She shares a cabin with Georgina, a more experienced traveler, who helps her through the worst and prepares her for immigration. In Brooklyn, Father Flood meets her and settles her into Mrs. Kehoe's boarding house with other young Irish women.</p>
+ <div class="cite"><b>Moments to cite:</b> the storm and seasickness · Georgina's help · Father Flood meeting her · the boarding house.</div></div>
+
+<div class="move"><div class="mh"><span class="mn">3</span><span class="mt">Brooklyn: work, homesickness, and the first steps toward belonging</span></div>
+ <p>Eilis works at Bartocci's department store, trained by women including Miss Fortini. She is homesick, and her letters home leave out how hard it is. The store decides to welcome Black customers, presented as a smart business move. Eilis is one of the assistants chosen to serve them, and every time one comes in the store goes still and watchful. Eilis also goes to evening classes, and passes her first-year exams. A parishioner has paid for her next year of tuition.</p>
+ <div class="cite"><b>Moments to cite:</b> her letters leave out the hard parts · the new customers and the watchful silence · evening classes and exams · the paid tuition.</div></div>
+
+<div class="move"><div class="mh"><span class="mn">4</span><span class="mt">Tony: someone who chooses her</span></div>
+ <p>At a dance in the parish hall, Tony, a young Italian-American plumber, asks Eilis to dance and walks her home. They go out together, and Tony tells her he loves her and talks about children. Eilis writes to Rose about him but leaves out that he is a plumber, and she does not tell her mother. At dinner with his family, Tony's youngest brother Frank says the family does not like Irish people. There are days at Coney Island and a Dodgers game. Around Christmas, Tony explains that his brothers are building houses on Long Island and hopes one will be for them. Eilis does not answer directly.</p>
+ <div class="cite"><b>Moments to cite:</b> the dance and the walk home · "leaving things out" in her letters · Frank at dinner · Coney Island · the houses on Long Island and her silence.</div></div>
+
+<div class="move"><div class="mh"><span class="mn">5</span><span class="mt">Rose's death and the secret marriage</span></div>
+ <p>Rose dies suddenly in the night. Father Flood tells Eilis at Bartocci's, and her mother phones that evening and explains that Rose had a heart condition she had hidden from everyone. Eilis's brother Jack writes that she should come home and look after their mother. Overwhelmed, Eilis turns to Tony. Before she goes home for a month, they marry at a simple courthouse ceremony and tell no one.</p>
+ <div class="cite"><b>Moments to cite:</b> Rose's hidden illness · Jack's letter · Eilis turning to Tony · the courthouse wedding that nobody knows about.</div></div>
+
+<div class="move"><div class="mh"><span class="mn">6</span><span class="mt">Back in Enniscorthy: the choice</span></div>
+ <p>In Ireland, Eilis finds Rose's room untouched and tells nobody about Tony or the marriage. She postpones her return so she can attend Nancy's wedding. She meets Jim Farrell again, and a romance begins. The town admires her, she is offered work in the office where Rose worked, and her mother approves of Jim. After the wedding Jim wants to get engaged, and Eilis does not answer. Then Miss Kelly shows that she knows about the marriage, because Mrs. Kehoe told her. The secret is out. Eilis books her passage, writes to Father Flood, Mrs. Kehoe, and Miss Fortini, and tells her mother she is married. On her last morning she leaves a note at Jim's door promising to explain, and takes the train. The book ends with her imagining Jim hearing that she has gone back to Brooklyn.</p>
+ <div class="cite"><b>Moments to cite:</b> Rose's untouched room · the reputation she has at home · Jim and the engagement she does not answer · Miss Kelly's discovery · telling her mother · the note at Jim's door · the open ending.</div></div>
+
+<h2 id="a3">3. Characters</h2>
+<p>For each person, know who they are, what they want, and one moment that shows it.</p>
+<div class="row"><span class="k">Eilis Lacey</span><span class="v">Quiet, observant, and at the start more carried along than choosing. Over the book she starts to decide for herself. Be ready to say how she changes and where she is still unsure.</span></div>
+<div class="row"><span class="k">Rose Lacey</span><span class="v">Her older sister. Sets the plan going, and quietly gives up her own chance to leave. She hides her illness from everyone. She stands for sacrifice and for silence that protects other people.</span></div>
+<div class="row"><span class="k">Mrs. Lacey</span><span class="v">Their mother, a widow. Eilis edits what she tells her. After Rose's death, Jack writes that Eilis should come home and look after her.</span></div>
+<div class="row"><span class="k">Father Flood</span><span class="v">The priest who arranges her job and a place to live. He is also the one making the case for America, so his offer is not neutral.</span></div>
+<div class="row"><span class="k">Mrs. Kehoe</span><span class="v">The landlady. She runs the boarding house where Eilis lives. Her sharing of the secret with Miss Kelly ends Eilis's silence.</span></div>
+<div class="row"><span class="k">Miss Fortini</span><span class="v">A woman who trains Eilis at Bartocci's. She never looks away during the tense moments at the counter, and Eilis writes to her at the end.</span></div>
+<div class="row"><span class="k">Georgina</span><span class="v">The experienced traveler who shares Eilis's cabin and helps her through the voyage and immigration.</span></div>
+<div class="row"><span class="k">Tony</span><span class="v">Italian-American plumber. Open about his feelings, patient, loves baseball. He is the first person in Brooklyn who chooses Eilis for himself. He stands for a new life she could build.</span></div>
+<div class="row"><span class="k">Frank</span><span class="v">Tony's youngest brother. Blunt. He says the family does not like Irish people, which shows that being welcomed by one person is not the same as belonging.</span></div>
+<div class="row"><span class="k">Jack</span><span class="v">Eilis's brother in England. After Rose's death he writes that Eilis should come home and look after their mother.</span></div>
+<div class="row"><span class="k">Nancy</span><span class="v">Eilis's friend in Enniscorthy. Her wedding to George Sheridan is one reason Eilis stays longer than planned, and she helps bring Eilis and Jim together.</span></div>
+<div class="row"><span class="k">Jim Farrell</span><span class="v">A young man from Enniscorthy. Attentive and a little shy. He stands for the comfortable, approved future at home.</span></div>
+<div class="row"><span class="k">Miss Kelly</span><span class="v">The shopkeeper Eilis once worked for. Her knowledge of the marriage forces Eilis to act.</span></div>
+
+<h2 id="a4">4. Themes, with moments to use</h2>
+<p>For each theme, you have a short statement, three moments, and a question to think about. Learn two or three moments for every theme, because the same moment can serve several questions.</p>
+
+<div class="card"><div class="t">Choosing and being chosen for</div>
+ <p>Rose and Father Flood arrange Eilis's life, and she goes along without really choosing. By the end she makes real decisions: she tells her mother the truth, books her passage, and leaves.</p>
+ <p><b>Moments:</b> Father Flood's offer · Eilis goes along · telling her mother and booking her passage.</p>
+ <div class="tq">Is going along with something the same as choosing it?</div></div>
+
+<div class="card"><div class="t">Home and belonging</div>
+ <p>Enniscorthy and Brooklyn both pull at Eilis. Home is familiar, but Brooklyn is where she is building something of her own. Frank's remark shows that belonging to one person does not mean everyone welcomes you.</p>
+ <p><b>Moments:</b> homesickness in Brooklyn · Frank at dinner · Enniscorthy making Brooklyn feel like a dream.</p>
+ <div class="tq">Is home a place, a person, or both?</div></div>
+
+<div class="card"><div class="t">Duty to family and sacrifice</div>
+ <p>Rose gives up her own chance. Eilis is pulled home by duty after Rose dies. The people who love Eilis often decide what is good for her.</p>
+ <p><b>Moments:</b> the last night with Rose · Jack's letter asking Eilis to come home · her mother approving of Jim.</p>
+ <div class="tq">Can loving someone be a reason you stop listening to what you want?</div></div>
+
+<div class="card"><div class="t">Silence, secrets, and what is left out</div>
+ <p>Nobody says what they are really going through. Rose hides her illness. Eilis leaves things out of her letters, hides her marriage, and does not answer Tony or Jim. Silence protects other people and also lets Eilis avoid deciding.</p>
+ <p><b>Moments:</b> Rose's hidden heart condition · letters that leave things out · the secret marriage and Miss Kelly.</p>
+ <div class="tq">Is leaving something out the same as lying?</div></div>
+
+<div class="card"><div class="t">Independence and growing up</div>
+ <p>Because the book is a Bildungsroman, you can follow how Eilis grows: from a quiet girl who is carried along to a woman who sees what her choices mean. She earns her own qualifications, works, loves, and decides.</p>
+ <p><b>Moments:</b> evening classes and exams · saying yes to Tony · leaving Jim a note and going back.</p>
+ <div class="tq">At the end, is Eilis in control of her life, or only closer to it?</div></div>
+
+<div class="card"><div class="t">Migration and being an outsider</div>
+ <p>Leaving Ireland is a loss as well as an opportunity. Eilis arrives as a stranger and learns the rules of a new place. The same book shows other people who are treated as outsiders.</p>
+ <p><b>Moments:</b> the storm and Georgina's help · the Irish women at Mrs. Kehoe's · the Black customers at Bartocci's.</p>
+ <div class="tq">What does it cost to start again somewhere else?</div></div>
+
+<div class="card"><div class="t">Looking and not looking</div>
+ <p>At Bartocci's, almost nobody looks at the new customers directly, but everyone is watching. The staff stare and pretend not to, and the customers never come in alone. Miss Fortini does not look away.</p>
+ <p><b>Moments:</b> the store going still · "not one ever comes in alone" · Miss Fortini.</p>
+ <div class="tq">Is looking away politeness, or a way of avoiding something uncomfortable?</div></div>
+
+<div class="card"><div class="t">Reputation and expectations</div>
+ <p>In Enniscorthy, people notice Eilis and admire her for having come back from America. Her mother's pride and the town's approval make Jim and a life in Ireland look easy to say yes to.</p>
+ <p><b>Moments:</b> the town's admiration · the job offer at the office where Rose worked · her mother approving of Jim.</p>
+ <div class="tq">How much do other people's expectations shape what she thinks she wants?</div></div>
+
+<div class="card"><div class="t">An open ending</div>
+ <p>The book stops as Eilis leaves. We never see her arrive in Brooklyn or meet Tony. The smile in the last lines suggests she understands her choice, but Tóibín does not spell it out.</p>
+ <p><b>Moments:</b> the note at Jim's door · the train · imagining Jim smiling.</p>
+ <div class="tq">Why might an author stop at the moment of choosing rather than after it?</div></div>
+
+<h2 id="a5">5. How Tóibín tells the story</h2>
+<p>Some questions ask "how does the author show…". For those, you need to talk about technique as well as events. Here are the tools you can use.</p>
+<div class="row"><span class="k">Close third person</span><span class="v">The story follows Eilis closely, so we see events through her eyes. We often know what she notices more than what she feels.</span></div>
+<div class="row"><span class="k">Restraint</span><span class="v">Holding back strong feeling. Big events are told quietly, without much drama. Rose's death and the wedding are told simply. The effect is that the reader has to do some of the feeling.</span></div>
+<div class="row"><span class="k">Letters</span><span class="v">Eilis's letters show a gap between what she lives and what she tells. They are a tool for showing her silence.</span></div>
+<div class="row"><span class="k">Contrast of places</span><span class="v">Enniscorthy and Brooklyn are shown side by side, in work, community, and expectations. Going back to Ireland makes Brooklyn look different.</span></div>
+<div class="row"><span class="k">Watching, not saying</span><span class="v">Many key scenes, such as Bartocci's, rely on looks and silence rather than speech.</span></div>
+<div class="row"><span class="k">The ending</span><span class="v">The book ends before the reunion, with an image rather than an explanation.</span></div>
+<div class="frame"><b>Sentence frames for technique:</b> "Tóibín uses ___ to show ___." · "By telling this scene quietly, he makes the reader ___." · "The gap between what Eilis feels and what she writes suggests ___." · "The ending leaves it open whether ___."</div>
+
+<h2 id="a6">6. Building an answer</h2>
+<h3>The four moves: Point · Evidence · Explain · Link</h3>
+<ol>
+ <li><b>Point.</b> One sentence that answers the question directly.</li>
+ <li><b>Evidence.</b> A precise moment from the book: who, where, what happens.</li>
+ <li><b>Explain.</b> Say what the moment shows and why it supports your point. This is the move that earns the points.</li>
+ <li><b>Link.</b> Tie it back to the question or to the next idea, so the paragraph does not end in the middle of the story.</li>
+</ol>
+
+<h3>A worked model, with a different document</h3>
+<p>To show the four moves without giving you a <i>Brooklyn</i> answer to memorize, here is a paragraph about a painting that is not part of your course: <i>Nighthawks</i>, by the American painter Edward Hopper (1942).</p>
+<div class="frame"><b>Question:</b> How does Hopper create a feeling of loneliness in <i>Nighthawks</i>?<br><br>
+<b>Point:</b> Hopper creates loneliness by placing people close together but making them look separate. <b>Evidence:</b> Four people are in a brightly lit diner at night, and none of them is looking at anyone else. <b>Explain:</b> Because they share the same small space and still do not meet each other's eyes, the picture suggests that being near people is not the same as being connected to them. <b>Link:</b> The dark, empty street outside makes the lit diner feel even more cut off, which strengthens the feeling.</div>
+<p>Notice what the paragraph does not do: it does not describe everything in the painting, and every sentence points back to the question.</p>
+
+<h3>Language you can use</h3>
+<div class="frame"><b>Starting a point:</b> "One way Tóibín shows this is…" · "The clearest example is…" · "This is most obvious when…"<br>
+<b>Introducing evidence:</b> "For example, when Eilis…" · "This happens when…" · "In the scene where…"<br>
+<b>Explaining:</b> "This shows that…" · "This suggests…" · "The effect is that…" · "In other words…"<br>
+<b>Adding:</b> "Moreover…" · "In addition…" · "What is more…"<br>
+<b>Contrasting:</b> "However…" · "On the other hand…" · "Although…" · "Whereas…"<br>
+<b>Qualifying (for "to what extent"):</b> "To some extent…" · "Mostly, but not completely…" · "Only until…"<br>
+<b>Concluding:</b> "Overall…" · "In the end…" · "This is why…"</div>
+
+<h3>Verbs for talking about the book</h3>
+<p>reveals · suggests · shows · implies · highlights · contrasts · emphasizes · conceals · hides · struggles · hesitates · resists · gives in · confides · holds back · chooses · is carried along · feels torn.</p>
+
+<h3>Longer answers: a shape</h3>
+<p>For a longer answer, write a short introduction (one or two sentences that answer the question), two or three paragraphs each built with Point–Evidence–Explain–Link, and a short conclusion that gives your overall view. For "to what extent", one paragraph can give the case for, one the case against, and the conclusion says where you stand.</p>
+
+<h3>Do and do not</h3>
+<ul>
+ <li>Do use the present tense to talk about the book: "Eilis <i>goes</i> to Brooklyn", not "went".</li>
+ <li>Do use names: "Father Flood", "Miss Kelly", "Tony".</li>
+ <li>Do not tell the plot again for a page. Choose the moment that fits the question.</li>
+ <li>Do not write "the author wants to say that" and then leave it there. Say what the moment shows.</li>
+ <li>If you forget a name, describe the person: "the shopkeeper in Enniscorthy", and move on.</li>
+</ul>
+
+<h2 id="a7">7. Practice questions</h2>
+<p>Practice on paper, by hand. Try one question at a time, and later try several in a row. The "Look at" line points you to the movements and themes where the material is. It does not give you the answer.</p>
+
+<div class="qgroup"><h3>A. Knowing the story</h3>
+<div class="q">1. Explain why Eilis goes to America, and say who makes it happen.<span class="lk">Look at: movement 1.</span></div>
+<div class="q">2. Describe Eilis's journey and her first days in Brooklyn.<span class="lk">Look at: movement 2.</span></div>
+<div class="q">3. Who is Tony, and how does his relationship with Eilis develop?<span class="lk">Look at: movement 4.</span></div>
+<div class="q">4. What happens after Rose's death, and what does Eilis decide to do before she goes home?<span class="lk">Look at: movement 5.</span></div>
+<div class="q">5. How does the novel end, and what has led Eilis to that point?<span class="lk">Look at: movement 6.</span></div></div>
+
+<div class="qgroup"><h3>B. Characters</h3>
+<div class="q">6. What part does Rose play in the novel?<span class="lk">Look at: movements 1 and 5; theme of sacrifice and silence.</span></div>
+<div class="q">7. How does Eilis change between the beginning and the end?<span class="lk">Look at: the whole book; independence and growing up.</span></div>
+<div class="q">8. How far can Father Flood be trusted as a helper?<span class="lk">Look at: movements 1, 2 and 5.</span></div>
+<div class="q">9. Compare Tony and Jim. What does each stand for?<span class="lk">Look at: movements 4 and 6; home and belonging.</span></div></div>
+
+<div class="qgroup"><h3>C. Themes</h3>
+<div class="q">10. "Eilis never really chooses her own life." To what extent do you agree?<span class="lk">Look at: choosing and being chosen for; the whole book.</span></div>
+<div class="q">11. What does the novel say about home?<span class="lk">Look at: home and belonging; movements 3 and 6.</span></div>
+<div class="q">12. Why are secrets and silence so important in the novel?<span class="lk">Look at: silence, secrets; movements 3, 5, 6.</span></div>
+<div class="q">13. How does the novel show the pull of duty to family?<span class="lk">Look at: movements 1, 5, 6.</span></div>
+<div class="q">14. What does the Bartocci's episode add to the novel?<span class="lk">Look at: looking and not looking; movement 3.</span></div></div>
+
+<div class="qgroup"><h3>D. How the author tells it</h3>
+<div class="q">15. How does Tóibín use letters in the novel?<span class="lk">Look at: movements 3, 4, 6; how Tóibín tells the story.</span></div>
+<div class="q">16. Why might Tóibín have chosen an open ending?<span class="lk">Look at: movement 6; open ending.</span></div>
+<div class="q">17. How does Tóibín show strong feeling without describing it at length?<span class="lk">Look at: movements 5 and 6, and how Tóibín tells the story.</span></div></div>
+
+<div class="qgroup"><h3>E. Longer answers</h3>
+<div class="q">18. "<i>Brooklyn</i> is a story about growing up." Discuss.<span class="lk">Look at: Bildungsroman; independence; the whole book.</span></div>
+<div class="q">19. Is home a place or a person in this novel?<span class="lk">Look at: home and belonging; Tony, Rose, Enniscorthy, Brooklyn.</span></div>
+<div class="q">20. Does Eilis make her final decision freely?<span class="lk">Look at: movement 6 and the whole book.</span></div></div>
+
+<h3>If the paper gives you an extract</h3>
+<p>If the paper includes a passage, start by saying where it falls in the book and what has just happened. Then look closely at two or three details in the passage (what is said, what is left unsaid, a word that stands out). Finally, link out: say how the moment connects to a theme or to a change in Eilis. Do not tell the whole book again. Stay close to the passage, then widen.</p>
+
+<h2 id="a8">8. Your plan until Tuesday</h2>
+<div class="card"><div class="t">After the lesson (Sunday)</div>
+ <ul class="chk">
+  <li>Say each of the six movements aloud in two sentences, without looking.</li>
+  <li>Choose two moments for each theme and say each one aloud: who, where, what happens, why it matters.</li>
+  <li>Read the command words again. Write the meaning of three of them in your own words.</li>
+ </ul></div>
+<div class="card"><div class="t">Monday</div>
+ <ul class="chk">
+  <li>Write three answers by hand: one from group A, one from group B, one from group C.</li>
+  <li>Check them with these questions: Did I answer the question? Did I name a precise moment? Did I explain it?</li>
+  <li>Write one longer answer (group E).</li>
+ </ul></div>
+<div class="card"><div class="t">Tuesday morning</div>
+ <ul class="chk">
+  <li>Read the six movements and the character list once, quickly.</li>
+  <li>Say your four moves out loud: Point, Evidence, Explain, Link.</li>
+  <li>In the exam: read everything first, underline the command words, and keep five minutes at the end.</li>
+ </ul></div>
+
+<h2 id="a9">9. Words and common mistakes</h2>
+<h3>Words to use</h3>
+<div class="row"><span class="k">arrange</span><span class="v">plan something in advance for someone else</span></div>
+<div class="row"><span class="k">to be carried along</span><span class="v">to move through events without really deciding</span></div>
+<div class="row"><span class="k">reluctant</span><span class="v">not really wanting to do something, but doing it</span></div>
+<div class="row"><span class="k">torn</span><span class="v">pulled in two directions at once</span></div>
+<div class="row"><span class="k">sacrifice</span><span class="v">giving up something important so someone else can have something</span></div>
+<div class="row"><span class="k">to conceal</span><span class="v">to hide something on purpose</span></div>
+<div class="row"><span class="k">to confide in</span><span class="v">to tell someone something private because you trust them</span></div>
+<div class="row"><span class="k">to postpone</span><span class="v">to move something to a later time</span></div>
+<div class="row"><span class="k">reputation</span><span class="v">what other people in a community think of you</span></div>
+<div class="row"><span class="k">restraint</span><span class="v">holding back, not showing strong feeling; also a quiet way of writing</span></div>
+<div class="row"><span class="k">ambiguous</span><span class="v">open to more than one meaning</span></div>
+<div class="row"><span class="k">Bildungsroman</span><span class="v">a novel about a young person growing up and learning who she is</span></div>
+<div class="row"><span class="k">an outsider</span><span class="v">someone who does not belong to a group or place</span></div>
+<div class="row"><span class="k">motive</span><span class="v">the real reason behind a decision</span></div>
+
+<h3>Common mistakes for French speakers</h3>
+<table>
+ <tr><th>Avoid</th><th>Say instead</th></tr>
+ <tr><td>"Eilis <i>realizes herself</i>"</td><td>"Eilis realizes" or "Eilis changes"</td></tr>
+ <tr><td>"The author <i>explains us</i> that…"</td><td>"The author shows us that…" (you do not say "explain us")</td></tr>
+ <tr><td>"She <i>assists</i> at the dance"</td><td>"She <i>attends</i> the dance" (assist means help)</td></tr>
+ <tr><td>"<i>Actually</i>, Eilis is homesick"</td><td>"At this point, Eilis is homesick" (actually means in fact)</td></tr>
+ <tr><td>"She is <i>sensible</i>"</td><td>"She is <i>sensitive</i>" for feelings, or "sensible" for good judgment</td></tr>
+ <tr><td>"The people <i>is</i> watching"</td><td>"The people <i>are</i> watching"</td></tr>
+ <tr><td>"She lives there <i>since</i> two years"</td><td>"She has lived there <i>for</i> two years"</td></tr>
+ <tr><td>"In the book it <i>is said that</i>…"</td><td>"In the book, Eilis says / Tóibín shows…"</td></tr>
+ <tr><td>"Eilis <i>went</i> to Brooklyn" (about the book)</td><td>"Eilis <i>goes</i> to Brooklyn" (present tense for a book)</td></tr>
+ <tr><td>"She <i>decided to stay</i> because her mother…" followed by a pile of "and"</td><td>Use "because", "although", "so that" to link the reasons</td></tr>
+</table>
+
+<!-- ============ PART 2 ============ -->
+<div class="part two"><div class="pn">Part 2</div><h2>Your dossier</h2><p>Theme: <i>expression et construction de soi</i> &middot; cover page due Thursday</p></div>
+
+<h2 id="b1">1. What the school asks for</h2>
+<p>For Thursday your teacher asked you to complete the cover page of your dossier for the theme <b>expression et construction de soi</b> (the construction and expression of the self). The cover page is the form for the oral exam of the Académie de Montpellier, session 2027. It asks for these things:</p>
+<div class="cover">
+ <div class="cr"><div class="cl">NOM, PRÉNOM</div><div class="cv">your name</div></div>
+ <div class="cr"><div class="cl">Établissement</div><div class="cv">Lycée Notre Dame de la Merci, Montpellier</div></div>
+ <div class="cr"><div class="cl">Thématique</div><div class="cv">the theme of your class: expression et construction de soi</div></div>
+ <div class="cr"><div class="cl">Thème du dossier / Problématique</div><div class="cv">your central question</div></div>
+ <div class="cr"><div class="cl">Œuvre(s) intégrale(s)</div><div class="cv">title · author or source</div></div>
+ <div class="cr"><div class="cl">Texte(s) littéraire(s)</div><div class="cv">title · author or source</div></div>
+ <div class="cr"><div class="cl">Œuvre(s) d'art visuel</div><div class="cv">title · author or source</div></div>
+ <div class="cr"><div class="cl">Texte(s) non littéraire(s)</div><div class="cv">title · author or source</div></div>
+ <div class="cr"><div class="cl">Signatures</div><div class="cv">candidate, teacher, and school stamp</div></div>
+</div>
+<p><b>The task:</b> choose at least three documents you studied in class, and, if you can, your personal document (the Rockwell). Write their titles and authors in the right rows, and write the central question that links them. On Thursday, in class, you connect your documents to your question and present it to your teacher. The class is also starting to prepare the oral exam.</p>
+<p><b>Note:</b> the form has four rows for documents. Your teacher will tell you how many documents you need in each row and whether the dossier can have fewer than four. Ask on Thursday if you are not sure.</p>
+
+<h2 id="b2">2. Your documents, one by one</h2>
+<p>These are the documents from your class that fit this theme. For each, you have a short fact sheet and two ideas: how it shows <i>expression</i> and <i>construction</i> of the self, and how it can connect to <i>Brooklyn</i>. These are ideas to test, not answers to copy. Pick the ones <b>you</b> can talk about best.</p>
+
+<div class="doc"><div class="dh"><div class="dt">Brooklyn</div><div class="dm">Colm Tóibín · novel · 2009 · full work (Œuvre intégrale)</div></div>
+ <div class="db"><p><b class="l">What it is:</b> a Bildungsroman about Eilis, a young Irish woman who emigrates to Brooklyn, builds a life there, and has to choose between two homes.</p>
+ <p><b class="l">Expression and construction:</b> Eilis builds herself by working, studying, and loving, but she often does not say what she feels. Her letters show her choosing what each person gets to know.</p>
+ <p><b class="l">Good for:</b> identity under pressure from family and place; secrets; choosing and being chosen for.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">Jane Eyre, Chapter IV (the confrontation with Mrs. Reed)</div><div class="dm">Charlotte Brontë · novel · 1847 · literary text</div></div>
+ <div class="db"><p><b class="l">What it is:</b> Jane, a ten-year-old orphan living with her aunt Mrs. Reed, hears her aunt describe her to Mr. Brocklehurst, the headmaster of the school she is to attend, as deceitful. Jane can no longer stay silent, and she confronts her aunt.</p>
+ <p><b class="l">Class question:</b> Can expressing one's emotions become an act of liberation?</p>
+ <p><b class="l">What the class looked at:</b> the shift in power; anger and suffering, then happiness and freedom; direct speech, exclamations, and emphatic language; the metaphor of an invisible bond that bursts.</p>
+ <p><b class="l">Expression and construction:</b> speaking out is how Jane starts to define herself. She stops being "defined by others".</p>
+ <p><b class="l">Link to Eilis:</b> both are young women who want some independence and do not want to be controlled. Be careful: Jane explodes in one scene, while Eilis changes slowly and often stays silent. The contrast is as useful as the similarity.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">"Eveline" (from <i>Dubliners</i>)</div><div class="dm">James Joyce · short story · 1914 · literary text</div></div>
+ <div class="db"><p><b class="l">What it is:</b> Eveline, a young woman in Dublin, lives with her father and works in a shop. Her mother is dead, and she has taken on many family responsibilities. One evening, at the window, she thinks about her childhood and about leaving. A young sailor, Frank, has promised her a new life in Buenos Aires. She has to choose between the fear of the known and an uncertain future abroad.</p>
+ <p><b class="l">Class question:</b> Why is it sometimes so difficult to break free from one's past?</p>
+ <p><b class="l">What the class looked at:</b> the contrast between past and present; freedom against duty; memories and the dilemma; the use of "used to".</p>
+ <p><b class="l">Expression and construction:</b> Eveline cannot express what she wants, and so she cannot build a different life.</p>
+ <p><b class="l">Link to Eilis:</b> the situation is almost the same (leaving home and family for a new life), and the outcome is the opposite. Use the contrast.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">Self-Portrait Dedicated to Leon Trotsky (also called <i>Between the Curtains</i>)</div><div class="dm">Frida Kahlo · oil on hard board (Masonite) · 1937 · visual art · National Museum of Women in the Arts, Washington, D.C.</div></div>
+ <div class="db"><p><b class="l">What it is:</b> Kahlo stands between two white curtains as if on a stage. She holds a letter to Trotsky and a bunch of flowers. She gave the painting to Trotsky for his birthday on November 7, 1937.</p>
+ <p><b class="l">What to say about the artist:</b> born in Mexico in 1907; polio as a child; a serious bus accident at eighteen that kept her in bed for months, when a mirror was placed above her bed so she could paint herself. Your class notes say 55 of her roughly 143 paintings are self-portraits. She rejected the Surrealist label and said she painted her own reality.</p>
+ <p><b class="l">Expression and construction:</b> the curtains make her portrait a staging. The Mexican jewelry and clothes, the flowers, and her steady gaze are choices she makes to present herself.</p>
+ <p><b class="l">Link to Brooklyn:</b> both Kahlo and Eilis decide how to present themselves in front of people who are watching (Kahlo to the viewer, Eilis in letters and in front of Enniscorthy).</p>
+ <p><b class="l">Check with your class notes:</b> your group studied this painting, but confirm which works your group presented and use those first.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">Untitled Film Still #12 (and the series <i>Untitled Film Stills</i>)</div><div class="dm">Cindy Sherman · gelatin silver print · 1978 · visual art · series made between 1977 and 1980</div></div>
+ <div class="db"><p><b class="l">What it is:</b> a black-and-white photograph from a series in which Sherman poses as generic women from 1950s and 1960s movies (Hollywood, dark crime films called film noir, cheap B movies, European art films). Check the print in your own notes before you describe it.</p>
+ <p><b class="l">Key facts:</b> the series has seventy photographs. The characters are not real film stills. Sherman is both the artist and the model. The museum that owns the series says they are not considered self-portraits.</p>
+ <p><b class="l">Expression and construction:</b> identity is shown as costume, setting, and pose: a self put together from roles that society expects. Sherman has said there are "so many levels of artifice" and that she likes the "jumble of ambiguity".</p>
+ <p><b class="l">Link to Brooklyn:</b> Eilis is a different person in each place (the new arrival, the shop girl, the wife, the returning success). If your still includes a suitcase or a doorway, that can link to leaving and arriving.</p>
+ <p><b class="l">Check with your class notes:</b> if your group studied a different still, use that one, and cite it as "Untitled Film Still" plus its number.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">Vivian Maier and David Hockney: self-portraits</div><div class="dm">textbook unit "Disclosing the creative process" · visual art</div></div>
+ <div class="db"><p><b class="l">What it is:</b> two self-portraits in your textbook. Maier's is dated 1956 and shows her with her camera and her reflection. The class task was to describe one, present it to a partner, then compare how each artist stages the self.</p>
+ <p><b class="l">Expression and construction:</b> both artists put the tools or the setting of their art in the picture (the camera, the studio). Look for what each one shows of themselves and what they keep back.</p>
+ <p><b class="l">Use if</b> you studied them well enough to talk about them.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">Triple Self-Portrait</div><div class="dm">Norman Rockwell · oil on canvas · painted 1959, on the cover of the <i>Saturday Evening Post</i> in 1960 · personal document</div></div>
+ <div class="db"><p>Your own notes from last week are on the Triple Self-Portrait notes page. See section 6 below.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">"Why I Write"</div><div class="dm">George Orwell · essay · 1946 · textbook text (non-literary or literary: ask your teacher)</div></div>
+ <div class="db"><p><b class="l">What it is:</b> an essay in which Orwell, an English writer (1903–1950; <i>Animal Farm</i>; <i>Nineteen Eighty-Four</i>), explains what pushes people to write. The textbook extract lists four motives: sheer egoism, aesthetic enthusiasm, historical impulse, and political purpose.</p>
+ <p><b class="l">Expression and construction:</b> writing is a way of expressing yourself and of building the image you want to leave.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">Ellen Ripley: Sigourney Weaver on a character</div><div class="dm">talk recorded for the American Film Institute · 2009 · non-literary text (video)</div></div>
+ <div class="db"><p><b class="l">What it is:</b> Weaver explains what drew her to Ellen Ripley in the <i>Alien</i> films. Your class noted that the character was written as a man, is independent and not "vulnerable", and does not react to the sexism around her.</p>
+ <p><b class="l">Expression and construction:</b> the character challenges the idea that women must show their feelings in the way society expects.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">Wonder Woman comic panel and "Boys Don't Cry"</div><div class="dm">DC Comics · comic · and The Cure · song · 1979 · from the "feelings and social expectations" work</div></div>
+ <div class="db"><p><b class="l">Wonder Woman:</b> Diana Prince has two identities: the powerful Wonder Woman who controls her emotions, and the human Diana who cannot. The panel shows that she is expected to hide her feelings to be taken seriously.</p>
+ <p><b class="l">"Boys Don't Cry":</b> a song in which a man hides his sadness by laughing, because boys are expected not to cry.</p>
+ <p><b class="l">Expression and construction:</b> both show how society's expectations about who you should be affect what you allow yourself to express.</p></div></div>
+
+<div class="doc"><div class="dh"><div class="dt">Other work from your class</div><div class="dm">Billy Elliot (film, 2000) · "Still I Rise" (poem by Maya Angelou)</div></div>
+ <div class="db"><p>You also studied the film <i>Billy Elliot</i> (art and becoming your true self; gender stereotypes) and Maya Angelou's poem "Still I Rise". Use them only if you know them well enough to talk about for three minutes.</p></div></div>
+
+<h3>How the documents might fit the four rows</h3>
+<table>
+ <tr><th>Row on the cover page</th><th>Documents that could go there</th></tr>
+ <tr><td class="h">Œuvre(s) intégrale(s)</td><td><i>Brooklyn</i>, Colm Tóibín</td></tr>
+ <tr><td class="h">Texte(s) littéraire(s)</td><td>Jane Eyre, Chapter IV (Brontë) · "Eveline" (Joyce)</td></tr>
+ <tr><td class="h">Œuvre(s) d'art visuel</td><td>Kahlo · Sherman · Maier or Hockney · Rockwell (your personal document)</td></tr>
+ <tr><td class="h">Texte(s) non littéraire(s)</td><td>Weaver on Ripley · Orwell, "Why I Write" · the Wonder Woman panel</td></tr>
+</table>
+<p>This is a suggestion. Your teacher decides what counts in each row. Ask on Thursday.</p>
+
+<h2 id="b3">3. The problématique</h2>
+<p>The problématique is the central question of your dossier. All your documents have to help answer it. It is the line that turns a pile of documents into a dossier.</p>
+
+<h3>What makes a good one</h3>
+<ul class="chk">
+ <li><b>It is a question</b>, not a topic. "Identity in literature" is a topic. "How can…?" is a question.</li>
+ <li><b>It is open.</b> There is more than one possible answer, so your documents can discuss it. A yes-or-no question usually closes too fast.</li>
+ <li><b>It fits the theme.</b> It uses the words of <i>expression</i> and <i>construction de soi</i>, or their ideas (express, hide, build, become, choose).</li>
+ <li><b>Each document can help answer it</b>, in its own way. If a document does not fit, change the document or the question.</li>
+ <li><b>It is yours.</b> You can say why it matters to you in a sentence.</li>
+</ul>
+
+<h3>Four steps to build it</h3>
+<ol>
+ <li><b>Choose three or four documents</b> that you can talk about confidently.</li>
+ <li><b>Find what they share.</b> Ask: what is each document really about, in one sentence? Where do two documents agree? Where do they disagree?</li>
+ <li><b>Turn the shared idea into a question</b>, using one of the openers below.</li>
+ <li><b>Test it.</b> Say the question and answer it with each document in one sentence. If each document gives a different angle, the question works.</li>
+</ol>
+
+<h3>Question openers</h3>
+<div class="frame">"How can…?" · "To what extent…?" · "In what ways…?" · "Can we…?" · "Is it possible to…?" · "Why is it so hard to…?" · "Does…or…?" · "What does it take to…?"</div>
+
+<h3>Weak and strong: an example with another theme</h3>
+<p>To show you the difference without giving you an answer, here is a pair on a different theme, <i>myths and heroes</i>.</p>
+<table>
+ <tr><th>Weak</th><th>Stronger</th></tr>
+ <tr><td>"Heroes in stories."</td><td>"Do we need heroes to feel brave ourselves?"</td></tr>
+ <tr><td>"Is Superman a hero?"</td><td>"How do stories turn ordinary people into heroes, and what do they leave out?"</td></tr>
+</table>
+<p>The weak ones are a topic, or a question with only one answer. The stronger ones are open, can be discussed with different documents, and suggest an angle.</p>
+
+<h2 id="b4">4. Three ways to connect documents</h2>
+<p>When you have chosen your documents, look for how they speak to each other. Here are three "lenses". Look through each one at your documents and see which lens gives you the most to say.</p>
+
+<h3>Lens A: showing and hiding</h3>
+<p>Showing who you are, hiding it, or staging it.</p>
+<table>
+ <tr><th>Document</th><th>What it adds</th></tr>
+ <tr><td class="h">Jane Eyre</td><td>Jane finally says everything she has kept inside, and it frees her.</td></tr>
+ <tr><td class="h">Eveline</td><td>Eveline keeps everything inside, and cannot act.</td></tr>
+ <tr><td class="h">Brooklyn</td><td>Eilis's letters leave things out and she hides her marriage.</td></tr>
+ <tr><td class="h">Kahlo</td><td>She shows her pain and identity openly, but in a staged setting.</td></tr>
+ <tr><td class="h">Sherman</td><td>She hides herself completely behind characters.</td></tr>
+</table>
+
+<h3>Lens B: other people's expectations</h3>
+<p>The part played by family, society, and stereotypes.</p>
+<table>
+ <tr><th>Document</th><th>What it adds</th></tr>
+ <tr><td class="h">Jane Eyre</td><td>An aunt and a headmaster decide what Jane is. She refuses.</td></tr>
+ <tr><td class="h">Eveline</td><td>Duty to family holds her back.</td></tr>
+ <tr><td class="h">Brooklyn</td><td>Rose, Father Flood, Mrs. Lacey, and Enniscorthy's expectations shape Eilis's choices.</td></tr>
+ <tr><td class="h">Sherman</td><td>The roles that movies give to women.</td></tr>
+ <tr><td class="h">Ripley, Wonder Woman, "Boys Don't Cry"</td><td>Stereotypes about who may show emotion.</td></tr>
+ <tr><td class="h">Kahlo</td><td>She builds an identity around her Mexican roots.</td></tr>
+</table>
+
+<h3>Lens C: staying and leaving</h3>
+<p>Becoming yourself, and what you may have to leave behind.</p>
+<table>
+ <tr><th>Document</th><th>What it adds</th></tr>
+ <tr><td class="h">Jane Eyre</td><td>Breaking the "invisible bond".</td></tr>
+ <tr><td class="h">Eveline</td><td>Staying, and not breaking free.</td></tr>
+ <tr><td class="h">Brooklyn</td><td>Leaving, going back, and choosing again.</td></tr>
+ <tr><td class="h">Kahlo</td><td>From her life: she began painting self-portraits in bed after the accident.</td></tr>
+</table>
+
+<h3>Making the connection out loud</h3>
+<div class="frame">"Both ___ and ___ show that ___, but in different ways. In ___, ___. In ___, ___."<br>
+"If you read ___ next to ___, you can see that ___."<br>
+"___ answers my question by showing ___, while ___ complicates it by ___."</div>
+
+<h2 id="b5">5. Presenting on Thursday</h2>
+<p>On Thursday you present your dossier to your teacher. You do not know exactly how long you will have. Prepare a short version (about three minutes is one possible length) and be ready to be asked questions. Speak from a few key words, not from a full text.</p>
+<h3>A shape for a short version</h3>
+<ol>
+ <li><b>Introduce the dossier.</b> Name the theme, say your central question, and say which documents you chose.</li>
+ <li><b>First document.</b> What it is, then how it starts to answer your question.</li>
+ <li><b>Second document.</b> What it is, and how it gives a different angle.</li>
+ <li><b>Third document, and your personal document.</b> Show how it adds to or complicates the others.</li>
+ <li><b>Answer your question.</b> Say where you end up, in two or three sentences.</li>
+</ol>
+<div class="frame"><b>Opening:</b> "My dossier is on the theme of the expression and construction of the self. My central question is: ___. To answer it, I chose ___."<br>
+<b>Introducing a document:</b> "My first document is ___ by ___. It is a ___ from ___."<br>
+<b>Linking to the question:</b> "This is relevant to my question because ___."<br>
+<b>Moving on:</b> "A different angle appears in ___, where ___."<br>
+<b>Concluding:</b> "To answer my question, I would say that ___, although ___."</div>
+
+<h3>Bringing Brooklyn in</h3>
+<p>Your class has linked each literary text to Eilis in <i>Brooklyn</i>. You can do the same in the dossier: use a short link ("this reminds me of Eilis when…") to show that you know the full work, and keep the long discussion for the documents you chose.</p>
+
+<h3>Questions your teacher might ask</h3>
+<ul>
+ <li>Why did you choose this question?</li>
+ <li>Which document is the most important for your question, and why?</li>
+ <li>Where do two of your documents disagree?</li>
+ <li>What does <i>Brooklyn</i> add to your question?</li>
+ <li>Why did you choose your personal document, and how does it fit?</li>
+ <li>Is there a document in your dossier that does not fit well? What would you change?</li>
+</ul>
+<p>Think about each one in advance and have a short answer, with an example, ready.</p>
+
+<h2 id="b6">6. Your personal document</h2>
+<p>You are presenting the Rockwell painting as your personal document. Use your notes from last week (the Triple Self-Portrait notes page) to remember what you can see in the picture. What your notes <b>cannot</b> give you is the reason you chose it. That reason has to be yours: why did this picture speak to you, and what does it say about the theme?</p>
+<ul class="chk">
+ <li>I can say the title, the artist, and the date.</li>
+ <li>I can describe what is in the picture clearly and in order.</li>
+ <li>I can give one personal reason for choosing it.</li>
+ <li>I can link it to my central question.</li>
+</ul>
+
+<h2 id="b7">7. Words for the theme</h2>
+<div class="row"><span class="k">self-expression</span><span class="v">showing who you are through words, art, or actions</span></div>
+<div class="row"><span class="k">identity</span><span class="v">who a person is: how they see themselves and how others see them</span></div>
+<div class="row"><span class="k">to construct / construction</span><span class="v">to build something piece by piece; to build an image of yourself</span></div>
+<div class="row"><span class="k">staging</span><span class="v">arranging how something is shown, as in a play or a photograph (<i>la mise en scène</i>)</span></div>
+<div class="row"><span class="k">to embody</span><span class="v">to give a clear form to an idea by being it or acting it</span></div>
+<div class="row"><span class="k">a stereotype</span><span class="v">a simple and fixed idea about a type of person</span></div>
+<div class="row"><span class="k">an expectation</span><span class="v">what others think you should do or be</span></div>
+<div class="row"><span class="k">to conform to</span><span class="v">to follow the rules or expectations of a group</span></div>
+<div class="row"><span class="k">to break free</span><span class="v">to escape from something that holds you back</span></div>
+<div class="row"><span class="k">vulnerable</span><span class="v">easily hurt, or willing to show your weakness</span></div>
+<div class="row"><span class="k">authentic</span><span class="v">real, true to who you are</span></div>
+<div class="row"><span class="k">a persona</span><span class="v">the character you show to the world</span></div>
+<div class="row"><span class="k">to portray</span><span class="v">to show someone in a picture, a text, or a film</span></div>
+<div class="row"><span class="k">gaze</span><span class="v">a long, steady look; also, the way someone looks at something</span></div>
+<div class="row"><span class="k">artifice</span><span class="v">clever, deliberate arrangement; something made rather than natural</span></div>
+<div class="row"><span class="k">a liberation</span><span class="v">becoming free</span></div>
+<div class="row"><span class="k">inner / outer self</span><span class="v">what you feel inside, and what you show outside</span></div>
+
+<h2 id="b8">8. Your plan until Thursday</h2>
+<div class="card"><div class="t">Sunday and Monday</div>
+ <ul class="chk">
+  <li>Choose your three or four documents. Say, in one sentence for each, what it is about.</li>
+  <li>Write down two or three possible questions, using the openers. Do the test: can each document answer it?</li>
+  <li>Keep Monday evening for Brooklyn if you have not done your Monday practice yet. The exam comes first.</li>
+ </ul></div>
+<div class="card"><div class="t">Wednesday</div>
+ <ul class="chk">
+  <li>Choose your final question.</li>
+  <li>Fill in the cover page by hand: name, school, theme, question, and the titles and authors in the right rows.</li>
+  <li>Say your three-minute presentation aloud once, from a few key words.</li>
+ </ul></div>
+<div class="card"><div class="t">Thursday</div>
+ <ul class="chk">
+  <li>Bring the cover page, your documents, and your key words.</li>
+  <li>Ask your teacher which rows need documents and how many.</li>
+  <li>Be ready for questions: why this question, why these documents?</li>
+ </ul></div>
+
+</div>
+
+<div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+<div class="foot">KingCretot Experience &nbsp;&middot;&nbsp; Justine · LLCER Anglais</div>
+</div>
+<div id="kce-legal" style="display:block;clear:both;box-sizing:border-box;width:100%;margin:0;padding:10px 16px;background:#0A1F3D;color:#C9A84C;font:12px/1.4 Arial,sans-serif;text-align:center">&copy; 2026 KingCretot Experience. All rights reserved. Licensed for KCE students only. Do not copy, share or distribute.</div><script>(function(){var e=document.getElementById("kce-legal");if(!e)return;function place(){var r=document.documentElement,b=document.body,t=null,best=0,a=b?b.getElementsByTagName("*"):[];for(var i=0;i<a.length;i++){var x=a[i];if(x===e||e.contains(x))continue;if(x.scrollHeight>x.clientHeight+20&&x.clientHeight>innerHeight*0.5&&x.clientWidth>innerWidth*0.5){var o=getComputedStyle(x).overflowY;if((o==="auto"||o==="scroll")&&x.clientHeight*x.clientWidth>best){best=x.clientHeight*x.clientWidth;t=x}}}if(!t&&b){var bs=getComputedStyle(b),hs=getComputedStyle(r);if(/(hidden|clip)/.test(hs.overflowY)||(/(auto|scroll)/.test(bs.overflowY)&&b.scrollHeight>b.clientHeight+1))t=b;else t=r}if(t&&e.parentNode!==t)t.appendChild(e);var h=0;for(var j=0;j<a.length;j++){var s=getComputedStyle(a[j]);if(s.position==="fixed"&&s.display!=="none"&&s.visibility!=="hidden"&&!e.contains(a[j])){var q=a[j].getBoundingClientRect();if(q.height>0&&q.height<200&&q.bottom>=innerHeight-2&&q.width>innerWidth*0.5)h=Math.max(h,q.height)}}e.style.marginBottom=h?h+"px":"0"}if(document.readyState==="complete")setTimeout(place,50);else addEventListener("load",function(){setTimeout(place,50)})})();</script>
+</body>
+</html>
