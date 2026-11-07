@@ -68,14 +68,13 @@ button.rev:hover{background:var(--navy);color:#fff}
 .divider p{max-width:620px;color:#5c4b12;font-size:22px}
 button.go{font-family:var(--ui);font-weight:700;font-size:18px;color:#fff;background:var(--maroon);border:0;border-radius:999px;padding:14px 30px;cursor:pointer;margin-top:10px}
 /* doc cards */
-.docs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
-.doc{border:2.5px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff;cursor:pointer;text-align:left;font-family:var(--ui);color:var(--ink);position:relative}
+.docs{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}
+.doc{border:2.5px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff;cursor:default;text-align:left;font-family:var(--ui);color:var(--ink);position:relative}
 .doc .dt{display:block;font-family:var(--display);font-size:26px;font-weight:700;color:var(--navy);line-height:1.05}
 .doc .da{display:block;font-size:15px;color:var(--muted);margin:3px 0 6px}
 .doc .dl{display:block;font-size:17px}
 .doc .tag{display:inline-block;margin-bottom:5px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--maroon);background:#FBEAEA;border-radius:999px;padding:2px 9px}
 .doc.on{border-color:var(--maroon);background:#FFF6F6;box-shadow:0 0 0 3px #f3d4d4}
-.doc.on:after{content:"✓ on your cover page";display:block;margin-top:6px;font-size:13px;font-weight:700;color:var(--maroon)}
 .count{font-size:17px;color:var(--muted);margin-top:4px}
 .count b{color:var(--maroon)}
 .lensbar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px}
@@ -92,6 +91,40 @@ button.go{font-family:var(--ui);font-weight:700;font-size:18px;color:#fff;backgr
 .ticks li i{flex:none;width:26px;height:26px;border:3px solid var(--navy);border-radius:6px;font-style:normal;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700}
 .ticks li.on i{background:#2E7D32;border-color:#2E7D32}
 .ticks li.on i:before{content:"✓"}
+/* v2 additions */
+.dbtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.addb,.ctxb{font-family:var(--ui);font-weight:700;font-size:15px;border-radius:999px;padding:8px 18px;cursor:pointer;border:2px solid var(--maroon);background:#fff;color:var(--maroon)}
+.doc.on .addb{background:var(--maroon);color:#fff}
+.ctxb{border-color:var(--navy);color:var(--navy)}
+.lk2{font-weight:700;font-size:15px;color:var(--blue);text-decoration:none;border:2px solid var(--blue);border-radius:999px;padding:8px 18px;background:#fff}
+.ctx{display:none;margin-top:12px;border-top:1px solid var(--line);padding-top:10px;font-size:18px}
+.doc.open .ctx{display:block}
+.cx{margin:8px 0}.cx>b{display:block;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon);margin-bottom:2px}
+.cx ul{margin:2px 0 0;padding-left:22px}.cx li{margin:3px 0}
+.tchips{display:flex;gap:8px;flex-wrap:wrap}.tchips span{background:#FBEAEA;color:var(--maroon);border-radius:999px;padding:3px 12px;font-size:16px;font-weight:600}
+.pf{margin:6px 0 0;padding-left:22px}.pf li{margin:6px 0;font-size:20px}
+.use{margin-top:8px;font-size:17px;color:var(--muted);font-style:italic}
+.pick{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.pk{font-family:var(--ui);font-weight:700;font-size:16px;color:var(--navy);background:#fff;border:2px solid var(--navy);border-radius:999px;padding:8px 20px;cursor:pointer}
+.pk.on{background:var(--navy);color:#fff}.pk.seen:not(.on){border-color:#2E7D32;color:#2E7D32}
+.steps{font-size:17px;color:var(--muted);margin:2px 0 10px}
+.tile .how{display:block;margin-top:6px;font-size:18px;color:var(--muted)}
+.tile .how u{color:var(--blue);text-decoration:none;font-weight:700}
+.tile.show .how u{display:none}
+.tile .ex{display:none;margin-top:10px;background:#EAFBF3;border-left:5px solid #2E7D32;padding:8px 14px;border-radius:0 8px 8px 0;font-size:18px;color:var(--ink)}
+.tile.show .ex{display:block}
+.ans.plain{background:none;border-left:0;padding:0;margin-bottom:10px}
+.plan{margin:6px 0 4px}.plan .pr{display:flex;gap:12px;align-items:flex-start;background:#EAFBF3;border-left:6px solid #2E7D32;border-radius:0 10px 10px 0;padding:6px 16px;margin-bottom:5px;font-size:19px;line-height:1.35}
+.plan .pr i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:17px;margin-top:2px}
+.plan .pr>div>b:first-child{display:block;font-family:var(--display);font-size:22px;color:var(--navy)}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
+.lk{font-weight:700;font-size:18px;color:var(--navy);background:var(--gold);text-decoration:none;border-radius:999px;padding:12px 24px}
+.exs .ex{margin-bottom:8px}
+.exq{display:block;width:100%;text-align:left;font-family:var(--display);font-size:25px;font-weight:600;color:var(--navy);background:#fff;border:2.5px solid var(--maroon);border-radius:12px;padding:10px 18px;cursor:pointer}
+.exq small{display:block;font-family:var(--ui);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon)}
+.exs .ex.open .exq{background:#FFF6F6}
+.exa{display:none;background:#EAFBF3;border-left:6px solid #2E7D32;border-radius:0 10px 10px 0;padding:6px 18px 6px 6px;margin-top:4px}
+.exs .ex.open .exa{display:block}
 /* cover page */
 .coverwrap{display:none;background:#efe9d6;padding:18px 20px;overflow:auto;border-left:1px solid var(--line)}
 body.p2 .main.hascover .coverwrap{display:block}
@@ -147,7 +180,7 @@ body.p2 .nav button.next{background:var(--maroon);border-color:var(--maroon)}
   <button class="tab t1" id="tab1" type="button">Part 1 · Brooklyn exam</button>
   <button class="tab t2" id="tab2" type="button">Part 2 · Dossier</button>
  </div>
- <a class="nb" href="week09-notes.html">Study Notes</a>
+ <a class="nb" href="week09-notes.html" target="_blank" rel="noopener">Study Notes</a>
 </div>
 <div class="prog"><i id="bar"></i></div>
 
@@ -178,7 +211,7 @@ body.p2 .nav button.next{background:var(--maroon);border-color:var(--maroon)}
 <script>
 (function(){
 function el(h){var d=document.createElement('div');d.innerHTML=h.trim();return d.firstChild}
-function rev(btnText,ansHtml){return '<button class="rev" type="button">'+btnText+'</button><div class="ans">'+ansHtml+'</div>'}
+function rev(btnText,ansHtml,cls){return '<button class="rev" type="button">'+btnText+'</button><div class="ans'+(cls?' '+cls:'')+'">'+ansHtml+'</div>'}
 
 /* ---------- cover page state ---------- */
 var state={name:true,school:true,theme:true,q:'',full:[],lit:[],vis:[],non:[]};
@@ -243,52 +276,91 @@ add({part:1,k:'The paper',cover:false,render:function(c){
  '<div class="facts"><div class="fact"><b>1 hour</b><span>on paper</span></div><div class="fact"><b>Whole book</b><span>start to finish</span></div><div class="fact"><b>Questions</b><span>not one long essay</span></div></div>'+
  '<p class="big">Three skills: <b>know the story</b> · <b>read the question</b> · <b>build an answer</b>.</p>'}});
 
+function picker(c,labels,draw){
+ var bar=document.createElement('div');bar.className='pick';
+ var panel=document.createElement('div');panel.className='panel';
+ labels.forEach(function(l,i){var b=document.createElement('button');b.type='button';b.className='pk';b.textContent=l;b.onclick=function(){sel(i)};bar.appendChild(b)});
+ function sel(i){[].forEach.call(bar.children,function(x,j){x.classList.toggle('on',i===j)});bar.children[i].classList.add('seen');panel.innerHTML=draw(i)}
+ c.appendChild(bar);c.appendChild(panel);sel(0)}
+function planRows(p){var n=['Point','Evidence','Explain','Link'];
+ return '<div class="plan">'+p.map(function(t,i){return '<div class="pr"><i>'+(i+1)+'</i><div><b>'+n[i]+'</b>'+t+'</div></div>'}).join('')+'</div>'}
+
 var MOVES=[
- ['1','Enniscorthy',['A small life','Rose and Father Flood arrange Brooklyn','Eilis goes along'],'Does Eilis really choose to go to America?','Not really. Rose and Father Flood arrange it and she goes along. On the last night she realizes Rose is giving up her own future.'],
- ['2','The crossing and the arrival',['Storm and seasickness','Georgina helps','Father Flood · Mrs. Kehoe’s house'],'Who helps Eilis on the ship, and who meets her in Brooklyn?','Georgina, who shares her cabin, helps her. Father Flood meets her and settles her into Mrs. Kehoe’s boarding house.'],
- ['3','Brooklyn: work and belonging',['Bartocci’s','Homesick; letters leave things out','The new customers','Evening classes'],'What happens at Bartocci’s when the new customers come in?','The store has decided to welcome Black customers as a smart business move. Eilis is chosen to serve them. Each time one comes in the store goes still and watchful, and none ever comes in alone.'],
- ['4','Tony',['The parish dance','Tony says he loves her','Frank at dinner','Coney Island','Houses on Long Island'],'What does Frank say at dinner, and what does Tony hope for at Christmas?','Frank says the family does not like Irish people. At Christmas Tony hopes one of the houses his brothers are building on Long Island will be for the two of them, and Eilis does not answer directly.'],
- ['5','Rose’s death and the secret marriage',['Rose dies suddenly','Jack’s letter','Eilis turns to Tony','Courthouse wedding'],'What does Eilis learn about Rose, and what does she do before going home?','Rose had a heart condition she hid from everyone. Before Eilis goes home for a month she marries Tony at the courthouse and tells nobody.'],
- ['6','Back in Enniscorthy: the choice',['Rose’s room · Jim · the town','Miss Kelly knows','Tells her mother','The note at Jim’s door','Open ending'],'Who discovers the secret, and what does Eilis do next?','Miss Kelly, who heard from Mrs. Kehoe. Eilis tells her mother, books her passage, leaves a note at Jim’s door promising to explain, and takes the train.']
+ ['1','Enniscorthy',['A small life','Rose and Father Flood arrange Brooklyn','Eilis goes along'],'Does Eilis really choose to go to America?','Not really. Rose and Father Flood arrange it and she goes along. On the last night she realizes Rose is giving up her own future.',
+  ['Father Flood lays out his offer: a job, a place to live, someone to turn to. It sounds simple and generous, but he is also the one making the case.','Eilis does not fight the plan, but she does not really choose it either. She goes along.','Her brothers pay for her passage and Rose handles the paperwork.','The night before she leaves, Rose helps her pack and gives her jewelry and money. Eilis realizes Rose is giving up her own future, and says nothing.'],
+  'choosing and being chosen for · duty and sacrifice · silence'],
+ ['2','The crossing and the arrival',['Storm and seasickness','Georgina helps','Father Flood · Mrs. Kehoe’s house'],'Who helps Eilis on the ship, and who meets her in Brooklyn?','Georgina, who shares her cabin, helps her. Father Flood meets her and settles her into Mrs. Kehoe’s boarding house.',
+  ['A bad storm: Eilis is seasick for most of the voyage.','Georgina, a more experienced traveler, shares her cabin, gets her through the worst of it and helps her prepare for immigration.','Father Flood meets her in Brooklyn and settles her into Mrs. Kehoe’s boarding house, with several other young Irish women.'],
+  'migration and being an outsider · how far Father Flood can be trusted as a helper'],
+ ['3','Brooklyn: work and belonging',['Bartocci’s','Homesick; letters leave things out','The new customers','Evening classes'],'What happens at Bartocci’s when the new customers come in?','The store has decided to welcome Black customers as a smart business move. Eilis is chosen to serve them, and each time one comes in the store goes still and watchful.',
+  ['The store’s new stocking shades are made for darker skin tones, and the decision is framed as a smart business move.','Not one of the customers ever comes in alone. Everyone stares and pretends not to, but Miss Fortini never looks away.','Eilis is homesick, and her letters home leave out how hard it is.','She passes her first-year exams, and a parishioner has already paid for her next year of tuition.'],
+  'looking and not looking · silence and what is left out · independence and growing up · migration'],
+ ['4','Tony',['The parish dance','Tony says he loves her','Frank at dinner','Coney Island','Houses on Long Island'],'What does Frank say at dinner, and what does Tony hope for at Christmas?','Frank says the family does not like Irish people. At Christmas Tony hopes one of the houses his brothers are building on Long Island will be for the two of them, and Eilis does not answer directly.',
+  ['At a dance in the parish hall, Tony asks her to dance, tells her he is Italian, walks her home and asks to see her again.','She writes to Rose about him but leaves out that he is a plumber, and she does not tell her mother at all.','At dinner with his family, his youngest brother Frank says the family does not like Irish people.','Around Christmas Tony hopes one of the Long Island houses will be for them. It is almost a proposal, and Eilis does not answer directly.'],
+  'home and belonging · leaving things out · comparing Tony and Jim'],
+ ['5','Rose’s death and the secret marriage',['Rose dies suddenly','Jack’s letter','Eilis turns to Tony','Courthouse wedding'],'What does Eilis learn about Rose, and what does she do before going home?','Rose had a heart condition she hid from everyone. Before Eilis goes home for a month she marries Tony at the courthouse and tells nobody.',
+  ['Rose dies suddenly in the night. Father Flood tells Eilis at Bartocci’s, and her mother phones that evening to explain the heart condition Rose hid from everyone.','Jack writes that Eilis should come home and look after their mother.','Overwhelmed, Eilis turns to Tony. Before she goes, he asks her to marry him. They have a simple courthouse wedding and tell no one.'],
+  'silence and secrets · duty to family · choosing and being chosen for · Rose’s part in the novel'],
+ ['6','Back in Enniscorthy: the choice',['Rose’s room · Jim · the town','Miss Kelly knows','Tells her mother','The note at Jim’s door','Open ending'],'Who discovers the secret, and what does Eilis do next?','Miss Kelly, who heard from Mrs. Kehoe. Eilis tells her mother, books her passage, leaves a note at Jim’s door promising to explain, and takes the train.',
+  ['Eilis finds Rose’s room untouched and tells nobody about Tony. She postpones her return so she can go to Nancy’s wedding.','She meets Jim again at a beach outing and a romance begins. She is offered work at the office where Rose worked. The town admires her, and her mother approves of Jim.','After the wedding Jim wants to get engaged before she goes back. Eilis does not answer, and she has stopped writing to Tony.','Miss Kelly shows she has heard about the marriage from Mrs. Kehoe. Eilis books her passage, writes to Father Flood, Mrs. Kehoe and Miss Fortini, and tells her mother.','On her last morning she leaves a note at Jim’s door promising to explain, and takes the train.'],
+  'choosing freely · the open ending · reputation and expectations · duty to family']
 ];
 MOVES.forEach(function(m){add({part:1,k:'Movement '+m[0],cover:false,render:function(c){
  c.innerHTML='<span class="kick">Part 1 · Movement '+m[0]+' of 6</span><h2>'+m[1]+'</h2>'+
  '<div class="chips">'+m[2].map(function(x){return '<span class="chip">'+x+'</span>'}).join('')+'</div>'+
  '<p class="big" style="color:var(--muted)">Say it in two sentences first.</p>'+
- '<div class="q">'+m[3]+'</div>'+rev('Show answer',m[4])}})});
+ '<div class="q">'+m[3]+'</div>'+rev('Show answer',m[4])+
+ rev('Show proof from the book','<ul class="pf">'+m[5].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="use">Use these moments for: '+m[6]+'.</div>')}})});
 
+var JOBS=[
+ ['Explain why Eilis keeps her marriage secret.','<b>Explain / why:</b> give reasons, with a moment for each.',
+  '<b>Two reasons.</b> First, silence protects everyone from an uncomfortable conversation: Eilis marries Tony just before she goes home to a mother who is grieving Rose and was never told about Tony. Second, silence lets her avoid deciding: in Enniscorthy she drifts toward Jim without answering him.<div class="use">Moments: her mother never told about Tony · the courthouse wedding · Jim’s engagement question.</div>'],
+ ['Compare Tony and Jim.','<b>Compare:</b> what they share, where they differ.',
+  '<b>Alike:</b> both court her, and both ask about a future that Eilis does not answer directly (Tony: the houses on Long Island; Jim: an engagement before she goes back).<br><b>Different:</b> Tony chose her as a newcomer in Brooklyn and is open about his feelings. Jim comes with her mother’s approval and the town’s admiration, and stands for the comfortable life at home.<div class="use">Moments: the parish dance · Long Island · the beach outing · the engagement question.</div>'],
+ ['To what extent is Eilis in control of her life?','<b>To what extent:</b> not all or nothing. Where yes, where no, then decide.',
+  '<b>Partly, and more by the end.</b><br><b>Not in control:</b> Rose and Father Flood arrange Brooklyn, Jack’s letter calls her home, and she acts on her secret only after Miss Kelly shows she knows.<br><b>In control:</b> she passes her exams, agrees to marry Tony, and at the end tells her mother, books her passage and leaves the note at Jim’s door.<br><b>Overall:</b> closer to control than at the start, but only once the secret is out.'],
+ ['How does Tóibín show that Eilis is homesick?','<b>How does the author show:</b> his choices: what is said, left out, how it is told.',
+  '<b>Through what she does and leaves out, not long descriptions of feeling.</b> Her letters home leave out how hard Brooklyn is. We see her homesick while she works at Bartocci’s, and the heaviness starts even before she leaves, in her last days at home. The effect is that the reader has to feel it for her.<div class="use">Technique: restraint, and letters that leave things out.</div>']
+];
 add({part:1,k:'Read the question',cover:false,render:function(c){
- var rows=[['Explain why Eilis keeps her marriage secret.','<b>Explain / why:</b> give reasons, with a moment for each.'],
-  ['Compare Tony and Jim.','<b>Compare:</b> what they share, where they differ.'],
-  ['To what extent is Eilis in control of her life?','<b>To what extent:</b> not all or nothing. Where yes, where no, then decide.'],
-  ['How does Tóibín show that Eilis is homesick?','<b>How does the author show:</b> his choices: what is said, left out, how it is told.']];
- c.innerHTML='<span class="kick">Part 1 · The question</span><h2>What is the job?</h2><p>The first words tell you the job. Say it, then check.</p>'+
- rows.map(function(r){return '<div class="rowq"><div class="q">“'+r[0]+'”</div><div><button class="rev" type="button">Show the job</button><div class="a">'+r[1]+'</div></div></div>'}).join('')}});
+ c.innerHTML='<span class="kick">Part 1 · The question</span><h2>What is the job?</h2><p class="steps">For each question: <b>① say the job</b> · <b>② answer aloud</b> · <b>③ check.</b> Pick a question.</p>';
+ picker(c,['1','2','3','4'],function(i){var j=JOBS[i];
+  return '<div class="q">“'+j[0]+'”</div>'+rev('① Show the job',j[1])+'<p class="steps">Now answer it aloud. Then check:</p>'+rev('③ Show a good answer',j[2])})}});
 
 add({part:1,k:'Build an answer',cover:false,render:function(c){
+ var T=[['Point','One sentence that answers the question.','Tóibín shows that Eilis is torn by giving each home a person who offers her a future, and by letting her answer neither of them directly.'],
+  ['Evidence','One precise moment: who, where, what happens. One from each home.','<b>Brooklyn:</b> Tony hopes one of the houses his brothers are building on Long Island will be for the two of them, and Eilis does not answer directly.<br><b>Enniscorthy:</b> Jim wants to get engaged before she goes back, and again she does not answer.'],
+  ['Explain','“This shows that…” This is where the points are.','This shows that each place holds someone who wants a future with her, and she gives both the same silence. The silence suggests she cannot choose yet, because each place holds something she values.'],
+  ['Link','Back to the question.','So Tóibín makes us feel her pulled both ways. Only when Miss Kelly shows she knows about the marriage does she act: she tells her mother, books her passage and leaves a note at Jim’s door.']];
  c.innerHTML='<span class="kick">Part 1 · The answer</span><h2>Build it in four moves</h2>'+
  '<div class="bigq"><small>Question</small>How does Tóibín show that Eilis is torn between two homes?</div>'+
- '<div class="tiles">'+
- '<button class="tile" type="button"><span class="tn"><i>1</i>Point</span><span class="tx">One sentence that answers: “Tóibín shows that Eilis is torn by…”</span></button>'+
- '<button class="tile" type="button"><span class="tn"><i>2</i>Evidence</span><span class="tx">One precise moment: who, where, what happens. One from each home.</span></button>'+
- '<button class="tile" type="button"><span class="tn"><i>3</i>Explain</span><span class="tx">“This shows that…” This is where the points are.</span></button>'+
- '<button class="tile" type="button"><span class="tn"><i>4</i>Link</span><span class="tx">Back to the question: “So each place holds part of her.”</span></button></div>'+
- '<p class="big"><b>Your turn:</b> say the whole paragraph aloud, in the four moves.</p>'}});
+ '<div class="tiles">'+T.map(function(t,i){return '<button class="tile" type="button"><span class="tn"><i>'+(i+1)+'</i>'+t[0]+'</span><span class="how">'+t[1]+' <u>Click to fill in the blank.</u></span><span class="ex">'+t[2]+'</span></button>'}).join('')+'</div>'+
+ '<p class="big"><b>Your turn first:</b> say each move aloud, then click to check.</p>'}});
 
+var LAB=[
+ ['Character','What part does Rose play in the novel?',[['1','Enniscorthy','Father Flood’s offer · the last night with Rose'],['5','Rose’s death','her hidden heart condition · Jack’s letter']],
+  ['Rose sets Eilis’s life in motion, and she shapes it even after she dies.','Rose and Father Flood arrange Brooklyn, and the night before Eilis leaves, Rose helps her pack and gives her jewelry and money. After Rose dies suddenly, Eilis learns she had a heart condition she hid from everyone.','Rose gives up her own chance to leave so her sister can have one, and says nothing about the cost. She stands for sacrifice and for silence that protects other people.','So Rose is the reason Eilis goes to Brooklyn, and her death is the reason Eilis goes home.']],
+ ['Theme','Why are secrets and silence so important in the novel?',[['3','Brooklyn','the letters that leave things out'],['5','Rose’s death','Rose’s hidden illness · the secret wedding'],['6','The choice','Miss Kelly knows']],
+  ['Nobody says what they are really going through, and silence both protects people and lets Eilis avoid deciding.','Her letters leave out how hard Brooklyn is. Rose hides her heart condition from everyone. Eilis hides her marriage until Miss Kelly shows she knows.','Silence protects Eilis’s mother from an uncomfortable conversation, but it also lets Eilis put off choosing between Tony and Jim.','So the secret is what the story turns on: once Miss Kelly knows, silence is no longer possible and Eilis acts.']],
+ ['Technique','Why might Tóibín have chosen an open ending?',[['6','The choice','the note at Jim’s door · the train · the last image']],
+  ['Tóibín stops at the moment of choosing, so the reader sees the decision and not the result.','The book ends as Eilis leaves a note at Jim’s door and takes the train. We never see her arrive in Brooklyn or meet Tony again; the last image is of Jim hearing that she has gone back.','Because we do not see what happens next, the ending is about her decision, not about a happy reunion. Tóibín does not spell out what she feels, so the reader has to decide what the choice means.','This fits a book that keeps asking whether Eilis ever really chooses: it ends the moment she does.']],
+ ['Compare','Compare Tony and Jim. What does each stand for?',[['4','Tony','the dance · Frank at dinner · the Long Island houses'],['6','The choice','the beach outing · the engagement question']],
+  ['Tony and Jim both offer Eilis a future, but Tony stands for the life she builds in Brooklyn and Jim for the comfortable life at home.','Tony asks her to dance at the parish hall, tells her he loves her, and hopes one of the Long Island houses will be theirs. Jim courts her at a beach outing and wants to get engaged before she goes back, with her mother’s approval and the town’s admiration.','Eilis answers neither of them directly. But Tony chose her as a newcomer, while Jim’s offer comes with approval from everyone at home.','So the choice between them is also a choice between two homes.']],
+ ['Longer answer','Does Eilis make her final decision freely?',[['6','The choice','Miss Kelly · telling her mother · the note'],['1–5','The whole book','Rose and Father Flood arrange Brooklyn · Jack’s letter']],
+  ['Mostly yes, but only after her secret is exposed.','<b>For:</b> she tells her mother, books her passage, writes to Father Flood, Mrs. Kehoe and Miss Fortini, and leaves the note at Jim’s door. <b>Against:</b> her mother approves of Jim, the town admires her, and she acts only after Miss Kelly shows she knows.','Nobody tells her what to do this time, unlike at the start, when Rose and Father Flood arranged Brooklyn for her. But circumstances still push her.','So she is closer to controlling her life than ever before, and the book leaves open whether she is fully free.']]
+];
 add({part:1,k:'Question lab',cover:false,render:function(c){
- var rows=[['Character','What part does Rose play in the novel?','Movements 1 and 5.'],
-  ['Theme','Why are secrets and silence so important?','Movements 3, 5 and 6.'],
-  ['Technique','Why might Tóibín have chosen an open ending?','Movement 6.'],
-  ['Compare','Compare Tony and Jim. What does each stand for?','Movements 4 and 6.'],
-  ['Longer answer','Does Eilis make her final decision freely?','Movement 6, and the whole book.']];
- c.innerHTML='<span class="kick">Part 1 · Practice</span><h2>Question lab</h2><p>Answer aloud in three or four sentences. Then check where to look.</p>'+
- rows.map(function(r){return '<div class="rowq"><div class="q"><small style="font-family:var(--ui);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);display:block">'+r[0]+'</small>'+r[1]+'</div><div><button class="rev" type="button">Where to look</button><div class="a">'+r[2]+'</div></div></div>'}).join('')+
- ''}});
+ c.innerHTML='<span class="kick">Part 1 · Practice</span><h2>Question lab</h2><p class="steps">For each question: <b>① answer aloud in the four moves</b> · <b>② check where to look</b> · <b>③ check a plan.</b> Pick a question.</p>';
+ picker(c,LAB.map(function(l){return l[0]}),function(i){var l=LAB[i];
+  return '<div class="q">“'+l[1]+'”</div>'+
+  rev('② Where to look','<ul class="pf">'+l[2].map(function(m){return '<li><b>Movement'+(m[0].indexOf('–')>-1?'s ':' ')+m[0]+' · '+m[1]+':</b> '+m[2]+'</li>'}).join('')+'</ul>')+
+  rev('③ Show a plan (the four moves)',planRows(l[3]),'plain')})}});
 
 add({part:1,k:'Before Tuesday',cover:false,render:function(c){
  c.innerHTML='<span class="kick">Part 1 · Before Tuesday</span><h2>Your plan for the exam</h2>'+
  '<ul class="ticks"><li><i></i><span>Say the six movements aloud, without looking</span></li><li><i></i><span>Write three answers by hand, one at a time</span></li><li><i></i><span>Write one longer answer</span></li><li><i></i><span>On Tuesday: read everything first · underline the command word · keep five minutes at the end</span></li></ul>'+
- '<p>The Study Notes page has the 20 practice questions and a day-by-day plan.</p>'}});
+ '<p class="big"><b>Everything for Tuesday is in your Study Notes:</b></p>'+
+ '<div class="links"><a class="lk" href="week09-notes.html#a2" target="_blank" rel="noopener">The book in six movements ↗</a><a class="lk" href="week09-notes.html#a7" target="_blank" rel="noopener">20 practice questions ↗</a><a class="lk" href="week09-notes.html#a6" target="_blank" rel="noopener">Building an answer ↗</a><a class="lk" href="week09-notes.html#a8" target="_blank" rel="noopener">Day-by-day plan ↗</a></div>'}});
 
 add({part:1,k:'Break',cover:false,divider:true,render:function(c){
  c.innerHTML='<div class="divider"><div class="dn">End of Part 1</div><h1>Brooklyn is finished for today.</h1><p>Part 2 is a different job. You are not remembering a story. You are building your own dossier cover page.</p><button class="go" type="button" id="gop2">Begin Part 2 →</button></div>';
@@ -300,27 +372,87 @@ add({part:2,k:'The assignment',cover:true,hot:'name',enter:function(){state.name
  '<p class="big">We fill it in together, row by row. <span style="color:var(--maroon)"><b>Watch the page on the right.</b></span></p>'+
  '<p>Already filled: your name, school, and the theme. (Click any text on the page to edit it.)</p>'}});
 
-function docStage(k,row,title,intro,ids,hotRow){add({part:2,k:k,cover:true,hot:hotRow,render:function(c){
+var CTX={
+ brooklyn:{what:'Colm Tóibín’s novel (2009), set in the early 1950s. A Bildungsroman about Eilis, a young Irish woman who emigrates to Brooklyn, builds a life there, and has to choose between two homes.',
+  themes:['Choosing and being chosen for','Home and belonging','Silence and secrets','Independence and growing up'],
+  know:['It is already on your page. Your Tuesday exam covers the whole book.','In your presentation, use short links to it: “this reminds me of Eilis when…”.','Eilis builds herself by working, studying and loving, but she often does not say what she feels. Her letters show her choosing what each person gets to know.']},
+ jane:{what:'Jane is ten, an orphan living with her aunt, Mrs. Reed. Her aunt tells Mr. Brocklehurst, the headmaster of the school Jane will attend, that Jane is deceitful. In this chapter Jane can no longer stay silent, and she confronts her aunt.',
+  q:'Can expressing one’s emotions become an act of liberation?',
+  themes:['Speaking out','A shift in power','Defined by others, or by yourself','From anger and suffering to happiness and freedom'],
+  know:['You study Chapter IV only, not the whole novel.','The class looked at direct speech, exclamations and emphatic language.','The key image is an “invisible bond” that bursts: the moment she breaks free of her aunt.','Speaking out is how Jane starts to define herself. Use short phrases, not long quotes from memory.'],
+  brook:'Both are young women who want some independence. But Jane explodes in one scene, while Eilis changes slowly and often stays silent. The contrast is as useful as the similarity.'},
+ eveline:{what:'Eveline is a young woman in Dublin who lives with her father and works in a shop. Her mother is dead, and she has taken on many family responsibilities. One evening, at the window, she thinks about her childhood and about leaving. Frank, a young sailor, has promised her a new life in Buenos Aires.',
+  q:'Why is it sometimes so difficult to break free from one’s past?',
+  themes:['Freedom against duty','Past against present','Memory and the dilemma','Fear of the known against an uncertain future'],
+  know:['A short story from the collection Dubliners, so you can know all of it.','The class noticed “used to”, the language of the past, and the contrast between past and present.','Know the ending: Eveline cannot leave. She stays.','This Frank is not Tony’s brother Frank in Brooklyn. Two different characters with the same name.'],
+  brook:'Almost the same situation: a young woman deciding whether to leave home and family for a new life. The outcome is the opposite: Eveline stays, and Eilis leaves. Use the contrast.'},
+ kahlo:{what:'Kahlo stands between two white curtains, as if on a stage. She holds a letter to Trotsky and a bunch of flowers. She gave the painting to Trotsky for his birthday, November 7, 1937.',
+  themes:['Staging the self','Choosing how to be seen','Mexican identity and roots','Pain shown openly, in a staged setting'],
+  know:['Oil on hard board (Masonite), 1937. National Museum of Women in the Arts, Washington, D.C. Also called Between the Curtains.','The artist: born in Mexico in 1907; polio as a child; a serious bus accident at eighteen kept her in bed for months, and a mirror was placed above her bed so she could paint herself.','Your class notes say 55 of her roughly 143 paintings are self-portraits. She rejected the “Surrealist” label and said she painted her own reality.','Look for her choices: the Mexican jewelry and clothes, the flowers, her steady gaze. Say “a gift to Trotsky”.'],
+  brook:'Both Kahlo and Eilis decide how to present themselves to people who are watching: Kahlo to the viewer, Eilis in her letters and in front of Enniscorthy. Check which works your group presented and use those first.'},
+ sherman:{what:'A black-and-white photograph from Untitled Film Stills (1977–1980), a series of seventy photographs in which Sherman poses as generic women from 1950s and 1960s movies.',
+  themes:['Identity as costume, setting and pose','The roles society expects of women','Artist and model at once','Hiding behind characters'],
+  know:['Cite it as “Untitled Film Still #12”, 1978, gelatin silver print. The number is a catalogue label; the work is untitled.','The characters are not real film stills. They imitate Hollywood, film noir, B movies and European art films.','Sherman is both artist and model, but the museum that owns the series says the pictures are not considered self-portraits: she plays types, not herself.','She has spoken of “so many levels of artifice” and a “jumble of ambiguity”.'],
+  brook:'Eilis is a different person in each place: the new arrival, the shop girl, the wife, the returning success. If your group studied a different still, use that one and edit the number on your cover page.'},
+ maier:{what:'Two self-portraits from your textbook unit “Disclosing the creative process”. Maier’s is dated 1956 and shows her with her camera and her reflection.',
+  themes:['Showing the tools of your art','What the artist shows, and what is held back','Staging the self'],
+  know:['The class task: describe one portrait, present it to a partner, then compare how each artist stages the self.','Check your book for the Hockney title and date before you name them.','Use these only if you studied them well enough to talk about them.'],
+  brook:'Both put the tools or the setting of their art in the picture. Compare what each shows of themselves, and what is held back.'},
+ rockwell:{what:'Painted in 1959 and on the cover of the Saturday Evening Post in February 1960. We see Rockwell from behind as he paints his portrait, with his reflection in a mirror and small self-portraits by other artists pinned at the upper right.',
+  themes:['Expression and construction on one canvas','Three selves: the man from behind, the reflection, the portrait','Mirror against canvas','Standing among the masters'],
+  know:['These come from last week’s notes. Open them from this card to check what you noticed.','You present it as your personal document, so your reason for choosing it has to be yours.']},
+ weaver:{what:'In a talk recorded for the American Film Institute (2009), Sigourney Weaver explains what drew her to Ellen Ripley, the main character of the Alien films.',
+  themes:['Stereotypes about women and emotion','Independence','Not being “vulnerable”'],
+  know:['Your class noted that the character was written as a man.','Ripley is independent and not “vulnerable”, and she does not react to the sexism around her.','Vulnerable: easily hurt, or willing to show weakness.','The character challenges the idea that women must show their feelings the way society expects.'],
+  brook:'Eilis holds back what she feels too, in her letters and in the secret marriage. Is that her own choice, or an expectation? Test it.'},
+ orwell:{what:'An essay from 1946 in which the English writer George Orwell (1903–1950, author of Animal Farm) explains what pushes people to write.',
+  themes:['Writing as self-expression','Building the image you want to leave','Why we express ourselves'],
+  know:['Your textbook extract lists four motives: sheer egoism, aesthetic enthusiasm, historical impulse and political purpose.','Writing is a way of expressing yourself and of building your image.','Ask your teacher whether it counts as a literary or a non-literary text.'],
+  brook:'Eilis’s letters are writing too: she chooses what each person gets to know. Does she write to express herself, or to build an image?'},
+ ww:{what:'In a Wonder Woman comic panel, Diana Prince has two identities: the powerful Wonder Woman who controls her emotions, and the human Diana who cannot.',
+  themes:['Two identities: the hero and the human','Hiding feelings to be taken seriously','Society’s expectations about emotion'],
+  know:['The panel shows that she is expected to hide her feelings to be taken seriously.','It belongs to your class work on feelings and social expectations, with “Boys Don’t Cry” and Ripley.'],
+  brook:'Like Diana, Eilis edits what she shows: her letters leave things out and she hides her marriage.'},
+ cure:{what:'A song by The Cure (1979) in which a man hides his sadness by laughing, because boys are expected not to cry.',
+  themes:['Hiding sadness behind laughter','Stereotypes about who may show emotion'],
+  know:['Say the title exactly: “Boys Don’t Cry”.','The lyrics in your textbook are credited to Dempsey, Tolhurst and Smith, 1979.','It belongs to your class work on feelings and social expectations.'],
+  brook:'Compare how each one hides: he laughs, while Eilis stays silent or leaves things out of her letters.'}
+};
+function ctxHtml(x){
+ return (x.q?'<div class="cx"><b>The class question</b>'+x.q+'</div>':'')+
+ '<div class="cx"><b>Themes</b><span class="tchips">'+x.themes.map(function(t){return '<span>'+t+'</span>'}).join('')+'</span></div>'+
+ '<div class="cx"><b>What you need to know</b><ul>'+x.know.map(function(k){return '<li>'+k+'</li>'}).join('')+'</ul></div>'+
+ (x.brook?'<div class="cx"><b>Link to Brooklyn</b>'+x.brook+'</div>':'')}
+var EXTRA={rockwell:'<a class="lk2" href="triple-self-portrait-notes.html" target="_blank" rel="noopener">Open last week’s notes: Triple Self-Portrait ↗</a>'};
+
+function docStage(k,row,title,intro,ids,hotRow,enter){add({part:2,k:k,cover:true,hot:hotRow,enter:enter,render:function(c){
  c.innerHTML='<span class="kick">Part 2 · '+k+'</span><h2>'+title+'</h2><p>'+intro+'</p><div class="docs" id="docs"></div><div class="count" id="count"></div>';
  var box=c.querySelector('#docs');
- ids.forEach(function(id){var d=DOCS[id];var b=document.createElement('button');b.type='button';b.className='doc'+(state[row].indexOf(id)>-1?' on':'');
-  b.innerHTML='<span class="tag">'+d.tag+'</span><span class="dt">'+d.t+'</span><span class="da">'+d.a+'</span><span class="dl">'+d.line+'</span>';
-  b.onclick=function(){var on=!b.classList.contains('on');b.classList.toggle('on',on);setDoc(id,on);cnt()};box.appendChild(b)});
  function cnt(){var n=chosen().length;c.querySelector('#count').innerHTML='Documents on your page: <b>'+n+'</b> '+(n<4?'(you need at least 3 from class, plus your personal document)':'')}
+ ids.forEach(function(id){var d=DOCS[id],x=CTX[id];
+  var card=document.createElement('div');card.className='doc'+(state[row].indexOf(id)>-1?' on':'');
+  card.innerHTML='<span class="tag">'+d.tag+'</span><span class="dt">'+d.t+'</span><span class="da">'+d.a+'</span><span class="dl">'+x.what+'</span>'+
+   '<div class="dbtns"><button type="button" class="addb"></button><button type="button" class="ctxb">Themes and what to know ▾</button>'+(EXTRA[id]||'')+'</div><div class="ctx">'+ctxHtml(x)+'</div>';
+  var ab=card.querySelector('.addb');
+  function paint(){var on=card.classList.contains('on');ab.textContent=on?'✓ On your cover page':'+ Add to cover page'}
+  ab.onclick=function(){var on=!card.classList.contains('on');card.classList.toggle('on',on);setDoc(id,on);paint();cnt()};
+  card.querySelector('.ctxb').onclick=function(){var o=card.classList.toggle('open');this.textContent=o?'Hide ▴':'Themes and what to know ▾'};
+  paint();box.appendChild(card)});
  cnt()}})}
-add({part:2,k:'Full work',cover:true,hot:'full',enter:function(){setDoc('brooklyn',true);flash('full')},render:function(c){
- c.innerHTML='<span class="kick">Part 2 · Full work</span><h2>Your full work</h2><p class="big">This one is easy: one novel, and it is already on your page.</p>'+
- '<div class="docs"><div class="doc on" style="cursor:default"><span class="tag">Full work</span><span class="dt">Brooklyn</span><span class="da">'+DOCS.brooklyn.a+'</span><span class="dl">'+DOCS.brooklyn.line+'</span></div></div>'}});
-docStage('Literary texts','lit','Literary texts','Click the texts you can talk about. They appear on the page.',['jane','eveline'],'lit');
-docStage('Visual art','vis','Visual art','Click the works you can talk about. Your personal document goes here too.',['kahlo','sherman','maier','rockwell'],'vis');
-docStage('Non-literary texts','non','Non-literary texts','Click what you can talk about. Your teacher decides which row each one belongs in.',['weaver','orwell','ww','cure'],'non');
+
+docStage('Full work','full','Your full work','One novel, and it is already on your page. Open the context to see what to say about it.',['brooklyn'],'full',function(){setDoc('brooklyn',true);flash('full')});
+docStage('Literary texts','lit','Literary texts','Open the context for each text, then add the ones you can talk about to your page.',['jane','eveline'],'lit');
+docStage('Visual art','vis','Visual art','Open the context for each work, then add the ones you can talk about. Your personal document goes here too.',['kahlo','sherman','maier','rockwell'],'vis');
+docStage('Non-literary texts','non','Non-literary texts','Open the context for each one, then add what you can talk about. Your teacher decides which row each one belongs in.',['weaver','orwell','ww','cure'],'non');
 
 add({part:2,k:'The central question',cover:true,hot:'q',render:function(c){
  var cq=['A good one is a <b>question</b>','it is <b>open</b>: more than one answer','it fits the <b>theme</b>','<b>each document</b> can help answer it'];
  c.innerHTML='<span class="kick">Part 2 · The central question</span><h2>What is a problématique?</h2>'+
  '<ul class="ticks">'+cq.map(function(x){return '<li><i></i><span>'+x+'</span></li>'}).join('')+'</ul>'+
- '<p style="color:var(--muted)">Warm-up on another theme (myths and heroes): weak or strong?</p>'+
- [['“Heroes in stories.”','<b>Weak.</b> A topic, not a question.'],['“Do we need heroes to feel brave ourselves?”','<b>Strong.</b> Open, with an angle, and different documents can answer it differently.']].map(function(r){return '<div class="rowq"><div class="q" style="font-size:20px">'+r[0]+'</div><div><button class="rev" type="button">Show</button><div class="a">'+r[1]+'</div></div></div>'}).join('')}});
+ '<p style="color:var(--muted)">Warm-up with your own documents: weak or strong?</p>'+
+ [['“Identity in Brooklyn and Jane Eyre.”','<b>Weak.</b> A topic, not a question.'],
+  ['“Does Eilis hide her marriage?”','<b>Weak.</b> A yes-or-no question about one document. Eveline, Kahlo and Sherman cannot help answer it.'],
+  ['“Why is it so hard to say what we really feel?”','<b>Strong.</b> Open, it fits the theme, and Eveline, Brooklyn and Jane Eyre each answer it differently.']].map(function(r){return '<div class="rowq"><div class="q" style="font-size:20px">'+r[0]+'</div><div><button class="rev" type="button">Show</button><div class="a">'+r[1]+'</div></div></div>'}).join('')}});
 
 add({part:2,k:'Connections',cover:true,hot:'q',render:function(c){
  c.innerHTML='<span class="kick">Part 2 · Connections</span><h2>How do your documents talk to each other?</h2>'+
@@ -332,6 +464,19 @@ add({part:2,k:'Connections',cover:true,hot:'q',render:function(c){
   if(!ids.length){out.innerHTML='<p>Choose documents first (go back).</p>';return}
   out.innerHTML=ids.map(function(id){var d=DOCS[id],t=d.lens[l];return '<div class="lensrow"><b>'+d.t+'</b>'+(t?'<span>'+t+'</span>':'<span class="no">your own idea?</span>')+'</div>'}).join('')}
  bs.forEach(function(b){b.onclick=function(){show(b.getAttribute('data-l'))}}); show('A')}});
+
+var GOOD=[
+ ['Why is it so hard to…','Why is it so hard to say what we really feel?',[['Eveline','she cannot say what she wants, so she cannot change her life'],['Brooklyn','Eilis’s letters leave things out, and she hides her marriage'],['Jane Eyre','she finally says everything she kept inside, and it frees her'],['“Boys Don’t Cry”','he hides his sadness behind laughter'],['Wonder Woman','Diana hides her feelings to be taken seriously']]],
+ ['To what extent…','To what extent do other people decide who we become?',[['Jane Eyre','an aunt and a headmaster decide what she is; she refuses'],['Eveline','duty to her family holds her back'],['Brooklyn','Rose, Father Flood, her mother and Enniscorthy shape Eilis’s choices'],['Sherman','the roles that movies give to women'],['Ripley','a character who does not react to the sexism around her: independent, not “vulnerable”']]],
+ ['Do we have to…','Do we have to leave something behind to become ourselves?',[['Jane Eyre','she breaks the “invisible bond”'],['Eveline','she stays, and does not break free'],['Brooklyn','Eilis leaves, goes back, and chooses again'],['Kahlo','she builds her identity around her Mexican roots, so she complicates the question']]],
+ ['Is the self…','Is the self we show to others ever the real one?',[['Kahlo','shows her pain and identity openly, but in a staged setting'],['Sherman','hides herself behind characters'],['Rockwell','three selves in one picture: which one is the real him?'],['Brooklyn','Eilis chooses what each person gets to know'],['Orwell','writing builds the image you want to leave']]],
+ ['How does…','How does expressing ourselves help us become who we are?',[['Jane Eyre','speaking out is how she starts to define herself'],['Orwell','writing is a way to express yourself and build an image'],['Kahlo','she paints herself, in bed, after the accident'],['Rockwell','he expresses and constructs himself on the same canvas'],['Brooklyn','Eilis builds herself by working, studying and loving, but often hides what she feels']]]
+];
+add({part:2,k:'Good questions',cover:true,hot:'q',render:function(c){
+ c.innerHTML='<span class="kick">Part 2 · Good questions</span><h2>Questions that work</h2>'+
+ '<p>All five are built from your own documents. Click one, say how each document would answer it, then check.</p>'+
+ '<div class="exs">'+GOOD.map(function(g,i){return '<div class="ex"><button class="exq" type="button" data-i="'+i+'"><small>'+g[0]+'</small>'+g[1]+'</button><div class="exa"><ul class="pf">'+g[2].map(function(d){return '<li><b>'+d[0]+':</b> '+d[1]+'</li>'}).join('')+'</ul></div></div>'}).join('')+'</div>'+
+ '<p class="count">Notice: each question works with different documents, and each document answers in its own way. Yours has to work with <b>your</b> documents.</p>'}});
 
 add({part:2,k:'Write your question',cover:true,hot:'q',render:function(c){
  c.innerHTML='<span class="kick">Part 2 · Your question</span><h2>Say your central question</h2>'+
@@ -390,6 +535,7 @@ document.addEventListener('keydown',function(e){
 document.addEventListener('click',function(e){
  var b=e.target.closest('button.rev');
  if(b){var a=b.nextElementSibling;if(a)a.classList.toggle('show');return}
+ var xq=e.target.closest('.exq');if(xq){var row=xq.parentNode,was=row.classList.contains('open');document.querySelectorAll('.exs .ex').forEach(function(r){r.classList.remove('open')});if(!was)row.classList.add('open');return}
  var t=e.target.closest('.tile');if(t){t.classList.toggle('show');return}
  var li=e.target.closest('.ticks li');if(li&&!li.onclick){li.classList.toggle('on')}});
 var start=parseInt((location.hash||'').replace('#s',''),10);
