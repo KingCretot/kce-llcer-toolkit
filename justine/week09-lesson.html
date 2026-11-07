@@ -92,6 +92,7 @@ button.go{font-family:var(--ui);font-weight:700;font-size:18px;color:#fff;backgr
 .ticks li.on i{background:#2E7D32;border-color:#2E7D32}
 .ticks li.on i:before{content:"✓"}
 /* v2 additions */
+.pickrow{margin-top:10px;font-size:16px}.pickrow label{display:block;color:var(--muted);margin-bottom:4px}.pin{width:100%;font-family:var(--ui);font-size:18px;padding:8px 12px;border:2px solid var(--line);border-radius:8px}.pin:focus{border-color:var(--maroon);outline:none}
 .dbtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
 .addb,.ctxb{font-family:var(--ui);font-weight:700;font-size:15px;border-radius:999px;padding:8px 18px;cursor:pointer;border:2px solid var(--maroon);background:#fff;color:var(--maroon)}
 .doc.on .addb{background:var(--maroon);color:#fff}
@@ -222,9 +223,9 @@ var DOCS={
   lens:{A:'finally says everything she kept inside',B:'an aunt and a headmaster decide what she is; she refuses',C:'breaks the “invisible bond”'}},
  eveline:{row:'lit',t:'“Eveline” (Dubliners)',a:'James Joyce (short story, 1914)',tag:'Literary',line:'Eveline cannot say what she wants, so she cannot change her life.',
   lens:{A:'keeps everything inside and cannot act',B:'duty to family holds her back',C:'she stays'}},
- kahlo:{row:'vis',t:'Self-Portrait Dedicated to Leon Trotsky',a:'Frida Kahlo (painting, 1937)',tag:'Visual',line:'She stands between curtains, as on a stage: a staged self.',
+ kahlo:{row:'vis',t:'Self-portrait',a:'Frida Kahlo (painting)',tag:'Visual',line:'She stages herself in her own pictures.',
   lens:{A:'shows pain and identity openly, but in a staged setting',B:'builds an identity around her Mexican roots',C:'began painting herself in bed after her accident'}},
- sherman:{row:'vis',t:'Untitled Film Still #12',a:'Cindy Sherman (photograph, 1978)',tag:'Visual',line:'Identity as costume, setting and pose. (Edit the number on the cover if your group had another.)',
+ sherman:{row:'vis',t:'Untitled Film Still',a:'Cindy Sherman (photograph, 1977–1980)',tag:'Visual',line:'Identity as costume, setting and pose.',
   lens:{A:'hides herself behind characters',B:'the roles movies give to women'}},
  maier:{row:'vis',t:'Self-portraits',a:'Vivian Maier (1956) and David Hockney',tag:'Visual',line:'Both put the tools or the setting of their art in the picture.',lens:{}},
  rockwell:{row:'vis',t:'Triple Self-Portrait',a:'Norman Rockwell (painting, 1959)',tag:'Personal',line:'Your personal document. Your notes from last week describe it.',lens:{}},
@@ -236,6 +237,7 @@ var DOCS={
 };
 var ORDER=['brooklyn','jane','eveline','kahlo','sherman','maier','rockwell','weaver','orwell','ww','cure'];
 var edits={}; // id -> edited text
+var pickv={};
 
 function chosen(){return ORDER.filter(function(id){return state[DOCS[id].row].indexOf(id)>-1})}
 function setDoc(id,on){var r=DOCS[id].row,a=state[r],i=a.indexOf(id);
@@ -273,7 +275,7 @@ add({part:1,k:'Today',cover:false,render:function(c){
 
 add({part:1,k:'The paper',cover:false,render:function(c){
  c.innerHTML='<span class="kick">Part 1 · The paper</span><h2>What you are facing</h2>'+
- '<div class="facts"><div class="fact"><b>1 hour</b><span>on paper</span></div><div class="fact"><b>Whole book</b><span>start to finish</span></div><div class="fact"><b>Questions</b><span>format to confirm</span></div></div>'+
+ '<div class="facts"><div class="fact"><b>1 hour</b><span>on paper</span></div><div class="fact"><b>Whole book</b><span>start to finish</span></div><div class="fact"><b>Questions and essays</b><span>both, on paper</span></div></div>'+
  '<p class="big">Three skills: <b>know the story</b> · <b>read the question</b> · <b>build an answer</b>.</p>'}});
 
 function picker(c,labels,draw){
@@ -386,14 +388,14 @@ var CTX={
   themes:['Freedom against duty','Past against present','Memory and the dilemma','Fear of the known against an uncertain future'],
   know:['A short story from the collection Dubliners, so you can know all of it.','The class noticed “used to”, the language of the past, and the contrast between past and present.','Know the ending: Eveline cannot leave. She stays.','This Frank is not Tony’s brother Frank in Brooklyn. Two different characters with the same name.'],
   brook:'Almost the same situation: a young woman deciding whether to leave home and family for a new life. The outcome is the opposite: Eveline stays, and Eilis leaves. Use the contrast.'},
- kahlo:{what:'Kahlo stands between two white curtains, as if on a stage. She holds a letter to Trotsky and a bunch of flowers. She gave the painting to Trotsky for his birthday, November 7, 1937.',
+ kahlo:{pick:'Which self-portrait did your group study? Type its title:',what:'Frida Kahlo painted herself again and again: your class notes say about 55 of her roughly 143 paintings are self-portraits. Your group studied one of them.',
   themes:['Staging the self','Choosing how to be seen','Mexican identity and roots','Pain shown openly, in a staged setting'],
-  know:['Oil on hard board (Masonite), 1937. National Museum of Women in the Arts, Washington, D.C. Also called Between the Curtains.','Born in Mexico, 1907. Polio as a child; a bus accident at eighteen kept her in bed, and a mirror above the bed let her paint herself.','Your class notes say 55 of her roughly 143 paintings are self-portraits. She rejected the “Surrealist” label and said she painted her own reality.','Look for her choices: the Mexican jewelry and clothes, the flowers, her steady gaze. Say “a gift to Trotsky”.'],
-  brook:'Both Kahlo and Eilis decide how to present themselves to people who are watching: Kahlo to the viewer, Eilis in her letters and in front of Enniscorthy. Check which works your group presented and use those first.'},
- sherman:{what:'A black-and-white photograph from Untitled Film Stills (1977–1980), a series of seventy photographs in which Sherman poses as generic women from 1950s and 1960s movies.',
+  know:['Born in Mexico, 1907. Polio as a child; a bus accident at eighteen kept her in bed, and a mirror above the bed let her paint herself.','She rejected the “Surrealist” label and said she painted her own reality.','For any of her self-portraits, look at her choices: pose, clothes and jewelry, setting, gaze. What does she show, and how is it staged?','One example from the notes: Self-Portrait Dedicated to Leon Trotsky (1937, oil on Masonite, National Museum of Women in the Arts). She stands between two curtains, as on a stage, holding a letter and flowers. Say “a gift to Trotsky”.'],
+  brook:'Both Kahlo and Eilis decide how to present themselves to people who are watching: Kahlo to the viewer, Eilis in her letters and in front of Enniscorthy.'},
+ sherman:{pick:'Which still did your group study? Type its title, for example Untitled Film Still and its number:',what:'Untitled Film Stills (1977–1980) is a series of seventy photographs in which Sherman poses as generic women from 1950s and 1960s movies. Your group studied one still.',
   themes:['Identity as costume, setting and pose','The roles society expects of women','Artist and model at once','Hiding behind characters'],
-  know:['Cite it as “Untitled Film Still #12”, 1978, gelatin silver print. The number is a catalog label; the work is untitled.','The characters are not real film stills. They imitate Hollywood, film noir, B movies and European art films.','Sherman is both artist and model, but the museum that owns the series says the pictures are not considered self-portraits: she plays types, not herself.','She has spoken of “so many levels of artifice” and a “jumble of ambiguity”.'],
-  brook:'Eilis is a different person in each place: the new arrival, the shop girl, the wife, the returning success. If your group studied a different still, use that one and edit the number on your cover page.'},
+  know:['Cite your still as “Untitled Film Still” plus its number. The number is a catalog label; the work is untitled.','The characters are not real film stills. They imitate Hollywood, film noir, B movies and European art films.','Sherman is both artist and model, but the museum that owns the series says the pictures are not considered self-portraits: she plays types, not herself.','She has spoken of “so many levels of artifice” and a “jumble of ambiguity”.'],
+  brook:'Eilis is a different person in each place: the new arrival, the shop girl, the wife, the returning success.'},
  maier:{what:'Two self-portraits from your textbook unit “Disclosing the creative process”. Maier’s is dated 1956 and shows her with her camera and her reflection.',
   themes:['Showing the tools of your art','What the artist shows, and what is held back','Staging the self'],
   know:['The class task: describe one portrait, present it to a partner, then compare how each artist stages the self.','Check your book for the Hockney title and date before you name them.','Use these only if you studied them well enough to talk about them.']},
@@ -427,7 +429,9 @@ function docStage(k,row,title,intro,ids,hotRow,enter){add({part:2,k:k,cover:true
  ids.forEach(function(id){var d=DOCS[id],x=CTX[id];
   var card=document.createElement('div');card.className='doc'+(state[row].indexOf(id)>-1?' on':'');
   card.innerHTML='<span class="tag">'+d.tag+'</span><span class="dt">'+d.t+'</span><span class="da">'+d.a+'</span><span class="dl">'+x.what+'</span>'+
-   '<div class="dbtns"><button type="button" class="addb"></button><button type="button" class="ctxb">Themes and what to know ▾</button>'+(EXTRA[id]||'')+'</div><div class="ctx">'+ctxHtml(x)+'</div>';
+   '<div class="dbtns"><button type="button" class="addb"></button><button type="button" class="ctxb">Themes and what to know ▾</button>'+(EXTRA[id]||'')+'</div>'+(x.pick?'<div class="pickrow"><label>'+x.pick+'</label><input class="pin" type="text" autocomplete="off"></div>':'')+'<div class="ctx">'+ctxHtml(x)+'</div>';
+  var pin=card.querySelector('.pin');
+  if(pin){pin.value=pickv[id]||'';pin.oninput=function(){var v=pin.value;pickv[id]=v;if(v.trim()){edits[id]='<b>'+v.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</b> · '+d.a}else{delete edits[id]}drawCover(row)}}
   var ab=card.querySelector('.addb');
   function paint(){var on=card.classList.contains('on');ab.textContent=on?'✓ On your cover page':'+ Add to cover page'}
   ab.onclick=function(){var on=!card.classList.contains('on');card.classList.toggle('on',on);setDoc(id,on);paint();cnt()};
