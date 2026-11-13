@@ -183,6 +183,19 @@ h1{font-size:48px}h2{font-size:38px}
 .plan .pr{font-size:17.5px}
 .big{font-size:21px}
 .q{font-size:21px}
+.qrows{display:flex;flex-direction:column;gap:10px;margin:10px 0}
+.tile.qrow{display:grid;grid-template-columns:.9fr 1.5fr;gap:10px 22px;align-items:start;padding:12px 16px}
+.tile.qrow .qh{font-family:var(--display);font-size:25px;font-weight:700;color:var(--navy);line-height:1.1}
+.tile.qrow .qh i{display:inline-flex;vertical-align:middle;margin-right:8px;font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;align-items:center;justify-content:center;font-size:17px}
+.tile.qrow .how{display:block;font-family:var(--ui);font-size:15px;font-weight:400;color:var(--muted);margin-top:4px}
+.tile.qrow .tx{margin-top:0}
+.tile.qrow .tx ul{list-style:none;padding:0;margin:4px 0 0}
+.bigq{font-size:26px}
+@media (max-width:900px){.tile.qrow{grid-template-columns:1fr}}
+.tile .tx .mean{display:block;font-weight:700;color:var(--navy)}
+.tile .tx ul{margin:6px 0 0;padding-left:18px}
+.tile .tx li{margin:5px 0;font-size:17px}
+
 .cv .li span{display:block}
 body .nav button.next{background:var(--navy)}
 .prog i{background:var(--navy)!important}
@@ -270,21 +283,24 @@ add({k:'The oral',hot:'',render:function(c){
  '<p class="big">Your teacher said your works are very good. Now you give them <b>a shape</b>.</p>'}});
 
 add({k:'Four moves',hot:'',render:function(c){
- c.innerHTML='<span class="kick">The method</span><h2>One document, four moves</h2><p class="big">You will say the same four moves for every document. Say what each one means, then tap to check.</p>'+
+ function tile(n,t,hint,mean,ex){return '<div class="tile"><div class="tn"><i>'+n+'</i>'+t+'</div><span class="how">'+hint+' <u>Tap to check</u></span><div class="tx">'+mean+'</div><div class="ex"><b>Example:</b> '+ex+'</div></div>'}
+ c.innerHTML='<span class="kick">The method</span><h2>One document, four moves</h2><p class="big">You will say the same four moves for every document. Say what each one means, then tap to see an example from your own documents.</p>'+
  '<div class="tiles">'+
- '<div class="tile"><div class="tn"><i>1</i>What it is</div><span class="how">One sentence. <u>Tap to check</u></span><div class="tx">Title, author, kind of document, year.</div></div>'+
- '<div class="tile"><div class="tn"><i>2</i>What it shows</div><span class="how">One precise detail. <u>Tap to check</u></span><div class="tx">One moment, image or idea you can point to.</div></div>'+
- '<div class="tile"><div class="tn"><i>3</i>How it answers my question</div><span class="how">The link. <u>Tap to check</u></span><div class="tx">“This is relevant to my question because…”</div></div>'+
- '<div class="tile"><div class="tn"><i>4</i>Link to another document</div><span class="how">The bridge. <u>Tap to check</u></span><div class="tx">Agree or disagree: “Whereas in…”</div></div></div>'+
- '<p class="steps">The same shape as your <i>Brooklyn</i> answers: Point, Evidence, Explain, Link.</p>'}});
+ tile(1,'What it is','One sentence.','Title, author, kind of document, year.','“Boys Don’t Cry” is a song by The Cure, from 1979.')+
+ tile(2,'What it shows','One precise detail.','One moment, image or idea you can point to.','In the mirror, glare hides Rockwell’s eyes, but on the canvas his eyes are clear.')+
+ tile(3,'How it answers my question','The link to your question.','“This is relevant to my question because…”','“Eveline”: duty and fear decide for her, so she cannot shape the self she shows. She stays.')+
+ tile(4,'Link to another document','The bridge.','Agree or disagree: “Whereas in…”','Whereas Eveline stays, Eilis in <i>Brooklyn</i> leaves, goes back, and chooses again.')+
+ '</div><p class="steps">The same shape as your <i>Brooklyn</i> answers: Point, Evidence, Explain, Link. You will build the full four moves for each document in a few minutes.</p>'}});
 
 add({k:'Your question',hot:'q',render:function(c){
+ function row(n,t,mean,ex){return '<div class="tile qrow"><div class="qh"><i>'+n+'</i>'+t+'<span class="how">What does this part ask? <u>Tap to check</u></span></div><div class="tx"><span class="mean">'+mean+'</span><ul>'+ex.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div>'}
  c.innerHTML='<span class="kick">Your question</span><h2>Take your question apart</h2><div class="bigq"><small>Your central question</small>'+Q+'</div>'+
- '<p class="big">It has three parts. What does each one ask you to talk about?</p>'+
- '<div class="tiles">'+
- '<div class="tile"><div class="tn"><i>1</i>“the self we show to others”</div><span class="how">What is this about? <u>Tap to check</u></span><div class="tx">The image we give: what we say, hide or stage.</div></div>'+
- '<div class="tile"><div class="tn"><i>2</i>“family and society expect something else”</div><span class="how">What is this about? <u>Tap to check</u></span><div class="tx">The pressure: duty, roles, “boys don’t cry”.</div></div>'+
- '<div class="tile"><div class="tn"><i>3</i>“to what extent can we shape”</div><span class="how">What is this about? <u>Tap to check</u></span><div class="tx">How much freedom we have. The answer is “a lot, but…”, not yes or no.</div></div></div>'+
+ '<p class="big">It has three parts. What does each one ask you to talk about, and which of your documents belong to it?</p>'+
+ '<div class="qrows">'+
+ row(1,'“the self we show to others”','The image we give: what we say, hide or stage.',['<b><i>Brooklyn</i></b>: Eilis’s letters leave things out.','<b>Rockwell</b>: he constructs an image of himself on the canvas.','<b>“Boys Don’t Cry”</b>: a man laughs to hide his sadness.'])+
+ row(2,'“family and society expect something else”','The pressure: duty, roles, rules about feelings.',['<b>“Eveline”</b>: duty to her family keeps her at home.','<b>“Boys Don’t Cry”</b>: boys are expected not to cry.','<b><i>Brooklyn</i></b>: Rose and Father Flood arrange Eilis’s move.'])+
+ row(3,'“to what extent can we shape”','How much freedom we have. The answer is “a lot, but…”, not yes or no.',['<b><i>Brooklyn</i></b>: Eilis takes control step by step.','<b>Rockwell</b>: he constructs his image, but we never see his real face straight on.','<b>“Eveline”</b>: she cannot, and stays.'])+
+ '</div>'+
  ctl('q','Put your question in the outline').replace(/<div class="pickrow">[\s\S]*$/,'')}});
 
 add({k:'Choose a plan',hot:'',render:function(c){
