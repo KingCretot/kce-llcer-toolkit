@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Dossier Oral: Build the Outline | KingCretot Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1F3D;--navyband:#0A2540;--gold:#C9A84C;--blue:#0047BA;--red:#DB2F30;--maroon:#7a1f20;
+--cream:#FAF7EF;--ink:#232A38;--muted:#6E7686;--line:#DFD8C6;
+--display:'Cormorant Garamond',Georgia,serif;--ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;padding:0;height:100%}
+body{background:var(--cream);color:var(--ink);font-family:var(--ui);line-height:1.45;font-size:20px;display:flex;flex-direction:column;min-height:100vh}
+.top{background:var(--navyband);display:flex;align-items:center;gap:14px;padding:10px 22px;flex:none}
+.kc{width:34px;height:34px;flex:none;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--display);font-weight:700;font-size:15px}
+.tabs{display:flex;gap:8px;margin-left:8px}
+.tab{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:7px 14px;border-radius:999px;color:#9fb0cc;border:1.5px solid #2c4468;background:transparent;cursor:pointer;font-family:var(--ui)}
+.tab.on.t1{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.tab.on.t2{background:#e8c9c9;color:var(--maroon);border-color:#e8c9c9}
+.top .nb{margin-left:auto;font-size:13px;font-weight:700;color:var(--navy);background:var(--gold);padding:7px 14px;border-radius:999px;text-decoration:none}
+.prog{height:6px;background:#d9d2bd;flex:none}.prog i{display:block;height:100%;width:0;background:var(--navy);transition:width .25s}
+body.p2 .prog i{background:var(--maroon)}
+.main{flex:1;display:grid;grid-template-columns:1fr;gap:0;min-height:0}
+body.p2 .main.hascover{grid-template-columns:1.15fr 1fr}
+.stage{padding:26px 34px 20px;overflow:auto}
+.kick{display:inline-block;font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--blue);background:#EAF3FF;padding:5px 14px;border-radius:999px;margin-bottom:10px}
+body.p2 .kick{color:var(--maroon);background:#FBEAEA}
+h1,h2{font-family:var(--display);color:var(--navy);margin:0 0 12px;line-height:1.05}
+h1{font-size:54px}h2{font-size:44px}
+p{margin:0 0 12px}
+.big{font-size:24px}
+.cards{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0}
+.card{flex:1;min-width:230px;border-radius:14px;padding:20px 22px;color:#fff}
+.card.c1{background:var(--navy);border-bottom:6px solid var(--gold)}
+.card.c2{background:var(--maroon);border-bottom:6px solid var(--gold)}
+.card b{display:block;font-family:var(--display);font-size:32px;line-height:1.05;margin:4px 0 6px}
+.card small{font-size:12.5px;letter-spacing:3px;text-transform:uppercase;font-weight:700;opacity:.85}
+.facts{display:flex;gap:16px;flex-wrap:wrap;margin:18px 0}
+.fact{flex:1;min-width:200px;border:2px solid var(--line);border-radius:14px;padding:24px 16px;text-align:center;background:#fff}
+.fact b{display:block;font-family:var(--display);font-size:44px;color:var(--navy);line-height:1}
+.fact span{font-size:18px;color:var(--muted)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 18px}
+.chip{background:#fff;border:2px solid var(--navy);border-radius:999px;padding:8px 18px;font-size:19px;color:var(--navy);font-weight:600}
+.q{background:#fff;border-left:6px solid var(--gold);padding:14px 20px;border-radius:0 10px 10px 0;font-size:24px;margin:10px 0 8px;font-family:var(--display);font-weight:600;color:var(--navy)}
+button.rev{font-family:var(--ui);font-size:15px;font-weight:700;color:var(--navy);background:#fff;border:2px solid var(--navy);border-radius:999px;padding:8px 20px;cursor:pointer;margin:0 0 8px}
+button.rev:hover{background:var(--navy);color:#fff}
+.ans{display:none;background:#EAFBF3;border-left:6px solid #2E7D32;border-radius:0 10px 10px 0;padding:12px 20px;font-size:21px;margin:0 0 14px}
+.ans.show{display:block}
+.rowq{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;align-items:start;margin-bottom:8px}
+.rowq .q{margin:0;font-size:20px;padding:10px 16px}
+.rowq .a{display:none;background:#EAFBF3;border-left:6px solid #2E7D32;padding:10px 16px;border-radius:0 10px 10px 0;font-size:19px}
+.rowq .a.show{display:block}
+.rowq button.rev{margin:0;align-self:center;justify-self:start}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.tile{border:2px solid var(--line);background:#fff;border-radius:14px;padding:16px 18px;cursor:pointer;text-align:left;font-family:var(--ui);font-size:19px;color:var(--ink)}
+.tile .tn{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:30px;font-weight:700;color:var(--navy)}
+.tile .tn i{font-style:normal;width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px}
+.tile .tx{display:none;margin-top:8px;font-size:19px;color:#1a3a6b}
+.tile.show .tx{display:block}
+.bigq{background:var(--navy);color:#fff;border-radius:14px;padding:16px 22px;font-family:var(--display);font-size:30px;margin:10px 0}
+.bigq small{display:block;font-family:var(--ui);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.divider{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:60vh;background:repeating-linear-gradient(135deg,#FFF8E8,#FFF8E8 22px,#FBEFCB 22px,#FBEFCB 44px);border-top:8px solid var(--gold);border-bottom:8px solid var(--gold);padding:30px;margin:-26px -34px}
+.divider .dn{font-size:14px;letter-spacing:5px;text-transform:uppercase;font-weight:700;color:#8a6a1a}
+.divider h1{font-size:62px;margin:8px 0}
+.divider p{max-width:620px;color:#5c4b12;font-size:22px}
+button.go{font-family:var(--ui);font-weight:700;font-size:18px;color:#fff;background:var(--maroon);border:0;border-radius:999px;padding:14px 30px;cursor:pointer;margin-top:10px}
+/* doc cards */
+.docs{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}
+.doc{border:2.5px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff;cursor:default;text-align:left;font-family:var(--ui);color:var(--ink);position:relative}
+.doc .dt{display:block;font-family:var(--display);font-size:26px;font-weight:700;color:var(--navy);line-height:1.05}
+.doc .da{display:block;font-size:15px;color:var(--muted);margin:3px 0 6px}
+.doc .dl{display:block;font-size:17px}
+.doc .tag{display:inline-block;margin-bottom:5px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--maroon);background:#FBEAEA;border-radius:999px;padding:2px 9px}
+.doc.on{border-color:var(--maroon);background:#FFF6F6;box-shadow:0 0 0 3px #f3d4d4}
+.count{font-size:17px;color:var(--muted);margin-top:4px}
+.count b{color:var(--maroon)}
+.lensbar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px}
+.lensbtn{font-family:var(--ui);font-weight:700;font-size:17px;border:2.5px solid var(--maroon);color:var(--maroon);background:#fff;border-radius:999px;padding:9px 20px;cursor:pointer}
+.lensbtn.on{background:var(--maroon);color:#fff}
+.lensrow{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--line);padding:9px 0;font-size:20px}
+.lensrow b{font-family:var(--display);font-size:24px;color:var(--navy);min-width:215px;flex:none}
+.lensrow span.no{color:#b3a98b;font-style:italic}
+.qin{width:100%;font-family:var(--display);font-size:30px;padding:14px 18px;border:3px solid var(--maroon);border-radius:12px;color:var(--navy);margin:8px 0}
+.openers{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.openers button{font-family:var(--ui);font-weight:700;font-size:16px;color:var(--maroon);background:#fff;border:2px solid var(--maroon);border-radius:999px;padding:7px 16px;cursor:pointer}
+.ticks{list-style:none;padding:0;margin:12px 0}
+.ticks li{display:flex;gap:12px;align-items:center;font-size:21px;padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.ticks li i{flex:none;width:26px;height:26px;border:3px solid var(--navy);border-radius:6px;font-style:normal;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700}
+.ticks li.on i{background:#2E7D32;border-color:#2E7D32}
+.ticks li.on i:before{content:"✓"}
+/* v2 additions */
+.pickrow{margin-top:10px;font-size:16px}.pickrow label{display:block;color:var(--muted);margin-bottom:4px}.pin{width:100%;font-family:var(--ui);font-size:18px;padding:8px 12px;border:2px solid var(--line);border-radius:8px}.pin:focus{border-color:var(--maroon);outline:none}
+.dbtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.addb,.ctxb{font-family:var(--ui);font-weight:700;font-size:15px;border-radius:999px;padding:8px 18px;cursor:pointer;border:2px solid var(--maroon);background:#fff;color:var(--maroon)}
+.doc.on .addb{background:var(--maroon);color:#fff}
+.ctxb{border-color:var(--navy);color:var(--navy)}
+.lk2{font-weight:700;font-size:15px;color:var(--blue);text-decoration:none;border:2px solid var(--blue);border-radius:999px;padding:8px 18px;background:#fff}
+.ctx{display:none;margin-top:12px;border-top:1px solid var(--line);padding-top:10px;font-size:18px}
+.doc.open .ctx{display:block}
+.cx{margin:8px 0}.cx>b{display:block;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon);margin-bottom:2px}
+.cx ul{margin:2px 0 0;padding-left:22px}.cx li{margin:3px 0}
+.tchips{display:flex;gap:8px;flex-wrap:wrap}.tchips span{background:#FBEAEA;color:var(--maroon);border-radius:999px;padding:3px 12px;font-size:16px;font-weight:600}
+.pf{margin:6px 0 0;padding-left:22px}.pf li{margin:6px 0;font-size:20px}
+.use{margin-top:8px;font-size:17px;color:var(--muted);font-style:italic}
+.pick{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.pk{font-family:var(--ui);font-weight:700;font-size:16px;color:var(--navy);background:#fff;border:2px solid var(--navy);border-radius:999px;padding:8px 20px;cursor:pointer}
+.pk.on{background:var(--navy);color:#fff}.pk.seen:not(.on){border-color:#2E7D32;color:#2E7D32}
+.steps{font-size:17px;color:var(--muted);margin:2px 0 10px}
+.tile .how{display:block;margin-top:6px;font-size:18px;color:var(--muted)}
+.tile .how u{color:var(--blue);text-decoration:none;font-weight:700}
+.tile.show .how u{display:none}
+.tile .ex{display:none;margin-top:10px;background:#EAFBF3;border-left:5px solid #2E7D32;padding:8px 14px;border-radius:0 8px 8px 0;font-size:18px;color:var(--ink)}
+.tile.show .ex{display:block}
+.ans.plain{background:none;border-left:0;padding:0;margin-bottom:10px}
+.plan{margin:6px 0 4px}.plan .pr{display:flex;gap:12px;align-items:flex-start;background:#EAFBF3;border-left:6px solid #2E7D32;border-radius:0 10px 10px 0;padding:6px 16px;margin-bottom:5px;font-size:19px;line-height:1.35}
+.plan .pr i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:17px;margin-top:2px}
+.plan .pr>div>b:first-child{display:block;font-family:var(--display);font-size:22px;color:var(--navy)}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
+.lk{font-weight:700;font-size:18px;color:var(--navy);background:var(--gold);text-decoration:none;border-radius:999px;padding:12px 24px}
+.exs .ex{margin-bottom:8px}
+.exq{display:block;width:100%;text-align:left;font-family:var(--display);font-size:25px;font-weight:600;color:var(--navy);background:#fff;border:2.5px solid var(--maroon);border-radius:12px;padding:10px 18px;cursor:pointer}
+.exq small{display:block;font-family:var(--ui);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon)}
+.exs .ex.open .exq{background:#FFF6F6}
+.exa{display:none;background:#EAFBF3;border-left:6px solid #2E7D32;border-radius:0 10px 10px 0;padding:6px 18px 6px 6px;margin-top:4px}
+.exs .ex.open .exa{display:block}
+/* cover page */
+.coverwrap{display:none;background:#efe9d6;padding:18px 20px;overflow:auto;border-left:1px solid var(--line)}
+body.p2 .main.hascover .coverwrap{display:block}
+.cover{background:#fff;border:2px solid var(--navy);border-radius:4px;font-size:15px;box-shadow:0 6px 24px rgba(10,31,61,.15)}
+.cover .ch{background:var(--navy);color:#fff;text-align:center;padding:10px 12px}
+.cover .ch b{display:block;font-family:var(--display);font-size:20px;color:var(--gold);line-height:1.1}
+.cover .ch span{font-size:12px;letter-spacing:1px}
+.cr{display:flex;border-top:1px solid var(--line);transition:background .3s}
+.cr.flash{background:#FFF3C4}
+.cr.hot{outline:3px solid var(--maroon);outline-offset:-3px}
+.cl{width:34%;padding:8px 10px;background:var(--cream);font-weight:700;color:var(--navy);border-right:1px solid var(--line);font-size:13.5px}
+.cv{flex:1;padding:8px 10px;min-height:38px}
+.cv .ph{color:#b3a98b;font-style:italic}
+.cv .li{padding:2px 0;border-bottom:1px dotted var(--line)}
+.cv .li:last-child{border-bottom:0}
+.cv .li b{color:var(--navy)}
+.cv [contenteditable]{outline:none}
+.cv [contenteditable]:focus{background:#FFF9DA}
+.cv.q2{font-family:var(--display);font-size:19px;font-weight:600;color:var(--navy)}
+.sig{display:flex}
+.sig div{flex:1;padding:22px 10px 6px;border-right:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.sig div:last-child{border-right:0}
+body.p2 .main.done.hascover{grid-template-columns:.7fr 1.3fr}
+.done .cover{font-size:15px}
+.done .cv{padding:5px 10px;min-height:0}
+.done .cl{padding:5px 10px}
+.done .cv .li{padding:1px 0}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.actions button{font-family:var(--ui);font-weight:700;font-size:16px;border-radius:999px;padding:11px 22px;cursor:pointer;border:2.5px solid var(--maroon);background:#fff;color:var(--maroon)}
+.actions button.pri{background:var(--maroon);color:#fff}
+.nav{flex:none;display:flex;align-items:center;gap:12px;padding:10px 22px;background:#fff;border-top:1px solid var(--line)}
+.nav button{font-family:var(--ui);font-weight:700;font-size:17px;border-radius:999px;padding:11px 28px;cursor:pointer;border:2.5px solid var(--navy);background:#fff;color:var(--navy)}
+.nav button.next{background:var(--navy);color:#fff}
+body.p2 .nav button.next{background:var(--maroon);border-color:var(--maroon)}
+.nav button[disabled]{opacity:.35;cursor:default}
+.nav .st{margin-left:auto;font-size:14px;color:var(--muted)}
+.todo{border:2px solid var(--navy);border-radius:14px;background:#fff;padding:14px 20px;margin:14px 0}
+@media (max-width:900px){body{font-size:17px}h1{font-size:38px}h2{font-size:32px}body.p2 .main.hascover{grid-template-columns:1fr}.docs,.tiles,.rowq{grid-template-columns:1fr}.stage{padding:18px}.divider{margin:-18px}.lensrow{flex-direction:column;gap:2px}.lensrow b{min-width:0}}
+@media print{
+ body{display:block;background:#fff}
+ .top,.prog,.nav,.main>.stage{display:none!important}
+ .main,.main.hascover{display:block!important}
+ .coverwrap{display:block!important;border:0;background:#fff;padding:0}
+ .cover{box-shadow:none;font-size:14px}
+ #kce-legal{display:none!important}
+}
+
+.main{grid-template-columns:1.1fr 1fr!important}
+.main.done{grid-template-columns:.7fr 1.3fr!important}
+.coverwrap{display:block!important}
+.pt{color:var(--maroon)}
+.cv .li span{display:block}
+body .nav button.next{background:var(--navy)}
+.prog i{background:var(--navy)!important}
+@media (max-width:900px){.main,.main.done{grid-template-columns:1fr!important}}
+</style>
+</head>
+<body>
+<div class="top">
+ <div class="kc">KC</div>
+ <div style="color:#fff;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:13px;margin-left:8px">Your Dossier Oral · Build the Outline</div>
+ <a class="nb" href="dossier-outline-notes.html" target="_blank" rel="noopener">Study Notes</a>
+</div>
+<div class="prog"><i id="bar"></i></div>
+<div class="main" id="main">
+ <div class="stage" id="stage"></div>
+ <aside class="coverwrap" id="coverwrap">
+  <div class="cover" id="cover">
+   <div class="ch"><b>Your oral outline</b><span>Expression et construction de soi · Session 2027</span></div>
+   <div id="rows"></div>
+  </div>
+ </aside>
+</div>
+<div class="nav">
+ <button type="button" id="back">← Back</button>
+ <button type="button" id="next" class="next">Next →</button>
+ <span class="st" id="st"></span>
+</div>
+<script>
+(function(){
+var Q="To what extent can we shape the self we show to others when family and society expect something else?";
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function rev(btn,html,cls){return '<button class="rev" type="button">'+btn+'</button><div class="ans'+(cls?' '+cls:'')+'">'+html+'</div>'}
+var ROWS=[['q','Thème du dossier / Problématique'],['o','Opening'],['p1','Part I'],['p2','Part II'],['lk','Links'],['cl','Closing'],['ky','Key words']];
+var LINES={
+ q:{sec:'q',o:1,h:Q},
+ o1:{sec:'o',o:1,h:'<b>Hook:</b> Rockwell paints himself from behind, and the face on the canvas is not the face in the mirror.'},
+ o2:{sec:'o',o:2,h:'<b>Theme and question:</b> expression et construction de soi. “'+Q+'”'},
+ o3:{sec:'o',o:3,h:'<b>Roadmap:</b> four documents (<i>Brooklyn</i>, “Eveline”, <i>Triple Self-Portrait</i>, “Boys Don’t Cry”) in two parts: I. expectations push us to hide or to stay; II. we can still shape what we show.'},
+ p1t:{sec:'p1',o:0,h:'<b class="pt">I. Family and society push us to show a self that is not ours</b>'},
+ p1a:{sec:'p1',o:1,h:'<b>“Eveline”</b>: duty to her family keeps her at home. She cannot say what she wants, so she stays.'},
+ p1b:{sec:'p1',o:2,h:'<b>“Boys Don’t Cry”</b>: a man hides his sadness behind laughter, because boys are expected not to cry.'},
+ p1c:{sec:'p1',o:3,h:'<b>Brooklyn (start)</b>: Rose and Father Flood arrange Eilis’s move. She is directed by others and often stays silent.'},
+ p2t:{sec:'p2',o:0,h:'<b class="pt">II. Still, we can shape the self we show</b>'},
+ p2a:{sec:'p2',o:1,h:'<b>Brooklyn (later)</b>: she chooses what each person knows (the secret marriage), then decides for herself to go back to Brooklyn.'},
+ p2b:{sec:'p2',o:2,h:'<b>Triple Self-Portrait</b>: Rockwell decides what the canvas shows (no glasses, clear eyes). Three selves: which one is real?'},
+ lk1:{sec:'lk',o:1,h:'<b>“Eveline” ↔ <i>Brooklyn</i></b>: same situation (leaving home for a new life), opposite outcome.'},
+ lk2:{sec:'lk',o:2,h:'<b>“Boys Don’t Cry” ↔ Rockwell</b>: both show a gap between inside and outside. One hides it, the other stages it.'},
+ cl1:{sec:'cl',o:1,h:'To a large extent we can shape the self we show (Eilis goes back; Rockwell chooses his canvas), but never completely: duty keeps Eveline at home, and a man is told not to cry. The real self may stay hidden.'},
+ ky:{sec:'ky',o:1,h:'duty · stays · laughter · Rose · Father Flood · secret marriage · goes back · mirror · canvas · glasses · three selves'}
+};
+var state={};
+var flashSec='';
+function draw(){
+ var box=document.getElementById('rows');box.innerHTML='';
+ ROWS.forEach(function(r){
+  var ids=Object.keys(state).filter(function(k){return LINES[k].sec===r[0]}).sort(function(a,b){return LINES[a].o-LINES[b].o});
+  var row=document.createElement('div');row.className='cr'+(flashSec===r[0]?' flash':'');row.setAttribute('data-r',r[0]);
+  var inner='';
+  if(!ids.length)inner='<span class="ph">…</span>';
+  ids.forEach(function(k){inner+='<div class="li"><span contenteditable="true" data-id="'+k+'">'+state[k]+'</span></div>'});
+  row.innerHTML='<div class="cl">'+r[1]+'</div><div class="cv'+(r[0]==='q'?' q2':'')+'">'+inner+'</div>';
+  box.appendChild(row);
+ });
+ flashSec='';
+}
+function put(id,html){state[id]=html;flashSec=LINES[id].sec;draw();
+ var f=document.querySelector('.cr.flash');if(f)setTimeout(function(){f.classList.remove('flash')},700)}
+function ctl(id,label){
+ return '<div class="dbtns"><button class="addb" type="button" data-add="'+id+'">'+(label||'Add to outline')+'</button></div>'+
+ '<div class="pickrow"><label>Say it in your own words. Your tutor types it, then presses Use.</label><div class="dbtns"><input class="pin" data-in="'+id+'" placeholder="what she says"><button class="addb" type="button" data-use="'+id+'">Use</button></div></div>'}
+function moves(a){return '<div class="plan">'+a.map(function(m,i){return '<div class="pr"><i>'+(i+1)+'</i><div><b>'+m[0]+'</b>'+m[1].replace(/<i>/g,'<em>').replace(/<\/i>/g,'</em>')+'</div></div>'}).join('')+'</div>'}
+
+var S=[];function add(o){S.push(o)}
+
+add({k:'Today',hot:'',render:function(c){
+ c.innerHTML='<span class="kick">Today</span><h1>Build your oral outline.</h1>'+
+ '<div class="cards"><div class="card c1"><small>You have</small><b>Four documents</b>and one central question</div>'+
+ '<div class="card c2"><small>You will build</small><b>An outline</b>you can speak from, with only key words</div></div>'+
+ '<p class="big">The outline fills in on the right as we go. At the real Bac your works will be different, so you are learning <b>a method</b> you can use again.</p>'}});
+
+add({k:'The oral',hot:'',render:function(c){
+ c.innerHTML='<span class="kick">The oral</span><h2>What the oral asks you to do</h2>'+
+ '<div class="facts"><div class="fact"><b>Present</b><span>your chosen theme</span></div><div class="fact"><b>Connect</b><span>each document to that theme</span></div><div class="fact"><b>Speak</b><span>from key words, not a text</span></div></div>'+
+ '<p class="big">Your teacher said your works are very good. Now you give them <b>a shape</b>.</p>'}});
+
+add({k:'Four moves',hot:'',render:function(c){
+ c.innerHTML='<span class="kick">The method</span><h2>One document, four moves</h2><p class="big">You will say the same four moves for every document. Say what each one means, then tap to check.</p>'+
+ '<div class="tiles">'+
+ '<div class="tile"><div class="tn"><i>1</i>What it is</div><span class="how">One sentence. <u>Tap to check</u></span><div class="tx">Title, author, kind of document, year.</div></div>'+
+ '<div class="tile"><div class="tn"><i>2</i>What it shows</div><span class="how">One precise detail. <u>Tap to check</u></span><div class="tx">One moment, image or idea you can point to.</div></div>'+
+ '<div class="tile"><div class="tn"><i>3</i>How it answers my question</div><span class="how">The link. <u>Tap to check</u></span><div class="tx">“This is relevant to my question because…”</div></div>'+
+ '<div class="tile"><div class="tn"><i>4</i>Link to another document</div><span class="how">The bridge. <u>Tap to check</u></span><div class="tx">Agree or disagree: “Whereas in…”</div></div></div>'+
+ '<p class="steps">The same shape as your <i>Brooklyn</i> answers: Point, Evidence, Explain, Link.</p>'}});
+
+add({k:'Your question',hot:'q',render:function(c){
+ c.innerHTML='<span class="kick">Your question</span><h2>Take your question apart</h2><div class="bigq"><small>Your central question</small>'+Q+'</div>'+
+ '<p class="big">It has three parts. What does each one ask you to talk about?</p>'+
+ '<div class="tiles">'+
+ '<div class="tile"><div class="tn"><i>1</i>“the self we show to others”</div><span class="how">What is this about? <u>Tap to check</u></span><div class="tx">The image we give: what we say, hide or stage.</div></div>'+
+ '<div class="tile"><div class="tn"><i>2</i>“family and society expect something else”</div><span class="how">What is this about? <u>Tap to check</u></span><div class="tx">The pressure: duty, roles, “boys don’t cry”.</div></div>'+
+ '<div class="tile"><div class="tn"><i>3</i>“to what extent can we shape”</div><span class="how">What is this about? <u>Tap to check</u></span><div class="tx">How much freedom we have. The answer is “a lot, but…”, not yes or no.</div></div></div>'+
+ ctl('q','Put your question in the outline').replace(/<div class="pickrow">[\s\S]*$/,'')}});
+
+add({k:'Choose a plan',hot:'',render:function(c){
+ var plans=[
+  ['A · Document by document','Safe','Four blocks, one per document. Easy to say, but it can sound like a list. The question gets answered only at the end.'],
+  ['B · Two parts: pressure, then freedom','Strongest','Part I: expectations push us to hide or to stay. Part II: we can still shape what we show. It answers “to what extent” directly.'],
+  ['C · Three lenses','Ambitious','Showing and hiding, other people’s expectations, staying and leaving. Rich, but harder to keep clear in a short presentation.']];
+ c.innerHTML='<span class="kick">The plan</span><h2>Choose a plan</h2><p class="big">Which plan would you pick for these four documents, and why? Look at all three first.</p><div class="pick" id="pl"></div><div id="pp"></div>';
+ var bar=c.querySelector('#pl'),pp=c.querySelector('#pp');
+ plans.forEach(function(p,i){var b=document.createElement('button');b.type='button';b.className='pk';b.textContent=p[0];b.onclick=function(){
+  [].forEach.call(bar.children,function(x,j){x.classList.toggle('on',i===j);if(i===j)x.classList.add('seen')});
+  pp.innerHTML='<div class="q"><small style="display:block;font-family:var(--ui);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon)">'+p[1]+'</small></div>'+'<p class="big" style="margin:10px 0">'+p[2]+'</p>'+(i===1?'<div class="dbtns"><button class="addb" type="button" data-plan="1">Use plan B</button></div><p class="steps">Part I: “Eveline”, “Boys Don’t Cry”, <i>Brooklyn</i> (the start). Part II: <i>Brooklyn</i> (later), Rockwell.</p>':'')};bar.appendChild(b)});
+ }});
+
+function docStage(cfg){add({k:cfg.k,hot:cfg.hot,render:function(c){
+ c.innerHTML='<span class="kick">'+cfg.kick+'</span><h2>'+cfg.title+'</h2><p class="steps">'+cfg.meta+'</p>'+
+ '<div class="q">'+cfg.prompt+'</div><p class="steps">Say the four moves aloud. Then check.</p>'+
+ rev('Show a strong answer',moves(cfg.mv),'plain')+ctl(cfg.id)}})}
+
+docStage({k:'“Eveline”',hot:'p1',kick:'Part I · Document',id:'p1a',title:'“Eveline” (Dubliners)',meta:'James Joyce · short story · 1914',
+ prompt:'How does “Eveline” show that family and society can stop us from shaping the self we show?',
+ mv:[['What it is','A short story by James Joyce (1914). Eveline, a young woman in Dublin, can leave with Frank, a sailor, for a new life in Buenos Aires.'],
+ ['What it shows','Her mother is dead and she has taken on many responsibilities. She is torn between the fear of the known and an uncertain future abroad.'],
+ ['How it answers my question','Duty and fear decide for her. She cannot say what she wants, so she cannot build a different life: she stays.'],
+ ['Link','<i>Brooklyn</i>: almost the same situation (leaving home and family for a new life), but the opposite outcome.']]});
+
+docStage({k:'“Boys Don’t Cry”',hot:'p1',kick:'Part I · Document',id:'p1b',title:'“Boys Don’t Cry”',meta:'The Cure · song · 1979',
+ prompt:'How does “Boys Don’t Cry” show what society expects of us?',
+ mv:[['What it is','A song by The Cure (1979), a non-literary document.'],
+ ['What it shows','A man hides his sadness by laughing, because boys are expected not to cry.'],
+ ['How it answers my question','Society decides which feelings he may show, so the self he shows to others is a mask.'],
+ ['Link','Rockwell: both are about the gap between what is inside and what is shown. In the song it is hidden; in the painting it is staged.']]});
+
+docStage({k:'Brooklyn · pressure',hot:'p1',kick:'Part I · Full work',id:'p1c',title:'<i>Brooklyn</i>: when others decide',meta:'Colm Tóibín · novel · 2009 · the start of the book',
+ prompt:'At the start of <i>Brooklyn</i>, who decides what Eilis does and who she is?',
+ mv:[['What it is','A novel by Colm Tóibín (2009). Eilis, a young Irish woman, emigrates to Brooklyn.'],
+ ['What it shows','Her move is arranged by her sister Rose and by Father Flood. She does not truly choose it. In Brooklyn she often says little about how she feels, and her letters leave things out.'],
+ ['How it answers my question','At first other people shape her life, and she shows them a quiet, controlled self.'],
+ ['Link','“Eveline”: both are young women under family pressure. The difference is what happens next.']]});
+
+docStage({k:'Brooklyn · choice',hot:'p2',kick:'Part II · Full work',id:'p2a',title:'<i>Brooklyn</i>: when she decides',meta:'Colm Tóibín · novel · 2009 · the end of the book',
+ prompt:'How does Eilis take control, and what does she choose to show?',
+ mv:[['What it is','The same novel, later in the story. Rose has died, and Eilis has returned to Ireland.'],
+ ['What it shows','Before she goes home she marries Tony in secret at the courthouse. When Miss Kelly finds out, Eilis tells her mother, leaves a note for Jim, and goes back to Brooklyn.'],
+ ['How it answers my question','Her control grows through the book. She chooses what each person knows, and in the end she decides for herself. But only after pressure forces her to act.'],
+ ['Link','Rockwell: both choose what to show to others.']]});
+
+docStage({k:'Rockwell',hot:'p2',kick:'Part II · Document',id:'p2b',title:'<i>Triple Self-Portrait</i>',meta:'Norman Rockwell · painting · 1959 · on the cover of the Saturday Evening Post, February 1960',
+ prompt:'How does Rockwell shape the self he shows to others?',
+ mv:[['What it is','An oil painting by Norman Rockwell. We see the painter from behind, a mirror, and the portrait on his canvas.'],
+ ['What it shows','In the mirror, glare hides his eyes. On the canvas, he has no glasses and his eyes are clear. At the upper right he pins small self-portraits by Dürer, Rembrandt, Picasso and Van Gogh.'],
+ ['How it answers my question','He decides what to show. Three selves in one picture (the man from behind, the reflection, the portrait): which one is real?'],
+ ['Link','<i>Brooklyn</i>: both choose what others see. Or “Boys Don’t Cry”: staged versus hidden.']]});
+
+add({k:'Links',hot:'lk',render:function(c){
+ c.innerHTML='<span class="kick">Between documents</span><h2>Make two links</h2><p class="big">Pick two pairs that disagree or agree in an interesting way. Say each link out loud.</p>'+
+ '<div class="q">“Eveline” and <i>Brooklyn</i></div>'+rev('Show a strong link','Same situation: a young woman can leave home for a new life. Opposite outcome: Eveline stays, while Eilis leaves, goes back, and chooses again.','plain')+ctl('lk1')+
+ '<div class="q" style="margin-top:14px">“Boys Don’t Cry” and Rockwell</div>'+rev('Show a strong link','Both show a gap between inside and outside. In the song the feeling is hidden. In the painting the image is staged.','plain')+ctl('lk2')}});
+
+add({k:'The opening',hot:'o',render:function(c){
+ c.innerHTML='<span class="kick">The opening</span><h2>The opening comes last</h2><p class="big">Now you know your plan, so the opening is easy. Start with a hook. Pick one detail from your documents that makes people want to listen.</p>'+
+ '<div class="q">What detail would you start with?</div>'+rev('Show a possible hook','Rockwell paints himself from behind, and the face on the canvas is not the face in the mirror.','plain')+ctl('o1')}});
+
+add({k:'Question and roadmap',hot:'o',render:function(c){
+ c.innerHTML='<span class="kick">The opening</span><h2>Say your theme, question and roadmap</h2><p class="big">Say your theme, your question, your four documents, and your two parts.</p>'+
+ '<div class="openers" style="margin-bottom:12px"><span class="chip">“My dossier is on the theme of…”</span><span class="chip">“My central question is…”</span><span class="chip">“I chose four documents…”</span><span class="chip">“First… then…”</span></div>'+
+ rev('Show a possible opening','“My dossier is on the theme of the expression and construction of the self. My central question is: to what extent can we shape the self we show to others when family and society expect something else? To answer it, I chose <i>Brooklyn</i>, “Eveline”, Rockwell’s <i>Triple Self-Portrait</i> and “Boys Don’t Cry”. First, I will show how family and society push us to hide or to stay. Then I will show that we can still shape what we show.”','plain')+
+ '<div class="dbtns"><button class="addb" type="button" data-add="o2">Add theme and question</button><button class="addb" type="button" data-add="o3">Add roadmap</button></div>'}});
+
+add({k:'The closing',hot:'cl',render:function(c){
+ c.innerHTML='<span class="kick">The closing</span><h2>Answer your question</h2><p class="big">Your question starts with “to what extent”. What is your answer in two or three sentences? It cannot be only yes or no.</p>'+
+ rev('Show a possible answer','“To answer my question, I would say that to a large extent we can shape the self we show: Eilis decides to go back, and Rockwell chooses what his canvas shows. But we are never completely free: duty keeps Eveline at home, and a man is told not to cry. Even when we choose what to show, the real self may stay hidden.”','plain')+ctl('cl1')}});
+
+add({k:'Key words',hot:'ky',render:function(c){
+ c.innerHTML='<span class="kick">Speak from key words</span><h2>Shrink it to key words</h2><p class="big">You will not read a text. Which words from the outline would you keep so you can still say everything?</p>'+
+ '<div class="chips">'+['duty','stays','laughter','Rose','Father Flood','secret marriage','goes back','mirror','canvas','glasses','three selves'].map(function(w){return '<span class="chip">'+w+'</span>'}).join('')+'</div>'+
+ '<div class="dbtns"><button class="addb" type="button" data-add="ky">Add key words to the outline</button></div>'+
+ '<p class="steps">Now say the whole outline aloud, using only these words and the outline on the right.</p>'}});
+
+add({k:'Possible questions',hot:'',render:function(c){
+ var qs=[
+  ['Where do two of your documents disagree?','“Eveline” and <i>Brooklyn</i>. Both young women face family pressure, but Eveline stays and Eilis leaves, goes back and chooses again.'],
+  ['What does <i>Brooklyn</i> add to your question?','It shows change over time. Eilis moves from being directed by others to deciding for herself, so it answers “to what extent” with a process, not a yes or no.'],
+  ['Is there a document that does not fit well?','“Boys Don’t Cry” is about a man and his feelings, so it fits Part I (expectations) better than Part II (choice). It is also a song, so I can say less about it than about <i>Brooklyn</i>.'],
+  ['Why did you choose this question?','Because all four documents show someone deciding what to show to others: what they hide, what they stage, and what they choose.']];
+ c.innerHTML='<span class="kick">Questions you may be asked</span><h2>Answer first, then check</h2>'+qs.map(function(q){return '<div class="q">'+q[0]+'</div>'+rev('Show a possible answer',q[1],'plain')}).join('')}});
+
+add({k:'Any works',hot:'',render:function(c){
+ c.innerHTML='<span class="kick">The method</span><h2>The same steps for any works</h2><p class="big">At the Bac your works may be different. Which of these steps did we just do?</p>'+
+ '<div class="plan">'+[['One sentence per document','What is each one really about?'],['Find what they share','Turn it into a question that starts with “To what extent…?”, “How can…?” or “Why is it so hard to…?”'],['Sort your documents','Which show pressure? Which show freedom? That gives you two parts.'],['Four moves per document','What it is · what it shows · how it answers · link.'],['Opening last, closing answers the question','Hook, theme, question, roadmap. Then your answer.']].map(function(m,i){return '<div class="pr"><i>'+(i+1)+'</i><div><b>'+m[0]+'</b>'+m[1]+'</div></div>'}).join('')+'</div>'}});
+
+add({k:'Complete',hot:'',done:true,render:function(c){
+ c.innerHTML='<span class="kick">Done</span><h1>Your outline is complete.</h1><p class="big">Read it once from top to bottom. Does every part answer your question?</p>'+
+ '<div class="actions"><button class="pri" type="button" id="pr">Print / save as PDF</button><button type="button" id="cp">Copy as text</button></div>'+
+ '<div class="todo"><b>Before next time:</b><ol class="pf"><li>Say your presentation aloud twice, using only the key words.</li><li>Ask your teacher how long the presentation is and how it works.</li><li>Ask your teacher how many documents each row needs.</li></ol></div>';
+ c.querySelector('#pr').onclick=function(){window.print()};
+ c.querySelector('#cp').onclick=function(){
+  var t='YOUR ORAL OUTLINE\n\n';ROWS.forEach(function(r){var ids=Object.keys(state).filter(function(k){return LINES[k].sec===r[0]}).sort(function(a,b){return LINES[a].o-LINES[b].o});
+   if(ids.length){t+=r[1].toUpperCase()+'\n';ids.forEach(function(k){var d=document.createElement('div');d.innerHTML=state[k];t+='- '+d.textContent+'\n'});t+='\n'}});
+  function ok(){c.querySelector('#cp').textContent='Copied ✓'}
+  if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,function(){});else ok()}}});
+
+/* navigation */
+var idx=0,stage=document.getElementById('stage');
+function hot(r){document.querySelectorAll('.cr').forEach(function(x){x.classList.toggle('hot',x.getAttribute('data-r')===r)})}
+function go(i){if(i<0||i>=S.length)return;idx=i;var s=S[i];stage.innerHTML='';var c=document.createElement('div');stage.appendChild(c);s.render(c);
+ document.getElementById('main').classList.toggle('done',!!s.done);
+ hot(s.hot||'');
+ document.getElementById('bar').style.width=((i+1)/S.length*100)+'%';
+ document.getElementById('back').disabled=(i===0);document.getElementById('next').disabled=(i===S.length-1);
+ document.getElementById('st').textContent=s.k+'  ·  '+(i+1)+' / '+S.length;stage.scrollTop=0;
+ try{history.replaceState(null,'','#s'+(i+1))}catch(e){}}
+document.getElementById('next').onclick=function(){go(idx+1)};
+document.getElementById('back').onclick=function(){go(idx-1)};
+document.addEventListener('keydown',function(e){if(e.target&&(e.target.tagName==='INPUT'||e.target.isContentEditable))return;
+ if(e.key==='ArrowRight'||e.key==='PageDown')go(idx+1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(idx-1)});
+document.addEventListener('input',function(e){var id=e.target.getAttribute&&e.target.getAttribute('data-id');if(id)state[id]=e.target.innerHTML});
+document.addEventListener('click',function(e){
+ var b=e.target.closest('button.rev');if(b){var a=b.nextElementSibling;if(a)a.classList.toggle('show');return}
+ var t=e.target.closest('.tile');if(t){t.classList.toggle('show');return}
+ var ad=e.target.closest('[data-add]');if(ad){put(ad.getAttribute('data-add'),LINES[ad.getAttribute('data-add')].h);ad.textContent='Added ✓';return}
+ var us=e.target.closest('[data-use]');if(us){var id=us.getAttribute('data-use'),inp=document.querySelector('[data-in="'+id+'"]');if(inp&&inp.value.trim()){put(id,esc(inp.value.trim()));us.textContent='Used ✓'}return}
+ var pl=e.target.closest('[data-plan]');if(pl){put('p1t',LINES.p1t.h);put('p2t',LINES.p2t.h);pl.textContent='Plan added ✓';return}
+ var li=e.target.closest('.ticks li');if(li)li.classList.toggle('on')});
+draw();
+var st=parseInt((location.hash||'').replace('#s',''),10);
+go(st>0&&st<=S.length?st-1:0);
+})();
+</script>
+<div id="kce-legal" style="display:block;clear:both;box-sizing:border-box;width:100%;margin:0;padding:10px 16px;background:#0A1F3D;color:#C9A84C;font:12px/1.4 Arial,sans-serif;text-align:center">&copy; 2026 KingCretot Experience. All rights reserved. Licensed for KCE students only. Do not copy, share or distribute.</div><script>(function(){var e=document.getElementById("kce-legal");if(!e)return;function place(){var r=document.documentElement,b=document.body,t=null,best=0,a=b?b.getElementsByTagName("*"):[];for(var i=0;i<a.length;i++){var x=a[i];if(x===e||e.contains(x))continue;if(x.scrollHeight>x.clientHeight+20&&x.clientHeight>innerHeight*0.5&&x.clientWidth>innerWidth*0.5){var o=getComputedStyle(x).overflowY;if((o==="auto"||o==="scroll")&&x.clientHeight*x.clientWidth>best){best=x.clientHeight*x.clientWidth;t=x}}}if(!t&&b){var bs=getComputedStyle(b),hs=getComputedStyle(r);if(/(hidden|clip)/.test(hs.overflowY)||(/(auto|scroll)/.test(bs.overflowY)&&b.scrollHeight>b.clientHeight+1))t=b;else t=r}if(t&&e.parentNode!==t)t.appendChild(e);var h=0;for(var j=0;j<a.length;j++){var s=getComputedStyle(a[j]);if(s.position==="fixed"&&s.display!=="none"&&s.visibility!=="hidden"&&!e.contains(a[j])){var q=a[j].getBoundingClientRect();if(q.height>0&&q.height<200&&q.bottom>=innerHeight-2&&q.width>innerWidth*0.5)h=Math.max(h,q.height)}}e.style.marginBottom=h?h+"px":"0"}if(document.readyState==="complete")setTimeout(place,50);else addEventListener("load",function(){setTimeout(place,50)})})();</script>
+</body>
+</html>
