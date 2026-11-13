@@ -177,6 +177,12 @@ body.p2 .nav button.next{background:var(--maroon);border-color:var(--maroon)}
 .main.done{grid-template-columns:.7fr 1.3fr!important}
 .coverwrap{display:block!important}
 .pt{color:var(--maroon)}
+body{font-size:18px}
+.stage{padding:20px 28px 16px}
+h1{font-size:48px}h2{font-size:38px}
+.plan .pr{font-size:17.5px}
+.big{font-size:21px}
+.q{font-size:21px}
 .cv .li span{display:block}
 body .nav button.next{background:var(--navy)}
 .prog i{background:var(--navy)!important}
@@ -212,28 +218,28 @@ function rev(btn,html,cls){return '<button class="rev" type="button">'+btn+'</bu
 var ROWS=[['q','Thème du dossier / Problématique'],['o','Opening'],['p1','Part I'],['p2','Part II'],['lk','Links'],['cl','Closing'],['ky','Key words']];
 var LINES={
  q:{sec:'q',o:1,h:Q},
- o1:{sec:'o',o:1,h:'<b>Hook:</b> Rockwell paints himself from behind, and the face on the canvas is not the face in the mirror.'},
+ o1:{sec:'o',o:1,h:'<b>Hook:</b> In the mirror, Rockwell’s glasses hide his eyes, but on the canvas his eyes are clear.'},
  o2:{sec:'o',o:2,h:'<b>Theme and question:</b> expression et construction de soi. “'+Q+'”'},
  o3:{sec:'o',o:3,h:'<b>Roadmap:</b> four documents (<i>Brooklyn</i>, “Eveline”, <i>Triple Self-Portrait</i>, “Boys Don’t Cry”) in two parts: I. expectations push us to hide or to stay; II. we can still shape what we show.'},
- p1t:{sec:'p1',o:0,h:'<b class="pt">I. Family and society push us to show a self that is not ours</b>'},
+ p1t:{sec:'p1',o:0,h:'<b class="pt">I. Family and society push us to hide or to stay</b>'},
  p1a:{sec:'p1',o:1,h:'<b>“Eveline”</b>: duty to her family keeps her at home. She cannot say what she wants, so she stays.'},
  p1b:{sec:'p1',o:2,h:'<b>“Boys Don’t Cry”</b>: a man hides his sadness behind laughter, because boys are expected not to cry.'},
  p1c:{sec:'p1',o:3,h:'<b>Brooklyn (start)</b>: Rose and Father Flood arrange Eilis’s move. She is directed by others and often stays silent.'},
  p2t:{sec:'p2',o:0,h:'<b class="pt">II. Still, we can shape the self we show</b>'},
- p2a:{sec:'p2',o:1,h:'<b>Brooklyn (later)</b>: she chooses what each person knows (the secret marriage), then decides for herself to go back to Brooklyn.'},
- p2b:{sec:'p2',o:2,h:'<b>Triple Self-Portrait</b>: Rockwell decides what the canvas shows (no glasses, clear eyes). Three selves: which one is real?'},
+ p2a:{sec:'p2',o:1,h:'<b>Brooklyn (later)</b>: she controls what each person knows (the secret marriage) until Miss Kelly forces the truth out. Then she acts: she tells her mother, leaves a note for Jim, and goes back.'},
+ p2b:{sec:'p2',o:2,h:'<b>Triple Self-Portrait</b>: Rockwell constructs the image he shows (on the canvas his eyes are clear), but we never see his real face straight on. Which of the three selves is real?'},
  lk1:{sec:'lk',o:1,h:'<b>“Eveline” ↔ <i>Brooklyn</i></b>: same situation (leaving home for a new life), opposite outcome.'},
- lk2:{sec:'lk',o:2,h:'<b>“Boys Don’t Cry” ↔ Rockwell</b>: both show a gap between inside and outside. One hides it, the other stages it.'},
- cl1:{sec:'cl',o:1,h:'To a large extent we can shape the self we show (Eilis goes back; Rockwell chooses his canvas), but never completely: duty keeps Eveline at home, and a man is told not to cry. The real self may stay hidden.'},
+ lk2:{sec:'lk',o:2,h:'<b><i>Brooklyn</i> ↔ Rockwell</b>: both choose what others see. Eilis chooses what each person knows; Rockwell shows three selves, so which one is real?'},
+ cl1:{sec:'cl',o:1,h:'To a large extent we can shape the self we show: Eilis takes control step by step, and Rockwell constructs the image he shows. But never completely: duty keeps Eveline at home, a man is told not to cry, and even in Rockwell’s painting we never see his real face straight on. The real self may stay hidden.'},
  ky:{sec:'ky',o:1,h:'duty · stays · laughter · Rose · Father Flood · secret marriage · goes back · mirror · canvas · glasses · three selves'}
 };
 var state={};
-var flashSec='';
+var flashSec='',curHot='';
 function draw(){
  var box=document.getElementById('rows');box.innerHTML='';
  ROWS.forEach(function(r){
   var ids=Object.keys(state).filter(function(k){return LINES[k].sec===r[0]}).sort(function(a,b){return LINES[a].o-LINES[b].o});
-  var row=document.createElement('div');row.className='cr'+(flashSec===r[0]?' flash':'');row.setAttribute('data-r',r[0]);
+  var row=document.createElement('div');row.className='cr'+(flashSec===r[0]?' flash':'')+(curHot===r[0]?' hot':'');row.setAttribute('data-r',r[0]);
   var inner='';
   if(!ids.length)inner='<span class="ph">…</span>';
   ids.forEach(function(k){inner+='<div class="li"><span contenteditable="true" data-id="'+k+'">'+state[k]+'</span></div>'});
@@ -245,8 +251,9 @@ function draw(){
 function put(id,html){state[id]=html;flashSec=LINES[id].sec;draw();
  var f=document.querySelector('.cr.flash');if(f)setTimeout(function(){f.classList.remove('flash')},700)}
 function ctl(id,label){
- return '<div class="dbtns"><button class="addb" type="button" data-add="'+id+'">'+(label||'Add to outline')+'</button></div>'+
- '<div class="pickrow"><label>Say it in your own words. Your tutor types it, then presses Use.</label><div class="dbtns"><input class="pin" data-in="'+id+'" placeholder="what she says"><button class="addb" type="button" data-use="'+id+'">Use</button></div></div>'}
+ var inn=state[id]!==undefined;
+ return '<div class="dbtns"><button class="addb'+(inn?' done':'')+'" type="button" data-add="'+id+'">'+(inn?'In outline ✓':(label||'Add to outline'))+'</button></div>'+
+ '<div class="pickrow"><label>Type the answer here, then press Use.</label><div class="dbtns"><input class="pin" data-in="'+id+'" placeholder="the answer"><button class="addb" type="button" data-use="'+id+'">Use</button></div></div>'}
 function moves(a){return '<div class="plan">'+a.map(function(m,i){return '<div class="pr"><i>'+(i+1)+'</i><div><b>'+m[0]+'</b>'+m[1].replace(/<i>/g,'<em>').replace(/<\/i>/g,'</em>')+'</div></div>'}).join('')+'</div>'}
 
 var S=[];function add(o){S.push(o)}
@@ -282,14 +289,14 @@ add({k:'Your question',hot:'q',render:function(c){
 
 add({k:'Choose a plan',hot:'',render:function(c){
  var plans=[
-  ['A · Document by document','Safe','Four blocks, one per document. Easy to say, but it can sound like a list. The question gets answered only at the end.'],
-  ['B · Two parts: pressure, then freedom','Strongest','Part I: expectations push us to hide or to stay. Part II: we can still shape what we show. It answers “to what extent” directly.'],
-  ['C · Three lenses','Ambitious','Showing and hiding, other people’s expectations, staying and leaving. Rich, but harder to keep clear in a short presentation.']];
+  ['A · Document by document','','Four blocks, one per document. Easy to say. Watch out: it can sound like a list, and the question is answered only at the end.'],
+  ['B · Two parts: pressure, then freedom','','Part I: expectations push us to hide or to stay. Part II: we can still shape what we show. Good for “to what extent”, because it gives both the limits and the freedom.'],
+  ['C · Three lenses','','Showing and hiding, other people’s expectations, staying and leaving. Rich. Watch out: harder to keep clear in a short presentation.']];
  c.innerHTML='<span class="kick">The plan</span><h2>Choose a plan</h2><p class="big">Which plan would you pick for these four documents, and why? Look at all three first.</p><div class="pick" id="pl"></div><div id="pp"></div>';
  var bar=c.querySelector('#pl'),pp=c.querySelector('#pp');
  plans.forEach(function(p,i){var b=document.createElement('button');b.type='button';b.className='pk';b.textContent=p[0];b.onclick=function(){
   [].forEach.call(bar.children,function(x,j){x.classList.toggle('on',i===j);if(i===j)x.classList.add('seen')});
-  pp.innerHTML='<div class="q"><small style="display:block;font-family:var(--ui);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon)">'+p[1]+'</small></div>'+'<p class="big" style="margin:10px 0">'+p[2]+'</p>'+(i===1?'<div class="dbtns"><button class="addb" type="button" data-plan="1">Use plan B</button></div><p class="steps">Part I: “Eveline”, “Boys Don’t Cry”, <i>Brooklyn</i> (the start). Part II: <i>Brooklyn</i> (later), Rockwell.</p>':'')};bar.appendChild(b)});
+  pp.innerHTML='<p class="big" style="margin:10px 0">'+p[2]+'</p>'+(i===1?'<div class="dbtns"><button class="addb" type="button" data-plan="1">Add part titles to outline</button></div><p class="steps">Part I: “Eveline”, “Boys Don’t Cry”, <i>Brooklyn</i> (the start). Part II: <i>Brooklyn</i> (later), Rockwell.</p>':'')};bar.appendChild(b)});
  }});
 
 function docStage(cfg){add({k:cfg.k,hot:cfg.hot,render:function(c){
@@ -309,37 +316,37 @@ docStage({k:'“Boys Don’t Cry”',hot:'p1',kick:'Part I · Document',id:'p1b'
  mv:[['What it is','A song by The Cure (1979), a non-literary document.'],
  ['What it shows','A man hides his sadness by laughing, because boys are expected not to cry.'],
  ['How it answers my question','Society decides which feelings he may show, so the self he shows to others is a mask.'],
- ['Link','Rockwell: both are about the gap between what is inside and what is shown. In the song it is hidden; in the painting it is staged.']]});
+ ['Link','“Eveline”: in both, expectations stop someone from showing or acting on who they are. Duty in one, a rule about feelings in the other.']]});
 
-docStage({k:'Brooklyn · pressure',hot:'p1',kick:'Part I · Full work',id:'p1c',title:'<i>Brooklyn</i>: when others decide',meta:'Colm Tóibín · novel · 2009 · the start of the book',
+docStage({k:'Brooklyn · pressure',hot:'p1',kick:'Part I · Full work',id:'p1c',title:'<i>Brooklyn</i>: when others decide',meta:'Colm Tóibín · novel · 2009 · the early part of the book',
  prompt:'At the start of <i>Brooklyn</i>, who decides what Eilis does and who she is?',
  mv:[['What it is','A novel by Colm Tóibín (2009). Eilis, a young Irish woman, emigrates to Brooklyn.'],
  ['What it shows','Her move is arranged by her sister Rose and by Father Flood. She does not truly choose it. In Brooklyn she often says little about how she feels, and her letters leave things out.'],
  ['How it answers my question','At first other people shape her life, and she shows them a quiet, controlled self.'],
  ['Link','“Eveline”: both are young women under family pressure. The difference is what happens next.']]});
 
-docStage({k:'Brooklyn · choice',hot:'p2',kick:'Part II · Full work',id:'p2a',title:'<i>Brooklyn</i>: when she decides',meta:'Colm Tóibín · novel · 2009 · the end of the book',
+docStage({k:'Brooklyn · choice',hot:'p2',kick:'Part II · Full work',id:'p2a',title:'<i>Brooklyn</i>: when she decides',meta:'Colm Tóibín · novel · 2009 · the later part of the book',
  prompt:'How does Eilis take control, and what does she choose to show?',
  mv:[['What it is','The same novel, later in the story. Rose has died, and Eilis has returned to Ireland.'],
  ['What it shows','Before she goes home she marries Tony in secret at the courthouse. When Miss Kelly finds out, Eilis tells her mother, leaves a note for Jim, and goes back to Brooklyn.'],
- ['How it answers my question','Her control grows through the book. She chooses what each person knows, and in the end she decides for herself. But only after pressure forces her to act.'],
+ ['How it answers my question','She controls what each person knows until Miss Kelly forces the secret out. Then she acts. Her control grows through the book, but it takes pressure to make her act.'],
  ['Link','Rockwell: both choose what to show to others.']]});
 
 docStage({k:'Rockwell',hot:'p2',kick:'Part II · Document',id:'p2b',title:'<i>Triple Self-Portrait</i>',meta:'Norman Rockwell · painting · 1959 · on the cover of the Saturday Evening Post, February 1960',
  prompt:'How does Rockwell shape the self he shows to others?',
  mv:[['What it is','An oil painting by Norman Rockwell. We see the painter from behind, a mirror, and the portrait on his canvas.'],
  ['What it shows','In the mirror, glare hides his eyes. On the canvas, he has no glasses and his eyes are clear. At the upper right he pins small self-portraits by Dürer, Rembrandt, Picasso and Van Gogh.'],
- ['How it answers my question','He decides what to show. Three selves in one picture (the man from behind, the reflection, the portrait): which one is real?'],
- ['Link','<i>Brooklyn</i>: both choose what others see. Or “Boys Don’t Cry”: staged versus hidden.']]});
+ ['How it answers my question','He constructs the image he shows. But there are three selves in one picture (the man from behind, the reflection, the portrait), and we never see his real face straight on. So he has choice, and also limits: which self is real?'],
+ ['Link','<i>Brooklyn</i>: both choose what others see.']]});
 
 add({k:'Links',hot:'lk',render:function(c){
  c.innerHTML='<span class="kick">Between documents</span><h2>Make two links</h2><p class="big">Pick two pairs that disagree or agree in an interesting way. Say each link out loud.</p>'+
  '<div class="q">“Eveline” and <i>Brooklyn</i></div>'+rev('Show a strong link','Same situation: a young woman can leave home for a new life. Opposite outcome: Eveline stays, while Eilis leaves, goes back, and chooses again.','plain')+ctl('lk1')+
- '<div class="q" style="margin-top:14px">“Boys Don’t Cry” and Rockwell</div>'+rev('Show a strong link','Both show a gap between inside and outside. In the song the feeling is hidden. In the painting the image is staged.','plain')+ctl('lk2')}});
+ '<div class="q" style="margin-top:14px"><i>Brooklyn</i> and Rockwell</div>'+rev('Show a strong link','Both choose what others see. Eilis chooses what each person knows, and Rockwell constructs the image he shows. But in both it is hard to see the real self: which of Rockwell’s three selves is real?','plain')+ctl('lk2')}});
 
 add({k:'The opening',hot:'o',render:function(c){
  c.innerHTML='<span class="kick">The opening</span><h2>The opening comes last</h2><p class="big">Now you know your plan, so the opening is easy. Start with a hook. Pick one detail from your documents that makes people want to listen.</p>'+
- '<div class="q">What detail would you start with?</div>'+rev('Show a possible hook','Rockwell paints himself from behind, and the face on the canvas is not the face in the mirror.','plain')+ctl('o1')}});
+ '<div class="q">What detail would you start with?</div>'+rev('Show a possible hook','In the mirror, Rockwell’s glasses hide his eyes, but on the canvas his eyes are clear.','plain')+ctl('o1')}});
 
 add({k:'Question and roadmap',hot:'o',render:function(c){
  c.innerHTML='<span class="kick">The opening</span><h2>Say your theme, question and roadmap</h2><p class="big">Say your theme, your question, your four documents, and your two parts.</p>'+
@@ -349,19 +356,19 @@ add({k:'Question and roadmap',hot:'o',render:function(c){
 
 add({k:'The closing',hot:'cl',render:function(c){
  c.innerHTML='<span class="kick">The closing</span><h2>Answer your question</h2><p class="big">Your question starts with “to what extent”. What is your answer in two or three sentences? It cannot be only yes or no.</p>'+
- rev('Show a possible answer','“To answer my question, I would say that to a large extent we can shape the self we show: Eilis decides to go back, and Rockwell chooses what his canvas shows. But we are never completely free: duty keeps Eveline at home, and a man is told not to cry. Even when we choose what to show, the real self may stay hidden.”','plain')+ctl('cl1')}});
+ rev('Show a possible answer','“To answer my question, I would say that to a large extent we can shape the self we show: Eilis takes control step by step, and Rockwell constructs the image he shows. But we are never completely free: duty keeps Eveline at home, a man is told not to cry, and even in Rockwell’s painting we never see his real face straight on. Even when we choose what to show, the real self may stay hidden.”','plain')+ctl('cl1')}});
 
 add({k:'Key words',hot:'ky',render:function(c){
  c.innerHTML='<span class="kick">Speak from key words</span><h2>Shrink it to key words</h2><p class="big">You will not read a text. Which words from the outline would you keep so you can still say everything?</p>'+
- '<div class="chips">'+['duty','stays','laughter','Rose','Father Flood','secret marriage','goes back','mirror','canvas','glasses','three selves'].map(function(w){return '<span class="chip">'+w+'</span>'}).join('')+'</div>'+
+ rev('Show a possible list','<div class="chips">'+['duty','stays','laughter','Rose','Father Flood','secret marriage','goes back','mirror','canvas','glasses','three selves'].map(function(w){return '<span class="chip">'+w+'</span>'}).join('')+'</div>','plain')+
  '<div class="dbtns"><button class="addb" type="button" data-add="ky">Add key words to the outline</button></div>'+
  '<p class="steps">Now say the whole outline aloud, using only these words and the outline on the right.</p>'}});
 
 add({k:'Possible questions',hot:'',render:function(c){
  var qs=[
   ['Where do two of your documents disagree?','“Eveline” and <i>Brooklyn</i>. Both young women face family pressure, but Eveline stays and Eilis leaves, goes back and chooses again.'],
-  ['What does <i>Brooklyn</i> add to your question?','It shows change over time. Eilis moves from being directed by others to deciding for herself, so it answers “to what extent” with a process, not a yes or no.'],
-  ['Is there a document that does not fit well?','“Boys Don’t Cry” is about a man and his feelings, so it fits Part I (expectations) better than Part II (choice). It is also a song, so I can say less about it than about <i>Brooklyn</i>.'],
+  ['What does <i>Brooklyn</i> add to your question?','It shows change over time. Eilis moves from being directed by others to taking control step by step, so it answers “to what extent” with a process, not a yes or no.'],
+  ['Is there a document that does not fit well?','“Boys Don’t Cry” is about a man and his feelings, so it fits Part I (expectations) better than Part II (choice). It is also a song, so I can say less about it than about <i>Brooklyn</i>. I still chose it because it shows clearly how society decides what we may express.'],
   ['Why did you choose this question?','Because all four documents show someone deciding what to show to others: what they hide, what they stage, and what they choose.']];
  c.innerHTML='<span class="kick">Questions you may be asked</span><h2>Answer first, then check</h2>'+qs.map(function(q){return '<div class="q">'+q[0]+'</div>'+rev('Show a possible answer',q[1],'plain')}).join('')}});
 
@@ -377,12 +384,14 @@ add({k:'Complete',hot:'',done:true,render:function(c){
  c.querySelector('#cp').onclick=function(){
   var t='YOUR ORAL OUTLINE\n\n';ROWS.forEach(function(r){var ids=Object.keys(state).filter(function(k){return LINES[k].sec===r[0]}).sort(function(a,b){return LINES[a].o-LINES[b].o});
    if(ids.length){t+=r[1].toUpperCase()+'\n';ids.forEach(function(k){var d=document.createElement('div');d.innerHTML=state[k];t+='- '+d.textContent+'\n'});t+='\n'}});
-  function ok(){c.querySelector('#cp').textContent='Copied ✓'}
-  if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,function(){});else ok()}}});
+  var cb=c.querySelector('#cp');
+  function ok(){cb.textContent='Copied ✓'}
+  function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var r=false;try{r=document.execCommand('copy')}catch(e){}document.body.removeChild(ta);if(r)ok();else cb.textContent='Select the outline and copy it'}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb()}}});
 
 /* navigation */
 var idx=0,stage=document.getElementById('stage');
-function hot(r){document.querySelectorAll('.cr').forEach(function(x){x.classList.toggle('hot',x.getAttribute('data-r')===r)})}
+function hot(r){curHot=r;draw()}
 function go(i){if(i<0||i>=S.length)return;idx=i;var s=S[i];stage.innerHTML='';var c=document.createElement('div');stage.appendChild(c);s.render(c);
  document.getElementById('main').classList.toggle('done',!!s.done);
  hot(s.hot||'');
@@ -396,11 +405,11 @@ document.addEventListener('keydown',function(e){if(e.target&&(e.target.tagName==
  if(e.key==='ArrowRight'||e.key==='PageDown')go(idx+1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(idx-1)});
 document.addEventListener('input',function(e){var id=e.target.getAttribute&&e.target.getAttribute('data-id');if(id)state[id]=e.target.innerHTML});
 document.addEventListener('click',function(e){
- var b=e.target.closest('button.rev');if(b){var a=b.nextElementSibling;if(a)a.classList.toggle('show');return}
+ var b=e.target.closest('button.rev');if(b){var a=b.nextElementSibling;if(a){a.classList.toggle('show');var sh=a.classList.contains('show');b.textContent=b.textContent.replace(/^(Show|Hide)/,sh?'Hide':'Show')}return}
  var t=e.target.closest('.tile');if(t){t.classList.toggle('show');return}
- var ad=e.target.closest('[data-add]');if(ad){put(ad.getAttribute('data-add'),LINES[ad.getAttribute('data-add')].h);ad.textContent='Added ✓';return}
- var us=e.target.closest('[data-use]');if(us){var id=us.getAttribute('data-use'),inp=document.querySelector('[data-in="'+id+'"]');if(inp&&inp.value.trim()){put(id,esc(inp.value.trim()));us.textContent='Used ✓'}return}
- var pl=e.target.closest('[data-plan]');if(pl){put('p1t',LINES.p1t.h);put('p2t',LINES.p2t.h);pl.textContent='Plan added ✓';return}
+ var ad=e.target.closest('[data-add]');if(ad){if(ad.classList.contains('done'))return;ad.classList.add('done');put(ad.getAttribute('data-add'),LINES[ad.getAttribute('data-add')].h);ad.textContent='In outline ✓';return}
+ var us=e.target.closest('[data-use]');if(us){var id=us.getAttribute('data-use'),inp=document.querySelector('[data-in="'+id+'"]');if(inp&&inp.value.trim()){var m=LINES[id].h.match(/^<b>[\s\S]*?<\/b>:?/);put(id,(m?m[0]+' ':'')+esc(inp.value.trim()));us.textContent='Used ✓';inp.blur();var ab=document.querySelector('[data-add="'+id+'"]');if(ab){ab.classList.add('done');ab.textContent='In outline ✓'}}return}
+ var pl=e.target.closest('[data-plan]');if(pl){put('p1t',LINES.p1t.h);put('p2t',LINES.p2t.h);pl.textContent='Added ✓';return}
  var li=e.target.closest('.ticks li');if(li)li.classList.toggle('on')});
 draw();
 var st=parseInt((location.hash||'').replace('#s',''),10);
