@@ -199,6 +199,12 @@ h1{font-size:48px}h2{font-size:38px}
 .cv .li span{display:block}
 body .nav button.next{background:var(--navy)}
 .prog i{background:var(--navy)!important}
+.main.oral{grid-template-columns:1.7fr .7fr!important}
+.mo{border:2px solid var(--line,#d8dde6);border-radius:12px;padding:6px 20px;margin:8px 0 12px;background:#fff}
+.mo-s{margin:10px 0}
+.mo-l{display:inline-block;font-family:var(--ui);font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--maroon);margin-bottom:2px}
+.mo p{font-size:17.5px;line-height:1.5;margin:0 0 8px}
+.mo em{font-style:italic}
 @media (max-width:900px){.main,.main.done{grid-template-columns:1fr!important}}
 </style>
 </head>
@@ -405,11 +411,23 @@ add({k:'Complete',hot:'',done:true,render:function(c){
   function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var r=false;try{r=document.execCommand('copy')}catch(e){}document.body.removeChild(ta);if(r)ok();else cb.textContent='Select the outline and copy it'}
   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb()}}});
 
+add({k:'Model oral',hot:'',oral:true,render:function(c){
+ var P=function(l,t){return '<div class="mo-s"><span class="mo-l">'+l+'</span><p>'+t+'</p></div>'};
+ c.innerHTML='<span class="kick">A model</span><h1>One possible oral</h1><p class="big">This is what an outline like yours can become, in about three and a half minutes. Use it to hear the rhythm, then say yours in your own words.</p>'+
+ '<div class="mo">'+
+ P('Opening','Look at this painting for a moment. In the mirror, the glare on Norman Rockwell’s glasses hides his eyes. But on the canvas, his eyes are clear. So which one is the real Rockwell? That question is at the heart of my dossier on the theme of the expression and construction of the self. My central question is: to what extent can we shape the self we show to others when family and society expect something else? To answer it, I chose four documents: Colm Tóibín’s novel <em>Brooklyn</em>, James Joyce’s short story “Eveline,” Rockwell’s <em>Triple Self-Portrait</em>, and the song “Boys Don’t Cry” by The Cure. First, I will show how family and society push us to hide or to stay. Then I will show that we can still shape the self we show.')+
+ P('Part I · Family and society push us to hide or to stay','Let me start with the pressure. In “Eveline,” a young woman in Dublin has the chance to leave with a sailor, Frank, for a new life in Buenos Aires. But her mother is dead, and she feels responsible for her family. She is torn between the fear of the unknown and the life she knows, and she cannot say what she wants. In the end, she stays. Duty decides for her.</p><p>Society puts pressure on us in a different way in “Boys Don’t Cry.” In this song from 1979, a man hides his sadness behind laughter, because boys are expected not to cry. Like Eveline, he cannot show who he really is, but here the pressure comes from society, not from a family duty.</p><p>We find the same pressure at the beginning of <em>Brooklyn</em>. Eilis does not truly choose to go to America. Her sister Rose and Father Flood arrange it for her. And in Brooklyn, she often says little about how she feels; her letters leave things out. At this point, other people shape her life.</p><p>If you read “Eveline” next to <em>Brooklyn</em>, you see almost the same situation: a young woman who can leave home for a new life. But the outcome is the opposite. Eveline stays, whereas Eilis leaves.')+
+ P('Part II · Still, we can shape the self we show','But that is not the whole story. Later in <em>Brooklyn</em>, Eilis starts to take control. Before she goes home to Ireland, she marries Tony in secret at the courthouse, so she controls what each person knows, until Miss Kelly forces the truth out. Then Eilis acts: she tells her mother, leaves a note for Jim, and goes back to Brooklyn. Her control grows step by step, but it takes pressure to make her act.</p><p>Rockwell, too, chooses what to show. In his <em>Triple Self-Portrait</em>, painted in 1959, we see the painter from behind, a mirror, and the portrait on his canvas. On the canvas, he constructs the image he shows, with clear eyes and no glasses. But we never see his real face straight on. There are three selves in one picture, so which one is real?</p><p>So <em>Brooklyn</em> and Rockwell have something in common: both choose what others see. But in both, the real self is hard to see.')+
+ P('Closing','So, to what extent can we shape the self we show? I would say that, to a large extent, we can: Eilis takes control step by step, and Rockwell constructs the image he shows. But we are never completely free. Duty keeps Eveline at home, a man is told not to cry, and even in Rockwell’s painting, we never see his real face straight on. Even when we choose what to show, the real self may stay hidden. Thank you.')+
+ '</div><div class="todo"><b>Notice:</b><ol class="pf"><li>It opens with one precise detail, then gives the theme, the question, the four documents and the two parts.</li><li>Each move is announced: “Let me start with,” “We find the same pressure,” “But that is not the whole story.”</li><li>Every document goes back to the question, and two documents are linked.</li><li>It answers “to what extent” with “to a large extent, but never completely.”</li></ol></div>';
+}});
+
 /* navigation */
 var idx=0,stage=document.getElementById('stage');
 function hot(r){curHot=r;draw()}
 function go(i){if(i<0||i>=S.length)return;idx=i;var s=S[i];stage.innerHTML='';var c=document.createElement('div');stage.appendChild(c);s.render(c);
  document.getElementById('main').classList.toggle('done',!!s.done);
+ document.getElementById('main').classList.toggle('oral',!!s.oral);
  hot(s.hot||'');
  document.getElementById('bar').style.width=((i+1)/S.length*100)+'%';
  document.getElementById('back').disabled=(i===0);document.getElementById('next').disabled=(i===S.length-1);
